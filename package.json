@@ -1,0 +1,21 @@
+{
+	"name": "paw-share",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev:api": "npm run dev --workspace=packages/api",
+		"dev:db": "npm run db --workspace=packages/api",
+		"dev:web": "npm run dev --workspace=packages/web",
+		"install:api": "npm install --workspace=packages/api",
+		"install:app": "npm install --workspace=packages/app",
+		"install:web": "npm install --workspace=packages/web",
+		"windows:setup-project": "./scripts/setup-project.bat",
+		"windows:start-project": "./scripts/start-project.bat",
+		"linux:setup-project": "chmod +x ./scripts/setup-project.sh && ./scripts/setup-project.sh",
+		"linux:start-project": "chmod +x ./scripts/start-project.sh && ./scripts/start-project.sh"
+	},
+	"keywords": [],
+	"workspaces": [
+		"packages/*"
+	]
+}
