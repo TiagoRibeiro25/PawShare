@@ -12,7 +12,9 @@
 		"windows:setup-project": "./scripts/setup-project.bat",
 		"windows:start-project": "./scripts/start-project.bat",
 		"linux:setup-project": "chmod +x ./scripts/setup-project.sh && ./scripts/setup-project.sh",
-		"linux:start-project": "chmod +x ./scripts/start-project.sh && ./scripts/start-project.sh"
+		"linux:start-project": "chmod +x ./scripts/start-project.sh && ./scripts/start-project.sh",
+		"macos:setup-project": "chmod +x ./scripts/setup-project.sh && ./scripts/setup-project.sh",
+		"macos:start-project": "chmod +x ./scripts/macos-start-project.sh && ./scripts/macos-start-project.sh"
 	},
 	"keywords": [],
 	"workspaces": [

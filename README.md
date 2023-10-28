@@ -65,7 +65,13 @@ git clone repo.git
 
 2. Run the setup script (use the correct script for your OS)
 
-Linux or MacOS:
+MacOS:
+
+```sh
+npm run macos:setup-project
+```
+
+Linux:
 
 ```sh
 npm run linux:setup-project
@@ -87,7 +93,13 @@ And follow the `.env.example` file in each directory to fill in the required env
 
 4. Run the project (use the correct script for your OS)
 
-Linux or MacOS:
+MacOS:
+
+```sh
+npm run macos:start-project
+```
+
+Linux:
 
 ```sh
 npm run linux:start-project
