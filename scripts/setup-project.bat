@@ -29,33 +29,43 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: Execute "npm run dev:db"
-echo "Executing npm run dev:db..."
-npm run dev:db
+:: Go to /packages/api and execute "npm run db"
+echo "Setting up the database..."
+cd packages/api
+npm run db
 if errorlevel 1 (
-    echo "Failed to start the database container."
-    exit /b 1
+		echo "Failed to start the database."
+		exit /b 1
 )
 
-:: Execute "npm run install:api"
-echo "Executing npm run install:api..."
-npm run install:api
+:: Install the api dependencies
+echo "Installing the API dependencies..."
+npm install
 if errorlevel 1 (
     echo "Failed to install the API dependencies."
     exit /b 1
 )
 
-:: Execute "npm run install:web"
-echo "Executing npm run install:web..."
-npm run install:web
+:: Go back to the root folder
+cd ../..
+
+
+:: Go to /packages/web and execute "npm install"
+echo "Installing the WEB dependencies..."
+cd packages/web
+npm install
 if errorlevel 1 (
 		echo "Failed to install the WEB dependencies."
 		exit /b 1
 )
 
-:: Execute "npm run install:app"
-@REM echo "Executing npm run install:app..."
-@REM npm run install:app
+:: Go back to the root folder
+cd ../..
+
+:: Go to /packages/app and execute "npm install"
+@REM echo "Installing the APP dependencies..."
+@REM cd packages/app
+@REM npm install
 @REM if errorlevel 1 (
 @REM     echo "Failed to install the APP dependencies."
 @REM     exit /b 1

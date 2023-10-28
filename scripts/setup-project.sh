@@ -1,6 +1,7 @@
+#!/bin/bash
+
 # Check for Node.js
-node -v >/dev/null 2>&1
-if [ $? -ne 0 ]; then
+if ! node -v >/dev/null 2>&1; then
   echo "Node.js is not installed or not in the path. Please install Node.js version 18.18.0 or above."
   exit 1
 fi
@@ -14,47 +15,53 @@ if [[ "$NODE_VERSION" < "18.18.0" ]]; then
 fi
 
 # Check for npm
-npm -v >/dev/null 2>&1
-if [ $? -ne 0 ]; then
+if ! npm -v >/dev/null 2>&1; then
   echo "npm is not installed or not in the path. Please install npm."
   exit 1
 fi
 
 # Check for Docker
-docker -v >/dev/null 2>&1
-if [ $? -ne 0 ]; then
+if ! docker -v >/dev/null 2>&1; then
   echo "Docker is not installed or not in the path. Please install Docker or Docker Desktop."
   exit 1
 fi
 
-# Execute "npm run dev:db"
-echo "Initiating the database docker container..."
-npm run dev:db
+# Execute "npm run db"
+echo "Setting up the database..."
+cd packages/api
+npm run db
 if [ $? -ne 0 ]; then
-  echo "Failed to start the database container."
+  echo "Failed to start the database."
   exit 1
 fi
 
-# Execute "npm run install:api"
-echo "Installing the API dependencies.."
-npm run install:api
+# Install the API dependencies
+echo "Installing the API dependencies..."
+npm install
 if [ $? -ne 0 ]; then
   echo "Failed to install the API dependencies."
   exit 1
 fi
 
-# Execute "npm run install:web"
-echo "Installing the WEB dependencies.."
-npm run install:web
+# Go back to the root folder
+cd ../..
+
+# Go to /packages/web and execute "npm install"
+echo "Installing the WEB dependencies..."
+cd packages/web
+npm install
 if [ $? -ne 0 ]; then
-	echo "Failed to install the WEB dependencies."
-	exit 1
+  echo "Failed to install the WEB dependencies."
+  exit 1
 fi
 
+# Go back to the root folder
+cd ../..
 
-# Execute "npm run install:app"
+# Uncomment and adapt the code below if you want to install APP dependencies
 # echo "Installing the APP dependencies.."
-# npm run install:app
+# cd packages/app
+# npm install
 # if [ $? -ne 0 ]; then
 #   echo "Failed to install the APP dependencies."
 #   exit 1

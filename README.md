@@ -59,28 +59,18 @@ If you don't have or want to use Docker, you will need to have:
 
 1. Clone the repo
 
-```sh
-git clone repo.git
-```
-
 2. Run the setup script (use the correct script for your OS)
 
-MacOS:
+Linux or MacOS:
 
 ```sh
-npm run macos:setup-project
-```
-
-Linux:
-
-```sh
-npm run linux:setup-project
+chmod +x ./scripts/setup-project.sh && ./scripts/setup-project.sh
 ```
 
 Windows:
 
 ```sh
-npm run windows:setup-project
+./scripts/setup-project.bat
 ```
 
 3. Create a `.env` file in the following directories:
@@ -93,38 +83,39 @@ And follow the `.env.example` file in each directory to fill in the required env
 
 4. Run the project (use the correct script for your OS)
 
-MacOS:
-
-```sh
-npm run macos:start-project
-```
-
 Linux:
 
 ```sh
-npm run linux:start-project
+chmod +x ./scripts/start-project.sh && ./scripts/start-project.sh
+```
+
+MacOS:
+
+```sh
+chmod +x ./scripts/macos-start-project.sh && ./scripts/macos-start-project.sh
 ```
 
 Windows:
 
 ```sh
-npm run windows:start-project
+./scripts/start-project.bat
 ```
 
 #### Manual
 
 1. Clone the repo
 
-```sh
-git clone repo.git
-```
-
 2. Install NPM packages
 
 ```sh
-  npm run install:api
-  npm run install:app
-  npm run install:web
+  cd packages/api
+  npm run install
+ 
+  cd ../app
+  npm run install
+
+  cd ../web
+  npm run install
 ```
 
 3. Create a `.env` file in the following directories:
@@ -138,25 +129,29 @@ And follow the `.env.example` file in each directory to fill in the required env
 4. Start the database
 
 ```sh
-npm run dev:db
+cd packages/api
+npm run db
 ```
 
 5. Start the API
 
 ```sh
-npm run dev:api
+cd packages/api
+npm run dev
 ```
 
 6. Start the app
 
 ```sh
-npm run dev:app
+cd packages/app
+npm run dev
 ```
 
 7. Start the web client
 
 ```sh
-npm run dev:web
+cd packages/web
+npm run dev
 ```
 
 <a id="contributors"></a>
