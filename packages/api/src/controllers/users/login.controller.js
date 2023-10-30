@@ -2,7 +2,6 @@ const utils = require("../../utils");
 const db = require("../../db");
 const services = require("../../services");
 const templates = require("../../templates");
-const config = require("../../config");
 
 /**
  * @typedef {{
@@ -62,20 +61,6 @@ async function login(req, res) {
 		// Generate the jwt auth token and the refresh token
 		const authToken = utils.tokens.generateToken(user.id, "authToken");
 		const refreshToken = utils.tokens.generateToken(user.id, "refreshToken", remember_me);
-
-		// Save the refresh token in redis
-		await db.redis.refreshTokens.set(
-			refreshToken,
-			JSON.stringify({ userId: user.id, remember_me }),
-		);
-
-		// Set the expiration time of the refresh token
-		await db.redis.refreshTokens.expire(
-			refreshToken,
-			remember_me
-				? config.tokens.refreshExpiresInRememberMe
-				: config.tokens.refreshExpiresIn,
-		);
 
 		utils.handleResponse(res, utils.http.StatusOK, "Login successful", {
 			authToken,

@@ -37,7 +37,6 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 - [Express](https://expressjs.com/)
 - [Sequelize](https://sequelize.org/)
 - [MySQL](https://www.mysql.com/)
-- [Redis](https://redis.io/)
 
 <a id="getting-started"></a>
 
@@ -51,7 +50,7 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 
 If you don't have or want to use Docker, you will need to have:
 
-- A mysql and redis database running locally or remotely on port 3306 and 6379 respectively (be sure to update the credientials in the `.env` file)
+- A mysql database running locally or remotely on port 3306 (be sure to update the credientials in the `.env` file)
 
 ### Installation
 

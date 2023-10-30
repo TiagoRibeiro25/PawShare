@@ -1,5 +1,4 @@
 const utils = require("../utils");
-const db = require("../db");
 const config = require("../config");
 
 /**
@@ -48,17 +47,6 @@ async function validateTokens(req, res, next) {
 			return;
 		}
 
-		// Check if the refresh token is in the redis database (if it's not, it's been invalidated)
-		const refreshTokenInRedis = await db.redis.refreshTokens.get(refreshToken);
-		if (!refreshTokenInRedis) {
-			utils.handleResponse(
-				res,
-				utils.http.StatusUnauthorized,
-				"Refresh token has been invalidated",
-			);
-			return;
-		}
-
 		// Decode the tokens
 		const decodedAuthToken = utils.tokens.decodeToken(authToken, "authToken");
 		const decodedRefreshToken = utils.tokens.decodeToken(refreshToken, "refreshToken");
@@ -73,23 +61,6 @@ async function validateTokens(req, res, next) {
 				decodedAuthToken.userId,
 				"refreshToken",
 				decodedAuthToken.remember_me,
-			);
-
-			// Update the refresh token in the redis database
-			await db.redis.refreshTokens.set(
-				newRefreshToken,
-				JSON.stringify({
-					userId: decodedAuthToken.userId,
-					remember_me: decodedAuthToken.remember_me,
-				}),
-			);
-
-			// Set the expiration time of the refresh token
-			await db.redis.refreshTokens.expire(
-				refreshToken,
-				decodedAuthToken.remember_me
-					? config.tokens.refreshExpiresInRememberMe
-					: config.tokens.refreshExpiresIn,
 			);
 
 			// Send the new refresh token in the response headers

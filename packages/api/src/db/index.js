@@ -1,16 +1,15 @@
 const colors = require("colors");
 const mysql = require("./mysql");
-const redis = require("./redis");
 
 /**
- * Connects to the mysql database and redis.
+ * Connects to the mysql database.
  * @async
  * @function connect
  * @returns {Promise<boolean>} Whether the connection was successful.
  */
 async function connect() {
 	try {
-		await Promise.all([mysql.sequelize.authenticate(), redis.refreshTokens.connect()]);
+		await Promise.all([mysql.sequelize.authenticate()]);
 
 		return true;
 	} catch (error) {
@@ -23,4 +22,4 @@ async function connect() {
 	}
 }
 
-module.exports = { mysql, redis, connect };
+module.exports = { mysql, connect };
