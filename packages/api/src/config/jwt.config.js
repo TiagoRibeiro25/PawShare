@@ -1,6 +1,6 @@
 const config = {
-	secret: process.env.JWT_SECRET, // The secret is used to generate the token
-	refreshSecret: process.env.JWT_REFRESH_SECRET, // The secret is used to generate the refresh token
+	secret: process.env.JWT_SECRET || "", // The secret is used to generate the token
+	refreshSecret: process.env.JWT_REFRESH_SECRET || "", // The secret is used to generate the refresh token
 
 	expiresIn: 60 * 60, // 1 hour in seconds
 

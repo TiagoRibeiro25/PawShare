@@ -2,6 +2,8 @@ const utils = require("../../utils");
 const db = require("../../db");
 const { Op } = require("sequelize");
 
+const TIME_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
+
 /**
  * Delete all unverified users.
  * @param {import("express").Request} _ - The Express Request object (unused).
@@ -14,7 +16,7 @@ async function deleteUnverifiedUsers(_, res) {
 			where: {
 				is_verified: false,
 				createdAt: {
-					[Op.lt]: new Date(new Date() - 24 * 60 * 60 * 1000), // 24 hours ago
+					[Op.lt]: new Date(new Date() - TIME_INTERVAL),
 				},
 			},
 		});

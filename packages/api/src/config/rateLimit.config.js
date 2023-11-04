@@ -1,6 +1,4 @@
-const { RateLimitRequestHandler } = require("express-rate-limit");
-
-/** @type {RateLimitRequestHandler} */
+/** @type {import("express-rate-limit").RateLimitRequestHandler} */
 const rateLimitConfig = {
 	// This value determines the time window within which the rate limits are enforced. It is typically set in milliseconds or seconds. The appropriate value depends on the expected frequency of requests and the desired granularity of rate limiting.
 	windowMs: 1 * 60 * 1000, // 1 minute

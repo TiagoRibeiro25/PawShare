@@ -1,5 +1,4 @@
 const compression = require("compression");
-const { CompressionOptions } = require("compression");
 
 /**
  * @description Custom compression filter function
@@ -17,7 +16,7 @@ const shouldCompress = (req, res) => {
 	return compression.filter(req, res);
 };
 
-/** @type {CompressionOptions} */
+/** @type {import("compression").CompressionOptions} */
 const compressionConfig = {
 	filter: shouldCompress,
 	level: 9,
