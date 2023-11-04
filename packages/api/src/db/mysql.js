@@ -2,8 +2,8 @@ const { Sequelize } = require("sequelize");
 const dbConfig = require("../config/db.config");
 const models = require("../models");
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-	host: dbConfig.HOST,
+const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+	host: dbConfig.host,
 	dialect: dbConfig.dialect,
 	pool: {
 		max: dbConfig.pool.max,

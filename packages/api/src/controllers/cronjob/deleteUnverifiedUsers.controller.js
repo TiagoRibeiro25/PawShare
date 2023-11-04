@@ -6,11 +6,11 @@ const TIME_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
 
 /**
  * Delete all unverified users.
- * @param {import("express").Request} _ - The Express Request object (unused).
+ * @param {import("express").Request} _req - The Express Request object (unused).
  * @param {import("express").Response} res - The Express Response object.
  * @returns {Promise<void>}
  */
-async function deleteUnverifiedUsers(_, res) {
+async function deleteUnverifiedUsers(_req, res) {
 	try {
 		const result = await db.mysql.User.destroy({
 			where: {

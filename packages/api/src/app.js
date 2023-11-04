@@ -25,9 +25,15 @@ if (process.env.NODE_ENV !== "production") {
 // Enable Routes
 app.use("/api/v1", routes);
 
-// Handle 404
-app.use((_req, res) => {
-	utils.handleResponse(res, utils.http.StatusNotFound, "Not Found");
-});
+app.use(
+	/**
+	 * Handle 404
+	 * @param {express.Request} _req
+	 * @param {express.Response} res
+	 */
+	(_req, res) => {
+		utils.handleResponse(res, utils.http.StatusNotFound, "Not Found");
+	},
+);
 
 module.exports = app;
