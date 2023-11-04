@@ -36,8 +36,8 @@ function init(sequelize) {
 	User.hasMany(UsersList, { foreignKey: "user_id", onDelete: "CASCADE" });
 	UsersList.belongsTo(User, { foreignKey: "user_id" });
 
-	// Animal.id < Picture.animal_id
-	Animal.hasMany(Picture, { foreignKey: "animal_id", onDelete: "CASCADE" });
+	// Animal.id - Picture.animal_id
+	Animal.hasOne(Picture, { foreignKey: "animal_id", onDelete: "CASCADE" });
 	Picture.belongsTo(Animal, { foreignKey: "animal_id" });
 
 	// Animal.id < Adoption.animal_id
@@ -51,10 +51,6 @@ function init(sequelize) {
 	// Animal.id < AnimalDocument.animal_id
 	Animal.hasMany(AnimalDocument, { foreignKey: "animal_id", onDelete: "CASCADE" });
 	AnimalDocument.belongsTo(Animal, { foreignKey: "animal_id" });
-
-	// Animal.picture_id - Picture.id
-	Picture.hasOne(Animal, { foreignKey: "picture_id" });
-	Animal.belongsTo(Picture, { foreignKey: "picture_id" });
 
 	// Adoption.id - Review.adoption_id
 	Adoption.hasOne(Review, { foreignKey: "adoption_id" });

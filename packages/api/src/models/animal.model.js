@@ -22,10 +22,6 @@ const AnimalModel = (sequelize) => {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 			},
-			picture_id: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
-			},
 			type: {
 				type: DataTypes.STRING(255),
 				allowNull: false,
@@ -42,7 +38,7 @@ const AnimalModel = (sequelize) => {
 			},
 			color: {
 				type: DataTypes.STRING(255),
-				defaultValue: false,
+				allowNull: false,
 			},
 			size: {
 				type: DataTypes.STRING(255),
@@ -54,14 +50,6 @@ const AnimalModel = (sequelize) => {
 			description: {
 				type: DataTypes.STRING(255),
 				allowNull: true,
-			},
-			birth_date: {
-				type: DataTypes.DATE,
-				allowNull: false,
-			},
-			qr_code: {
-				type: DataTypes.STRING(255),
-				allowNull: false,
 			},
 		},
 		{
@@ -79,16 +67,6 @@ const AnimalModel = (sequelize) => {
 					name: "owner_id",
 					using: "BTREE",
 					fields: [{ name: "owner_id" }],
-				},
-				{
-					name: "picture_id",
-					using: "BTREE",
-					fields: [{ name: "picture_id" }],
-				},
-				{
-					name: "qr_code",
-					using: "BTREE",
-					fields: [{ name: "qr_code" }],
 				},
 			],
 		},

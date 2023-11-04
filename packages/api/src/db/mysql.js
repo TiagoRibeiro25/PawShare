@@ -11,13 +11,15 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 		acquire: dbConfig.pool.acquire,
 		idle: dbConfig.pool.idle,
 	},
-	logging: false,
+	logging: dbConfig.logging,
 });
 
 const mysql = { sequelize, ...models.init(sequelize) };
 
 // Sync all the models (create the tables and add the foreign keys)
 mysql.sequelize.sync({ alter: true });
-// mysql.sequelize.sync({ force: true }); // HARD RESET (DROP ALL TABLES)
+
+// HARD RESET (DROP ALL TABLES)
+// mysql.sequelize.sync({ force: true });
 
 module.exports = mysql;
