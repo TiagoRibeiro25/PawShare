@@ -30,6 +30,14 @@ router.patch(
 	controllers.users.verifyUser,
 );
 
+// Request Reset Password
+router.post(
+	"/request-reset-password",
+	validators.users.requestResetPassword(),
+	validators.validateResult,
+	controllers.users.requestResetPassword,
+);
+
 // Testing
 router.get("/test", middlewares.validateTokens, (req, res) => {
 	console.log(req.userId);

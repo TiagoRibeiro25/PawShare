@@ -33,6 +33,11 @@ const UserModel = (sequelize) => {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 			},
+			change_password_generated_at: {
+				type: DataTypes.DATE,
+				allowNull: false,
+				defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+			},
 			verify_user_token: {
 				type: DataTypes.STRING(255),
 				allowNull: true,
