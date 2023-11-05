@@ -28,6 +28,7 @@ async function register(req, res) {
 		const user = await db.mysql.User.findOne({
 			where: { email },
 		});
+
 		if (user) {
 			utils.handleResponse(
 				res,
@@ -40,7 +41,7 @@ async function register(req, res) {
 		const hashedPassword = await utils.password.hash(password);
 
 		const newUser = await db.mysql.User.create({
-			displayName: display_name,
+			display_name,
 			email,
 			password: hashedPassword,
 			type,
@@ -52,7 +53,7 @@ async function register(req, res) {
 		// Send the confirmation email
 		await services.sendEmail({
 			from: "Paw Share Team",
-			to: [{ Email: newUser.email, Name: newUser.displayName }],
+			to: [{ Email: newUser.email, Name: newUser.display_name }],
 			subject: "Welcome to Paw Share!",
 			content: templates.confirmEmail(newUser.verify_user_token),
 		});

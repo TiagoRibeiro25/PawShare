@@ -45,7 +45,7 @@ async function login(req, res) {
 			// Send the verification email again
 			await services.sendEmail({
 				from: "Paw Share Team",
-				to: [{ Email: user.email, Name: user.displayName }],
+				to: [{ Email: user.email, Name: user.display_name }],
 				subject: "Welcome to Paw Share!",
 				content: templates.confirmEmail(user.verify_user_token),
 			});

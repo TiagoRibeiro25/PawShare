@@ -14,7 +14,7 @@ const UserModel = (sequelize) => {
 				allowNull: false,
 				primaryKey: true,
 			},
-			displayName: {
+			display_name: {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 			},
