@@ -38,6 +38,14 @@ router.post(
 	controllers.users.requestResetPassword,
 );
 
+// Reset Password
+router.patch(
+	"/reset-password/:token",
+	validators.users.resetPassword(),
+	validators.validateResult,
+	controllers.users.resetPassword,
+);
+
 // Testing
 router.get("/test", middlewares.validateTokens, (req, res) => {
 	console.log(req.userId);
