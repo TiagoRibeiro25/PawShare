@@ -1,0 +1,19 @@
+summary: Not Found
+description: Not Found
+responses:
+  "404":
+    description: Not Found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Not Found:
+            value:
+              success: false
+              message: Not Found

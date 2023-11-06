@@ -1,0 +1,103 @@
+summary: Verify a user
+description: Verify the user account using the token sent to the user's email
+tags:
+  - "User"
+parameters:
+  - name: token
+    in: path
+    description: Verification token sent to the user's email
+    required: true
+    schema:
+      type: string
+      example: OTFiZmVmMWUtZWU1Ni00MmI0LWFhNDMtZDUxZDIxZTQ1OWQz
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          User Verified:
+            value:
+              success: true
+              message: User verified
+
+  "400":
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Invalid Token:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "123"
+                  msg: "Invalid token"
+                  path: "token"
+                  location: "params"
+
+  "404":
+    description: User not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          User not found:
+            value:
+              success: false
+              message: User not found
+
+  "409":
+    description: User already verified
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          User already verified:
+            value:
+              success: false
+              message: User already verified
+
+  "500":
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Server Error:
+            value:
+              success: false
+              message: Something went wrong!

@@ -23,7 +23,9 @@
 		"helmet": "^7.0.0",
 		"jsonwebtoken": "^9.0.2",
 		"mysql2": "^3.6.2",
-		"sequelize": "^6.33.0"
+		"sequelize": "^6.33.0",
+		"swagger-ui-express": "^5.0.0",
+		"yaml": "^2.3.4"
 	},
 	"devDependencies": {
 		"dotenv": "^16.3.1",
