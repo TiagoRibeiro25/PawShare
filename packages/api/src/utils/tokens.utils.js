@@ -78,12 +78,11 @@ const didTokenExpire = (token, type) => {
 };
 
 /**
- * @typedef {{
- * 	userId: number;
- * 	remember_me: boolean;
- * 	iat: number;
- * 	exp: number;
- * }} TokenPayload
+ * @typedef TokenPayload
+ * @property {number} userId - The user id
+ * @property {boolean} remember_me - The remember me flag
+ * @property {number} iat - The token's issued at time
+ * @property {number} exp - The token's expiration time
  */
 
 /**

@@ -1,12 +1,11 @@
 const axios = require("axios");
 
 /**
- * @typedef {{
- * 	from: string;
- * 	to: { Email: string; Name: string }[];
- * 	subject: string;
- * 	content: string;
- * }} EmailData
+ * @typedef EmailData
+ * @property {string} from - The sender's name.
+ * @property {{ Email: string; Name: string }[]} to - The recipients' data.
+ * @property {string} subject - The email's subject.
+ * @property {string} content - The email's content.
  */
 
 /**

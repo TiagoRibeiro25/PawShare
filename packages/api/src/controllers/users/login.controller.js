@@ -4,11 +4,10 @@ const services = require("../../services");
 const templates = require("../../templates");
 
 /**
- * @typedef {{
- * 	email: string,
- * 	password: string,
- * 	remember_me: boolean
- * }} LoginRequest
+ * @typedef LoginRequest
+ * @property {string} email - The user's email
+ * @property {string} password - The user's password
+ * @property {boolean} remember_me - Whether to remember the user or not
  */
 
 /**

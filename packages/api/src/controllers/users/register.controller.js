@@ -4,13 +4,12 @@ const services = require("../../services");
 const templates = require("../../templates");
 
 /**
- * @typedef {{
- * 	display_name: string,
- * 	email: string,
- * 	password: string,
- * 	type: string,
- * 	country: string
- * }} RegisterRequest
+ * @typedef RegisterRequest
+ * @property {string} display_name - The user's display name
+ * @property {string} email - The user's email
+ * @property {string} password - The user's password
+ * @property {string} type - The user's type
+ * @property {string} country - The user's country
  */
 
 /**
