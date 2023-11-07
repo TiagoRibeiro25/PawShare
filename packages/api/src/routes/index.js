@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const usersRoutes = require("./users.routes");
+const userRoutes = require("./user.routes");
+const authRoutes = require("./auth.routes");
 const cronjobRoutes = require("./cronjob.routes");
 const utils = require("../utils");
 const swaggerUi = require("swagger-ui-express");
@@ -11,8 +12,11 @@ const router = Router();
 router.use("/docs", swaggerUi.serve);
 router.get("/docs", swaggerUi.setup(swaggerDocument, { explorer: true }));
 
-// Users Routes
-router.use("/users", usersRoutes);
+// User Routes
+router.use("/users", userRoutes);
+
+// Auth Routes
+router.use("/auth", authRoutes);
 
 // Cronjob Routes
 router.use("/cronjob", cronjobRoutes);

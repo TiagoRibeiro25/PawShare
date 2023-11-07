@@ -1,7 +1,7 @@
-summary: Login
-description: Generates a Auth JWT Token and a Refresh JWT Token for the user.
+summary: Register
+description: Create a new user (not verified)
 tags:
-  - "User"
+  - "Auth"
 requestBody:
   required: true
   content:
@@ -9,6 +9,10 @@ requestBody:
       schema:
         type: object
         properties:
+          display_name:
+            type: string
+            required: true
+            example: John Doe
           email:
             type: string
             required: true
@@ -17,12 +21,16 @@ requestBody:
             type: string
             required: true
             example: 12345678
-          remember_me:
-            type: boolean
+          type:
+            type: string
             required: true
-            example: true
+            example: user
+          country:
+            type: string
+            required: true
+            example: PT
 responses:
-  "200":
+  "201":
     description: Success
     content:
       application/json:
@@ -33,25 +41,11 @@ responses:
               type: boolean
             message:
               type: string
-            data:
-              type: object
-              properties:
-                authToken:
-                  type: string
-                refreshToken:
-                  type: string
         examples:
           Success:
             value:
               success: true
-              message: Login successful
-              data:
-                type: object
-                properties:
-                  authToken:
-                    type: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE2OTg0MDU4ODIsImV4cCI6MTY5ODQwOTQ4Mn0.o_k5yMX1w-y6Vnicscdcyd2BacFitBiExx5OreezMnM
-                  refreshToken:
-                    type: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE2OTg0MDU4ODIsImV4cCI6MTY5ODQ5MjI4Mn0.VMkxKbQBopfJBnOITugBHbM_D0JxhmH_AL7O0tDaV4E
+              message: A confirmation email has been sent
 
   "400":
     description: Bad Request
@@ -65,13 +59,23 @@ responses:
             message:
               type: string
         examples:
+          Invalid Display Name:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "XD"
+                  msg: "Display name must be at least 3 characters long"
+                  path: "display_name"
+                  location: "body"
           Invalid Email:
             value:
               success: false
               message: Validation Error
               data:
                 - type: "field"
-                  value: "invalid email 123"
+                  value: "john.doe"
                   msg: "Email must be a valid email address"
                   path: "email"
                   location: "body"
@@ -85,19 +89,29 @@ responses:
                   msg: "Password must be at least 8 characters long"
                   path: "password"
                   location: "body"
-          Invalid Remember Me:
+          Invalid Type:
             value:
               success: false
               message: Validation Error
               data:
                 - type: "field"
                   value: "cat"
-                  msg: "Remember me must be a boolean"
-                  path: "remember_me"
+                  msg: "Invalid account type"
+                  path: "type"
+                  location: "body"
+          Invalid Country:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "Invalid country"
+                  path: "country"
                   location: "body"
 
-  "401":
-    description: Unauthorized
+  "409":
+    description: Conflict
     content:
       application/json:
         schema:
@@ -108,31 +122,10 @@ responses:
             message:
               type: string
         examples:
-          Wrong Password:
+          Email already in use:
             value:
               success: false
-              message: Wrong password
-          User Not Verified:
-            value:
-              success: false
-              message: An email has been sent to you to verify your account
-
-  "404":
-    description: Not Found
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            success:
-              type: boolean
-            message:
-              type: string
-        examples:
-          User Not Found:
-            value:
-              success: false
-              message: There's no user with that email
+              message: There's already a user with the same email
 
   "500":
     description: Internal Server Error

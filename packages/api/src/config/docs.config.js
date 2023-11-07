@@ -16,13 +16,13 @@ const deleteUnverifiedUsers = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/cronjob/delete_unverified_users.yml", "utf8"),
 );
 
-// User Routes
+// Auth Routes
 const postLogin = YAML.parse(
-	fs.readFileSync("./src/data/docs/routes/users/post_login.yml", "utf8"),
+	fs.readFileSync("./src/data/docs/routes/auth/post_login.yml", "utf8"),
 );
 
 const postRegister = YAML.parse(
-	fs.readFileSync("./src/data/docs/routes/users/post_register.yml", "utf8"),
+	fs.readFileSync("./src/data/docs/routes/auth/post_register.yml", "utf8"),
 );
 
 const patchVerifyUser = YAML.parse(
@@ -30,11 +30,11 @@ const patchVerifyUser = YAML.parse(
 );
 
 const postRequestResetPassword = YAML.parse(
-	fs.readFileSync("./src/data/docs/routes/users/post_request_reset_password.yml", "utf8"),
+	fs.readFileSync("./src/data/docs/routes/auth/post_request_reset_password.yml", "utf8"),
 );
 
 const patchResetPassword = YAML.parse(
-	fs.readFileSync("./src/data/docs/routes/users/patch_reset_password.yml", "utf8"),
+	fs.readFileSync("./src/data/docs/routes/auth/patch_reset_password.yml", "utf8"),
 );
 
 /** @type {import("swagger-jsdoc").SwaggerDefinition} */
@@ -46,11 +46,11 @@ const swaggerDefinition = {
 		"/": { get: getHelloWorld },
 		"/{any*}": { get: notFound },
 		"/cronjob/unverified-users": { delete: deleteUnverifiedUsers },
-		"/users/login": { post: postLogin },
-		"/users": { post: postRegister },
+		"/auth/login": { post: postLogin },
+		"/auth/register": { post: postRegister },
+		"/auth/request-reset-password": { post: postRequestResetPassword },
+		"/auth/reset-password/{token}": { patch: patchResetPassword },
 		"/users/verify/{token}": { patch: patchVerifyUser },
-		"/users/request-reset-password": { post: postRequestResetPassword },
-		"/users/reset-password/{token}": { patch: patchResetPassword },
 	},
 };
 

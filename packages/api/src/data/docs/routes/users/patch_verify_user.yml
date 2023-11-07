@@ -1,7 +1,7 @@
 summary: Verify a user
 description: Verify the user account using the token sent to the user's email
 tags:
-  - "User"
+  - "Users"
 parameters:
   - name: token
     in: path

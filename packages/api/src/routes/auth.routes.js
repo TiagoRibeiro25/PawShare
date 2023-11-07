@@ -9,41 +9,33 @@ const router = Router();
 // Login
 router.post(
 	"/login",
-	validators.users.login(),
+	validators.auth.login(),
 	validators.validateResult,
-	controllers.users.login,
+	controllers.auth.login,
 );
 
 // Register
 router.post(
-	"/",
-	validators.users.register(),
+	"/register",
+	validators.auth.register(),
 	validators.validateResult,
-	controllers.users.register,
-);
-
-// Verify User
-router.patch(
-	"/verify/:token",
-	validators.users.verifyUser(),
-	validators.validateResult,
-	controllers.users.verifyUser,
+	controllers.auth.register,
 );
 
 // Request Reset Password
 router.post(
 	"/request-reset-password",
-	validators.users.requestResetPassword(),
+	validators.auth.requestResetPassword(),
 	validators.validateResult,
-	controllers.users.requestResetPassword,
+	controllers.auth.requestResetPassword,
 );
 
 // Reset Password
 router.patch(
 	"/reset-password/:token",
-	validators.users.resetPassword(),
+	validators.auth.resetPassword(),
 	validators.validateResult,
-	controllers.users.resetPassword,
+	controllers.auth.resetPassword,
 );
 
 // Testing
