@@ -25,16 +25,21 @@ const postRegister = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/auth/post_register.yml", "utf8"),
 );
 
-const patchVerifyUser = YAML.parse(
-	fs.readFileSync("./src/data/docs/routes/users/patch_verify_user.yml", "utf8"),
-);
-
 const postRequestResetPassword = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/auth/post_request_reset_password.yml", "utf8"),
 );
 
 const patchResetPassword = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/auth/patch_reset_password.yml", "utf8"),
+);
+
+// User Routes
+const patchVerifyUser = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/users/patch_verify_user.yml", "utf8"),
+);
+
+const getLoggedUser = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/users/get_logged_user.yml", "utf8"),
 );
 
 /** @type {import("swagger-jsdoc").SwaggerDefinition} */
@@ -51,6 +56,7 @@ const swaggerDefinition = {
 		"/auth/request-reset-password": { post: postRequestResetPassword },
 		"/auth/reset-password/{token}": { patch: patchResetPassword },
 		"/users/verify/{token}": { patch: patchVerifyUser },
+		"/users/me": { get: getLoggedUser },
 	},
 };
 
