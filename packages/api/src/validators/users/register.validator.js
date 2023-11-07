@@ -24,7 +24,10 @@ function validator() {
 			.isIn(["user", "organization"])
 			.withMessage("Invalid account type"),
 
-		body("country").isString().isString().isIn(countries).withMessage("Invalid country"),
+		body("country")
+			.isString()
+			.isIn(countries.map((country) => country.code))
+			.withMessage("Invalid country"),
 	];
 }
 

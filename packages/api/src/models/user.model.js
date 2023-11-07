@@ -58,7 +58,7 @@ const UserModel = (sequelize) => {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 				validate: {
-					isIn: [countries],
+					isIn: [countries.map((country) => country.code)],
 				},
 			},
 			description: {

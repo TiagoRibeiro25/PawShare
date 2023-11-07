@@ -28,7 +28,7 @@ requestBody:
           country:
             type: string
             required: true
-            example: Portugal
+            example: PT
 responses:
   "201":
     description: Success
