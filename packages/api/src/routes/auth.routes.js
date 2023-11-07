@@ -1,8 +1,6 @@
 const { Router } = require("express");
 const validators = require("../validators");
 const controllers = require("../controllers");
-const middlewares = require("../middlewares");
-const utils = require("../utils");
 
 const router = Router();
 
@@ -37,11 +35,5 @@ router.patch(
 	validators.validateResult,
 	controllers.auth.resetPassword,
 );
-
-// Testing
-router.get("/test", middlewares.validateTokens, (req, res) => {
-	console.log(req.userId);
-	utils.handleResponse(res, utils.http.StatusOK, "Test successful");
-});
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const validators = require("../validators");
 const controllers = require("../controllers");
+const middlewares = require("../middlewares");
 
 const router = Router();
 
@@ -11,5 +12,8 @@ router.patch(
 	validators.validateResult,
 	controllers.users.verifyUser,
 );
+
+// Get Logged User
+router.get("/me", middlewares.validateTokens, controllers.users.getLoggedUser);
 
 module.exports = router;

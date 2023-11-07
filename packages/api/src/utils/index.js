@@ -4,6 +4,7 @@ const handleError = require("./handleError.utils");
 const tokens = require("./tokens.utils");
 const password = require("./password.utils");
 const http = require("./http.utils");
+const pictures = require("./pictures.utils");
 
 module.exports = {
 	checkEnvs,
@@ -12,4 +13,5 @@ module.exports = {
 	tokens,
 	password,
 	http,
+	pictures,
 };
