@@ -1,5 +1,7 @@
 summary: Hello World
 description: Hello World
+tags:
+  - "Default"
 responses:
   "200":
     description: Success

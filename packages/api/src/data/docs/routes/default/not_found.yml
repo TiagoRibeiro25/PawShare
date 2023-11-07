@@ -1,5 +1,7 @@
 summary: Not Found
 description: Not Found
+tags:
+  - "Default"
 responses:
   "404":
     description: Not Found
