@@ -1,4 +1,4 @@
-summay: Get the logged user
+summary: Get the logged user
 description: Get the logged user by the auth token provided in the header
 tags:
   - "Users"
