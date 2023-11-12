@@ -1,4 +1,3 @@
-//TODO: Find a way for all pictures to have an happy face (option['mood'][]=happy didn't work)
 /**
  * Get the user picture URL.
  * @param {string} name - The user name.
