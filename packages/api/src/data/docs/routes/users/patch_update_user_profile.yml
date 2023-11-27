@@ -1,0 +1,195 @@
+summary: Update user profile
+description: Update logged in user profile
+tags:
+  - "Users"
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          display_name:
+            type: string
+            required: false
+            example: John Doe
+          country:
+            type: string
+            required: false
+            example: PT
+          description:
+            type: string
+            required: false
+            example: I am a placeholder person
+          selected_frame:
+            type: number
+            required: false
+            example: 1
+          selected_banner:
+            type: number
+            required: false
+            example: 1
+          picture:
+            type: string
+            required: false
+            example: data:image/png;base64,R0lGODlhAQABAAAAACw=
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Success:
+            value:
+              success: true
+              message: User updated successfully
+
+  "400":
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Invalid Display Name:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "XD"
+                  msg: "Display name must be at least 3 characters long"
+                  path: "display_name"
+                  location: "body"
+          Invalid Country:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "Invalid country"
+                  path: "country"
+                  location: "body"
+
+          Invalid Description:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "XD"
+                  msg: "Description must be at least 10 characters long"
+                  path: "description"
+                  location: "body"
+
+          Invalid Frame:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: 0
+                  msg: "Invalid frame"
+                  path: "selected_frame"
+                  location: "body"
+
+          Invalid Banner:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: 0
+                  msg: "Invalid banner"
+                  path: "selected_banner"
+                  location: "body"
+
+          Invalid Picture:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "Not a valid image.png"
+                  msg: "Invalid picture"
+                  path: "picture"
+                  location: "body"
+
+  "401":
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Missing token:
+            value:
+              success: false
+              message: Missing auth token or refresh token
+          Invalid token:
+            value:
+              success: false
+              message: Invalid auth token or refresh token
+          Refresh token expired:
+            value:
+              success: false
+              message: Refresh token has expired
+
+  "403":
+    description: Forbidden
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Frame not owned:
+            value:
+              success: false
+              message: You don't own the frame you're trying to select
+
+          Banner not owned:
+            value:
+              success: false
+              message: You don't own the banner you're trying to select
+
+  "500":
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Server Error:
+            value:
+              success: false
+              message: Something went wrong!

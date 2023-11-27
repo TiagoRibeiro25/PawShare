@@ -1,0 +1,135 @@
+summary: Get a user profile
+description: Get a user profile
+tags:
+  - "Users"
+security:
+  - bearerAuth: []
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+              example: true
+            message:
+              type: string
+              example: User profile retrieved successfully
+            data:
+              type: object
+              properties:
+                id:
+                  type: number
+                  example: 1
+                display_name:
+                  type: string
+                  example: John Doe
+                type:
+                  type: string
+                  example: user
+                country:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: United States
+                    code:
+                      type: string
+                      example: US
+                description:
+                  type: string
+                  example: I am a placeholder person
+                coins:
+                  type: number
+                  example: 100
+                badges:
+                  type: array
+                  items:
+                    type: number
+                    example: 1
+                selected_frame:
+                  type: number
+                  example: 1
+                selected_banner:
+                  type: number
+                  example: null
+                createdAt:
+                  type: string
+                  example: 2021-07-01T00:00:00.000Z
+                updatedAt:
+                  type: string
+                  example: 2021-07-01T00:00:00.000Z
+                picture:
+                  type: string
+                  example: "https://api.dicebear.com/7.x/micah/svg?seed=John%20Doe"
+                animals:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 1
+                    name:
+                      type: string
+                      example: Ziggy
+                    picture:
+                      type: string
+                      example: "https://s3.amazonaws.com/media.wikiaves.com.br/images/6211/1126446_00e925b68e1db8f3679fa346e263c3c6.jpg"
+  "401":
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Missing token:
+            value:
+              success: false
+              message: Missing auth token or refresh token
+          Invalid token:
+            value:
+              success: false
+              message: Invalid auth token or refresh token
+          Refresh token expired:
+            value:
+              success: false
+              message: Refresh token has expired
+  "404":
+    description: User not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          User not found:
+            value:
+              success: false
+              message: User not found
+  "500":
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal server error:
+            value:
+              success: false
+              message: Internal server error
