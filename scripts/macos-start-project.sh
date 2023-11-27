@@ -17,11 +17,10 @@ open -a Terminal npm run dev:web
 cd ../..
 
 # Navigate to the app directory
-# cd packages/app
+cd packages/app
 
-# Open another terminal window and execute "npm run dev:app"
-# Uncomment the following line if you want to run the app as well
-# open -a Terminal npm run dev:app
+# Open another terminal window and execute "npm start"
+open -a Terminal npm start
 
 # Navigate to the root directory
 cd ../..
