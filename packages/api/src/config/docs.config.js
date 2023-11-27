@@ -19,6 +19,8 @@ const swaggerDefinition = {
 		"/auth/reset-password/{token}": { patch: routeDocs.auth.patchResetPassword },
 		"/users/verify/{token}": { patch: routeDocs.users.patchVerifyUser },
 		"/users/me": { get: routeDocs.users.getLoggedUser },
+		"/users/{id}": { get: routeDocs.users.getUserProfile },
+		"/users": { patch: routeDocs.users.updateUserProfile },
 	},
 };
 
