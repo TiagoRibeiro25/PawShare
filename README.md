@@ -46,6 +46,7 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 
 - [Node.js](https://nodejs.org/en/)* (at least 18.18.0)
 - [NPM](https://www.npmjs.com/)*
+- [Yarn](https://yarnpkg.com/)*
 - [Docker](https://www.docker.com/)
 
 If you don't have or want to use Docker, you will need to have:
@@ -111,7 +112,7 @@ Windows:
   npm run install
  
   cd ../app
-  npm run install
+  npm yarn install
 
   cd ../web
   npm run install
@@ -143,7 +144,7 @@ npm run dev
 
 ```sh
 cd packages/app
-npm run dev
+npm start
 ```
 
 7. Start the web client

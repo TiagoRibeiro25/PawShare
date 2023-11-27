@@ -20,6 +20,12 @@ if ! npm -v >/dev/null 2>&1; then
   exit 1
 fi
 
+# Check for yarn
+if ! yarn -v >/dev/null 2>&1; then
+	echo "yarn is not installed or not in the path. Please install yarn."
+	exit 1
+fi
+
 # Check for Docker
 if ! docker -v >/dev/null 2>&1; then
   echo "Docker is not installed or not in the path. Please install Docker or Docker Desktop."
@@ -58,13 +64,13 @@ fi
 # Go back to the root folder
 cd ../..
 
-# Uncomment and adapt the code below if you want to install APP dependencies
-# echo "Installing the APP dependencies.."
-# cd packages/app
-# npm install
-# if [ $? -ne 0 ]; then
-#   echo "Failed to install the APP dependencies."
-#   exit 1
-# fi
+# Go to /packages/app and execute "yarn install"
+echo "Installing the APP dependencies.."
+cd packages/app
+yarn install
+if [ $? -ne 0 ]; then
+  echo "Failed to install the APP dependencies."
+  exit 1
+fi
 
 echo "Project setup completed. Create the .env files on each package sub-folder and fill using the .env.example files."

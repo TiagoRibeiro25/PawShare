@@ -22,6 +22,13 @@ if errorlevel 1 (
     exit /b 1
 )
 
+:: Check for Yarn
+yarn -v >nul 2>&1
+if errorlevel 1 (
+		echo "Yarn is not installed or not in the path. Please install Yarn."
+		exit /b 1
+)
+
 :: Check for Docker
 docker -v >nul 2>&1
 if errorlevel 1 (
@@ -62,13 +69,13 @@ if errorlevel 1 (
 :: Go back to the root folder
 cd ../..
 
-:: Go to /packages/app and execute "npm install"
-@REM echo "Installing the APP dependencies..."
-@REM cd packages/app
-@REM npm install
-@REM if errorlevel 1 (
-@REM     echo "Failed to install the APP dependencies."
-@REM     exit /b 1
-@REM )
+:: Go to /packages/app and execute "yarn install"
+echo "Installing the APP dependencies..."
+cd packages/app
+yarn install
+if errorlevel 1 (
+    echo "Failed to install the APP dependencies."
+    exit /b 1
+)
 
 echo "Project setup completed. Create the .env files on each package sub-folder and fill using the .env.example files."
