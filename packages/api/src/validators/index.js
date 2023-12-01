@@ -14,7 +14,8 @@ const validateResult = (req, res, next) => {
 	const errors = validationResult(req);
 
 	if (!errors.isEmpty()) {
-		return utils.handleResponse(res, 400, "Validation Error", errors.array());
+		utils.handleResponse(res, 400, "Validation Error", errors.array());
+		return;
 	}
 
 	next();

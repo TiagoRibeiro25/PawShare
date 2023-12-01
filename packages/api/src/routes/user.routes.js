@@ -14,6 +14,12 @@ router.patch(
 );
 
 // Get Logged User
-router.get("/me", middlewares.validateTokens, controllers.users.getLoggedUser);
+router.get(
+	"/:id",
+	validators.users.getUser(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.users.getUser,
+);
 
 module.exports = router;

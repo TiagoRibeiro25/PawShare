@@ -1,7 +1,7 @@
 const verifyUser = require("./verifyUser.controller");
-const getLoggedUser = require("./getLoggedUser.controller");
+const getUser = require("./getUser.controller");
 
 module.exports = {
 	verifyUser,
-	getLoggedUser,
+	getUser,
 };
