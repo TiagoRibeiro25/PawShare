@@ -4,6 +4,14 @@ tags:
   - "Users"
 security:
   - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    description: Id of the user
+    required: true
+    schema:
+      type: number
+      example: 1
 responses:
   "200":
     description: Success
@@ -64,7 +72,7 @@ responses:
                   example: 2021-07-01T00:00:00.000Z
                 picture:
                   type: string
-                  example: "https://api.dicebear.com/7.x/micah/svg?seed=John%20Doe"
+                  example: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
                 animals:
                   type: object
                   properties:
@@ -77,6 +85,28 @@ responses:
                     picture:
                       type: string
                       example: "https://s3.amazonaws.com/media.wikiaves.com.br/images/6211/1126446_00e925b68e1db8f3679fa346e263c3c6.jpg"
+  "400":
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Invalid Id:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "abc"
+                  msg: "Invalid user id"
+                  path: "id"
+                  location: "params"
   "401":
     description: Unauthorized
     content:
