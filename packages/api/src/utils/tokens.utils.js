@@ -11,7 +11,7 @@ const crypto = require("crypto");
  */
 const generateToken = (userId, type, rememberMe) => {
 	const jwtConfig = config.tokens;
-	let secret = type === "authToken" ? jwtConfig.secret : jwtConfig.refreshSecret;
+	const secret = type === "authToken" ? jwtConfig.secret : jwtConfig.refreshSecret;
 	let expiresIn;
 
 	// Assign the correct expiration time based on the type of token (authToken or refreshToken)
