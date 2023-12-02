@@ -1,6 +1,8 @@
 const db = require("../../db");
 const utils = require("../../utils");
 const countries = require("../../data/countries.json");
+const services = require("../../services");
+const config = require("../../config");
 
 /**
  * @typedef UpdateUserBody
@@ -22,12 +24,7 @@ const countries = require("../../data/countries.json");
 async function updateUser(req, res) {
 	try {
 		/** @type {UpdateUserBody} */
-		const dataToUpdate = req.body.map((key) => {
-			// If it is selected_frame or selected_banner, convert it to number
-			return key === "selected_frame" || key === "selected_banner"
-				? { [key]: +req.body[key] }
-				: { [key]: req.body[key] };
-		});
+		const dataToUpdate = req.body;
 
 		const user = await db.mysql.User.findByPk(req.userId, {
 			include: [
@@ -81,24 +78,68 @@ async function updateUser(req, res) {
 		}
 
 		// Check if the user has the frame
-		if (
-			dataToUpdate.selected_frame &&
-			!JSON.parse(user.frames).includes(+dataToUpdate.selected_frame)
-		) {
-			utils.handleResponse(res, utils.http.StatusForbidden, "Invalid frame");
-			return;
+		if (dataToUpdate.selected_frame) {
+			// Convert the frame to a number (just in case if it's a string)
+			dataToUpdate.selected_frame = +dataToUpdate.selected_frame;
+
+			if (!JSON.parse(user.frames).includes(+dataToUpdate.selected_frame)) {
+				utils.handleResponse(res, utils.http.StatusForbidden, "Invalid frame");
+				return;
+			}
 		}
 
 		// Check if the user has the banner
-		if (
-			dataToUpdate.selected_banner &&
-			!JSON.parse(user.banners).includes(+dataToUpdate.selected_banner)
-		) {
-			utils.handleResponse(res, utils.http.StatusForbidden, "Invalid banner");
-			return;
+		if (dataToUpdate.selected_banner) {
+			// Convert the banner to a number (just in case if it's a string)
+			dataToUpdate.selected_banner = +dataToUpdate.selected_banner;
+
+			if (!JSON.parse(user.banners).includes(+dataToUpdate.selected_banner)) {
+				utils.handleResponse(res, utils.http.StatusForbidden, "Invalid banner");
+				return;
+			}
 		}
 
-		//TODO: Handle picture upload (setup up cloudinary first)
+		// Handle the user profile picture
+		if (dataToUpdate.picture) {
+			// Check if the user already has a picture (already uploaded one before)
+			if (user.picture) {
+				// Update the current picture
+				const result = await services.cloudinary.uploader.upload(dataToUpdate.picture, {
+					public_id: user.picture.provider_id,
+					overwrite: true,
+					transformation: { width: 150, height: 150, crop: "limit" },
+				});
+
+				// Update the picture in the database
+				await user.picture.update({
+					provider_id: result.public_id,
+					provider_url: result.secure_url,
+				});
+			}
+
+			// If the user doesn't have a picture (it's the first time he uploads one)
+			else {
+				const result = await services.cloudinary.uploader.upload(dataToUpdate.picture, {
+					folder: config.cloudinary.folderName + "/users",
+					crop: "limit",
+					transformation: { width: 150, height: 150, crop: "limit" },
+				});
+
+				// Create the picture in the database
+				const userNewPicture = await db.mysql.Picture.create({
+					user_id: user.id,
+					provider_id: result.public_id,
+					provider_url: result.secure_url,
+				});
+
+				// Update the user's picture
+				user.picture = {
+					id: userNewPicture.id,
+					provider_id: userNewPicture.provider_id,
+					provider_url: userNewPicture.provider_url,
+				};
+			}
+		}
 
 		// Remove the picture from the object (so it doesn't try to update the user table with it)
 		delete dataToUpdate.picture;
