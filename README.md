@@ -112,7 +112,7 @@ Windows:
   npm run install
  
   cd ../app
-  npm yarn install
+  yarn install
 
   cd ../web
   npm run install
@@ -144,7 +144,7 @@ npm run dev
 
 ```sh
 cd packages/app
-npm start
+yarn start
 ```
 
 7. Start the web client
