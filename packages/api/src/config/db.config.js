@@ -1,5 +1,5 @@
 /** @type {import("sequelize").Options} */
-const config = {
+const mysql = {
 	host: process.env.DB_HOST,
 	username: process.env.DB_USER,
 	password: process.env.DB_PASSWORD,
@@ -14,4 +14,4 @@ const config = {
 	logging: false,
 };
 
-module.exports = config;
+module.exports = { mysql };
