@@ -15,6 +15,10 @@ requestBody:
             type: string
             required: false
             example: John Doe
+          email:
+            type: string
+            required: false
+            example: "john.doe@pawshare.com"
           country:
             type: string
             required: false
@@ -52,6 +56,25 @@ responses:
             value:
               success: true
               message: User updated successfully
+              data:
+                user:
+                  id: 1
+                  display_name: John Doe
+                  email: "john.doe@pawshare.com"
+                  type: user
+                  country:
+                    type: object
+                    properties:
+                      name: Portugal
+                      code: PT
+                  description: I am a placeholder person
+                  coins: 10
+                  selected_frame: 1
+                  selected_banner: 1
+                  created_at: 2021-01-01T00:00:00.000Z
+                  updated_at: 2021-01-01T00:00:00.000Z
+                  picture: data:image/png;base64,R0lGODlhAQABAAAAACw=
+                  animals: []
 
   "400":
     description: Bad Request
@@ -75,6 +98,16 @@ responses:
                   msg: "Display name must be at least 3 characters long"
                   path: "display_name"
                   location: "body"
+          Invalid Email:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "john.doe"
+                  msg: "Email must be a valid email address"
+                  path: "email"
+                  location: "body"
           Invalid Country:
             value:
               success: false
@@ -85,7 +118,6 @@ responses:
                   msg: "Invalid country"
                   path: "country"
                   location: "body"
-
           Invalid Description:
             value:
               success: false
@@ -96,7 +128,6 @@ responses:
                   msg: "Description must be at least 10 characters long"
                   path: "description"
                   location: "body"
-
           Invalid Frame:
             value:
               success: false
@@ -107,7 +138,6 @@ responses:
                   msg: "Invalid frame"
                   path: "selected_frame"
                   location: "body"
-
           Invalid Banner:
             value:
               success: false
@@ -118,7 +148,6 @@ responses:
                   msg: "Invalid banner"
                   path: "selected_banner"
                   location: "body"
-
           Invalid Picture:
             value:
               success: false
@@ -129,7 +158,33 @@ responses:
                   msg: "Invalid picture"
                   path: "picture"
                   location: "body"
-
+          No fields:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value:
+                    type: object
+                    properties:
+                      invalid_field: Hello World
+                  msg: "You must provide at least one field to update"
+                  path: ""
+                  location: "body"
+          Invalid field found:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value:
+                    type: object
+                    properties:
+                      display_name: Hello World
+                      invalid_field: Hello World
+                  msg: "Invalid field"
+                  path: ""
+                  location: "body"
   "401":
     description: Unauthorized
     content:
@@ -176,6 +231,23 @@ responses:
             value:
               success: false
               message: You don't own the banner you're trying to select
+
+  409:
+    description: Conflict
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Email already in use:
+            value:
+              success: false
+              message: Email already in use
 
   "500":
     description: Internal Server Error
