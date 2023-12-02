@@ -7,15 +7,15 @@ const sequelize = new Sequelize(
 	config.db.mysql.username,
 	config.db.mysql.password,
 	{
-		host: config.db.mysql.mysql.host,
-		dialect: config.db.mysql.mysql.dialect,
+		host: config.db.mysql.host,
+		dialect: config.db.mysql.dialect,
 		pool: {
-			max: config.db.mysql.mysql.pool.max,
-			min: config.db.mysql.mysql.pool.min,
-			acquire: config.db.mysql.mysql.pool.acquire,
-			idle: config.db.mysql.mysql.pool.idle,
+			max: config.db.mysql.pool.max,
+			min: config.db.mysql.pool.min,
+			acquire: config.db.mysql.pool.acquire,
+			idle: config.db.mysql.pool.idle,
 		},
-		logging: config.db.mysql.mysql.logging,
+		logging: config.db.mysql.logging,
 	},
 );
 
