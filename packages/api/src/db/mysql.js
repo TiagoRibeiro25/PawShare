@@ -1,18 +1,23 @@
 const { Sequelize } = require("sequelize");
-const dbConfig = require("../config/db.config");
+const config = require("../config");
 const models = require("../models");
 
-const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
-	host: dbConfig.host,
-	dialect: dbConfig.dialect,
-	pool: {
-		max: dbConfig.pool.max,
-		min: dbConfig.pool.min,
-		acquire: dbConfig.pool.acquire,
-		idle: dbConfig.pool.idle,
+const sequelize = new Sequelize(
+	config.db.mysql.database,
+	config.db.mysql.username,
+	config.db.mysql.password,
+	{
+		host: config.db.mysql.mysql.host,
+		dialect: config.db.mysql.mysql.dialect,
+		pool: {
+			max: config.db.mysql.mysql.pool.max,
+			min: config.db.mysql.mysql.pool.min,
+			acquire: config.db.mysql.mysql.pool.acquire,
+			idle: config.db.mysql.mysql.pool.idle,
+		},
+		logging: config.db.mysql.mysql.logging,
 	},
-	logging: dbConfig.logging,
-});
+);
 
 const mysql = { sequelize, ...models.init(sequelize) };
 
