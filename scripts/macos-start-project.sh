@@ -20,7 +20,7 @@ cd ../..
 cd packages/app
 
 # Open another terminal window and execute "npm start"
-open -a Terminal npm start
+open -a Terminal yarn start
 
 # Navigate to the root directory
 cd ../..
