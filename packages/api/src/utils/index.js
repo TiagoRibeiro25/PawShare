@@ -5,6 +5,7 @@ const tokens = require("./tokens.utils");
 const password = require("./password.utils");
 const http = require("./http.utils");
 const pictures = require("./pictures.utils");
+const validateData = require("./validateData.utils");
 
 module.exports = {
 	checkEnvs,
@@ -14,4 +15,5 @@ module.exports = {
 	password,
 	http,
 	pictures,
+	validateData,
 };

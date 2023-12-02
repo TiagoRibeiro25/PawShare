@@ -22,4 +22,13 @@ router.get(
 	controllers.users.getUser,
 );
 
+// Update Logged User
+router.patch(
+	"/",
+	validators.users.updateUser(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.users.updateUser,
+);
+
 module.exports = router;
