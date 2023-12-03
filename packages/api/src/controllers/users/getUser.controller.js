@@ -9,7 +9,6 @@ const QUERY_ATTRIBUTES = {
 		"type",
 		"country",
 		"description",
-		"coins",
 		"badges",
 		"selected_frame",
 		"selected_banner",
@@ -38,7 +37,7 @@ async function getUser(req, res) {
 
 		// Fetch the email only if the user is logged in.
 		const userAtributes = fetchLoggedUser
-			? [...QUERY_ATTRIBUTES.user, "email"]
+			? [...QUERY_ATTRIBUTES.user, "email", "coins"]
 			: QUERY_ATTRIBUTES.user;
 
 		const user = await db.mysql.User.findByPk(userId, {
