@@ -1,0 +1,118 @@
+summary: Handle coins transactions
+description: Buy / Redeem coins
+tags:
+  - "Users"
+security:
+  - bearerAuth: []
+parameters:
+  - name: action
+    in: query
+    description: Action to perform ("buy" / "redeem")
+    required: true
+    schema:
+      type: string
+      example: buy
+  - name: quantity
+    in: query
+    description: Quantity of coins to buy / redeem
+    required: true
+    schema:
+      type: integer
+      example: 100
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Buy:
+            value:
+              success: true
+              message: Transaction completed
+          Redeem:
+            value:
+              success: true
+              message: Transaction completed
+  "400":
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Invalid Action:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "invalid action"
+                  msg: "The action query parameter must be either 'buy' or 'redeem'"
+                  path: "action"
+                  location: "query"
+          Invalid Amount:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "0"
+                  msg: "The quantity query parameter must be a positive integer"
+                  path: "quantity"
+                  location: "query"
+          Not Enough Coins (redeem):
+            value:
+              success: false
+              message: Not enough coins
+  "401":
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Missing token:
+            value:
+              success: false
+              message: Missing auth token or refresh token
+          Invalid token:
+            value:
+              success: false
+              message: Invalid auth token or refresh token
+          Refresh token expired:
+            value:
+              success: false
+              message: Refresh token has expired
+  "500":
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Server Error:
+            value:
+              success: false
+              message: Something went wrong!
