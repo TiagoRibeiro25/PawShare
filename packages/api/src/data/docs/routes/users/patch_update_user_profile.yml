@@ -75,7 +75,6 @@ responses:
                   updated_at: 2021-01-01T00:00:00.000Z
                   picture: https://res.cloudinary.com/dnfd6se6l/image/upload/v1701539527/paw-share/dev/users/kybrzzzgoo9eopzzedja.jpg
                   animals: []
-
   "400":
     description: Bad Request
     content:
@@ -209,7 +208,6 @@ responses:
             value:
               success: false
               message: Refresh token has expired
-
   "403":
     description: Forbidden
     content:
@@ -231,8 +229,7 @@ responses:
             value:
               success: false
               message: You don't own the banner you're trying to select
-
-  409:
+  "409":
     description: Conflict
     content:
       application/json:
@@ -248,7 +245,6 @@ responses:
             value:
               success: false
               message: Email already in use
-
   "500":
     description: Internal Server Error
     content:
