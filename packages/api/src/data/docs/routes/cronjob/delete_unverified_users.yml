@@ -25,7 +25,6 @@ responses:
             value:
               success: true
               message: Deleted 2 unverified users successfully.
-
   "401":
     description: Unauthorized
     content:
@@ -42,7 +41,6 @@ responses:
             value:
               success: false
               message: Unauthorized
-
   "500":
     description: Internal Server Error
     content:

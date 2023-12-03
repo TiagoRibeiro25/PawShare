@@ -52,7 +52,6 @@ responses:
                     type: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE2OTg0MDU4ODIsImV4cCI6MTY5ODQwOTQ4Mn0.o_k5yMX1w-y6Vnicscdcyd2BacFitBiExx5OreezMnM
                   refreshToken:
                     type: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE2OTg0MDU4ODIsImV4cCI6MTY5ODQ5MjI4Mn0.VMkxKbQBopfJBnOITugBHbM_D0JxhmH_AL7O0tDaV4E
-
   "400":
     description: Bad Request
     content:
@@ -95,7 +94,6 @@ responses:
                   msg: "Remember me must be a boolean"
                   path: "remember_me"
                   location: "body"
-
   "401":
     description: Unauthorized
     content:
@@ -116,7 +114,6 @@ responses:
             value:
               success: false
               message: An email has been sent to you to verify your account
-
   "404":
     description: Not Found
     content:
@@ -133,7 +130,6 @@ responses:
             value:
               success: false
               message: There's no user with that email
-
   "500":
     description: Internal Server Error
     content:

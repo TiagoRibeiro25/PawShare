@@ -46,7 +46,6 @@ responses:
             value:
               success: true
               message: A confirmation email has been sent
-
   "400":
     description: Bad Request
     content:
@@ -109,7 +108,6 @@ responses:
                   msg: "Invalid country"
                   path: "country"
                   location: "body"
-
   "409":
     description: Conflict
     content:
@@ -126,7 +124,6 @@ responses:
             value:
               success: false
               message: There's already a user with the same email
-
   "500":
     description: Internal Server Error
     content:
