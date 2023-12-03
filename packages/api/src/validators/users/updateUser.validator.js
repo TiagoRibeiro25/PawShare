@@ -38,17 +38,9 @@ function validator() {
 			.isLength({ min: 3 })
 			.withMessage("Description must be at least 10 characters long"),
 
-		body("selected_frame")
-			.optional()
-			.isInt()
-			.custom((value) => value > 0)
-			.withMessage("Invalid frame"),
+		body("selected_frame").optional().isInt({ min: 1 }).withMessage("Invalid frame"),
 
-		body("selected_banner")
-			.optional()
-			.isInt()
-			.custom((value) => value > 0)
-			.withMessage("Invalid banner"),
+		body("selected_banner").optional().isInt({ min: 1 }).withMessage("Invalid banner"),
 
 		body("picture")
 			.optional()
