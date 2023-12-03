@@ -1,9 +1,9 @@
 <div align="center" id="top">
-  <img src="https://dieselpunkcore.com/wp-content/uploads/2014/06/logo-placeholder.png" width="150" alt="code-racer-logo">
+  <img src="./images/Logo.png" width="600" alt="code-racer-logo">
   <br/>
   <h1>Paw Share</h1>
   <p>"Empowering Care for Animals and Their Guardians in Challenging Times"</p>
- <span>School Project</span>
+  <span>School Project</span>
 </div>
 <br />
 
