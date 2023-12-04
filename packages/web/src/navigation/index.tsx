@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import NotFound from "../views/NotFound";
+import ResetPassword from "../views/ResetPassword";
 import VerifyUser from "../views/VerifyUser";
 
 const Navigation: React.FC = () => {
@@ -14,6 +15,7 @@ const Navigation: React.FC = () => {
 	return (
 		<Routes>
 			<Route path="/:token" element={<VerifyUser />} />
+			<Route path="/reset-password/:token" element={<ResetPassword />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);
