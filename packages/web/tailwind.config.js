@@ -8,6 +8,7 @@ export default {
 				secondaryColor: "#2B2A63",
 				tertiaryColor: "#495197",
 				quaternaryColor: "#F2B336",
+				quinaryColor: "#fcc97d",
 			},
 		},
 	},

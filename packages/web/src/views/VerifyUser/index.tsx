@@ -4,7 +4,7 @@ import requests from "../../api/requests";
 import { LoadingIcon } from "../../components/LoadingIcon";
 
 const VerifyUser: React.FC = () => {
-	// get the token from the url
+	// Get the token from the url
 	const { token } = useParams();
 
 	const [loading, setLoading] = useState<boolean>(true);
@@ -31,17 +31,13 @@ const VerifyUser: React.FC = () => {
 	}, [token]);
 
 	return (
-		<div>
+		<>
 			{loading ? (
 				<LoadingIcon fill="#2B2A63" />
 			) : (
-				<div>
-					<h1 className="text-2xl text-secondaryColor font-semibold">
-						{status}
-					</h1>
-				</div>
+				<h1 className="text-2xl font-semibold text-secondaryColor">{status}</h1>
 			)}
-		</div>
+		</>
 	);
 };
 

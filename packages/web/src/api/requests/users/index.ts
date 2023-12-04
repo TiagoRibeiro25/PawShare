@@ -1,5 +1,3 @@
 import verifyUser from "./verifyUser.request";
 
-export default {
-	verifyUser,
-};
+export default { verifyUser };

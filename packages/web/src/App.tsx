@@ -4,10 +4,10 @@ import InitialLoad from "./components/InitialLoad";
 import Navigation from "./navigation";
 
 const App: React.FC = (): JSX.Element => {
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	return (
-		<div className="min-h-screen h-full bg-primaryColor p-6 flex justify-center items-center">
+		<div className="flex items-center justify-center h-full min-h-screen p-6 bg-primaryColor">
 			{loading ? (
 				<InitialLoad onLoad={() => setLoading(false)} />
 			) : (
