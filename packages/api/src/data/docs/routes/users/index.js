@@ -21,10 +21,15 @@ const patchHandleCoins = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/users/patch_handle_coins.yml", "utf8"),
 );
 
+const patchBuyItem = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/users/patch_buy_item.yml", "utf8"),
+);
+
 module.exports = {
 	patchVerifyUser,
 	getLoggedUser,
 	getUserProfile,
 	updateUserProfile,
 	patchHandleCoins,
+	patchBuyItem,
 };

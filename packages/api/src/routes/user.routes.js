@@ -40,4 +40,13 @@ router.patch(
 	controllers.users.handleCoins,
 );
 
+// Buy an item from the store
+router.patch(
+	"/buy/:itemId",
+	validators.users.buyItem,
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.users.buyItem,
+);
+
 module.exports = router;
