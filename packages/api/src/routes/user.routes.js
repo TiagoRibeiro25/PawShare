@@ -31,22 +31,4 @@ router.patch(
 	controllers.users.updateUser,
 );
 
-// Buy / Redeem Coins
-router.patch(
-	"/coins",
-	validators.users.handleCoins(),
-	validators.validateResult,
-	middlewares.validateTokens,
-	controllers.users.handleCoins,
-);
-
-// Buy an item from the store
-router.patch(
-	"/buy/:itemId",
-	validators.users.buyItem,
-	validators.validateResult,
-	middlewares.validateTokens,
-	controllers.users.buyItem,
-);
-
 module.exports = router;
