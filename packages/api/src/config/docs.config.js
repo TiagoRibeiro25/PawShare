@@ -21,8 +21,8 @@ const swaggerDefinition = {
 		"/users/me": { get: routeDocs.users.getLoggedUser },
 		"/users/{id}": { get: routeDocs.users.getUserProfile },
 		"/users": { patch: routeDocs.users.updateUserProfile },
-		"/users/coins": { patch: routeDocs.users.patchHandleCoins },
-		"/users/buy/:itemId": { patch: routeDocs.users.patchBuyItem },
+		"/store/coins": { patch: routeDocs.store.patchHandleCoins },
+		"/store/buy/:itemId": { patch: routeDocs.store.patchBuyItem },
 	},
 };
 

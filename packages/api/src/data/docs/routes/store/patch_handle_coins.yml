@@ -1,24 +1,24 @@
-summary: Buy item
-description: Buy item from the store
+summary: Handle coins transactions
+description: Buy / Redeem coins
 tags:
-  - "Users"
+  - "Store"
 security:
   - bearerAuth: []
 parameters:
-  - name: itemId
-    in: path
-    description: ID of the item to buy
-    required: true
-    schema:
-      type: integer
-      example: 1
-  - name: itemType
+  - name: action
     in: query
-    description: Type of the item to buy ("banner" or "frame")
+    description: Action to perform ("buy" / "redeem")
     required: true
     schema:
       type: string
-      example: banner
+      example: buy
+  - name: quantity
+    in: query
+    description: Quantity of coins to buy / redeem
+    required: true
+    schema:
+      type: integer
+      example: 100
 responses:
   "200":
     description: Success
@@ -35,7 +35,11 @@ responses:
           Buy:
             value:
               success: true
-              message: Item bought successfully
+              message: Transaction completed
+          Redeem:
+            value:
+              success: true
+              message: Transaction completed
   "400":
     description: Bad Request
     content:
@@ -48,26 +52,30 @@ responses:
             message:
               type: string
         examples:
-          Invalid ID:
+          Invalid Action:
             value:
               success: false
               message: Validation Error
               data:
                 - type: "field"
-                  value: "cat"
-                  msg: "Invalid item"
-                  path: "itemId"
-                  location: "params"
-          Invalid Type:
-            value:
-              success: false
-              message: Validation Error
-              data:
-                - type: "field"
-                  value: "dog"
-                  msg: "Invalid item type"
-                  path: "itemType"
+                  value: "invalid action"
+                  msg: "The action query parameter must be either 'buy' or 'redeem'"
+                  path: "action"
                   location: "query"
+          Invalid Amount:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "0"
+                  msg: "The quantity query parameter must be a positive integer"
+                  path: "quantity"
+                  location: "query"
+          Not Enough Coins (redeem):
+            value:
+              success: false
+              message: Not enough coins
   "401":
     description: Unauthorized
     content:
@@ -92,38 +100,6 @@ responses:
             value:
               success: false
               message: Refresh token has expired
-  "403":
-    description: Forbidden
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            success:
-              type: boolean
-            message:
-              type: string
-        examples:
-          Not enough coins:
-            value:
-              success: false
-              message: Not enough coins
-  "404":
-    description: Not Found
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            success:
-              type: boolean
-            message:
-              type: string
-        examples:
-          Item not found:
-            value:
-              success: false
-              message: Item not found
   "500":
     description: Internal Server Error
     content:
