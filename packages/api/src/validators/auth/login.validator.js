@@ -10,8 +10,10 @@ function validator() {
 
 		body("password")
 			.isString()
-			.isLength({ min: 8 })
-			.withMessage("Password must be at least 8 characters long"),
+			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
+			.withMessage(
+				"Password must contain at least one lowercase letter, one uppercase letter, one digit and be at least 8 characters long",
+			),
 
 		body("remember_me").isBoolean().withMessage("Remember me must be a boolean"),
 	];
