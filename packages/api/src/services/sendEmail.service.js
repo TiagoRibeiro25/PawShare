@@ -14,6 +14,11 @@ const axios = require("axios");
  * @returns {Promise<boolean>} - Whether the email was sent successfully.
  */
 async function sendEmail(emailData) {
+	// Don't send emails in the test environment
+	if (process.env.NODE_ENV === "test") {
+		return true;
+	}
+
 	const data = JSON.stringify({
 		Messages: [
 			{
