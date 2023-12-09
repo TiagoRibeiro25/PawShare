@@ -29,21 +29,36 @@ const app = require("./app");
 // Attempt to connect to the database
 console.log(loggingPrefix + colors.cyan("Attempting to connect to the database..."));
 
-require("./db")
-	.connect()
-	.then((isConnected) => {
-		if (!isConnected) {
-			process.exit(1);
-		}
+const db = require("./db");
 
-		console.log(loggingPrefix + colors.green("Successfully connected to the database!"));
+db.connect().then((isConnected) => {
+	if (!isConnected) {
+		process.exit(1);
+	}
 
-		// Start the server
-		app.listen(process.env.PORT, () => {
-			console.log(
-				loggingPrefix +
-					colors.cyan("Server is running on port: ") +
-					colors.green(process.env.PORT + "\n"),
+	console.log(loggingPrefix + colors.green("Successfully connected to the database!"));
+
+	console.log(loggingPrefix + colors.cyan("Syncing all the models..."));
+
+	db.mysql
+		.alterSync()
+		.then(() => {
+			console.log(loggingPrefix + colors.green("Successfully synced all the models!"));
+
+			// Start the server
+			app.listen(process.env.PORT, () => {
+				console.log(
+					loggingPrefix +
+						colors.cyan("Server is running on port: ") +
+						colors.green(process.env.PORT + "\n"),
+				);
+			});
+		})
+		.catch((error) => {
+			console.error(
+				loggingPrefix + colors.red("An error occurred while syncing the models!"),
 			);
+			console.error(loggingPrefix + colors.red(error));
+			process.exit(1);
 		});
-	});
+});

@@ -7,7 +7,8 @@
 	"scripts": {
 		"start": "node src/server.js",
 		"dev": "nodemon",
-		"db": "docker compose up -d"
+		"db": "docker compose up -d",
+		"reset-db": "node src/db/reset.js"
 	},
 	"keywords": [],
 	"dependencies": {
