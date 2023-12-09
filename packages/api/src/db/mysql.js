@@ -19,12 +19,12 @@ const sequelize = new Sequelize(
 	},
 );
 
-const mysql = { sequelize, ...models.init(sequelize) };
+// HARD RESET (DROP ALL TABLES)
+const forceSync = () => sequelize.sync({ force: true });
 
 // Sync all the models (create the tables and add the foreign keys)
-mysql.sequelize.sync({ alter: true });
+const alterSync = () => sequelize.sync({ alter: true });
 
-// HARD RESET (DROP ALL TABLES)
-// mysql.sequelize.sync({ force: true });
+const mysql = { sequelize, ...models.init(sequelize), forceSync, alterSync };
 
 module.exports = mysql;
