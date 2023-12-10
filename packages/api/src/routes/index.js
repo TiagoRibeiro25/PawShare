@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const userRoutes = require("./user.routes");
+const adoptionRoutes = require("./adoption.routes");
 const authRoutes = require("./auth.routes");
 const cronjobRoutes = require("./cronjob.routes");
 const utils = require("../utils");
@@ -14,6 +15,9 @@ router.get("/docs", swaggerUi.setup(config.docs, { explorer: true }));
 
 // User Routes
 router.use("/users", userRoutes);
+
+// Adoption Routes
+router.use("/adoption", adoptionRoutes);
 
 // Auth Routes
 router.use("/auth", authRoutes);
