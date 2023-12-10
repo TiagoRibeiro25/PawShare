@@ -5,10 +5,11 @@
 	"description": "API for Paw Share",
 	"main": "./src/server.js",
 	"scripts": {
+		"test": "cross-env NODE_ENV=test clear && jest",
 		"start": "node src/server.js",
-		"dev": "nodemon",
+		"dev": "cross-env NODE_ENV=development nodemon",
 		"db": "docker compose up -d",
-		"reset-db": "node src/db/reset.js"
+		"reset-db": "cross-env NODE_ENV=development node src/db/reset.js"
 	},
 	"keywords": [],
 	"dependencies": {
@@ -29,13 +30,16 @@
 		"yaml": "^2.3.4"
 	},
 	"devDependencies": {
+		"cross-env": "^7.0.3",
 		"dotenv": "^16.3.1",
 		"eslint": "^8.52.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-jsdoc": "^46.8.2",
 		"eslint-plugin-prettier": "^5.0.1",
+		"jest": "^29.7.0",
 		"morgan": "^1.10.0",
 		"nodemon": "^3.0.1",
 		"prettier": "^3.0.3"
+		"supertest": "^6.3.3"
 	}
 }

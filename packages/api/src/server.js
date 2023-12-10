@@ -8,9 +8,6 @@ const utils = require("./utils");
 
 const loggingPrefix = colors.yellow("[server.js] ");
 
-// Clear the console
-console.clear();
-
 // Log the environment
 console.log(
 	loggingPrefix + colors.cyan("Environment: ") + colors.yellow(process.env.NODE_ENV),
