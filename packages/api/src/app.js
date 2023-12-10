@@ -17,7 +17,7 @@ app.use(compression(config.compression)); // Enable Compression
 app.use(express.json({ limit: "15mb" })); // Enable JSON Parser with 15mb limit
 
 // Enable Logging (development only)
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "development") {
 	const morgan = require("morgan");
 	app.use(morgan("dev"));
 }
