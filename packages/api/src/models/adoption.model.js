@@ -23,19 +23,20 @@ const AdoptionModel = (sequelize) => {
 			},
 			email_contact: {
 				type: DataTypes.STRING(255),
-				allowNull: true,
+				allowNull: false,
 			},
 			phone_contact: {
 				type: DataTypes.STRING(255),
-				allowNull: true,
+				allowNull: false,
 			},
 			notes: {
 				type: DataTypes.STRING(255),
-				allowNull: true,
+				allowNull: false,
+				defaultValue: "[]",
 			},
 			city: {
 				type: DataTypes.STRING(255),
-				allowNull: true,
+				allowNull: false,
 			},
 		},
 		{
