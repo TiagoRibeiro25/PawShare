@@ -55,6 +55,11 @@ const SittingModel = (sequelize) => {
 				type: DataTypes.DATE,
 				allowNull: false,
 			},
+			paid: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
 		},
 		{
 			sequelize,
