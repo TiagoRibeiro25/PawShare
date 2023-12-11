@@ -9,7 +9,8 @@
 		"start": "node src/server.js",
 		"dev": "cross-env NODE_ENV=development nodemon",
 		"db": "docker compose up -d",
-		"reset-db": "cross-env NODE_ENV=development node src/db/reset.js"
+		"reset-db": "cross-env NODE_ENV=development node src/db/reset.js",
+		"lint": "eslint . --ext .js"
 	},
 	"keywords": [],
 	"dependencies": {
