@@ -1,0 +1,29 @@
+stages:
+  - build
+
+variables:
+  NODE_VERSION: "18.16.0"
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y nodejs npm
+
+lint:
+  stage: build
+  script:
+    - cd packages/api
+    - npm install
+    - npm run lint
+
+lint_on_merge_request:
+  stage: build
+  script:
+    - cd packages/api
+    - npm install
+    - npm run lint
+  rules:
+    - exists:
+        - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    - changes:
+        - "packages/api/**/*.{js}"
+  allow_failure: false
