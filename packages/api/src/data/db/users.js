@@ -1,5 +1,6 @@
 const utils = require("../../utils");
 
+/** All users have the same password: "Hello_World123" */
 module.exports = [
 	{
 		display_name: "John Doe",
@@ -89,7 +90,7 @@ module.exports = [
 		email: "info@pethaven.org",
 		password: "$2a$10$lR81JCw5CcfVAG84K7k1o.daoXwoz121IUVSt1Ee/mUFazFhxmDqC",
 		type: "organization",
-		country: "UK",
+		country: "GB",
 		description: "Rescuing and finding loving homes for abandoned animals.",
 		is_verified: true,
 		verify_user_token: null,

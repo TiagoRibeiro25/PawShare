@@ -17,6 +17,8 @@ if (!utils.checkEnvs()) {
 	process.exit(1);
 }
 
+console.log(loggingPrefix + colors.green("All the environment variables are set!\n"));
+
 const db = require("./");
 const dbData = require("../data/db");
 
@@ -27,22 +29,34 @@ const dbData = require("../data/db");
 
 		await db.connect();
 
-		console.log(loggingPrefix + colors.green("Successfully connected to the database!"));
+		console.log(
+			loggingPrefix + colors.green("Successfully connected to the database!\n"),
+		);
 
 		// Force Sync all the models (create the tables and add the foreign keys)
 		console.log(loggingPrefix + colors.cyan("Syncing models..."));
 
 		await db.mysql.forceSync();
 
-		console.log(loggingPrefix + colors.green("Successfully synced models!"));
+		console.log(loggingPrefix + colors.green("Successfully synced models!\n"));
 
 		// Populate the tables with data
-		console.log(loggingPrefix + colors.cyan("Populating the tables with data..."));
+		console.log(loggingPrefix + colors.cyan("Populating the tables with data...\n"));
 
+		console.log(loggingPrefix + colors.cyan("Inserting users..."));
 		await db.mysql.User.bulkCreate(dbData.users);
+		console.log(loggingPrefix + colors.green("Users inserted!\n"));
+
+		console.log(loggingPrefix + colors.cyan("Inserting animals..."));
+		await db.mysql.Animal.bulkCreate(dbData.animals);
+		console.log(loggingPrefix + colors.green("Animals inserted!\n"));
+
+		console.log(loggingPrefix + colors.cyan("Inserting adoptions..."));
+		await db.mysql.Adoption.bulkCreate(dbData.adoptions);
+		console.log(loggingPrefix + colors.green("Adoptions inserted!\n"));
 
 		console.log(
-			loggingPrefix + colors.green("Successfully populated the tables with data!"),
+			loggingPrefix + colors.green("Successfully populated the tables with data!\n"),
 		);
 
 		// Disconnect from the database
@@ -51,7 +65,7 @@ const dbData = require("../data/db");
 		await db.mysql.sequelize.close();
 
 		console.log(
-			loggingPrefix + colors.green("Successfully disconnected from the database!"),
+			loggingPrefix + colors.green("Successfully disconnected from the database!\n"),
 		);
 
 		console.log(loggingPrefix + colors.green("Successfully reset the database!"));
