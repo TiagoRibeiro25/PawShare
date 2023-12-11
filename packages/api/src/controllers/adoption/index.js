@@ -1,6 +1,5 @@
-const getAdoptionDetail = require('./adoptionDetail.controller');
-
+const getAdoptionDetail = require("./adoptionDetail.controller");
 
 module.exports = {
-    getAdoptionDetail
+	getAdoptionDetail,
 };
