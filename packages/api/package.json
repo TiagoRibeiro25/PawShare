@@ -5,7 +5,6 @@
 	"description": "API for Paw Share",
 	"main": "./src/server.js",
 	"scripts": {
-		"test": "cross-env NODE_ENV=test clear && jest",
 		"start": "node src/server.js",
 		"dev": "cross-env NODE_ENV=development nodemon",
 		"db": "docker compose up -d",
