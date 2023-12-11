@@ -10,7 +10,7 @@ function validator() {
 
 		body("password")
 			.isString()
-			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
+			.matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{8,}$/)
 			.withMessage(
 				"Password must contain at least one lowercase letter, one uppercase letter, one digit and be at least 8 characters long",
 			),
