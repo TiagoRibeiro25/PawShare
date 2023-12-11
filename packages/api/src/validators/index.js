@@ -1,10 +1,7 @@
 const auth = require("./auth");
 const users = require("./users");
-<<<<<<< HEAD
 const adoption = require("./adoption");
-=======
 const store = require("./store");
->>>>>>> dev
 const { validationResult } = require("express-validator");
 const utils = require("../utils");
 
@@ -26,8 +23,4 @@ const validateResult = (req, res, next) => {
 	next();
 };
 
-<<<<<<< HEAD
-module.exports = { validateResult, auth, users, adoption};
-=======
-module.exports = { validateResult, auth, users, store };
->>>>>>> dev
+module.exports = { validateResult, auth, users, adoption, store };
