@@ -81,7 +81,7 @@ responses:
               data:
                 - type: "field"
                   value: "123"
-                  msg: "Password must be at least 8 characters long"
+                  msg: "Password must contain at least one lowercase letter, one uppercase letter, one digit and be at least 8 characters long"
                   path: "password"
                   location: "body"
           Invalid Remember Me:

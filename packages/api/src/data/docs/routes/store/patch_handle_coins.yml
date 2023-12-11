@@ -1,7 +1,7 @@
 summary: Handle coins transactions
 description: Buy / Redeem coins
 tags:
-  - "Users"
+  - "Store"
 security:
   - bearerAuth: []
 parameters:

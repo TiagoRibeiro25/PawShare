@@ -1,0 +1,12 @@
+{
+	"frames": [
+		{ "id": 1, "price": 100 },
+		{ "id": 2, "price": 80 }
+	],
+	"banners": [
+		{ "id": 1, "price": 75 },
+		{ "id": 2, "price": 90 },
+		{ "id": 3, "price": 95 },
+		{ "id": 4, "price": 70 }
+	]
+}
