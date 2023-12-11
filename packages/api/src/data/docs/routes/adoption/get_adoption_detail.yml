@@ -1,0 +1,174 @@
+summary: "Get the adoption detail"
+description: "Get the adoption detail of an animal by its id"
+tags:
+  - "Adoption"
+security:
+  - bearerAuth: []
+parameters:
+  - name: "id"
+    in: "path"
+    description: "The id of the adoption"
+    required: true
+    schema:
+      type: "number"
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+          examples:
+            Owner:
+              value:
+                success: true
+                message: "Adoption retrieved successfully"
+                data:
+                  isOwner: true
+                  adoption:
+                    id: 1
+                    email_contact: "john.doe@pawshare.com"
+                    phone_contact: "932456789"
+                    city: "Porto"
+                    notes:
+                      - id: 1
+                        note: "independent"
+                      - id: 2
+                        note: "playful"
+                    animal:
+                      name: "Cleo"
+                      type: "cat"
+                      gender: "Female"
+                      color: "black"
+                      size: "Medium"
+                      description: "Cleo is an elegant and independent cat. She loves to sleep in the sun and play with furry balls."
+                      picture:
+                        provider_url: "https://res.cloudinary.com/dvthg2763/image/upload/v1702138345/animals/Animal_Detail_Picture_1_tkl6jh.png"
+                    createdAt: "2023-12-09T00:00:00.000Z"
+                    updatedAt: "2023-12-09T00:00:00.000Z"
+            "Not Owner":
+              value:
+                success: true
+                message: "Adoption retrieved successfully"
+                data:
+                  isOwner: true
+                  adoption:
+                    id: 1
+                    email_contact: "john.doe@pawshare.com"
+                    phone_contact: "932456789"
+                    city: "Porto"
+                    notes:
+                      - id: 1
+                        note: "independent"
+                      - id: 2
+                        note: "playful"
+                    animal:
+                      owner:
+                        id: 1
+                        name: "John Doe"
+                      name: "Cleo"
+                      type: "cat"
+                      gender: "Female"
+                      color: "black"
+                      size: "Medium"
+                      description: "Cleo is an elegant and independent cat. She loves to sleep in the sun and play with furry balls."
+                      picture:
+                        provider_url: "https://res.cloudinary.com/dvthg2763/image/upload/v1702138345/animals/Animal_Detail_Picture_1_tkl6jh.png"
+                    createdAt: "2023-12-09T00:00:00.000Z"
+                    updatedAt: "2023-12-09T00:00:00.000Z"
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+          examples:
+            "Invalid Id":
+              value:
+                success: false
+                message: "Validation Error"
+                data:
+                  - type: "field"
+                    value: "sad"
+                    msg: "Invalid adoption id"
+                    path: "id"
+                    location: "params"
+            "Invalid integer Id":
+              value:
+                success: false
+                message: "Validation Error"
+                data:
+                  - type: "field"
+                    value: "-1"
+                    msg: "Invalid integer for adoption id"
+                    path: "id"
+                    location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+          examples:
+            "Missing token":
+              value:
+                success: false
+                message: "Missing auth token or refresh token"
+            "Invalid token":
+              value:
+                success: false
+                message: "Invalid auth token or refresh token"
+            "Refresh token expired":
+              value:
+                success: false
+                message: "Refresh token has expired"
+  404:
+    description: "Adoption not found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+          examples:
+            "Adoption not found":
+              value:
+                success: false
+                message: "Adoption not found"
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+          examples:
+            "Internal server error":
+              value:
+                success: false
+                message: "Internal server error"
