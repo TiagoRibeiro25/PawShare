@@ -6,6 +6,7 @@ const password = require("./password.utils");
 const http = require("./http.utils");
 const pictures = require("./pictures.utils");
 const validateData = require("./validateData.utils");
+const formatData = require("./formatData.utils");
 
 module.exports = {
 	checkEnvs,
@@ -16,4 +17,5 @@ module.exports = {
 	http,
 	pictures,
 	validateData,
+	formatData,
 };

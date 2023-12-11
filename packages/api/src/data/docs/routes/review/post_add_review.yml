@@ -1,0 +1,207 @@
+summary: Add Review
+description: Add a review to a finished adoption process or pet sitting service
+tags:
+  - "Review"
+security:
+  - bearerAuth: []
+parameters:
+  - name: type
+    in: query
+    description: Type of review ("adoption" / "sitting")
+    required: true
+    schema:
+      type: string
+      example: adoption
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          id:
+            type: number
+            required: true
+            example: 1
+          rating:
+            type: number
+            required: true
+            example: 4
+          comment:
+            type: string
+            required: true
+            example: "This is a comment"
+responses:
+  "201":
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+            data:
+              type: object
+              properties:
+                authToken:
+                  type: string
+                refreshToken:
+                  type: string
+        examples:
+          Success:
+            value:
+              success: true
+              message: Review added successfully
+              data:
+                review:
+                  id: 1
+                  adoption_id: 1
+                  pet_sitting_id: 1
+                  type: owner
+                  rating: number
+                  comment: string
+                  createdAt: 2021-01-01T00:00:00.000Z
+                  updatedAt: 2021-01-01T00:00:00.000Z
+  "400":
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Invalid Type:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "The type must be either 'adoption' or 'sitting'."
+                  path: "type"
+                  location: "query"
+          Invalid ID:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "The id must be a positive integer."
+                  path: "id"
+                  location: "body"
+          Invalid Rating:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "The rating must be between 1 and 5."
+                  path: "rating"
+                  location: "body"
+          Invalid Comment:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "The comment must be between 8 and 255 characters."
+                  path: "comment"
+                  location: "body"
+            Already Reviewed:
+              value:
+                success: false
+                message: You already reviewed this
+            Sitting Not Finished:
+              value:
+                success: false
+                message: Sitting not finished yet
+  "401":
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Missing token:
+            value:
+              success: false
+              message: Missing auth token or refresh token
+          Invalid token:
+            value:
+              success: false
+              message: Invalid auth token or refresh token
+          Refresh token expired:
+            value:
+              success: false
+              message: Refresh token has expired
+  "403":
+    description: Forbidden
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Not Authorized (Adoption):
+            value:
+              success: false
+              message: You can't review this adoption
+          Not Authorized (Sitting):
+            value:
+              success: false
+              message: You can't review this pet sitting
+  "404":
+    description: Not Found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Adoption Not Found:
+            value:
+              success: false
+              message: Adoption not found
+          Sitting Not Found:
+            value:
+              success: false
+              message: Sitting not found
+  "500":
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Server Error:
+            value:
+              success: false
+              message: Something went wrong!
