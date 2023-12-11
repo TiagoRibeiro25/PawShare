@@ -63,10 +63,8 @@ responses:
                   email: "john.doe@pawshare.com"
                   type: user
                   country:
-                    type: object
-                    properties:
-                      name: Portugal
-                      code: PT
+                    name: Portugal
+                    code: PT
                   description: I am a placeholder person
                   coins: 10
                   selected_frame: 1
