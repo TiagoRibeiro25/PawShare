@@ -23,6 +23,7 @@ const swaggerDefinition = {
 		"/users": { patch: routeDocs.users.updateUserProfile },
 		"/store/coins": { patch: routeDocs.store.patchHandleCoins },
 		"/store/buy/:itemId": { patch: routeDocs.store.patchBuyItem },
+		"/reviews": { post: routeDocs.review.postAddReview },
 	},
 };
 

@@ -4,6 +4,7 @@ const auth = require("./auth");
 const cronjob = require("./cronjob");
 const users = require("./users");
 const store = require("./store");
+const review = require("./review");
 
 const getHelloWorld = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/default/get_hello_world.yml", "utf8"),
@@ -18,4 +19,5 @@ module.exports = {
 	default: { getHelloWorld, notFound },
 	users,
 	store,
+	review,
 };
