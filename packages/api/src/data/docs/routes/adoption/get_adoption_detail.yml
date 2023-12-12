@@ -26,7 +26,7 @@ responses:
               type: "string"
             data:
               type: "object"
-          examples:
+        examples:
             Owner:
               value:
                 success: true
@@ -95,7 +95,7 @@ responses:
               type: "boolean"
             message:
               type: "string"
-          examples:
+        examples:
             "Invalid Id":
               value:
                 success: false
@@ -127,7 +127,7 @@ responses:
               type: "boolean"
             message:
               type: "string"
-          examples:
+        examples:
             "Missing token":
               value:
                 success: false
@@ -141,7 +141,7 @@ responses:
                 success: false
                 message: "Refresh token has expired"
   404:
-    description: "Adoption not found"
+    description: "Not Found"
     content:
       application/json:
         schema:
@@ -151,7 +151,7 @@ responses:
               type: "boolean"
             message:
               type: "string"
-          examples:
+        examples:
             "Adoption not found":
               value:
                 success: false
@@ -167,7 +167,7 @@ responses:
               type: "boolean"
             message:
               type: "string"
-          examples:
+        examples:
             "Internal server error":
               value:
                 success: false
