@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const animalTypes = require("../data/animals.json");
+const colors = require("../data/colors.json");
 
 /**
  * @param {Sequelize} sequelize
@@ -39,6 +40,9 @@ const AnimalModel = (sequelize) => {
 			color: {
 				type: DataTypes.STRING(255),
 				allowNull: false,
+				validate: {
+					isIn: [colors],
+				},
 			},
 			size: {
 				type: DataTypes.STRING(255),
@@ -67,6 +71,26 @@ const AnimalModel = (sequelize) => {
 					name: "owner_id",
 					using: "BTREE",
 					fields: [{ name: "owner_id" }],
+				},
+				{
+					name: "animal_type",
+					using: "BTREE",
+					fields: [{ name: "type" }],
+				},
+				{
+					name: "animal_gender",
+					using: "BTREE",
+					fields: [{ name: "gender" }],
+				},
+				{
+					name: "animal_color",
+					using: "BTREE",
+					fields: [{ name: "color" }],
+				},
+				{
+					name: "animal_size",
+					using: "BTREE",
+					fields: [{ name: "size" }],
 				},
 			],
 		},

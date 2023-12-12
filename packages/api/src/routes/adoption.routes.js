@@ -5,6 +5,15 @@ const middlewares = require("../middlewares");
 
 const router = Router();
 
+// Get all adoptions (feed)
+router.get(
+	"/",
+	validators.adoption.getAdoptionsFeed(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getAdoptionsFeed,
+);
+
 // Get detail of one adoption
 router.get(
 	"/:id",

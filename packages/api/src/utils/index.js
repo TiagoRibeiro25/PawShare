@@ -7,6 +7,7 @@ const http = require("./http.utils");
 const pictures = require("./pictures.utils");
 const validateData = require("./validateData.utils");
 const formatData = require("./formatData.utils");
+const cities = require("./cities.utils");
 
 module.exports = {
 	checkEnvs,
@@ -18,4 +19,5 @@ module.exports = {
 	pictures,
 	validateData,
 	formatData,
+	cities,
 };
