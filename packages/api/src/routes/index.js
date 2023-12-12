@@ -5,6 +5,7 @@ const authRoutes = require("./auth.routes");
 const cronjobRoutes = require("./cronjob.routes");
 const storeRoutes = require("./store.routes");
 const reviewRoutes = require("./review.routes");
+const animalRoutes = require("./animal.routes");
 const utils = require("../utils");
 const swaggerUi = require("swagger-ui-express");
 const config = require("../config");
@@ -32,6 +33,9 @@ router.use("/cronjob", cronjobRoutes);
 
 // Review Routes
 router.use("/reviews", reviewRoutes);
+
+//Animal Routes
+router.use("/animals", animalRoutes);
 
 // Default Route
 router.route("/").get((_req, res) => {
