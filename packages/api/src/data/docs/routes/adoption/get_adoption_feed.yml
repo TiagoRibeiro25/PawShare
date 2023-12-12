@@ -85,6 +85,7 @@ responses:
                       picture: https://res.cloudinary.com/dvthg2763/image/upload/v1702138345/animals/Animal_Detail_Picture_1_tkl6jh.png
                     updated_at: "2023-12-12T11:41:04.000Z"
                     created_at: "2023-12-12T11:41:04.000Z"
+                total: 1
   400:
     description: "Bad Request"
     content:

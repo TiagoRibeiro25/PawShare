@@ -133,7 +133,7 @@ async function getAdoptionsFeed(req, res) {
 					city: parsedAdoption.city,
 					animal: {
 						...parsedAdoption.animal,
-						picture: parsedAdoption.animal.picture?.provider_url,
+						picture: parsedAdoption.animal.picture?.provider_url || null,
 					},
 					updated_at: parsedAdoption.updatedAt,
 					created_at: parsedAdoption.createdAt,
