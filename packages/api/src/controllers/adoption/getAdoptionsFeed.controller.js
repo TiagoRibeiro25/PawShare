@@ -81,8 +81,11 @@ async function getAdoptionsFeed(req, res) {
 			return;
 		}
 
-		const adoptions = await db.mysql.Adoption.findAll({
-			where: getQuery({ city, type, size, gender, color }, loggedUser.country),
+		const adoptions = await db.mysql.Adoption.findAndCountAll({
+			where: {
+				...getQuery({ city, type, size, gender, color }, loggedUser.country),
+				"$user.country$": loggedUser.country,
+			},
 			limit: limit,
 			offset: (page - 1) * limit,
 			order: [["createdAt", "DESC"]],
@@ -107,29 +110,36 @@ async function getAdoptionsFeed(req, res) {
 			],
 		});
 
+		const totalAdoptions = adoptions.count;
+		const resultAdoptions = adoptions.rows;
+
 		// Check if there are any adoptions for the given params
-		if (!adoptions || adoptions.length === 0) {
+		if (!resultAdoptions || resultAdoptions.length === 0) {
 			utils.handleResponse(
 				res,
 				utils.http.StatusNotFound,
 				"No adoptions found",
-				adoptions,
+				resultAdoptions,
 			);
 			return;
 		}
 
 		utils.handleResponse(res, utils.http.StatusOK, "Adoptions retrieved successfully", {
-			adoptions: adoptions.map((adoption) => {
+			adoptions: resultAdoptions.map((adoption) => {
 				const parsedAdoption = adoption.toJSON();
 
 				return {
 					id: parsedAdoption.id,
 					city: parsedAdoption.city,
-					animal: parsedAdoption.animal,
+					animal: {
+						...parsedAdoption.animal,
+						picture: parsedAdoption.animal.picture?.provider_url,
+					},
 					updated_at: parsedAdoption.updatedAt,
 					created_at: parsedAdoption.createdAt,
 				};
 			}),
+			total: totalAdoptions,
 		});
 	} catch (error) {
 		utils.handleError(res, error, __filename);
