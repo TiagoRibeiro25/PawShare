@@ -18,6 +18,7 @@ async function addReview(req, res) {
 	//TODO: Not tested
 
 	try {
+		/** @type {number} */
 		const loggedUserId = req.userId;
 
 		/** @type {"adoption" | "sitting"} */
@@ -35,7 +36,7 @@ async function addReview(req, res) {
 				{
 					model: db.mysql.UsersList,
 					as: "users_list",
-					where: { user_id: loggedUserId },
+					where: { is_confirmed: true },
 				},
 			],
 		});
@@ -43,6 +44,12 @@ async function addReview(req, res) {
 		// Check if the adoption/sitting exists
 		if (!activity) {
 			utils.handleResponse(res, utils.http.StatusNotFound, `${modelName} not found`);
+			return;
+		}
+
+		// Check if there's someone assigned to the adoption/sitting
+		if (!activity.users_list.length) {
+			utils.handleResponse(res, utils.http.StatusBadRequest, "No one assigned to this");
 			return;
 		}
 
