@@ -125,6 +125,10 @@ responses:
               value:
                 success: false
                 message: Sitting not finished yet
+            No one assigned:
+              value:
+                success: false
+                message: No one assigned to this
   "401":
     description: Unauthorized
     content:
