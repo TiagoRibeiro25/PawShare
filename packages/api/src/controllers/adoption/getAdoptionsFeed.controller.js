@@ -39,10 +39,8 @@ function getQuery(options, userCountry) {
 		}
 	}
 
-	// If the city is not specified, return all adoptions from the user's country.
-	if (!options.city) {
-		query["$user.country$"] = userCountry;
-	}
+	query["$user.country$"] = userCountry;
+	query.is_closed = false;
 
 	return query;
 }
@@ -80,11 +78,9 @@ async function getAdoptionsFeed(req, res) {
 		}
 
 		const adoptions = await db.mysql.Adoption.findAndCountAll({
-			where: {
-				...getQuery({ city, type, size, gender, color }, loggedUser.country),
-				"$user.country$": loggedUser.country,
-			},
+			where: { ...getQuery({ city, type, size, gender, color }, loggedUser.country) },
 			limit: limit,
+			attributes: ["id", "city", "updatedAt", "createdAt"],
 			offset: (page - 1) * limit,
 			order: [["createdAt", "DESC"]],
 			include: [
@@ -108,7 +104,6 @@ async function getAdoptionsFeed(req, res) {
 			],
 		});
 
-		const totalAdoptions = adoptions.count;
 		const resultAdoptions = adoptions.rows;
 
 		// Check if there are any adoptions for the given params
@@ -137,7 +132,7 @@ async function getAdoptionsFeed(req, res) {
 					created_at: parsedAdoption.createdAt,
 				};
 			}),
-			total: totalAdoptions,
+			total: adoptions.count,
 		});
 	} catch (error) {
 		utils.handleError(res, error, __filename);
