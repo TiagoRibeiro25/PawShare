@@ -6,6 +6,7 @@ const cronjobRoutes = require("./cronjob.routes");
 const storeRoutes = require("./store.routes");
 const reviewRoutes = require("./review.routes");
 const animalRoutes = require("./animal.routes");
+const sittingRoutes = require("./sitting.routes");
 const utils = require("../utils");
 const swaggerUi = require("swagger-ui-express");
 const config = require("../config");
@@ -21,6 +22,9 @@ router.use("/users", userRoutes);
 
 // Adoption Routes
 router.use("/adoption", adoptionRoutes);
+
+// Sitting Routes
+router.use("/sitting", sittingRoutes);
 
 // Auth Routes
 router.use("/auth", authRoutes);

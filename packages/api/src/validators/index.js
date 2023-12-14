@@ -3,6 +3,7 @@ const users = require("./users");
 const adoption = require("./adoption");
 const store = require("./store");
 const review = require("./review");
+const sitting = require("./sitting");
 const { validationResult } = require("express-validator");
 const utils = require("../utils");
 
@@ -17,11 +18,16 @@ const validateResult = (req, res, next) => {
 	const errors = validationResult(req);
 
 	if (!errors.isEmpty()) {
-		utils.handleResponse(res, 400, "Validation Error", errors.array());
+		utils.handleResponse(
+			res,
+			utils.http.StatusBadRequest,
+			"Validation Error",
+			errors.array(),
+		);
 		return;
 	}
 
 	next();
 };
 
-module.exports = { validateResult, auth, users, adoption, store, review };
+module.exports = { validateResult, auth, users, adoption, store, review, sitting };
