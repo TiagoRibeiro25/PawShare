@@ -60,6 +60,11 @@ const SittingModel = (sequelize) => {
 				allowNull: false,
 				defaultValue: false,
 			},
+			is_closed: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
 		},
 		{
 			sequelize,
@@ -86,6 +91,26 @@ const SittingModel = (sequelize) => {
 					name: "city",
 					using: "BTREE",
 					fields: [{ name: "city" }],
+				},
+				{
+					name: "start_date",
+					using: "BTREE",
+					fields: [{ name: "start_date" }],
+				},
+				{
+					name: "end_date",
+					using: "BTREE",
+					fields: [{ name: "end_date" }],
+				},
+				{
+					name: "paid",
+					using: "BTREE",
+					fields: [{ name: "paid" }],
+				},
+				{
+					name: "is_closed",
+					using: "BTREE",
+					fields: [{ name: "is_closed" }],
 				},
 			],
 		},
