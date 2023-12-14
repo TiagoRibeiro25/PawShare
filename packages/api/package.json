@@ -9,7 +9,9 @@
 		"dev": "cross-env NODE_ENV=development nodemon",
 		"db": "docker compose up -d",
 		"reset-db": "cross-env NODE_ENV=development node src/db/reset.js",
-		"lint": "eslint . --ext .js"
+		"lint": "eslint . --ext .js",
+		"prettier": "prettier --write ./src",
+		"prettier-check": "prettier --check ./src"
 	},
 	"keywords": [],
 	"dependencies": {
@@ -39,6 +41,6 @@
 		"eslint-plugin-prettier": "^5.0.1",
 		"morgan": "^1.10.0",
 		"nodemon": "^3.0.1",
-		"prettier": "^3.0.3"
+		"prettier": "3.1.1"
 	}
 }
