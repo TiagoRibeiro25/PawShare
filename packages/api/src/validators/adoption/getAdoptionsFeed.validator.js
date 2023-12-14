@@ -4,7 +4,7 @@ const colors = require("../../data/colors.json");
 const utils = require("../../utils");
 
 /**
- * Returns an array of validation rules for the get adoption detail endpoint.
+ * Returns an array of validation rules for the get adoption feed endpoint
  * @returns {Array} An array of validation rules
  */
 

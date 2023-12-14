@@ -38,6 +38,11 @@ const AdoptionModel = (sequelize) => {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 			},
+			is_closed: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+				defaultValue: false,
+			},
 		},
 		{
 			sequelize,
@@ -64,6 +69,11 @@ const AdoptionModel = (sequelize) => {
 					name: "city",
 					using: "BTREE",
 					fields: [{ name: "city" }],
+				},
+				{
+					name: "is_closed",
+					using: "BTREE",
+					fields: [{ name: "is_closed" }],
 				},
 			],
 		},
