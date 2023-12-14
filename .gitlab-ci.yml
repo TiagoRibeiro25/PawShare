@@ -14,6 +14,7 @@ lint:
     - cd packages/api
     - npm install
     - npm run lint
+    - npm run prettier-check
 
 lint_on_merge_request:
   stage: build
@@ -21,6 +22,7 @@ lint_on_merge_request:
     - cd packages/api
     - npm install
     - npm run lint
+    - npm run prettier-check
   rules:
     - exists:
         - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
