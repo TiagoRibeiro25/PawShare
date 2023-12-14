@@ -1,8 +1,6 @@
 const utils = require("../../utils");
 const db = require("../../db");
-
-const DEFAULT_PAGE = 1;
-const DEFAULT_LIMIT = 6;
+const config = require("../../config");
 
 /**
  * @typedef Options
@@ -59,8 +57,8 @@ async function getAdoptionsFeed(req, res) {
 	try {
 		/** @type {Options} */
 		const {
-			page = DEFAULT_PAGE,
-			limit = DEFAULT_LIMIT,
+			page = config.pagination.adoptions.feed.defaultPage,
+			limit = config.pagination.adoptions.feed.defaultLimit,
 			city,
 			type,
 			size,

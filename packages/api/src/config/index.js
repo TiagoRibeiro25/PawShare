@@ -4,6 +4,7 @@ const tokens = require("./jwt.config");
 const db = require("./db.config");
 const docs = require("./docs.config");
 const cloudinary = require("./cloudinary.config");
+const pagination = require("./pagination.config");
 
 module.exports = {
 	compression,
@@ -12,4 +13,5 @@ module.exports = {
 	db,
 	docs,
 	cloudinary,
+	pagination,
 };
