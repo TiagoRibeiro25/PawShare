@@ -24,8 +24,8 @@ const QUERY_ATTRIBUTES = {
  */
 
 async function getAdoptionDetail(req, res) {
-	// The adoption id
 	try {
+		// The adoption id
 		const { id } = req.params;
 
 		/** @type {number} */
@@ -47,6 +47,12 @@ async function getAdoptionDetail(req, res) {
 				{
 					model: db.mysql.User,
 					attributes: QUERY_ATTRIBUTES.user,
+					include: [
+						{
+							model: db.mysql.Picture,
+							attributes: QUERY_ATTRIBUTES.picture,
+						},
+					],
 				},
 			],
 		});
@@ -64,21 +70,19 @@ async function getAdoptionDetail(req, res) {
 				email_contact: data.email_contact,
 				phone_contact: data.phone_contact,
 				city: data.city,
-				notes: JSON.parse(data.notes.replace(/'/g, '"')).map((note, index) => ({
-					id: index + 1,
-					note,
-				})),
+				notes: JSON.parse(data.notes.replace(/'/g, '"')),
 				animal: {
+					id: data.animal.id,
 					name: data.animal.name,
 					type: data.animal.type,
 					gender: data.animal.gender,
 					color: data.animal.color,
 					size: data.animal.size,
 					description: data.animal.description,
-					picture: data.animal.picture,
+					picture: data.animal.picture.provider_url,
 				},
-				createdAt: data.createdAt,
-				updatedAt: data.updatedAt,
+				created_at: data.createdAt,
+				updated_at: data.updatedAt,
 			},
 		};
 
@@ -98,9 +102,13 @@ async function getAdoptionDetail(req, res) {
 			adoption: {
 				...responseData.adoption,
 				animal: {
+					id: data.animal.id,
 					owner: {
 						id: data.animal.owner_id,
 						name: data.user.display_name,
+						picture:
+							data.user.picture?.provider_url ||
+							utils.pictures.getUserPictureUrl(data.user.display_name),
 					},
 					...responseData.adoption.animal,
 				},

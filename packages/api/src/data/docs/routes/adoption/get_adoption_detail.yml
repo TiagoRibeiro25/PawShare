@@ -39,51 +39,48 @@ responses:
                   phone_contact: "932456789"
                   city: "Porto"
                   notes:
-                    - id: 1
-                      note: "independent"
-                    - id: 2
-                      note: "playful"
+                    - "independent"
+                    - "playful"
                   animal:
+                    id: 7
                     name: "Cleo"
                     type: "cat"
                     gender: "Female"
                     color: "black"
                     size: "Medium"
                     description: "Cleo is an elegant and independent cat. She loves to sleep in the sun and play with furry balls."
-                    picture:
-                      provider_url: "https://res.cloudinary.com/dvthg2763/image/upload/v1702138345/animals/Animal_Detail_Picture_1_tkl6jh.png"
-                  createdAt: "2023-12-09T00:00:00.000Z"
-                  updatedAt: "2023-12-09T00:00:00.000Z"
+                    picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702555109/paw-share/dev/animals/Animal_Detail_Picture_1_tkl6jh_g40o30.png"
+                  created_at: "2023-12-09T00:00:00.000Z"
+                  updated_at: "2023-12-09T00:00:00.000Z"
           "Not Owner":
             value:
               success: true
               message: "Adoption retrieved successfully"
               data:
-                isOwner: true
+                isOwner: false
                 adoption:
                   id: 1
                   email_contact: "john.doe@pawshare.com"
                   phone_contact: "932456789"
                   city: "Porto"
                   notes:
-                    - id: 1
-                      note: "independent"
-                    - id: 2
-                      note: "playful"
+                    - "independent"
+                    - "playful"
                   animal:
+                    id: 7
                     owner:
                       id: 1
                       name: "John Doe"
+                      picture: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
                     name: "Cleo"
                     type: "cat"
                     gender: "Female"
                     color: "black"
                     size: "Medium"
                     description: "Cleo is an elegant and independent cat. She loves to sleep in the sun and play with furry balls."
-                    picture:
-                      provider_url: "https://res.cloudinary.com/dvthg2763/image/upload/v1702138345/animals/Animal_Detail_Picture_1_tkl6jh.png"
-                  createdAt: "2023-12-09T00:00:00.000Z"
-                  updatedAt: "2023-12-09T00:00:00.000Z"
+                    picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702555109/paw-share/dev/animals/Animal_Detail_Picture_1_tkl6jh_g40o30.png"
+                  created_at: "2023-12-09T00:00:00.000Z"
+                  updated_at: "2023-12-09T00:00:00.000Z"
   400:
     description: "Bad Request"
     content:
