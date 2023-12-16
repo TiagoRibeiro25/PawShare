@@ -90,21 +90,6 @@ async function addAnimalAdoption(req, res) {
 			);
 		}
 
-		const checkEmail = await db.mysql.Adoption.findOne({
-			where: {
-				email_contact: email_contact,
-			},
-		});
-
-		// Checking if the email is already associated with another adoption from other user
-		if (checkEmail && checkEmail.owner_id !== loggedUserId) {
-			return utils.handleResponse(
-				res,
-				utils.http.StatusConflict,
-				"Email already associated with another adoption",
-			);
-		}
-
 		const newAdoption = await db.mysql.Adoption.create({
 			animal_id: animal_id,
 			owner_id: loggedUserId,
