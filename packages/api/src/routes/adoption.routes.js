@@ -23,4 +23,13 @@ router.get(
 	controllers.adoption.getAdoptionDetail,
 );
 
+// Add animal to adoption list
+router.post(
+	"/",
+	validators.adoption.addAnimalAdoption(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.addAnimalAdoption,
+);
+
 module.exports = router;
