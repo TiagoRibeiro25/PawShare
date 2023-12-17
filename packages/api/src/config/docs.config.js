@@ -24,7 +24,10 @@ const swaggerDefinition = {
 		"/store/coins": { patch: routeDocs.store.patchHandleCoins },
 		"/store/buy/:itemId": { patch: routeDocs.store.patchBuyItem },
 		"/reviews": { post: routeDocs.review.postAddReview },
-		"/adoption": { get: routeDocs.adoption.getAdoptionFeed },
+		"/adoption": {
+			get: routeDocs.adoption.getAdoptionFeed,
+			post: routeDocs.adoption.postAnimalAdoption,
+		},
 		"/adoption/{id}": { get: routeDocs.adoption.getAdoptionDetail },
 		"/sitting": { get: routeDocs.sitting.getSittingFeed },
 	},
