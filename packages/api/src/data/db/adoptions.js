@@ -4,7 +4,7 @@ module.exports = [
 		animal_id: 3,
 		email_contact: "support@petlovers.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "New York City",
 	},
 	{
@@ -12,7 +12,7 @@ module.exports = [
 		animal_id: 9,
 		email_contact: "support@petlovers.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "New York City",
 	},
 	{
@@ -27,7 +27,10 @@ module.exports = [
 		animal_id: 35,
 		email_contact: "new_organization@pawshare.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+		]),
 		city: "Madrid",
 	},
 	{
@@ -35,7 +38,10 @@ module.exports = [
 		animal_id: 34,
 		email_contact: "new_organization@pawshare.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+		]),
 		city: "Madrid",
 	},
 	{
@@ -43,7 +49,10 @@ module.exports = [
 		animal_id: 21,
 		email_contact: "new_organization@pawshare.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+		]),
 		city: "Madrid",
 	},
 	{
@@ -51,7 +60,10 @@ module.exports = [
 		animal_id: 5,
 		email_contact: "new_organization@pawshare.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+		]),
 		city: "Madrid",
 	},
 	{
@@ -59,7 +71,10 @@ module.exports = [
 		animal_id: 11,
 		email_contact: "new_organization@pawshare.com",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+		]),
 		city: "Madrid",
 	},
 	{
@@ -102,8 +117,11 @@ module.exports = [
 		animal_id: 12,
 		email_contact: "rescue@pawsandclaws.org",
 		phone_contact: "123456789",
-		notes:
-			"['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World', 'Paw Share is amazing!']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+			"Paw Share is amazing!",
+		]),
 		city: "Bay Minette",
 	},
 	{
@@ -111,8 +129,11 @@ module.exports = [
 		animal_id: 13,
 		email_contact: "rescue@pawsandclaws.org",
 		phone_contact: "123456789",
-		notes:
-			"['Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Hello World', 'Paw Share is amazing!']",
+		notes: JSON.stringify([
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			"Hello World",
+			"Paw Share is amazing!",
+		]),
 		city: "Bay Minette",
 	},
 	{
@@ -120,7 +141,7 @@ module.exports = [
 		animal_id: 18,
 		email_contact: "info@happytailsfoundation.org",
 		phone_contact: "912345678",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "Airdrie",
 	},
 	{
@@ -128,7 +149,7 @@ module.exports = [
 		animal_id: 31,
 		email_contact: "info@happytailsfoundation.org",
 		phone_contact: "912345678",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "Airdrie",
 	},
 	{
@@ -136,7 +157,7 @@ module.exports = [
 		animal_id: 30,
 		email_contact: "info@happytailsfoundation.org",
 		phone_contact: "912345678",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "Airdrie",
 	},
 	{
@@ -144,7 +165,7 @@ module.exports = [
 		animal_id: 24,
 		email_contact: "guardians@wildlife.org",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "Edna",
 	},
 	{
@@ -152,7 +173,7 @@ module.exports = [
 		animal_id: 25,
 		email_contact: "guardians@wildlife.org",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "Edna",
 	},
 	{
@@ -160,7 +181,7 @@ module.exports = [
 		animal_id: 17,
 		email_contact: "guardians@wildlife.org",
 		phone_contact: "123456789",
-		notes: "['Lorem ipsum dolor sit amet, consectetur adipiscing elit.']",
+		notes: JSON.stringify(["Lorem ipsum dolor sit amet, consectetur adipiscing elit."]),
 		city: "Edna",
 	},
 ];

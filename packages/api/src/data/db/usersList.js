@@ -25,5 +25,11 @@ module.exports = [
 	{ user_id: 14, adoption_id: 1 },
 	{ user_id: 14, adoption_id: 2 },
 	{ user_id: 14, adoption_id: 3 },
+
 	{ user_id: 2, sitting_id: 1 },
+	{ user_id: 26, sitting_id: 1 },
+	{ user_id: 1, sitting_id: 2 },
+	{ user_id: 26, sitting_id: 2 },
+	{ user_id: 2, sitting_id: 3, is_confirmed: true },
+	{ user_id: 26, sitting_id: 3 },
 ];
