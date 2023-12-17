@@ -48,8 +48,14 @@ function getQuery(options, userCountry) {
 		}
 	}
 
+	// Only show sittings from the user's country
 	query["$user.country$"] = userCountry;
+
+	// Only show sittings that are not closed
 	query.is_closed = false;
+
+	// Only show sittings that start in the future
+	query.start_date = { [Op.gte]: new Date() };
 
 	return query;
 }
