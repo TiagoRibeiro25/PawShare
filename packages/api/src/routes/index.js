@@ -38,7 +38,7 @@ router.use("/cronjob", cronjobRoutes);
 // Review Routes
 router.use("/reviews", reviewRoutes);
 
-//Animal Routes
+// Animal Routes
 router.use("/animals", animalRoutes);
 
 // Default Route
