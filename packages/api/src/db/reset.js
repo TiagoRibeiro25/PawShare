@@ -51,9 +51,21 @@ const dbData = require("../data/db");
 		await db.mysql.Animal.bulkCreate(dbData.animals);
 		console.log(loggingPrefix + colors.green("Animals inserted!\n"));
 
-		console.log(loggingPrefix + colors.cyan("Inserting adoptions..."));
-		await db.mysql.Adoption.bulkCreate(dbData.adoptions);
-		console.log(loggingPrefix + colors.green("Adoptions inserted!\n"));
+		console.log(
+			loggingPrefix + colors.cyan("Inserting adoptions and sitting requests..."),
+		);
+		// await db.mysql.Adoption.bulkCreate(dbData.adoptions);
+		await Promise.all([
+			db.mysql.Adoption.bulkCreate(dbData.adoptions),
+			db.mysql.Sitting.bulkCreate(dbData.sittings),
+		]);
+		console.log(
+			loggingPrefix + colors.green("Adoptions and sitting requests inserted!\n"),
+		);
+
+		console.log(loggingPrefix + colors.cyan("Inserting users list..."));
+		await db.mysql.UsersList.bulkCreate(dbData.usersList);
+		console.log(loggingPrefix + colors.green("Users list inserted!\n"));
 
 		console.log(
 			loggingPrefix + colors.green("Successfully populated the tables with data!\n"),

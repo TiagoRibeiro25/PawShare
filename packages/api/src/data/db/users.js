@@ -67,7 +67,7 @@ module.exports = [
 		password: "$2a$10$lR81JCw5CcfVAG84K7k1o.daoXwoz121IUVSt1Ee/mUFazFhxmDqC",
 		type: "user",
 		country: "CA",
-		description: "I adore cats and enjoy spending time with them.",
+		description: "I love cats and enjoy spending time with them.",
 		coins: 75,
 		is_verified: true,
 		verify_user_token: null,
