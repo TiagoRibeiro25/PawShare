@@ -31,7 +31,7 @@ async function addReview(req, res) {
 
 		// Adoption / Sitting
 		const activity = await db.mysql[modelName].findOne({
-			where: { id },
+			where: { id, is_closed: true },
 			include: [
 				{
 					model: db.mysql.UsersList,
@@ -47,9 +47,13 @@ async function addReview(req, res) {
 			return;
 		}
 
-		// Check if there's someone assigned to the adoption/sitting
-		if (!activity.users_list.length) {
-			utils.handleResponse(res, utils.http.StatusBadRequest, "No one assigned to this");
+		// Check if it's an adoption and if the user is the previous owner (not allowed to review)
+		if (type === "adoption" && activity.owner_id === loggedUserId) {
+			utils.handleResponse(
+				res,
+				utils.http.StatusForbidden,
+				"Only the new owner can review this adoption",
+			);
 			return;
 		}
 
@@ -61,7 +65,7 @@ async function addReview(req, res) {
 			utils.handleResponse(
 				res,
 				utils.http.StatusForbidden,
-				`You can't review this $${type}`,
+				`You can't review this ${type}`,
 			);
 			return;
 		}

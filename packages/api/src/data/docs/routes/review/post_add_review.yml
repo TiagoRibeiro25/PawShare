@@ -125,10 +125,6 @@ responses:
               value:
                 success: false
                 message: Sitting not finished yet
-            No one assigned:
-              value:
-                success: false
-                message: No one assigned to this
   "401":
     description: Unauthorized
     content:
@@ -165,14 +161,18 @@ responses:
             message:
               type: string
         examples:
-          Not Authorized (Adoption):
+          Not authorized (Adoption):
             value:
               success: false
               message: You can't review this adoption
-          Not Authorized (Sitting):
+          Not authorized (Sitting):
             value:
               success: false
               message: You can't review this pet sitting
+          Previous owner can't review (adoption):
+            value:
+              success: false
+              message: Only the new owner can review this adoption
   "404":
     description: Not Found
     content:
