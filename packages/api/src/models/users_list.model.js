@@ -28,6 +28,7 @@ const UsersListModel = (sequelize) => {
 			is_confirmed: {
 				type: DataTypes.BOOLEAN,
 				allowNull: false,
+				defaultValue: false,
 			},
 		},
 		{
