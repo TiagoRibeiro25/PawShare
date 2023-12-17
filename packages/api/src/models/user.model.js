@@ -131,6 +131,11 @@ const UserModel = (sequelize) => {
 					using: "BTREE",
 					fields: [{ name: "type" }],
 				},
+				{
+					name: "country",
+					using: "BTREE",
+					fields: [{ name: "country" }],
+				},
 			],
 		},
 	);
