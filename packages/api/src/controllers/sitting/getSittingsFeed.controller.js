@@ -1,9 +1,7 @@
 const utils = require("../../utils");
 const config = require("../../config");
 const db = require("../../db");
-
-//TODO: Create the initial data for the database (to help debugging)
-//! Code not tested (works in theory 🙂)
+const { Op } = require("sequelize");
 
 /**
  * @typedef Options
@@ -39,7 +37,7 @@ function getQuery(options, userCountry) {
 		if (value) {
 			// Check if the key is related to the coins and use the correct prefix.
 			if (key === "coins") {
-				query["coins"] = { [db.mysql.sequelize.Op.gte]: value };
+				query["coins"] = { [Op.gte]: value };
 				continue;
 			}
 
@@ -51,6 +49,7 @@ function getQuery(options, userCountry) {
 	}
 
 	query["$user.country$"] = userCountry;
+	query.is_closed = false;
 
 	return query;
 }
@@ -72,6 +71,7 @@ async function getSittingsFeed(req, res) {
 			size,
 			gender,
 			color,
+			coins,
 		} = req.query;
 
 		const loggedUser = await db.mysql.User.findByPk(req.userId);
@@ -88,7 +88,9 @@ async function getSittingsFeed(req, res) {
 		}
 
 		const sittings = await db.mysql.Sitting.findAndCountAll({
-			where: { ...getQuery({ city, type, size, gender, color }, loggedUser.country) },
+			where: {
+				...getQuery({ city, type, size, gender, color, coins }, loggedUser.country),
+			},
 			limit: limit,
 			offset: (page - 1) * limit,
 			order: [["createdAt", "DESC"]],
