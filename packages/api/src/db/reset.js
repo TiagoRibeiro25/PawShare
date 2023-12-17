@@ -54,7 +54,6 @@ const dbData = require("../data/db");
 		console.log(
 			loggingPrefix + colors.cyan("Inserting adoptions and sitting requests..."),
 		);
-		// await db.mysql.Adoption.bulkCreate(dbData.adoptions);
 		await Promise.all([
 			db.mysql.Adoption.bulkCreate(dbData.adoptions),
 			db.mysql.Sitting.bulkCreate(dbData.sittings),
