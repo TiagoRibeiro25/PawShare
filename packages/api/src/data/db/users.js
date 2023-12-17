@@ -329,4 +329,14 @@ module.exports = [
 		verify_user_token: null,
 		change_password_token: utils.tokens.generateRandomBase64Token(),
 	},
+	{
+		display_name: "Eduardo Barbosa",
+		email: "eb2000@pawshare.com",
+		password: "$2a$10$lR81JCw5CcfVAG84K7k1o.daoXwoz121IUVSt1Ee/mUFazFhxmDqC",
+		type: "user",
+		country: "PT",
+		is_verified: true,
+		verify_user_token: null,
+		change_password_token: utils.tokens.generateRandomBase64Token(),
+	},
 ];
