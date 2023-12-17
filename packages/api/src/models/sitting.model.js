@@ -50,11 +50,17 @@ const SittingModel = (sequelize) => {
 			start_date: {
 				type: DataTypes.DATE,
 				allowNull: false,
+				validate: {
+					isDate: true,
+				},
 				defaultValue: Sequelize.NOW,
 			},
 			end_date: {
 				type: DataTypes.DATE,
 				allowNull: false,
+				validate: {
+					isDate: true,
+				},
 				defaultValue: new Date(new Date().getTime() + 24 * 60 * 60 * 1000), // Today plus 1 day
 			},
 			paid: {
