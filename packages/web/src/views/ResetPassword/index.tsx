@@ -14,9 +14,7 @@ const ResetPassword: React.FC = (): JSX.Element => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [status, setStatus] = useState<string>("");
 
-	const handleSubmit = async (
-		e: React.FormEvent<HTMLFormElement>
-	): Promise<void> => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
 		e.preventDefault();
 		setLoading(true);
 
@@ -75,9 +73,7 @@ const ResetPassword: React.FC = (): JSX.Element => {
 				<div className="flex items-center justify-center h-14">
 					{loading && <LoadingIcon className="scale-75" fill="#2B2A63" />}
 					{!loading && status && (
-						<span className="text-sm font-semibold text-secondaryColor">
-							{status}
-						</span>
+						<span className="text-sm font-semibold text-secondaryColor">{status}</span>
 					)}
 				</div>
 
