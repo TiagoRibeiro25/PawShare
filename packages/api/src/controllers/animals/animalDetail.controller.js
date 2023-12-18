@@ -15,18 +15,20 @@ const QUERY_ATTRIBUTES = {
 		"updatedAt",
 	],
 	picture: ["provider_url"],
-	user: ["display_name"],
+	user: ["id", "display_name"],
 };
 
+//TODO (any) : Add swagger documentation
+
+/**
+ * Get animal detail
+ * @param {import("express").Request} req - The Express Request object.
+ * @param {import("express").Response} res - The Express Response object.
+ * @returns {Promise<void>}
+ */
 async function getAnimalDetail(req, res) {
 	try {
-		const { id } = req.params;
-
-		// checl if the user is the logged user or not send in data
-		/** @type {number} */
-		const loggedUser = req.userId;
-
-		const animal = await db.mysql.Animal.findByPk(id, {
+		const animal = await db.mysql.Animal.findByPk(req.params.id, {
 			attributes: QUERY_ATTRIBUTES.animal,
 			include: [
 				{
@@ -36,17 +38,24 @@ async function getAnimalDetail(req, res) {
 				{
 					model: db.mysql.User,
 					attributes: QUERY_ATTRIBUTES.user,
+					include: [
+						{
+							model: db.mysql.Picture,
+							attributes: QUERY_ATTRIBUTES.picture,
+						},
+					],
 				},
 			],
 		});
 
 		const data = animal ? animal.toJSON() : null;
 
-		if (data === null) {
-			return utils.handleResponse(res, utils.http.StatusNotFound, "Animal not found");
+		if (!data) {
+			utils.handleResponse(res, utils.http.StatusNotFound, "Animal not found");
+			return;
 		}
 
-		const responseData = {
+		utils.handleResponse(res, utils.http.StatusOK, "Animal found", {
 			animal: {
 				id: data.id,
 				name: data.name,
@@ -56,28 +65,17 @@ async function getAnimalDetail(req, res) {
 				color: data.color,
 				size: data.size,
 				description: data.description,
-				picture: data.picture,
+				picture: data.picture?.provider_url || null,
 			},
 			user: {
+				id: data.user.id,
 				displayName: data.user.display_name,
+				picture:
+					data.user.picture?.provider_url ||
+					utils.pictures.getUserPictureUrl(data.user.display_name),
 			},
-			createdAt: data.createdAt,
-			updatedAt: data.updatedAt,
-		};
-
-		if (loggedUser === data.owner_id) {
-			utils.handleResponse(res, utils.http.StatusOK, "Animal found", {
-				isOwner: true,
-				...responseData,
-			});
-
-			return;
-		}
-
-		// If the logged user is not the owner of the animal
-		utils.handleResponse(res, utils.http.StatusOK, "Animal found", {
-			isOwner: false,
-			...responseData,
+			created_at: data.createdAt,
+			updated_at: data.updatedAt,
 		});
 	} catch (error) {
 		return utils.handleResponse(res, utils.http.StatusInternalServerError, error.message);

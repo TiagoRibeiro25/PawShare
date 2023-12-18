@@ -7,6 +7,7 @@ const router = Router();
 
 router.get(
 	"/:id",
+	validators.animals.animalDetail(),
 	validators.validateResult,
 	middlewares.validateTokens,
 	controllers.animals.getAnimalDetail,
