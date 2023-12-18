@@ -32,4 +32,13 @@ router.post(
 	controllers.adoption.addAnimalAdoption,
 );
 
+// Candidate to adopt an animal
+router.post(
+	"/requested/:id",
+	validators.adoption.addCandidateAdoption(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.addCandidateAdoption,
+);
+
 module.exports = router;
