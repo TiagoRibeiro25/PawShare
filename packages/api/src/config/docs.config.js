@@ -29,7 +29,10 @@ const swaggerDefinition = {
 			post: routeDocs.adoption.postAnimalAdoption,
 		},
 		"/adoption/{id}": { get: routeDocs.adoption.getAdoptionDetail },
-		"/sitting": { get: routeDocs.sitting.getSittingFeed },
+		"/sitting": {
+			get: routeDocs.sitting.getSittingFeed,
+		},
+		"/sitting/{id}": { get: routeDocs.sitting.getSittingDetail },
 	},
 };
 
