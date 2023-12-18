@@ -103,16 +103,6 @@ responses:
                   msg: "Invalid adoption id"
                   path: "id"
                   location: "params"
-          "Invalid integer Id":
-            value:
-              success: false
-              message: "Validation Error"
-              data:
-                - type: "field"
-                  value: "-1"
-                  msg: "Invalid integer for adoption id"
-                  path: "id"
-                  location: "params"
   401:
     description: "Unauthorized"
     content:
