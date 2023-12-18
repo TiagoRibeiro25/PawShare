@@ -6,15 +6,7 @@ const { param } = require("express-validator");
  */
 
 function validator() {
-	return [
-		param("id").isInt().withMessage("Invalid adoption id"),
-		param("id").custom((value) => {
-			if (value <= 0) {
-				throw new Error("Invalid integer for adoption id");
-			}
-			return true;
-		}),
-	];
+	return [param("id").isInt({ min: 1 }).withMessage("Invalid adoption id")];
 }
 
 module.exports = validator;
