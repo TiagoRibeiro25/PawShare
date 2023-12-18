@@ -14,4 +14,10 @@ router.get(
 	controllers.animals.getAnimalDetail,
 );
 
+router.post(
+	"/",
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.animals.addAnimalPage,
+);
 module.exports = router;
