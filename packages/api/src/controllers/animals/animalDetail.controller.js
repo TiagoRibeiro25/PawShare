@@ -59,23 +59,22 @@ async function getAnimalDetail(req, res) {
 			animal: {
 				id: data.id,
 				name: data.name,
-				owner_id: data.owner_id,
 				type: data.type,
 				gender: data.gender,
 				color: data.color,
 				size: data.size,
 				description: data.description,
 				picture: data.picture?.provider_url || null,
+				user: {
+					id: data.user.id,
+					displayName: data.user.display_name,
+					picture:
+						data.user.picture?.provider_url ||
+						utils.pictures.getUserPictureUrl(data.user.display_name),
+				},
+				created_at: data.createdAt,
+				updated_at: data.updatedAt,
 			},
-			user: {
-				id: data.user.id,
-				displayName: data.user.display_name,
-				picture:
-					data.user.picture?.provider_url ||
-					utils.pictures.getUserPictureUrl(data.user.display_name),
-			},
-			created_at: data.createdAt,
-			updated_at: data.updatedAt,
 		});
 	} catch (error) {
 		return utils.handleResponse(res, utils.http.StatusInternalServerError, error.message);
