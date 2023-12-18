@@ -50,6 +50,11 @@ async function getRequestedAdoptions(req, res) {
 								},
 							],
 						},
+						{
+							model: db.mysql.Review,
+							as: "review",
+							attributes: ["id"],
+						},
 					],
 				},
 			],
@@ -71,6 +76,7 @@ async function getRequestedAdoptions(req, res) {
 			return {
 				id: request.id,
 				status,
+				can_review: status === "accepted" && request.adoption.review === null, // Can review if the adoption is accepted and there is no review yet
 				adoption: {
 					id: request.adoption.id,
 					animal: {
