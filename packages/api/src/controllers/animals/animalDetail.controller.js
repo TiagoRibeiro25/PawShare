@@ -18,8 +18,6 @@ const QUERY_ATTRIBUTES = {
 	user: ["id", "display_name"],
 };
 
-//TODO (any) : Add swagger documentation
-
 /**
  * Get animal detail
  * @param {import("express").Request} req - The Express Request object.
