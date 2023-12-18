@@ -17,9 +17,14 @@ const postCandidateAdoption = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/adoption/post_candidate_adoption.yml", "utf8"),
 );
 
+const getRequestedAdoptions = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/adoption/get_requested_adoptions.yml", "utf8"),
+);
+
 module.exports = {
 	getAdoptionDetail,
 	getAdoptionFeed,
 	postAnimalAdoption,
 	postCandidateAdoption,
+	getRequestedAdoptions,
 };
