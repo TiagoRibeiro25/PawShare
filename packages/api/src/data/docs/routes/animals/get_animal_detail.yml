@@ -1,0 +1,127 @@
+summary: Get the animal detail
+description: Get the animal detail by id
+tags:
+  - "Animals"
+security:
+  - bearerAuth: []
+parameters:
+  - name: "id"
+    in: "path"
+    description: "The id of the animal"
+    required: true
+    schema:
+      type: "number"
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          Animal Found:
+            value:
+              success: true
+              message: "Animal found"
+              data:
+                animal:
+                  id: 1
+                  name: Buddy
+                  type: dog
+                  gender: Male
+                  color: brown
+                  size: Medium
+                  description: null
+                  picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702555109/paw-share/dev/animals/Animal_Detail_Picture_1_tkl6jh_g40o30.png"
+                  user:
+                    id: 1
+                    displayName: John Doe
+                    picture: https://res.cloudinary.com/dnfd6se6l/image/upload/v1702834804/paw-share/dev/users/vrpn3aay1io1fewa98sr.jpg
+                  created_at: 2023-12-17T17:17:47.000Z
+                  updated_at: 2023-12-17T17:17:47.000Z
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Invalid Id:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "cat"
+                  msg: "Invalid animal id"
+                  path: "id"
+                  location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  404:
+    description: "Not Found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Animal not found:
+            value:
+              success: false
+              message: Animal not found
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Internal server error"
