@@ -8,7 +8,7 @@ const info = YAML.parse(fs.readFileSync("./src/data/docs/info.yml", "utf8"));
 const swaggerDefinition = {
 	openapi: "3.0.1",
 	info,
-	servers: [{ url: "http://localhost:5000/api/v1" }], //TODO: Check the enviroment and use the correct url (only after deploying)
+	servers: [{ url: "http://localhost:5000/api/v1" }], //TODO (any): Check the enviroment and use the correct url (only after deploying)
 	paths: {
 		"/": { get: routeDocs.default.getHelloWorld },
 		"/{any*}": { get: routeDocs.default.notFound },

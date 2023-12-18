@@ -74,7 +74,7 @@ async function updateUser(req, res) {
 				return;
 			}
 
-			// TODO: Send a confirmation email to the new email address and update the user's email only after the user confirms it (nice to have)
+			// TODO (tiago): Send a confirmation email to the new email address and update the user's email only after the user confirms it (nice to have)
 		}
 
 		// Check if the user has the frame

@@ -15,7 +15,7 @@ const db = require("../../db");
  * @returns {Promise<void>}
  */
 async function addReview(req, res) {
-	//TODO: Not tested
+	//TODO (tiago): Not tested
 
 	try {
 		/** @type {number} */
