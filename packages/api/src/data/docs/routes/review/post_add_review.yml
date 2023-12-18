@@ -63,8 +63,8 @@ responses:
                   type: owner
                   rating: number
                   comment: string
-                  createdAt: 2021-01-01T00:00:00.000Z
-                  updatedAt: 2021-01-01T00:00:00.000Z
+                  created_at: 2021-01-01T00:00:00.000Z
+                  updated_at: 2021-01-01T00:00:00.000Z
   "400":
     description: Bad Request
     content:

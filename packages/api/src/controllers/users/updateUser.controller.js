@@ -159,8 +159,8 @@ async function updateUser(req, res) {
 				badges: JSON.parse(user.badges),
 				selected_frame: user.selected_frame,
 				selected_banner: user.selected_banner,
-				createdAt: user.createdAt,
-				updatedAt: user.updatedAt,
+				created_at: user.createdAt,
+				updated_at: user.updatedAt,
 				picture:
 					user.picture?.provider_url ||
 					utils.pictures.getUserPictureUrl(user.display_name),
