@@ -25,7 +25,6 @@ const generateToken = (userId, type, rememberMe) => {
 
 	const payload = { userId, rememberMe };
 
-	// Generate the token
 	const token = jwt.sign(payload, secret, {
 		expiresIn,
 		algorithm: jwtConfig.algorithm,
@@ -45,7 +44,6 @@ const validateToken = (token, type) => {
 	const secret = type === "authToken" ? jwtConfig.secret : jwtConfig.refreshSecret;
 
 	try {
-		// Validate the token
 		const decoded = jwt.verify(token, secret, {
 			algorithms: [jwtConfig.algorithm],
 			ignoreExpiration: true,
@@ -67,7 +65,6 @@ const didTokenExpire = (token, type) => {
 	const jwtConfig = config.tokens;
 	const secret = type === "authToken" ? jwtConfig.secret : jwtConfig.refreshSecret;
 
-	// Validate the token
 	const decoded = jwt.verify(token, secret, {
 		algorithms: [jwtConfig.algorithm],
 		ignoreExpiration: true,

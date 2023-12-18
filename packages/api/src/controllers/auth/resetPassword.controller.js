@@ -25,7 +25,6 @@ async function resetPassword(req, res) {
 			return;
 		}
 
-		// Check if the current password is the same as the new password
 		const doPasswordsMatch = await utils.password.compare(password, user.password);
 		if (doPasswordsMatch) {
 			utils.handleResponse(
@@ -36,10 +35,8 @@ async function resetPassword(req, res) {
 			return;
 		}
 
-		// Hash the new password
 		const hashedPassword = await utils.password.hash(password);
 
-		// Update the user's password
 		await user.update({
 			password: hashedPassword,
 			change_password_token: utils.tokens.generateRandomBase64Token(),

@@ -10,11 +10,9 @@ const config = require("../config");
  */
 async function validateTokens(req, res, next) {
 	try {
-		// Get the tokens from the request headers
 		const authToken = req.headers["x-auth-token"];
 		const refreshToken = req.headers["x-refresh-token"];
 
-		// Check if the tokens exist
 		if (!authToken || !refreshToken) {
 			utils.handleResponse(
 				res,
@@ -24,7 +22,6 @@ async function validateTokens(req, res, next) {
 			return;
 		}
 
-		// Verify the tokens
 		if (
 			!utils.tokens.validateToken(authToken, "authToken") ||
 			!utils.tokens.validateToken(refreshToken, "refreshToken")
@@ -37,7 +34,6 @@ async function validateTokens(req, res, next) {
 			return;
 		}
 
-		// Check if the refresh token has expired
 		if (utils.tokens.didTokenExpire(refreshToken, "refreshToken")) {
 			utils.handleResponse(
 				res,
@@ -47,7 +43,6 @@ async function validateTokens(req, res, next) {
 			return;
 		}
 
-		// Decode the tokens
 		const decodedAuthToken = utils.tokens.decodeToken(authToken, "authToken");
 		const decodedRefreshToken = utils.tokens.decodeToken(refreshToken, "refreshToken");
 
@@ -56,30 +51,24 @@ async function validateTokens(req, res, next) {
 			decodedRefreshToken.exp - Math.floor(Date.now() / 1000) <
 			config.tokens.refreshGenerateIn
 		) {
-			// Generate a new refresh token
 			const newRefreshToken = utils.tokens.generateToken(
 				decodedAuthToken.userId,
 				"refreshToken",
 				decodedAuthToken.remember_me,
 			);
 
-			// Send the new refresh token in the response headers
 			res.set("x-refresh-token", newRefreshToken);
 		}
 
-		// Check if the auth token expired
 		if (utils.tokens.didTokenExpire(authToken, "authToken")) {
-			// Generate a new auth token
 			const newAuthToken = utils.tokens.generateToken(
 				decodedAuthToken.userId,
 				"authToken",
 			);
 
-			// Send the new auth token in the response headers
 			res.set("x-auth-token", newAuthToken);
 		}
 
-		// Add the user id to the request object
 		req.userId = decodedAuthToken.userId;
 
 		next();

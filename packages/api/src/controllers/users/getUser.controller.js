@@ -35,7 +35,7 @@ async function getUser(req, res) {
 		/** @type {number} */
 		const userId = fetchLoggedUser ? req.userId : Number(id);
 
-		// Fetch the email only if the user is logged in.
+		// Fetch the email only if the user is fetching is own profile
 		const userAtributes = fetchLoggedUser
 			? [...QUERY_ATTRIBUTES.user, "email", "coins"]
 			: QUERY_ATTRIBUTES.user;
@@ -55,7 +55,6 @@ async function getUser(req, res) {
 			],
 		});
 
-		// If the user doesn't exist, return a not found error.
 		if (!user) {
 			utils.handleResponse(res, utils.http.StatusNotFound, "User not found");
 			return;
