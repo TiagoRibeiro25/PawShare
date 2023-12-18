@@ -14,18 +14,50 @@ lint:
     - cd packages/api
     - npm install
     - npm run lint
-    - npm run prettier-check
+    - cd ../app
+    - npm install
+    - npm run lint
+    - cd ../web
+    - npm install
+    - npm run lint
+    - npm run build
 
-lint_on_merge_request:
+lint_on_merge_request_api:
   stage: build
   script:
     - cd packages/api
     - npm install
     - npm run lint
-    - npm run prettier-check
   rules:
     - exists:
         - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
     - changes:
-        - "packages/api/**/*.{js}"
+        - "packages/api/**/*.{js, yaml, yml, json}"
+  allow_failure: false
+
+lint_on_merge_request_app:
+  stage: build
+  script:
+    - cd packages/app
+    - npm install
+    - npm run lint
+  rules:
+    - exists:
+        - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    - changes:
+        - "packages/app/**/*.{ts,tsx,js,jsx}"
+  allow_failure: false
+
+lint_on_merge_request_web:
+  stage: build
+  script:
+    - cd packages/web
+    - npm install
+    - npm run lint
+    - npm run build
+  rules:
+    - exists:
+        - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+    - changes:
+        - "packages/web/**/*.{ts,tsx,js,jsx}"
   allow_failure: false

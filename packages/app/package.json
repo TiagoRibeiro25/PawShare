@@ -5,9 +5,12 @@
 	"scripts": {
 		"android": "react-native run-android",
 		"ios": "react-native run-ios",
-		"lint": "eslint .",
 		"start": "react-native start",
-		"test": "jest"
+		"test": "jest",
+		"prettier": "prettier --write ./src",
+		"prettier-check": "prettier --check ./src",
+		"eslint-check": "eslint ./src",
+		"lint": "npm run prettier-check && npm run eslint-check"
 	},
 	"dependencies": {
 		"@react-navigation/native": "^6.1.9",
