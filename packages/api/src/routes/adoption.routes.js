@@ -34,7 +34,7 @@ router.post(
 
 // Candidate to adopt an animal
 router.post(
-	"/requested/:id",
+	"/:id/requested",
 	validators.adoption.addCandidateAdoption(),
 	validators.validateResult,
 	middlewares.validateTokens,
