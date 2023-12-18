@@ -14,4 +14,13 @@ router.get(
 	controllers.sitting.getSittingsFeed,
 );
 
+// Get detail of one sitting
+router.get(
+	"/:id",
+	validators.sitting.getSittingDetail(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.getSittingDetail,
+);
+
 module.exports = router;

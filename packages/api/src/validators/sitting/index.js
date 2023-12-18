@@ -1,3 +1,4 @@
 const getSittingsFeed = require("./getSittingsFeed.validator");
+const getSittingDetail = require("./getSittingDetail.validator");
 
-module.exports = { getSittingsFeed };
+module.exports = { getSittingsFeed, getSittingDetail };
