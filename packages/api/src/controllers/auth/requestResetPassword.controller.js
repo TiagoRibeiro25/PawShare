@@ -11,7 +11,6 @@ const templates = require("../../templates");
  */
 async function requestResetPassword(req, res) {
 	try {
-		// Get the email from the request body
 		const { email } = req.body;
 
 		// Check if there's an user with that email

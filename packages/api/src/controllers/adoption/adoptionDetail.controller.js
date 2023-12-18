@@ -29,7 +29,7 @@ async function getAdoptionDetail(req, res) {
 		const { id } = req.params;
 
 		/** @type {number} */
-		const loggedUser = req.userId; // The logged user id from the request header
+		const loggedUser = req.userId;
 
 		const adoption = await db.mysql.Adoption.findByPk(id, {
 			attributes: QUERY_ATTRIBUTES.adoption,
@@ -59,8 +59,7 @@ async function getAdoptionDetail(req, res) {
 
 		const data = adoption ? adoption.toJSON() : null;
 
-		// If the adoption data is not found
-		if (data === null) {
+		if (!data) {
 			return utils.handleResponse(res, utils.http.StatusNotFound, "Adoption not found");
 		}
 

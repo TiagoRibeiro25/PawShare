@@ -9,7 +9,6 @@ const utils = require("../../utils");
  */
 async function verifyUser(req, res) {
 	try {
-		// Get the token from the URL
 		const { token } = req.params;
 
 		// Check if there's a user with that token
@@ -22,13 +21,11 @@ async function verifyUser(req, res) {
 			return;
 		}
 
-		// Check if the user is already verified
 		if (user.is_verified) {
 			utils.handleResponse(res, utils.http.StatusConflict, "User already verified");
 			return;
 		}
 
-		// Update the user
 		await user.update({
 			is_verified: true,
 			verify_user_token: null,

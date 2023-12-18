@@ -8,7 +8,6 @@ const utils = require("../utils");
  * @returns {void}
  */
 function validateCronjob(req, res, next) {
-	// Get the auth key from the request headers
 	const authKey = req.headers["x-auth-key"];
 
 	if (!authKey || authKey !== process.env.CRONJOB_AUTH_KEY) {

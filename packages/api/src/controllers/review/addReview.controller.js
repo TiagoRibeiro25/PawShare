@@ -41,7 +41,6 @@ async function addReview(req, res) {
 			],
 		});
 
-		// Check if the adoption/sitting exists
 		if (!activity) {
 			utils.handleResponse(res, utils.http.StatusNotFound, `${modelName} not found`);
 			return;

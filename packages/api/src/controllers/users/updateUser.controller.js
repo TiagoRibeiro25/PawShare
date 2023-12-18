@@ -62,8 +62,8 @@ async function updateUser(req, res) {
 			return;
 		}
 
-		// Check if the new email is already in use (if the user is trying to change it)
 		if (dataToUpdate.email) {
+			// Check if the new email is already in use
 			const userWithEmail = await db.mysql.User.findOne({
 				where: { email: dataToUpdate.email },
 				attributes: ["id"],
@@ -77,7 +77,6 @@ async function updateUser(req, res) {
 			// TODO (tiago): Send a confirmation email to the new email address and update the user's email only after the user confirms it (nice to have)
 		}
 
-		// Check if the user has the frame
 		if (dataToUpdate.selected_frame) {
 			// Convert the frame to a number (just in case if it's a string)
 			dataToUpdate.selected_frame = +dataToUpdate.selected_frame;
@@ -88,7 +87,6 @@ async function updateUser(req, res) {
 			}
 		}
 
-		// Check if the user has the banner
 		if (dataToUpdate.selected_banner) {
 			// Convert the banner to a number (just in case if it's a string)
 			dataToUpdate.selected_banner = +dataToUpdate.selected_banner;
@@ -99,11 +97,9 @@ async function updateUser(req, res) {
 			}
 		}
 
-		// Handle the user profile picture
 		if (dataToUpdate.picture) {
 			// Check if the user already has a picture (already uploaded one before)
 			if (user.picture) {
-				// Update the current picture
 				const result = await services.cloudinary.uploader.upload(dataToUpdate.picture, {
 					public_id: user.picture.provider_id,
 					overwrite: true,
@@ -132,7 +128,6 @@ async function updateUser(req, res) {
 					provider_url: result.secure_url,
 				});
 
-				// Update the user's picture
 				user.picture = {
 					id: userNewPicture.id,
 					provider_id: userNewPicture.provider_id,
@@ -144,7 +139,6 @@ async function updateUser(req, res) {
 		// Remove the picture from the object (so it doesn't try to update the user table with it)
 		delete dataToUpdate.picture;
 
-		// Update the user
 		await user.update(dataToUpdate);
 
 		utils.handleResponse(res, utils.http.StatusOK, "User updated successfully", {

@@ -32,14 +32,12 @@ async function login(req, res) {
 			return;
 		}
 
-		// Compare the password with the hashed password
 		const doPasswordsMatch = await utils.password.compare(password, user.password);
 		if (!doPasswordsMatch) {
 			utils.handleResponse(res, utils.http.StatusUnauthorized, "Wrong password");
 			return;
 		}
 
-		// Check if the user is verified
 		if (!user.is_verified) {
 			// Send the verification email again
 			await services.sendEmail({
