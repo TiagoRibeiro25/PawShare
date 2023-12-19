@@ -11,9 +11,9 @@ const QUERY_ATTRIBUTES = {
 		"createdAt",
 		"updatedAt",
 	],
-	animal: ["id", "owner_id", "name", "type", "gender", "color", "size", "description"],
+	animal: ["id", "name", "type", "gender", "color", "size", "description"],
 	picture: ["provider_url"],
-	user: ["display_name"],
+	user: ["id", "display_name"],
 };
 
 /**
@@ -27,9 +27,6 @@ async function getAdoptionDetail(req, res) {
 	try {
 		// The adoption id
 		const { id } = req.params;
-
-		/** @type {number} */
-		const loggedUser = req.userId;
 
 		const adoption = await db.mysql.Adoption.findByPk(id, {
 			attributes: QUERY_ATTRIBUTES.adoption,
@@ -72,6 +69,13 @@ async function getAdoptionDetail(req, res) {
 				notes: JSON.parse(data.notes.replace(/'/g, '"')),
 				animal: {
 					id: data.animal.id,
+					owner: {
+						id: data.user.id,
+						display_name: data.user.display_name,
+						picture:
+							data.user.picture?.provider_url ||
+							utils.pictures.getUserPictureUrl(data.user.display_name),
+					},
 					name: data.animal.name,
 					type: data.animal.type,
 					gender: data.animal.gender,
@@ -85,34 +89,12 @@ async function getAdoptionDetail(req, res) {
 			},
 		};
 
-		// If the logged user is the owner of the animal
-		if (data.animal.owner_id === loggedUser) {
-			utils.handleResponse(res, utils.http.StatusOK, "Adoption retrieved successfully", {
-				isOwner: true, // Key flag for the FE
-				...responseData,
-			});
-
-			return;
-		}
-
-		// If the logged user is not the owner of the animal
-		utils.handleResponse(res, utils.http.StatusOK, "Adoption retrieved successfully", {
-			isOwner: false, // Key flag for the FE
-			adoption: {
-				...responseData.adoption,
-				animal: {
-					id: data.animal.id,
-					owner: {
-						id: data.animal.owner_id,
-						name: data.user.display_name,
-						picture:
-							data.user.picture?.provider_url ||
-							utils.pictures.getUserPictureUrl(data.user.display_name),
-					},
-					...responseData.adoption.animal,
-				},
-			},
-		});
+		return utils.handleResponse(
+			res,
+			utils.http.StatusOK,
+			"Adoption retrieved successfully",
+			responseData,
+		);
 	} catch (error) {
 		utils.handleError(res, error, __filename);
 	}
