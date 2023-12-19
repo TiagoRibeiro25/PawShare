@@ -34,7 +34,7 @@ const AnimalModel = (sequelize) => {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 				validate: {
-					isIn: ["Male", "Female", "Other"],
+					isIn: [["Male", "Female", "Other"]],
 				},
 			},
 			color: {
@@ -48,7 +48,7 @@ const AnimalModel = (sequelize) => {
 				type: DataTypes.STRING(255),
 				allowNull: false,
 				validate: {
-					isIn: ["Small", "Medium", "Large"],
+					isIn: [["Small", "Medium", "Large"]],
 				},
 			},
 			description: {
