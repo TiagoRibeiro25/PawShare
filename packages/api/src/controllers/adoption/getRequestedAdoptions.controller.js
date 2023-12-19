@@ -60,7 +60,7 @@ async function getRequestedAdoptions(req, res) {
 			],
 		});
 
-		if (requests.count === 0) {
+		if (requests.rows.length === 0) {
 			utils.handleResponse(res, utils.http.StatusNotFound, "No requests found");
 			return;
 		}
