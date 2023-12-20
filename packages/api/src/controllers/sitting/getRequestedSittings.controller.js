@@ -39,7 +39,7 @@ async function getRequestedSittings(req, res) {
 				{
 					model: db.mysql.Sitting,
 					as: "sitting",
-					attributes: ["id", "paid", "is_closed", "createdAt", "updatedAt"],
+					attributes: ["id", "paid", "is_closed", "end_date", "createdAt", "updatedAt"],
 					include: [
 						{
 							model: db.mysql.Animal,
@@ -100,6 +100,11 @@ async function getRequestedSittings(req, res) {
 			if (can_review && request.sitting.reviews?.length === 1) {
 				// Check who did the existing review (if the user did it, he can't review again)
 				can_review = request.sitting.reviews[0].user_id !== req.userId;
+			}
+
+			// Check if the sitting activity ended
+			if (new Date(request.sitting.end_date) > new Date()) {
+				can_review = false;
 			}
 
 			return {
