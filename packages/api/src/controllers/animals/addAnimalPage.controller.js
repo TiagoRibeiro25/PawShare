@@ -37,19 +37,6 @@ async function addAnimalPage(req, res) {
 
 		//create the animal page in the database
 
-		//if animal exists donb't create it
-		const checkAnimal = await db.mysql.Animal.findOne({
-			where: {
-				name: name,
-			},
-		});
-		if (checkAnimal) {
-			return utils.handleResponse(
-				res,
-				utils.http.StatusConflict,
-				"Animal already exists",
-			);
-		}
 		const animalPage = await db.mysql.Animal.create({
 			owner_id: loggedUserId,
 			name: name,
