@@ -69,31 +69,40 @@ async function addReview(req, res) {
 			return;
 		}
 
-		// Check if the user already reviewed this adoption/sitting
-		const review = await db.mysql.Review.findOne({
-			where: {
-				[`${type}_id`]: id, // "adoption_id" | "sitting_id"
-				user_id: loggedUserId,
-			},
-		});
-
-		if (review) {
-			utils.handleResponse(res, utils.http.StatusBadRequest, "You already reviewed this");
-			return;
-		}
-
 		// If it's a sitting, check if it's finished
 		if (type === "sitting" && new Date(activity.end_date) > new Date()) {
 			utils.handleResponse(res, utils.http.StatusBadRequest, "Sitting not finished yet");
 			return;
 		}
 
+		// Check if the user already reviewed this adoption/sitting
+		const reviews = await db.mysql.Review.findAll({
+			where: {
+				[`${type}_id`]: id, // "adoption_id" | "sitting_id"
+				user_id: loggedUserId,
+			},
+		});
+
+		if (
+			(type === "adoption" && reviews.length > 0) ||
+			(type === "sitting" && reviews.length === 2)
+		) {
+			utils.handleResponse(res, utils.http.StatusBadRequest, "You already reviewed this");
+			return;
+		}
+
 		const userType = activity.owner_id === loggedUserId ? "owner" : "sitter";
+
+		// Check if the current existing review is from the logged user
+		if (type === "sitting" && reviews.length === 1 && reviews[0].type === userType) {
+			utils.handleResponse(res, utils.http.StatusBadRequest, "You already reviewed this");
+			return;
+		}
 
 		// Create the review
 		const newReview = await db.mysql.Review.create({
 			[`${type}_id`]: id, // "adoption_id" | "sitting_id"
-			type: type === "sitting" ? userType : null, // Only present if it's a sitting review
+			type: type === "sitting" ? userType : null,
 			rating,
 			comment: comment?.trim(),
 		});
