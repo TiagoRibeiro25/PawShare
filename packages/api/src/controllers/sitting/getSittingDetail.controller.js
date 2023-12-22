@@ -82,6 +82,7 @@ async function getSittingDetail(req, res) {
 			return utils.handleResponse(res, utils.http.StatusNotFound, "Sitting not found");
 		}
 
+		// Finding the average rating of the reviews
 		const averageRating = await db.mysql.Review.findOne({
 			attributes: [
 				[
@@ -91,6 +92,7 @@ async function getSittingDetail(req, res) {
 			],
 			where: {
 				[Op.or]: [
+					// Finding the adoptions and sittings reviews of the animal
 					{
 						adoption_id: {
 							[Op.in]: data.animal.adoptions.map((adoption) => adoption.id),
