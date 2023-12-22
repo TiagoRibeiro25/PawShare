@@ -1,5 +1,6 @@
 const db = require("../../db");
 const utils = require("../../utils");
+const { Op, Sequelize } = require("sequelize");
 
 const QUERY_ATTRIBUTES = {
 	sitting: [
@@ -42,6 +43,24 @@ async function getSittingDetail(req, res) {
 							model: db.mysql.Picture,
 							attributes: QUERY_ATTRIBUTES.picture,
 						},
+						// To find the adoptions of the animal
+						{
+							model: db.mysql.Adoption,
+							where: {
+								is_closed: true,
+							},
+							attributes: ["id"],
+							required: false, // Left join
+						},
+						// To find the sittings of the animal
+						{
+							model: db.mysql.Sitting,
+							where: {
+								is_closed: true,
+							},
+							attributes: ["id"],
+							required: false,
+						},
 					],
 				},
 				{
@@ -63,6 +82,27 @@ async function getSittingDetail(req, res) {
 			return utils.handleResponse(res, utils.http.StatusNotFound, "Sitting not found");
 		}
 
+		const averageRating = await db.mysql.Review.findOne({
+			attributes: [
+				[
+					Sequelize.literal("ROUND(AVG(rating), 1)"), // Round to 1 decimal place
+					"average",
+				],
+			],
+			where: {
+				[Op.or]: [
+					{
+						adoption_id: {
+							[Op.in]: data.animal.adoptions.map((adoption) => adoption.id),
+						},
+					},
+					{
+						sitting_id: { [Op.in]: data.animal.sittings.map((sitting) => sitting.id) },
+					},
+				],
+			},
+		});
+
 		const responseData = {
 			sitting: {
 				id: data.id,
@@ -71,7 +111,7 @@ async function getSittingDetail(req, res) {
 				city: data.city,
 				notes: JSON.parse(data.notes.replace(/'/g, '"')),
 				coins: data.coins,
-				// rating: data.review.rating, //Average rating
+				rating: +averageRating.toJSON().average,
 				start_date: data.start_date,
 				end_date: data.end_date,
 				animal: {
