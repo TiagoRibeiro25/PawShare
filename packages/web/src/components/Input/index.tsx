@@ -24,9 +24,7 @@ const Input: React.FC<InputProps> = ({
 	return (
 		<>
 			<label
-				className={
-					label ? "text-sm font-semibold text-secondaryColor" : "hidden"
-				}
+				className={label ? "text-sm font-semibold text-secondaryColor" : "hidden"}
 				htmlFor={id}
 			>
 				{label}

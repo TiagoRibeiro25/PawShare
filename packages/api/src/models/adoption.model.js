@@ -32,7 +32,7 @@ const AdoptionModel = (sequelize) => {
 			notes: {
 				type: DataTypes.STRING(255),
 				allowNull: false,
-				defaultValue: "[]",
+				defaultValue: JSON.stringify([]),
 			},
 			city: {
 				type: DataTypes.STRING(255),

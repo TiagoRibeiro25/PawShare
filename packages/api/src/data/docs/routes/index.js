@@ -3,6 +3,7 @@ const YAML = require("yaml");
 const auth = require("./auth");
 const cronjob = require("./cronjob");
 const users = require("./users");
+const animals = require("./animals");
 const store = require("./store");
 const review = require("./review");
 const adoption = require("./adoption");
@@ -20,6 +21,7 @@ module.exports = {
 	cronjob,
 	default: { getHelloWorld, notFound },
 	users,
+	animals,
 	store,
 	review,
 	adoption,

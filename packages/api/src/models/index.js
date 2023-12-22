@@ -66,6 +66,7 @@ function init(sequelize) {
 
 	// Sitting.id < UsersList.sitting_id
 	Sitting.hasMany(UsersList, { foreignKey: "sitting_id", onDelete: "CASCADE" });
+	UsersList.belongsTo(Sitting, { foreignKey: "sitting_id" });
 
 	return {
 		User,

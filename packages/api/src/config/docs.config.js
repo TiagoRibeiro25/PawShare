@@ -21,18 +21,18 @@ const swaggerDefinition = {
 		"/users/me": { get: routeDocs.users.getLoggedUser },
 		"/users/{id}": { get: routeDocs.users.getUserProfile },
 		"/users": { patch: routeDocs.users.updateUserProfile },
+		"/animals/{id}": { get: routeDocs.animals.getAnimalDetail },
 		"/store/coins": { patch: routeDocs.store.patchHandleCoins },
-		"/store/buy/:itemId": { patch: routeDocs.store.patchBuyItem },
+		"/store/buy/{itemId}": { patch: routeDocs.store.patchBuyItem },
 		"/reviews": { post: routeDocs.review.postAddReview },
 		"/adoption": {
 			get: routeDocs.adoption.getAdoptionFeed,
 			post: routeDocs.adoption.postAnimalAdoption,
 		},
 		"/adoption/{id}": { get: routeDocs.adoption.getAdoptionDetail },
-		"/sitting": {
-			get: routeDocs.sitting.getSittingFeed,
-		},
-		"/sitting/{id}": { get: routeDocs.sitting.getSittingDetail },
+		"/adoption/{id}/requested": { post: routeDocs.adoption.postCandidateAdoption },
+		"/adoption/requested": { get: routeDocs.adoption.getRequestedAdoptions },
+		"/sitting": { get: routeDocs.sitting.getSittingFeed },
 	},
 };
 

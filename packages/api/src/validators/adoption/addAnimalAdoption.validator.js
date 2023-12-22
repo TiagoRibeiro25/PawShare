@@ -32,9 +32,7 @@ function validator() {
 			.withMessage("Invalid phone number")
 			.bail(),
 		body("notes")
-			.exists()
-			.withMessage("notes is required")
-			.bail()
+			.optional()
 			.isArray()
 			.withMessage("notes must be an array")
 			.bail()

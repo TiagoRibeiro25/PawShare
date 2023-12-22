@@ -1,17 +1,24 @@
-summary: "Get the adoption detail"
-description: "Get the adoption detail of an animal by its id"
+summary: Get the requested adoptions
+description: Get the requested adoptions from the logged user
 tags:
   - "Adoption"
 security:
   - bearerAuth: []
 parameters:
-  - name: "id"
-    in: "path"
-    description: "The id of the adoption"
-    required: true
+  - name: page
+    in: query
+    description: Number of the page to retrieve
+    required: false
     schema:
-      type: "number"
+      type: number
       example: 1
+  - name: limit
+    in: query
+    description: Number of adoptions per page
+    required: false
+    schema:
+      type: number
+      example: 10
 responses:
   200:
     description: "Success"
@@ -27,34 +34,24 @@ responses:
             data:
               type: "object"
         examples:
-          "Success":
+          Success:
             value:
               success: true
-              message: "Adoption retrieved successfully"
+              message: Requests retrieved successfully
               data:
-                adoption:
+                requests:
                   id: 1
-                  email_contact: "john.doe@pawshare.com"
-                  phone_contact: "932456789"
-                  city: "Porto"
-                  notes:
-                    - "independent"
-                    - "playful"
-                  animal:
-                    id: 7
-                    owner:
-                      id: 1
-                      name: "John Doe"
-                      picture: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
-                    name: "Cleo"
-                    type: "cat"
-                    gender: "Female"
-                    color: "black"
-                    size: "Medium"
-                    description: "Cleo is an elegant and independent cat. She loves to sleep in the sun and play with furry balls."
-                    picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702555109/paw-share/dev/animals/Animal_Detail_Picture_1_tkl6jh_g40o30.png"
-                  created_at: "2023-12-09T00:00:00.000Z"
-                  updated_at: "2023-12-09T00:00:00.000Z"
+                  status: pending
+                  can_review: false
+                  adoption:
+                    id: 1
+                    animal:
+                      id: 3
+                      name: Rocky
+                      picture: null
+                    created_at: 2023-12-17T17:17:47.000Z
+                    updated_at: 2023-12-17T17:17:47.000Z
+                total: 1
   400:
     description: "Bad Request"
     content:
@@ -67,16 +64,26 @@ responses:
             message:
               type: "string"
         examples:
-          "Invalid Id":
+          Invalid Page:
             value:
               success: false
               message: "Validation Error"
               data:
                 - type: "field"
-                  value: "sad"
-                  msg: "Invalid adoption id"
-                  path: "id"
-                  location: "params"
+                  value: "-1"
+                  msg: "Page must be a positive integer"
+                  path: "page"
+                  location: "query"
+          Invalid Limit:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "-1"
+                  msg: "Limit must be a positive integer"
+                  path: "limit"
+                  location: "query"
   401:
     description: "Unauthorized"
     content:
@@ -102,7 +109,7 @@ responses:
               success: false
               message: "Refresh token has expired"
   404:
-    description: "Not Found"
+    description: "Adoptions not found"
     content:
       application/json:
         schema:
@@ -113,10 +120,10 @@ responses:
             message:
               type: "string"
         examples:
-          "Adoption not found":
+          Adoptions not found:
             value:
               success: false
-              message: "Adoption not found"
+              message: No requests found
   500:
     description: "Internal server error"
     content:
@@ -132,4 +139,4 @@ responses:
           "Internal server error":
             value:
               success: false
-              message: "Something went wrong!"
+              message: "Internal server error"
