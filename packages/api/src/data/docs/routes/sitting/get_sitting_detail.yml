@@ -27,12 +27,11 @@ responses:
             data:
               type: "object"
         examples:
-          Owner:
+          "Success":
             value:
               success: true
               message: "Sitting retrieved successfully"
               data:
-                isOwner: true
                 sitting:
                   id: 1
                   email_contact: "john.doe@pawshare.com"
@@ -43,37 +42,7 @@ responses:
                     - "playful"
                     - "Affectionate"
                   coins: 320
-                  rating: 4
-                  start_date: "2023-12-12T00:00:00.000Z"
-                  end_date: "2023-12-20T00:00:00.000Z"
-                  animal:
-                    id: 1
-                    name: "Buddy"
-                    type: "dog"
-                    gender: "Male"
-                    color: "brown"
-                    size: "Medium"
-                    description: "Meet Buddy, a loyal, playful male dog, always ready to bring joy to your day with his wagging tail and affectionate spirit."
-                    picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702750801/paw-share/dev/animals/Animal_Detail_Picture_vfqjks.jpg"
-                  created_at: "2023-12-09T00:00:00.000Z"
-                  updated_at: "2023-12-09T00:00:00.000Z"
-          "Not Owner":
-            value:
-              success: true
-              message: "Sitting retrieved successfully"
-              data:
-                isOwner: false
-                sitting:
-                  id: 1
-                  email_contact: "john.doe@pawshare.com"
-                  phone_contact: "932456789"
-                  city: "Vila do Conde"
-                  notes:
-                    - "Loayl"
-                    - "playful"
-                    - "Affectionate"
-                  coins: 320
-                  rating: 4
+                  rating: 3.6
                   start_date: "2023-12-12T00:00:00.000Z"
                   end_date: "2023-12-20T00:00:00.000Z"
                   animal:
