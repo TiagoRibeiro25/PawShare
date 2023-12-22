@@ -3,10 +3,10 @@ const utils = require("../../utils");
 
 /**
  * @typedef AddanimalADoptionBody
- * @property {string} email_contact - The email contact (required)
- * @property {string} phone_contact - The phone contact (required)
- * @property {Array} notes - The notes  (required)
- * @property {string} city - The city (required)
+ * @property {string} email_contact - The email contact
+ * @property {string} phone_contact - The phone contact
+ * @property {Array} notes - The notes
+ * @property {string} city - The city
  */
 
 /**

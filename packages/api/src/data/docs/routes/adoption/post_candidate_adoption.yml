@@ -1,7 +1,7 @@
-summary: "Get the adoption detail"
-description: "Get the adoption detail of an animal by its id"
+summary: Add Candidate
+description: Add an candidate to users list for adoption
 tags:
-  - "Adoption"
+  - Adoption
 security:
   - bearerAuth: []
 parameters:
@@ -11,50 +11,52 @@ parameters:
     required: true
     schema:
       type: "number"
-      example: 1
+      example: 5
 responses:
-  200:
-    description: "Success"
+  201:
+    description: Success
     content:
       application/json:
         schema:
-          type: "object"
+          type: object
           properties:
             success:
-              type: "boolean"
+              type: boolean
             message:
-              type: "string"
+              type: string
             data:
-              type: "object"
+              type: object
+              properties:
+                candidate:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    adoption_id:
+                      type: integer
+                    is_confirmed:
+                      type: boolean
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
         examples:
-          "Success":
+          Success:
             value:
               success: true
-              message: "Adoption retrieved successfully"
+              message: Candidate added successfully
               data:
-                adoption:
-                  id: 1
-                  email_contact: "john.doe@pawshare.com"
-                  phone_contact: "932456789"
-                  city: "Porto"
-                  notes:
-                    - "independent"
-                    - "playful"
-                  animal:
-                    id: 7
-                    owner:
-                      id: 1
-                      name: "John Doe"
-                      picture: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
-                    name: "Cleo"
-                    type: "cat"
-                    gender: "Female"
-                    color: "black"
-                    size: "Medium"
-                    description: "Cleo is an elegant and independent cat. She loves to sleep in the sun and play with furry balls."
-                    picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702555109/paw-share/dev/animals/Animal_Detail_Picture_1_tkl6jh_g40o30.png"
-                  created_at: "2023-12-09T00:00:00.000Z"
-                  updated_at: "2023-12-09T00:00:00.000Z"
+                candidate:
+                  id: 3
+                  user_id: 1
+                  adoption_id: 5
+                  is_confirmed: false
+                  created_at: "2023-12-15T18:42:57.227Z"
+                  updated_at: "2023-12-15T18:42:57.227Z"
   400:
     description: "Bad Request"
     content:
@@ -117,8 +119,8 @@ responses:
             value:
               success: false
               message: "Adoption not found"
-  500:
-    description: "Internal server error"
+  409:
+    description: "Conflict"
     content:
       application/json:
         schema:
@@ -129,7 +131,27 @@ responses:
             message:
               type: "string"
         examples:
-          "Internal server error":
+          "Already a candidate":
             value:
               success: false
-              message: "Something went wrong!"
+              message: "You're already a candidate to adopt this animal"
+          "The owner adoption":
+            value:
+              success: false
+              message: "You can't candidate to adopt your own animal"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Servor Error:
+            value:
+              success: false
+              message: Something went wrong!

@@ -14,6 +14,15 @@ router.get(
 	controllers.sitting.getSittingsFeed,
 );
 
+// Get requested sittings
+router.get(
+	"/requested",
+	validators.sitting.getRequestedSittings(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.getRequestedSittings,
+);
+
 // Get detail of one sitting
 router.get(
 	"/:id",
