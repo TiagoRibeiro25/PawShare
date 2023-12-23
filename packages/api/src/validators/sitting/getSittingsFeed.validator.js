@@ -2,6 +2,7 @@ const { query } = require("express-validator");
 const animalTypes = require("../../data/animals.json");
 const colors = require("../../data/colors.json");
 const utils = require("../../utils");
+const config = require("../../config");
 
 /**
  * Returns an array of validation rules for the get sitting feed endpoint
@@ -18,7 +19,7 @@ function validator() {
 
 		query("limit")
 			.optional()
-			.isInt({ min: 1 })
+			.isInt({ min: 1, max: config.pagination.sitting.feed.maxLimit })
 			.toInt()
 			.withMessage("Limit must be a positive integer"),
 

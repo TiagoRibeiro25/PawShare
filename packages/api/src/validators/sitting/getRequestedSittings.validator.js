@@ -1,4 +1,5 @@
 const { query } = require("express-validator");
+const config = require("../../config");
 
 /**
  * Returns an array of validation rules for the get requested sittings endpoint
@@ -15,7 +16,7 @@ function validator() {
 
 		query("limit")
 			.optional()
-			.isInt({ min: 1 })
+			.isInt({ min: 1, max: config.pagination.sitting.requested.maxLimit })
 			.toInt()
 			.withMessage("Limit must be a positive integer"),
 	];
