@@ -32,4 +32,10 @@ router.get(
 	controllers.sitting.getSittingDetail,
 );
 
+router.post(
+	"/requested/:id",
+	middlewares.validateTokens,
+	controllers.sitting.addCandidateSitting,
+);
+
 module.exports = router;
