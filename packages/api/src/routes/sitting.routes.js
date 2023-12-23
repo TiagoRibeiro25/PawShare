@@ -41,4 +41,11 @@ router.post(
 	controllers.sitting.addAnimalSitting,
 );
 
+router.post(
+	"/requested/:id",
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.addCandidateSitting,
+);
+
 module.exports = router;
