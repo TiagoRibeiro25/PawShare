@@ -279,6 +279,26 @@ responses:
             value:
               success: false
               message: Animal not found
+  409:
+    description: Conflict
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Already in adoption:
+            value:
+              success: false
+              message: Animal already in adoption
+          Already in sitting:
+            value:
+              success: false
+              message: Animal already in sitting
   500:
     description: Internal server error
     content:
