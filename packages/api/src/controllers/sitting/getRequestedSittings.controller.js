@@ -16,9 +16,6 @@ const { Op } = require("sequelize");
  * @returns {Promise<void>}
  */
 async function getRequestedSittings(req, res) {
-	// TODO (tiago): Add swagger docs
-	// TODO (tiago): Not tested
-
 	try {
 		/** @type {QueryOptions} */
 		const {

@@ -34,6 +34,7 @@ const swaggerDefinition = {
 		"/adoption/requested": { get: routeDocs.adoption.getRequestedAdoptions },
 		"/sitting": { get: routeDocs.sitting.getSittingFeed },
 		"/sitting/{id}": { get: routeDocs.sitting.getSittingDetail },
+		"/sitting/requested": { get: routeDocs.sitting.getRequestedSittings },
 	},
 };
 

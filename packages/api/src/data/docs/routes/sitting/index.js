@@ -9,7 +9,12 @@ const getSittingDetail = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/sitting/get_sitting_detail.yml", "utf8"),
 );
 
+const getRequestedSittings = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/sitting/get_requested_sittings.yml", "utf8"),
+);
+
 module.exports = {
 	getSittingFeed,
 	getSittingDetail,
+	getRequestedSittings,
 };
