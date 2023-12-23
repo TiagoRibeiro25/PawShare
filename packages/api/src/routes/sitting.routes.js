@@ -32,4 +32,13 @@ router.get(
 	controllers.sitting.getSittingDetail,
 );
 
+// Add animal to sitting list
+router.post(
+	"/",
+	validators.sitting.addAnimalSitting(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.addAnimalSitting,
+);
+
 module.exports = router;
