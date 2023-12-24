@@ -31,6 +31,22 @@ async function addAnimalAdoption(req, res) {
 			where: {
 				id: animal_id,
 			},
+			include: [
+				{
+					model: db.mysql.Sitting,
+					where: {
+						is_closed: false,
+					},
+					required: false, // Left join
+				},
+				{
+					model: db.mysql.Adoption,
+					where: {
+						is_closed: false,
+					},
+					required: false,
+				},
+			],
 		});
 
 		// Checking if the animal exists
@@ -46,15 +62,8 @@ async function addAnimalAdoption(req, res) {
 			);
 		}
 
-		const checkAdoption = await db.mysql.Adoption.findOne({
-			where: {
-				animal_id: animal_id,
-				is_closed: false,
-			},
-		});
-
-		// Checking if the animal is already in adoption
-		if (checkAdoption) {
+		// Checking if the animal is already in adoption list
+		if (checkAnimal.adoptions.length > 0) {
 			return utils.handleResponse(
 				res,
 				utils.http.StatusConflict,
@@ -62,15 +71,8 @@ async function addAnimalAdoption(req, res) {
 			);
 		}
 
-		const checkSitting = await db.mysql.Sitting.findOne({
-			where: {
-				animal_id: animal_id,
-				is_closed: false,
-			},
-		});
-
-		// Checking if the animal is in another service (sitting)
-		if (checkSitting) {
+		// Checking if the animal is in another service (sitting list)
+		if (checkAnimal.sittings.length > 0) {
 			return utils.handleResponse(
 				res,
 				utils.http.StatusConflict,
@@ -95,7 +97,7 @@ async function addAnimalAdoption(req, res) {
 			owner_id: loggedUserId,
 			email_contact: email_contact,
 			phone_contact: phone_contact,
-			notes: JSON.stringify(notes),
+			notes: notes ? JSON.stringify(notes) : "[]",
 			city: city,
 		});
 

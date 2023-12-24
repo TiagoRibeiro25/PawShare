@@ -33,13 +33,9 @@ function validator() {
 			.bail(),
 		body("notes")
 			.optional()
-			.isArray()
-			.withMessage("notes must be an array")
-			.bail()
 			.isArray({ min: 1 })
-			.withMessage("notes is empty")
+			.withMessage("notes must be an array and containing at least one item")
 			.bail()
-			.isArray()
 			.custom((value) => {
 				// Checking if the array contains only strings
 				return value.every((item) => typeof item === "string");
