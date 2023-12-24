@@ -184,7 +184,7 @@ responses:
               data:
                 - type: field
                   value: asdas
-                  msg: notes must be an array
+                  msg: notes must be an array and containing at least one item
                   path: notes
                   location: body
           Invalid Notes Array:
