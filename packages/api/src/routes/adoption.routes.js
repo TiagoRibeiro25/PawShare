@@ -14,6 +14,24 @@ router.get(
 	controllers.adoption.getAdoptionsFeed,
 );
 
+// Get requested adoptions
+router.get(
+	"/requested",
+	validators.adoption.getRequestedAdoptions(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getRequestedAdoptions,
+);
+
+// Get detail of one adoption
+router.get(
+	"/:id",
+	validators.adoption.getAdoptionDetail(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getAdoptionDetail,
+);
+
 // Add animal to adoption list
 router.post(
 	"/",
@@ -32,22 +50,13 @@ router.post(
 	controllers.adoption.addCandidateAdoption,
 );
 
-// Get requested adoptions
-router.get(
-	"/requested",
-	validators.adoption.getRequestedAdoptions(),
-	validators.validateResult,
-	middlewares.validateTokens,
-	controllers.adoption.getRequestedAdoptions,
-);
-
-// Get detail of one adoption
-router.get(
+// Delete one adoption
+router.delete(
 	"/:id",
-	validators.adoption.getAdoptionDetail(),
+	validators.adoption.deleteAnimalAdoption(),
 	validators.validateResult,
 	middlewares.validateTokens,
-	controllers.adoption.getAdoptionDetail,
+	controllers.adoption.deleteAnimalAdoption,
 );
 
 module.exports = router;
