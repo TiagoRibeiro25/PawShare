@@ -38,6 +38,9 @@ const swaggerDefinition = {
 			delete: routeDocs.adoption.deleteRequestAdoption,
 		},
 		"/adoption/{id}/users": { get: routeDocs.adoption.getAdoptionCandidates },
+		"/adoption/{adoptionId}/users/{candidateId}": {
+			patch: routeDocs.adoption.acceptAdoptionCandidate,
+		},
 		"/adoption/requested": { get: routeDocs.adoption.getRequestedAdoptions },
 		"/adoption/created": { get: routeDocs.adoption.getCreatedAdoptions },
 		"/sitting": {
