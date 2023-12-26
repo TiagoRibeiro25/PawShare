@@ -22,8 +22,6 @@ async function getCreatedAdoptions(req, res) {
 			limit = config.pagination.adoptions.created.defaultLimit,
 		} = req.query;
 
-		console.log(req.userId);
-
 		const adoptions = await db.mysql.Adoption.findAndCountAll({
 			limit,
 			offset: (page - 1) * limit,
