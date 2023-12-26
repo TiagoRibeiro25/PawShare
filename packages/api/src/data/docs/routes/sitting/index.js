@@ -25,6 +25,10 @@ const getSittingCandidates = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/sitting/get_sitting_candidates.yml", "utf8"),
 );
 
+const getCreatedSittings = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/sitting/get_created_sittings.yml", "utf8"),
+);
+
 module.exports = {
 	getSittingFeed,
 	getSittingDetail,
@@ -32,4 +36,5 @@ module.exports = {
 	getRequestedSittings,
 	deleteAnimalSitting,
 	getSittingCandidates,
+	getCreatedSittings,
 };

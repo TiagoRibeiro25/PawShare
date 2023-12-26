@@ -9,7 +9,7 @@ const config = require("../../config");
  */
 
 /**
- * Get the requested adoptions
+ * Get the crated adoptions of the authenticated user.
  * @param {import("express").Request} req - The Express Request object.
  * @param {import("express").Response} res - The Express Response object.
  * @returns {Promise<void>}

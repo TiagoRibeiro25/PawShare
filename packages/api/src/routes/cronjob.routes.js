@@ -11,4 +11,6 @@ router.delete(
 	controllers.cronjob.deleteUnverifiedUsers,
 );
 
+// TODO (tiago): Add cronjob to delete all sitting requests that have expired (not accepted by the owner before the date of the sitting)
+
 module.exports = router;
