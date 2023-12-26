@@ -5,6 +5,18 @@ tags:
 security:
   - bearerAuth: []
 parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
   - name: id
     in: path
     description: Id of the user
