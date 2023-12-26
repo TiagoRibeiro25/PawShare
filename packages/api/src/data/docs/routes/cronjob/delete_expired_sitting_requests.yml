@@ -1,5 +1,5 @@
-summary: Delete Unverified Users
-description: Delete all unverified users
+summary: Delete expired sitting requests
+description: Delete all expired sitting requests
 tags:
   - "Cronjob"
 security:
@@ -17,14 +17,14 @@ responses:
             message:
               type: string
         examples:
-          Deleted 0 unverified users successfully.:
+          Deleted 0 expired requests successfully.:
             value:
               success: true
-              message: Deleted 0 unverified users successfully.
-          Deleted 2 unverified users successfully.:
+              message: Deleted 0 expired sitting requests successfully.
+          Deleted 2 expired requests successfully.:
             value:
               success: true
-              message: Deleted 2 unverified users successfully.
+              message: Deleted 2 expired sitting requests successfully.
   "401":
     description: Unauthorized
     content:
