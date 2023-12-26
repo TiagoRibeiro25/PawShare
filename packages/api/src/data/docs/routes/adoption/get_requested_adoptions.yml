@@ -40,17 +40,17 @@ responses:
               message: Requests retrieved successfully
               data:
                 requests:
-                  id: 1
-                  status: pending
-                  can_review: false
-                  adoption:
-                    id: 1
-                    animal:
-                      id: 3
-                      name: Rocky
-                      picture: null
-                    created_at: 2023-12-17T17:17:47.000Z
-                    updated_at: 2023-12-17T17:17:47.000Z
+                  - id: 1
+                    status: pending
+                    can_review: false
+                    adoption:
+                      id: 1
+                      animal:
+                        id: 3
+                        name: Rocky
+                        picture: null
+                      created_at: 2023-12-17T17:17:47.000Z
+                      updated_at: 2023-12-17T17:17:47.000Z
                 total: 1
   400:
     description: "Bad Request"
