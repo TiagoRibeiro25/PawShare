@@ -6,6 +6,7 @@ const addCandidateAdoption = require("./addCandidateAdoption.validator");
 const deleteAnimalAdoption = require("./deleteAnimalAdoption.validator");
 const deleteRequestAdoption = require("./deleteRequestAdoption.validator");
 const getCreatedAdoptions = require("./getCreatedAdoptions.validator");
+const getCandidates = require("./getCandidates.validator");
 
 module.exports = {
 	getAdoptionDetail,
@@ -16,4 +17,5 @@ module.exports = {
 	deleteAnimalAdoption,
 	deleteRequestAdoption,
 	getCreatedAdoptions,
+	getCandidates,
 };
