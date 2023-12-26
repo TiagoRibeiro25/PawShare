@@ -4,6 +4,7 @@ const getRequestedAdoptions = require("./getRequestedAdoptions.controller");
 const addAnimalAdoption = require("./addAnimalAdoption.controller");
 const addCandidateAdoption = require("./addCandidateAdoption.controller");
 const deleteAnimalAdoption = require("./deleteAnimalAdoption.controller");
+const deleteRequestAdoption = require("./deleteRequestAdoption.controller");
 const getCreatedAdoptions = require("./getCreatedAdoptions.controller");
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
 	addAnimalAdoption,
 	addCandidateAdoption,
 	deleteAnimalAdoption,
+	deleteRequestAdoption,
 	getCreatedAdoptions,
 };

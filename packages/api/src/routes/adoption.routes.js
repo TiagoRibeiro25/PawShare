@@ -68,4 +68,13 @@ router.delete(
 	controllers.adoption.deleteAnimalAdoption,
 );
 
+// Delete one requested adoption
+router.delete(
+	"/:id/requested",
+	validators.adoption.deleteRequestAdoption(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.deleteRequestAdoption,
+);
+
 module.exports = router;
