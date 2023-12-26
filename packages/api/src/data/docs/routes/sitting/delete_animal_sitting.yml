@@ -1,0 +1,127 @@
+summary: "Delete one sitting"
+description: "Delete one sitting from the sitting list by its id"
+tags:
+  - "Sitting"
+security:
+  - bearerAuth: []
+parameters:
+  - name: "id"
+    in: "path"
+    description: "The id of the sitting"
+    required: true
+    schema:
+      type: "number"
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          "Success":
+            value:
+              success: true
+              message: "Sitting deleted successfully"
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Invalid Id":
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "sad"
+                  msg: "Invalid sitting id"
+                  path: "id"
+                  location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  403:
+    description: "Forbidden"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Not the owner":
+            value:
+              success: false
+              message: "You can't delete this sitting"
+  404:
+    description: "Not Found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Sitting not found":
+            value:
+              success: false
+              message: "Sitting not found"
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Something went wrong!"
