@@ -1,4 +1,4 @@
-const { query } = require("express-validator");
+const { query, param } = require("express-validator");
 const config = require("../../config");
 
 /**
@@ -7,6 +7,8 @@ const config = require("../../config");
  */
 function validator() {
 	return [
+		param("id").isInt({ min: 1 }).withMessage("Invalid adoption id"),
+
 		query("page")
 			.optional()
 			.isInt({ min: 1 })

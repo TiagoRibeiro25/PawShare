@@ -19,6 +19,13 @@ parameters:
     schema:
       type: number
       example: 10
+  - name: id
+    in: params
+    description: ID of the adoption
+    required: true
+    schema:
+      type: number
+      example: 1
 responses:
   200:
     description: "Success"
@@ -76,6 +83,16 @@ responses:
                   msg: "Limit must be a positive integer"
                   path: "limit"
                   location: "query"
+          Invalid Adoption ID:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "0"
+                  msg: "Invalid adoption id"
+                  path: "id"
+                  location: "params"
   401:
     description: "Unauthorized"
     content:
