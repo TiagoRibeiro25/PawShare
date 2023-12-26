@@ -23,6 +23,15 @@ router.get(
 	controllers.adoption.getRequestedAdoptions,
 );
 
+// Get adoptions created
+router.get(
+	"/created",
+	validators.adoption.getCreatedAdoptions(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getCreatedAdoptions,
+);
+
 // Get detail of one adoption
 router.get(
 	"/:id",
