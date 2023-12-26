@@ -25,6 +25,10 @@ const deleteAnimalAdoption = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/adoption/delete_animal_adoption.yml", "utf8"),
 );
 
+const deleteRequestAdoption = YAML.parse(
+	fs.readFileSync("./src/data/docs/routes/adoption/delete_request_adoption.yml", "utf8"),
+);
+
 const getCreatedAdoptions = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/adoption/get_created_adoptions.yml", "utf8"),
 );
@@ -36,5 +40,6 @@ module.exports = {
 	postAnimalAdoption,
 	postCandidateAdoption,
 	deleteAnimalAdoption,
+	deleteRequestAdoption,
 	getCreatedAdoptions,
 };
