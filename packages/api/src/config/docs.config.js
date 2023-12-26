@@ -43,7 +43,10 @@ const swaggerDefinition = {
 			get: routeDocs.sitting.getSittingFeed,
 			post: routeDocs.sitting.postAnimalSitting,
 		},
-		"/sitting/{id}": { get: routeDocs.sitting.getSittingDetail },
+		"/sitting/{id}": {
+			get: routeDocs.sitting.getSittingDetail,
+			delete: routeDocs.sitting.deleteAnimalSitting,
+		},
 		"/sitting/requested": { get: routeDocs.sitting.getRequestedSittings },
 	},
 };
