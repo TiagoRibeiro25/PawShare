@@ -33,7 +33,10 @@ const swaggerDefinition = {
 			get: routeDocs.adoption.getAdoptionDetail,
 			delete: routeDocs.adoption.deleteAnimalAdoption,
 		},
-		"/adoption/{id}/requested": { post: routeDocs.adoption.postCandidateAdoption },
+		"/adoption/{id}/requested": {
+			post: routeDocs.adoption.postCandidateAdoption,
+			delete: routeDocs.adoption.deleteRequestAdoption,
+		},
 		"/adoption/requested": { get: routeDocs.adoption.getRequestedAdoptions },
 		"/adoption/created": { get: routeDocs.adoption.getCreatedAdoptions },
 		"/sitting": {
