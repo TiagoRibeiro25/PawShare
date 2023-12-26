@@ -37,6 +37,13 @@ const getAdoptionCandidates = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/adoption/get_adoption_candidates.yml", "utf8"),
 );
 
+const acceptAdoptionCandidate = YAML.parse(
+	fs.readFileSync(
+		"./src/data/docs/routes/adoption/accept_adoption_candidate.yml",
+		"utf8",
+	),
+);
+
 module.exports = {
 	getAdoptionDetail,
 	getAdoptionFeed,
@@ -47,4 +54,5 @@ module.exports = {
 	deleteRequestAdoption,
 	getCreatedAdoptions,
 	getAdoptionCandidates,
+	acceptAdoptionCandidate,
 };
