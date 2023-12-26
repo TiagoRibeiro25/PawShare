@@ -41,4 +41,13 @@ router.post(
 	controllers.sitting.addAnimalSitting,
 );
 
+// Delete one sitting
+router.delete(
+	"/:id",
+	validators.sitting.deleteAnimalSitting(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.deleteAnimalSitting,
+);
+
 module.exports = router;
