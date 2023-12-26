@@ -4,6 +4,7 @@ const getSittingDetail = require("./getSittingDetail.validator");
 const addAnimalSitting = require("./addAnimalSitting.validator");
 const deleteAnimalSitting = require("./deleteAnimalSitting.validator");
 const getCandidates = require("./getCandidates.validator");
+const getCreatedSittings = require("./getCreatedSittings.validator");
 
 module.exports = {
 	getSittingsFeed,
@@ -12,4 +13,5 @@ module.exports = {
 	addAnimalSitting,
 	deleteAnimalSitting,
 	getCandidates,
+	getCreatedSittings,
 };

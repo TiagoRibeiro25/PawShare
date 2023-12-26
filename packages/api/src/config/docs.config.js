@@ -110,6 +110,9 @@ const swaggerDefinition = {
 		"/sitting/requested": {
 			get: routeDocs.sitting.getRequestedSittings,
 		},
+		"/sitting/created": {
+			get: routeDocs.sitting.getCreatedSittings,
+		},
 	},
 };
 
