@@ -1,7 +1,7 @@
-summary: Get the candidates of an adoption
-description: Get the candidates of an adoption
+summary: Get the candidates of a sitting request
+description: Get the candidates of a sitting request
 tags:
-  - "Adoption"
+  - "Sitting"
 security:
   - bearerAuth: []
 parameters:
@@ -21,7 +21,7 @@ parameters:
       example: 10
   - name: id
     in: params
-    description: ID of the adoption
+    description: ID of the sitting request
     required: true
     schema:
       type: number
@@ -83,14 +83,14 @@ responses:
                   msg: "Limit must be a positive integer"
                   path: "limit"
                   location: "query"
-          Invalid Adoption ID:
+          Invalid Sitting ID:
             value:
               success: false
               message: "Validation Error"
               data:
                 - type: "field"
                   value: "0"
-                  msg: "Invalid adoption id"
+                  msg: "Invalid sitting id"
                   path: "id"
                   location: "params"
   401:
@@ -132,7 +132,7 @@ responses:
           Not the owner:
             value:
               success: false
-              message: You are not the owner of this adoption
+              message: You are not the owner of this sitting request
   404:
     description: "Not found"
     content:
@@ -145,10 +145,10 @@ responses:
             message:
               type: "string"
         examples:
-          Adoption not found:
+          Sitting request not found:
             value:
               success: false
-              message: Adoption not found
+              message: Sitting request not found
           Candidate not found:
             value:
               success: false
@@ -165,10 +165,10 @@ responses:
             message:
               type: "string"
         examples:
-          Adoption already confirmed:
+          Sitting already confirmed:
             value:
               success: false
-              message: "Adoption already confirmed"
+              message: "Sitting already confirmed"
   500:
     description: "Internal server error"
     content:

@@ -37,6 +37,11 @@ const config = {
 			defaultLimit: 20,
 			maxLimit: 30,
 		},
+		candidates: {
+			defaultPage: 1,
+			defaultLimit: 20,
+			maxLimit: 30,
+		},
 	},
 };
 

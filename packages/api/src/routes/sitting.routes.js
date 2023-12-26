@@ -23,6 +23,16 @@ router.get(
 	controllers.sitting.getRequestedSittings,
 );
 
+// TODO (tiago): GET /sitting/created -> Get sittings created
+
+router.get(
+	"/:id/users",
+	validators.sitting.getCandidates(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.getCandidates,
+);
+
 // Get detail of one sitting
 router.get(
 	"/:id",

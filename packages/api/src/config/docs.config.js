@@ -104,6 +104,9 @@ const swaggerDefinition = {
 			get: routeDocs.sitting.getSittingDetail,
 			delete: routeDocs.sitting.deleteAnimalSitting,
 		},
+		"/sitting/{id}/users": {
+			get: routeDocs.sitting.getSittingCandidates,
+		},
 		"/sitting/requested": {
 			get: routeDocs.sitting.getRequestedSittings,
 		},
