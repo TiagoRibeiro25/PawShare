@@ -59,6 +59,17 @@ router.post(
 	controllers.adoption.addCandidateAdoption,
 );
 
+// Get candidates for an adoption
+router.get(
+	"/:id/users",
+	validators.adoption.getCandidates(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getCandidates,
+);
+
+// TODO (tiago): PATCH /adoption/{id}/users/{id} -> Accept a user to adopt an animal
+
 // Delete one adoption
 router.delete(
 	"/:id",
