@@ -22,6 +22,9 @@ const swaggerDefinition = {
 		"/cronjob/unverified-users": {
 			delete: routeDocs.cronjob.deleteUnverifiedUsers,
 		},
+		"/cronjob/expired-sitting-requests": {
+			delete: routeDocs.cronjob.deleteExpiredSittingRequests,
+		},
 
 		// AUTH
 		"/auth/login": {
