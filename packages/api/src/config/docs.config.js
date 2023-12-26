@@ -10,21 +10,66 @@ const swaggerDefinition = {
 	info,
 	servers: [{ url: "http://localhost:5000/api/v1" }], //TODO (any): Check the enviroment and use the correct url (only after deploying)
 	paths: {
-		"/": { get: routeDocs.default.getHelloWorld },
-		"/{any*}": { get: routeDocs.default.notFound },
-		"/cronjob/unverified-users": { delete: routeDocs.cronjob.deleteUnverifiedUsers },
-		"/auth/login": { post: routeDocs.auth.postLogin },
-		"/auth/register": { post: routeDocs.auth.postRegister },
-		"/auth/request-reset-password": { post: routeDocs.auth.postRequestResetPassword },
-		"/auth/reset-password/{token}": { patch: routeDocs.auth.patchResetPassword },
-		"/users/verify/{token}": { patch: routeDocs.users.patchVerifyUser },
-		"/users/me": { get: routeDocs.users.getLoggedUser },
-		"/users/{id}": { get: routeDocs.users.getUserProfile },
-		"/users": { patch: routeDocs.users.updateUserProfile },
-		"/animals/{id}": { get: routeDocs.animals.getAnimalDetail },
-		"/store/coins": { patch: routeDocs.store.patchHandleCoins },
-		"/store/buy/{itemId}": { patch: routeDocs.store.patchBuyItem },
-		"/reviews": { post: routeDocs.review.postAddReview },
+		// DEFAULT
+		"/": {
+			get: routeDocs.default.getHelloWorld,
+		},
+		"/{any*}": {
+			get: routeDocs.default.notFound,
+		},
+
+		// CRONJOB
+		"/cronjob/unverified-users": {
+			delete: routeDocs.cronjob.deleteUnverifiedUsers,
+		},
+
+		// AUTH
+		"/auth/login": {
+			post: routeDocs.auth.postLogin,
+		},
+		"/auth/register": {
+			post: routeDocs.auth.postRegister,
+		},
+		"/auth/request-reset-password": {
+			post: routeDocs.auth.postRequestResetPassword,
+		},
+		"/auth/reset-password/{token}": {
+			patch: routeDocs.auth.patchResetPassword,
+		},
+
+		// USERS
+		"/users/verify/{token}": {
+			patch: routeDocs.users.patchVerifyUser,
+		},
+		"/users/me": {
+			get: routeDocs.users.getLoggedUser,
+		},
+		"/users/{id}": {
+			get: routeDocs.users.getUserProfile,
+		},
+		"/users": {
+			patch: routeDocs.users.updateUserProfile,
+		},
+
+		// ANIMALS
+		"/animals/{id}": {
+			get: routeDocs.animals.getAnimalDetail,
+		},
+
+		// STORE
+		"/store/coins": {
+			patch: routeDocs.store.patchHandleCoins,
+		},
+		"/store/buy/{itemId}": {
+			patch: routeDocs.store.patchBuyItem,
+		},
+
+		// REVIEWS
+		"/reviews": {
+			post: routeDocs.review.postAddReview,
+		},
+
+		// ADOPTION
 		"/adoption": {
 			get: routeDocs.adoption.getAdoptionFeed,
 			post: routeDocs.adoption.postAnimalAdoption,
@@ -37,12 +82,20 @@ const swaggerDefinition = {
 			post: routeDocs.adoption.postCandidateAdoption,
 			delete: routeDocs.adoption.deleteRequestAdoption,
 		},
-		"/adoption/{id}/users": { get: routeDocs.adoption.getAdoptionCandidates },
+		"/adoption/{id}/users": {
+			get: routeDocs.adoption.getAdoptionCandidates,
+		},
 		"/adoption/{adoptionId}/users/{candidateId}": {
 			patch: routeDocs.adoption.acceptAdoptionCandidate,
 		},
-		"/adoption/requested": { get: routeDocs.adoption.getRequestedAdoptions },
-		"/adoption/created": { get: routeDocs.adoption.getCreatedAdoptions },
+		"/adoption/requested": {
+			get: routeDocs.adoption.getRequestedAdoptions,
+		},
+		"/adoption/created": {
+			get: routeDocs.adoption.getCreatedAdoptions,
+		},
+
+		// SITTING
 		"/sitting": {
 			get: routeDocs.sitting.getSittingFeed,
 			post: routeDocs.sitting.postAnimalSitting,
@@ -51,7 +104,9 @@ const swaggerDefinition = {
 			get: routeDocs.sitting.getSittingDetail,
 			delete: routeDocs.sitting.deleteAnimalSitting,
 		},
-		"/sitting/requested": { get: routeDocs.sitting.getRequestedSittings },
+		"/sitting/requested": {
+			get: routeDocs.sitting.getRequestedSittings,
+		},
 	},
 };
 
