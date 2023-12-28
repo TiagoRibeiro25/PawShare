@@ -9,5 +9,5 @@ module.exports = {
 	getRequestedSittings,
 	getSittingDetail,
 	addAnimalSitting,
-	addCandidateSitting
+	addCandidateSitting,
 };
