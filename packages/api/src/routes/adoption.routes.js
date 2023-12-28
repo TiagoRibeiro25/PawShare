@@ -14,6 +14,33 @@ router.get(
 	controllers.adoption.getAdoptionsFeed,
 );
 
+// Get requested adoptions
+router.get(
+	"/requested",
+	validators.adoption.getRequestedAdoptions(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getRequestedAdoptions,
+);
+
+// Get adoptions created
+router.get(
+	"/created",
+	validators.adoption.getCreatedAdoptions(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getCreatedAdoptions,
+);
+
+// Get detail of one adoption
+router.get(
+	"/:id",
+	validators.adoption.getAdoptionDetail(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.getAdoptionDetail,
+);
+
 // Add animal to adoption list
 router.post(
 	"/",
@@ -32,22 +59,39 @@ router.post(
 	controllers.adoption.addCandidateAdoption,
 );
 
-// Get requested adoptions
+// Get candidates for an adoption
 router.get(
-	"/requested",
-	validators.adoption.getRequestedAdoptions(),
+	"/:id/users",
+	validators.adoption.getCandidates(),
 	validators.validateResult,
 	middlewares.validateTokens,
-	controllers.adoption.getRequestedAdoptions,
+	controllers.adoption.getCandidates,
 );
 
-// Get detail of one adoption
-router.get(
-	"/:id",
-	validators.adoption.getAdoptionDetail(),
+router.patch(
+	"/:adoptionId/users/:candidateId",
+	validators.adoption.acceptAdoptionCandidate(),
 	validators.validateResult,
 	middlewares.validateTokens,
-	controllers.adoption.getAdoptionDetail,
+	controllers.adoption.acceptAdoptionCandidate,
+);
+
+// Delete one adoption
+router.delete(
+	"/:id",
+	validators.adoption.deleteAnimalAdoption(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.deleteAnimalAdoption,
+);
+
+// Delete one requested adoption
+router.delete(
+	"/:id/requested",
+	validators.adoption.deleteRequestAdoption(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.adoption.deleteRequestAdoption,
 );
 
 module.exports = router;

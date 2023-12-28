@@ -23,6 +23,24 @@ router.get(
 	controllers.sitting.getRequestedSittings,
 );
 
+// Get created sittings
+router.get(
+	"/created",
+	validators.sitting.getCreatedSittings(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.getCreatedSittings,
+);
+
+// Get candidates of one sitting
+router.get(
+	"/:id/users",
+	validators.sitting.getCandidates(),
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.getCandidates,
+);
+
 // Get detail of one sitting
 router.get(
 	"/:id",
@@ -41,11 +59,13 @@ router.post(
 	controllers.sitting.addAnimalSitting,
 );
 
-router.post(
-	"/requested/:id",
+// Delete one sitting
+router.delete(
+	"/:id",
+	validators.sitting.deleteAnimalSitting(),
 	validators.validateResult,
 	middlewares.validateTokens,
-	controllers.sitting.addCandidateSitting,
+	controllers.sitting.deleteAnimalSitting,
 );
 
 module.exports = router;

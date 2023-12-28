@@ -11,4 +11,10 @@ router.delete(
 	controllers.cronjob.deleteUnverifiedUsers,
 );
 
+router.delete(
+	"/expired-sitting-requests",
+	middlewares.validateCronjob,
+	controllers.cronjob.deleteExpiredSittingRequests,
+);
+
 module.exports = router;

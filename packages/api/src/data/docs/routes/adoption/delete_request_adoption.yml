@@ -1,0 +1,140 @@
+summary: "Delete one requested adoption"
+description: "Delete/cancel one requested adoption by its id"
+tags:
+  - "Adoption"
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+
+  - name: "id"
+    in: "path"
+    description: "The id of the adoption"
+    required: true
+    schema:
+      type: "number"
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          "Success":
+            value:
+              success: true
+              message: "Requested adoption canceled successfully"
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Invalid Id":
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "sad"
+                  msg: "Invalid adoption id"
+                  path: "id"
+                  location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  403:
+    description: "Forbidden"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Not the candidate":
+            value:
+              success: false
+              message: "You are not a candidate of this adoption"
+  404:
+    description: "Not Found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Adoption not found":
+            value:
+              success: false
+              message: "Adoption not found"
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Something went wrong!"

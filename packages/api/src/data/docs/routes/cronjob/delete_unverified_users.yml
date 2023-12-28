@@ -1,9 +1,16 @@
 summary: Delete Unverified Users
-description: Delete all unverified users (every 24 hours)
+description: Delete all unverified users
 tags:
   - "Cronjob"
 security:
   - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-key
+    schema:
+      type: string
+    required: true
+    description: Authorization key
 responses:
   "200":
     description: Success

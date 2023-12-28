@@ -5,6 +5,18 @@ tags:
 security:
   - bearerAuth: []
 parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
   - name: animal_id
     in: query
     required: true
@@ -207,7 +219,7 @@ responses:
               data:
                 - type: field
                   value: asdas
-                  msg: notes must be an array
+                  msg: notes must be an array and containing at least one item
                   path: notes
                   location: body
           Invalid Notes Array:
@@ -263,7 +275,7 @@ responses:
               data:
                 - type: field
                   value: 2025-04-25
-                  msg: start_date must be before end_date
+                  msg: The interval between start_date and end_date must be at least 24 hours
                   path: start_date
                   location: body
   401:

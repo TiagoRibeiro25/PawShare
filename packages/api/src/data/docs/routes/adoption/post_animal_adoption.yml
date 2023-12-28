@@ -5,6 +5,18 @@ tags:
 security:
   - bearerAuth: []
 parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
   - name: animal_id
     in: query
     required: true
@@ -184,7 +196,7 @@ responses:
               data:
                 - type: field
                   value: asdas
-                  msg: notes must be an array
+                  msg: notes must be an array and containing at least one item
                   path: notes
                   location: body
           Invalid Notes Array:

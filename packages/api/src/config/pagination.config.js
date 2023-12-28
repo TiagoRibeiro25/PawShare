@@ -15,6 +15,11 @@ const config = {
 			defaultLimit: 20,
 			maxLimit: 30,
 		},
+		candidates: {
+			defaultPage: 1,
+			defaultLimit: 20,
+			maxLimit: 30,
+		},
 	},
 	sitting: {
 		feed: {
@@ -28,6 +33,11 @@ const config = {
 			maxLimit: 30,
 		},
 		created: {
+			defaultPage: 1,
+			defaultLimit: 20,
+			maxLimit: 30,
+		},
+		candidates: {
 			defaultPage: 1,
 			defaultLimit: 20,
 			maxLimit: 30,

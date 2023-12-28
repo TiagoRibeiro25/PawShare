@@ -49,8 +49,9 @@ module.exports = [
 		password: "$2a$10$lR81JCw5CcfVAG84K7k1o.daoXwoz121IUVSt1Ee/mUFazFhxmDqC",
 		type: "user",
 		country: "ES",
+		is_verified: true,
+		verify_user_token: null,
 		change_password_token: utils.tokens.generateRandomBase64Token(),
-		verify_user_token: utils.tokens.generateRandomBase64Token(),
 	},
 	{
 		display_name: "New Organization",
@@ -58,8 +59,9 @@ module.exports = [
 		password: "$2a$10$lR81JCw5CcfVAG84K7k1o.daoXwoz121IUVSt1Ee/mUFazFhxmDqC",
 		type: "organization",
 		country: "ES",
+		is_verified: true,
+		verify_user_token: null,
 		change_password_token: utils.tokens.generateRandomBase64Token(),
-		verify_user_token: utils.tokens.generateRandomBase64Token(),
 	},
 	{
 		display_name: "Alice Johnson",
@@ -82,7 +84,8 @@ module.exports = [
 		password: "$2a$10$lR81JCw5CcfVAG84K7k1o.daoXwoz121IUVSt1Ee/mUFazFhxmDqC",
 		type: "user",
 		country: "US",
-		verify_user_token: utils.tokens.generateRandomBase64Token(),
+		is_verified: true,
+		verify_user_token: null,
 		change_password_token: utils.tokens.generateRandomBase64Token(),
 	},
 	{

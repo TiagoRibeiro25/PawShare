@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import options from '../config/navigator';
+import config from '../config';
 import Home from '../screens/Home';
 
 export type RootStackParamList = {
@@ -9,9 +9,9 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const Navigation: React.FC = (): JSX.Element => {
+const Navigation: React.FC = (): React.JSX.Element => {
 	return (
-		<Stack.Navigator initialRouteName="Home" screenOptions={options}>
+		<Stack.Navigator initialRouteName="Home" screenOptions={config.navigator}>
 			<Stack.Screen name="Home" component={Home} />
 		</Stack.Navigator>
 	);

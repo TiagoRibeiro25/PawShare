@@ -21,6 +21,15 @@ async function addCandidateAdoption(req, res) {
 				id: id,
 				is_closed: false,
 			},
+			include: [
+				{
+					model: db.mysql.UsersList,
+					where: {
+						adoption_id: id,
+					},
+					required: false,
+				},
+			],
 		});
 
 		// Checking if the adoption exists
@@ -37,15 +46,12 @@ async function addCandidateAdoption(req, res) {
 			);
 		}
 
-		const checkCandidate = await db.mysql.UsersList.findOne({
-			where: {
-				user_id: loggedUser,
-				adoption_id: id,
-			},
-		});
+		// Checking if the logged user is already in the candidates list of the adoption
+		const isCandidate = checkAdoption.users_lists.some(
+			(candidate) => candidate.user_id === loggedUser,
+		);
 
-		// Checking if the logged user is already a candidate to adopt the animal
-		if (checkCandidate) {
+		if (isCandidate) {
 			return utils.handleResponse(
 				res,
 				utils.http.StatusConflict,
