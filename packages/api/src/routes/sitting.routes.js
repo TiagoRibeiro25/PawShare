@@ -68,4 +68,10 @@ router.delete(
 	controllers.sitting.deleteAnimalSitting,
 );
 
+router.post(
+	"/sitting/requested/:id",
+	middlewares.validateTokens,
+	controllers.sitting.addCandidate,
+);
+
 module.exports = router;
