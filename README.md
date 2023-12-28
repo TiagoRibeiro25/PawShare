@@ -46,7 +46,6 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 
 - [Node.js](https://nodejs.org/en/)* (at least 18.18.0)
 - [NPM](https://www.npmjs.com/)*
-- [Yarn](https://yarnpkg.com/)*
 - [Docker](https://www.docker.com/)
 
 If you don't have or want to use Docker, you will need to have:
@@ -109,13 +108,13 @@ Windows:
 
 ```sh
   cd packages/api
-  npm run install
+  npm install
  
   cd ../app
-  yarn install
+  npm install
 
   cd ../web
-  npm run install
+  npm install
 ```
 
 3. Create a `.env` file in the following directories:
@@ -144,7 +143,7 @@ npm run dev
 
 ```sh
 cd packages/app
-yarn start
+npm start
 ```
 
 7. Start the web client

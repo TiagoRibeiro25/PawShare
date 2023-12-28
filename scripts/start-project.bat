@@ -20,7 +20,7 @@ cd ../..
 cd packages/app
 
 :: Open another cmd.exe and execute "npm start"
-start cmd.exe /k "yarn start"
+start cmd.exe /k "npm start"
 
 :: Navigate to the root directory
 cd ../..

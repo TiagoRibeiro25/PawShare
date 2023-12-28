@@ -20,12 +20,6 @@ if ! npm -v >/dev/null 2>&1; then
   exit 1
 fi
 
-# Check for yarn
-if ! yarn -v >/dev/null 2>&1; then
-	echo "yarn is not installed or not in the path. Please install yarn."
-	exit 1
-fi
-
 # Check for Docker
 if ! docker -v >/dev/null 2>&1; then
   echo "Docker is not installed or not in the path. Please install Docker or Docker Desktop."
@@ -64,10 +58,10 @@ fi
 # Go back to the root folder
 cd ../..
 
-# Go to /packages/app and execute "yarn install"
+# Go to /packages/app and execute "npm install"
 echo "Installing the APP dependencies.."
 cd packages/app
-yarn install
+npm install
 if [ $? -ne 0 ]; then
   echo "Failed to install the APP dependencies."
   exit 1

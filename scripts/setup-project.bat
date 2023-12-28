@@ -22,13 +22,6 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: Check for Yarn
-yarn -v >nul 2>&1
-if errorlevel 1 (
-		echo "Yarn is not installed or not in the path. Please install Yarn."
-		exit /b 1
-)
-
 :: Check for Docker
 docker -v >nul 2>&1
 if errorlevel 1 (
@@ -69,10 +62,10 @@ if errorlevel 1 (
 :: Go back to the root folder
 cd ../..
 
-:: Go to /packages/app and execute "yarn install"
+:: Go to /packages/app and execute "npm install"
 echo "Installing the APP dependencies..."
 cd packages/app
-yarn install
+npm install
 if errorlevel 1 (
     echo "Failed to install the APP dependencies."
     exit /b 1
