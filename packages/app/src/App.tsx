@@ -1,16 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { View } from 'react-native';
-import theme from './config/theme';
 import Navigation from './navigation';
 
-export type RootStackParamList = {
-	Home: undefined;
-};
-
-const App: React.FC = (): JSX.Element => {
+const App: React.FC = (): React.JSX.Element => {
 	return (
-		<NavigationContainer theme={theme}>
+		<NavigationContainer>
 			<View className="w-full h-full">
 				<Navigation />
 			</View>
