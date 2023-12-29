@@ -82,4 +82,10 @@ router.delete(
 	controllers.sitting.deleteCandidate,
 );
 
+router.patch(
+	"/:sittingId/users/:candidateId",
+	middlewares.validateTokens,
+	controllers.sitting.acceptSittingCandidate,
+);
+
 module.exports = router;
