@@ -49,4 +49,11 @@ router.delete(
 	controllers.animals.deleteDocument,
 );
 
+router.get(
+	"/:animalId/document",
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.animals.getDocuments,
+);
+
 module.exports = router;
