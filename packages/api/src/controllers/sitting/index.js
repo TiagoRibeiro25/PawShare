@@ -6,6 +6,7 @@ const deleteAnimalSitting = require("./deleteAnimalSitting.controller");
 const getCandidates = require("./getCandidates.controller");
 const getCreatedSittings = require("./getCreatedSittings.controller");
 const addCandidate = require("./addCandidateSitting.controller");
+const deleteCandidate = require("./deleteCandidateSitting.controller");
 
 module.exports = {
 	getSittingsFeed,
@@ -16,4 +17,5 @@ module.exports = {
 	getCandidates,
 	getCreatedSittings,
 	addCandidate,
+	deleteCandidate,
 };
