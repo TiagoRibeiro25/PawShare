@@ -69,9 +69,17 @@ router.delete(
 );
 
 router.post(
-	"/sitting/requested/:id",
+	"/requested/:id",
+	validators.validateResult,
 	middlewares.validateTokens,
 	controllers.sitting.addCandidate,
+);
+
+router.delete(
+	"/requested/:id",
+	validators.validateResult,
+	middlewares.validateTokens,
+	controllers.sitting.deleteCandidate,
 );
 
 module.exports = router;
