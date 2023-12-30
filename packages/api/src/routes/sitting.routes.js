@@ -88,4 +88,10 @@ router.patch(
 	controllers.sitting.acceptSittingCandidate,
 );
 
+router.patch(
+	"/:sittingId/pay",
+	middlewares.validateTokens,
+	controllers.sitting.sittingPayment,
+);
+
 module.exports = router;

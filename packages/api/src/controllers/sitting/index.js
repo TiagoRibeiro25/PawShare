@@ -8,6 +8,7 @@ const getCreatedSittings = require("./getCreatedSittings.controller");
 const addCandidate = require("./addCandidateSitting.controller");
 const deleteCandidate = require("./deleteCandidateSitting.controller");
 const acceptSittingCandidate = require("./acceptSittingCandidate.controller");
+const sittingPayment = require("./sittingPayment.controller");
 
 module.exports = {
 	getSittingsFeed,
@@ -20,4 +21,5 @@ module.exports = {
 	addCandidate,
 	deleteCandidate,
 	acceptSittingCandidate,
+	sittingPayment,
 };
