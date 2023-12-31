@@ -11,10 +11,18 @@ router.delete(
 	controllers.cronjob.deleteUnverifiedUsers,
 );
 
+// Delete all expired sitting requests
 router.delete(
 	"/expired-sitting-requests",
 	middlewares.validateCronjob,
 	controllers.cronjob.deleteExpiredSittingRequests,
+);
+
+// Refund all unpaid sittings that are older than 7 days
+router.delete(
+	"/refund-unpaid-sittings",
+	middlewares.validateCronjob,
+	controllers.cronjob.refundUnpaidSittings,
 );
 
 module.exports = router;
