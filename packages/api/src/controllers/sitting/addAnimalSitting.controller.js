@@ -108,6 +108,8 @@ async function addAnimalSitting(req, res) {
 			coins: coins,
 		});
 
+		// TODO (pedro): Verificar se o utilizador tem moedas suficientes e retirar-lhe as moedas
+
 		return utils.handleResponse(
 			res,
 			utils.http.StatusCreated,
