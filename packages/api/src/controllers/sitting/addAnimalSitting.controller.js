@@ -50,6 +50,15 @@ async function addAnimalSitting(req, res) {
 					},
 					required: false,
 				},
+				{
+					model: db.mysql.User,
+					// To get the coins of the logged user
+					where: {
+						id: loggedUserId,
+					},
+					attributes: ["coins", "country"],
+					required: false,
+				},
 			],
 		});
 
@@ -57,6 +66,7 @@ async function addAnimalSitting(req, res) {
 		if (!checkAnimal) {
 			return utils.handleResponse(res, utils.http.StatusNotFound, "Animal not found");
 		}
+
 		// Checking if the logged user is not the owner of the animal
 		if (checkAnimal.owner_id !== loggedUserId) {
 			return utils.handleResponse(
@@ -84,8 +94,9 @@ async function addAnimalSitting(req, res) {
 			);
 		}
 
-		const loggedUser = await db.mysql.User.findByPk(loggedUserId);
-		const citiesFromUserCountry = utils.cities.getCitiesFromCountry(loggedUser.country);
+		const citiesFromUserCountry = utils.cities.getCitiesFromCountry(
+			checkAnimal.user.country,
+		);
 
 		//  Checking if the city is from the logged user country
 		if (!citiesFromUserCountry.includes(city)) {
@@ -93,6 +104,15 @@ async function addAnimalSitting(req, res) {
 				res,
 				utils.http.StatusBadRequest,
 				"This city is not from your country",
+			);
+		}
+
+		//  Checking if the logged user has enough coins to create a sitting service
+		if (checkAnimal.user.coins < coins) {
+			return utils.handleResponse(
+				res,
+				utils.http.StatusForbidden,
+				"You don't have enough coins to create a sitting service",
 			);
 		}
 
@@ -108,7 +128,17 @@ async function addAnimalSitting(req, res) {
 			coins: coins,
 		});
 
-		// TODO (pedro): Verificar se o utilizador tem moedas suficientes e retirar-lhe as moedas
+		// If the logged user has enough coins, will remove the quantity
+		await db.mysql.User.update(
+			{
+				coins: checkAnimal.user.coins - coins,
+			},
+			{
+				where: {
+					id: loggedUserId,
+				},
+			},
+		);
 
 		return utils.handleResponse(
 			res,
