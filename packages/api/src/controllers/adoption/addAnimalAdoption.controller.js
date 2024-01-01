@@ -46,6 +46,14 @@ async function addAnimalAdoption(req, res) {
 					},
 					required: false,
 				},
+				{
+					model: db.mysql.User,
+					where: {
+						id: loggedUserId,
+					},
+					attributes: ["country"],
+					required: false,
+				},
 			],
 		});
 
@@ -80,8 +88,9 @@ async function addAnimalAdoption(req, res) {
 			);
 		}
 
-		const loggedUser = await db.mysql.User.findByPk(loggedUserId);
-		const citiesFromUserCountry = utils.cities.getCitiesFromCountry(loggedUser.country);
+		const citiesFromUserCountry = utils.cities.getCitiesFromCountry(
+			checkAnimal.user.country,
+		);
 
 		//  Checking if the city is from the logged user country
 		if (!citiesFromUserCountry.includes(city)) {
