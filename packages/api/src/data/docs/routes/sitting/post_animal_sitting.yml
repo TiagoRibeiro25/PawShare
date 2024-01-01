@@ -318,6 +318,10 @@ responses:
             value:
               success: false
               message: You are not the owner of the animal
+          Not enought coins:
+            value:
+              success: false
+              message: You don't have enough coins to create a sitting service
   404:
     description: Not Found
     content:
