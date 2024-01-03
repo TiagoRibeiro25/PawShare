@@ -1,18 +1,23 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import config from '../config';
-import Home from '../screens/Home';
-
-export type RootStackParamList = {
-	Home: undefined;
-};
+import OnBoarding from '../screens/OnBoarding';
+import SignIn from '../screens/SignIn';
+import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation: React.FC = (): React.JSX.Element => {
 	return (
-		<Stack.Navigator initialRouteName="Home" screenOptions={config.navigator}>
-			<Stack.Screen name="Home" component={Home} />
+		<Stack.Navigator initialRouteName="OnBoarding" screenOptions={config.navigator}>
+			<Stack.Screen name="OnBoarding" component={OnBoarding} />
+
+			{/* Auth */}
+			<Stack.Screen
+				name="SignIn"
+				component={SignIn}
+				options={{ animation: 'slide_from_bottom' }}
+			/>
 		</Stack.Navigator>
 	);
 };
