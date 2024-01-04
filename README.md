@@ -60,13 +60,13 @@ If you don't have or want to use Docker, you will need to have:
 
 2. Run the setup script (use the correct script for your OS)
 
-Linux or MacOS:
+##### Linux or MacOS
 
 ```sh
 chmod +x ./scripts/setup-project.sh && ./scripts/setup-project.sh
 ```
 
-Windows:
+##### Windows
 
 ```sh
 ./scripts/setup-project.bat
@@ -82,19 +82,27 @@ And follow the `.env.example` file in each directory to fill in the required env
 
 4. Run the project (use the correct script for your OS)
 
-Linux:
+##### Linux
 
 ```sh
 chmod +x ./scripts/start-project.sh && ./scripts/start-project.sh
 ```
 
-MacOS:
+If you get an error saying that a command was not found, edit the `start-project.sh` file and add your current terminal to the list of terminals (line 3).
+
+###### Example
+
+```sh
+local terminals=("x-terminal-emulator" "gnome-terminal" "konsole" "YourTerminal")
+```
+
+##### MacOS
 
 ```sh
 chmod +x ./scripts/macos-start-project.sh && ./scripts/macos-start-project.sh
 ```
 
-Windows:
+##### Windows
 
 ```sh
 ./scripts/start-project.bat
