@@ -96,6 +96,12 @@ If you get an error saying that a command was not found, edit the `start-project
 local terminals=("x-terminal-emulator" "gnome-terminal" "konsole" "YourTerminal")
 ```
 
+To find out the name of your terminal, run the following command:
+
+```sh
+ps -p $(ps -p $$ -o ppid=) -o comm=
+```
+
 ##### MacOS
 
 ```sh
