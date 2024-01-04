@@ -14,6 +14,16 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-PawShare-PawShareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-PawShare-PawShareTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		19558A1EE33649D39878B506 /* Laila-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C27CB63769840B3AEFE488B /* Laila-Light.ttf */; };
+		8620AFE175A24CA2B3A515F2 /* Laila-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A95ADA7B37D94D5580D575BF /* Laila-Medium.ttf */; };
+		C4A6E6DFEE384A86A5448264 /* Laila-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7845F978C894C02B1DB2C08 /* Laila-Regular.ttf */; };
+		EAB14CB1667B46BC9FBC00F4 /* Laila-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF465A1E4BA04E0CB9C27494 /* Laila-SemiBold.ttf */; };
+		9DF66861F7B34CDCA6EDCAB1 /* ZenKakuGothicNew-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA72E45F168E49B18FA702D1 /* ZenKakuGothicNew-Black.ttf */; };
+		4D313D7F03434FB8B32B3728 /* ZenKakuGothicNew-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF95B6956B074DF290AC5EA9 /* ZenKakuGothicNew-Bold.ttf */; };
+		566F9B80EF0D430AA403B638 /* ZenKakuGothicNew-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DC37F9F69D14FFF805E9650 /* ZenKakuGothicNew-Light.ttf */; };
+		8E31E7873DFE45A8B8D2B236 /* ZenKakuGothicNew-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26F91176926D47728615997A /* ZenKakuGothicNew-Medium.ttf */; };
+		82888256522E4231B3B6C38B /* ZenKakuGothicNew-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7844A30057A64B89899AE651 /* ZenKakuGothicNew-Regular.ttf */; };
+		E274F3EF9B3B4060B81E5B0F /* Laila-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 026CECD52AB642F5B2AE7C19 /* Laila-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +54,16 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PawShare/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-PawShare-PawShareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PawShare-PawShareTests.release.xcconfig"; path = "Target Support Files/Pods-PawShare-PawShareTests/Pods-PawShare-PawShareTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		5C27CB63769840B3AEFE488B /* Laila-Light.ttf */ = {isa = PBXFileReference; name = "Laila-Light.ttf"; path = "../src/assets/fonts/Laila-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A95ADA7B37D94D5580D575BF /* Laila-Medium.ttf */ = {isa = PBXFileReference; name = "Laila-Medium.ttf"; path = "../src/assets/fonts/Laila-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D7845F978C894C02B1DB2C08 /* Laila-Regular.ttf */ = {isa = PBXFileReference; name = "Laila-Regular.ttf"; path = "../src/assets/fonts/Laila-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CF465A1E4BA04E0CB9C27494 /* Laila-SemiBold.ttf */ = {isa = PBXFileReference; name = "Laila-SemiBold.ttf"; path = "../src/assets/fonts/Laila-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CA72E45F168E49B18FA702D1 /* ZenKakuGothicNew-Black.ttf */ = {isa = PBXFileReference; name = "ZenKakuGothicNew-Black.ttf"; path = "../src/assets/fonts/ZenKakuGothicNew-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CF95B6956B074DF290AC5EA9 /* ZenKakuGothicNew-Bold.ttf */ = {isa = PBXFileReference; name = "ZenKakuGothicNew-Bold.ttf"; path = "../src/assets/fonts/ZenKakuGothicNew-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9DC37F9F69D14FFF805E9650 /* ZenKakuGothicNew-Light.ttf */ = {isa = PBXFileReference; name = "ZenKakuGothicNew-Light.ttf"; path = "../src/assets/fonts/ZenKakuGothicNew-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		26F91176926D47728615997A /* ZenKakuGothicNew-Medium.ttf */ = {isa = PBXFileReference; name = "ZenKakuGothicNew-Medium.ttf"; path = "../src/assets/fonts/ZenKakuGothicNew-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7844A30057A64B89899AE651 /* ZenKakuGothicNew-Regular.ttf */ = {isa = PBXFileReference; name = "ZenKakuGothicNew-Regular.ttf"; path = "../src/assets/fonts/ZenKakuGothicNew-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		026CECD52AB642F5B2AE7C19 /* Laila-Bold.ttf */ = {isa = PBXFileReference; name = "Laila-Bold.ttf"; path = "../src/assets/fonts/Laila-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +142,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				1B7BAF24B41349BCA3AEAB07 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +168,24 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		1B7BAF24B41349BCA3AEAB07 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				5C27CB63769840B3AEFE488B /* Laila-Light.ttf */,
+				A95ADA7B37D94D5580D575BF /* Laila-Medium.ttf */,
+				D7845F978C894C02B1DB2C08 /* Laila-Regular.ttf */,
+				CF465A1E4BA04E0CB9C27494 /* Laila-SemiBold.ttf */,
+				CA72E45F168E49B18FA702D1 /* ZenKakuGothicNew-Black.ttf */,
+				CF95B6956B074DF290AC5EA9 /* ZenKakuGothicNew-Bold.ttf */,
+				9DC37F9F69D14FFF805E9650 /* ZenKakuGothicNew-Light.ttf */,
+				26F91176926D47728615997A /* ZenKakuGothicNew-Medium.ttf */,
+				7844A30057A64B89899AE651 /* ZenKakuGothicNew-Regular.ttf */,
+				026CECD52AB642F5B2AE7C19 /* Laila-Bold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -243,6 +282,16 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				19558A1EE33649D39878B506 /* Laila-Light.ttf in Resources */,
+				8620AFE175A24CA2B3A515F2 /* Laila-Medium.ttf in Resources */,
+				C4A6E6DFEE384A86A5448264 /* Laila-Regular.ttf in Resources */,
+				EAB14CB1667B46BC9FBC00F4 /* Laila-SemiBold.ttf in Resources */,
+				9DF66861F7B34CDCA6EDCAB1 /* ZenKakuGothicNew-Black.ttf in Resources */,
+				4D313D7F03434FB8B32B3728 /* ZenKakuGothicNew-Bold.ttf in Resources */,
+				566F9B80EF0D430AA403B638 /* ZenKakuGothicNew-Light.ttf in Resources */,
+				8E31E7873DFE45A8B8D2B236 /* ZenKakuGothicNew-Medium.ttf in Resources */,
+				82888256522E4231B3B6C38B /* ZenKakuGothicNew-Regular.ttf in Resources */,
+				E274F3EF9B3B4060B81E5B0F /* Laila-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

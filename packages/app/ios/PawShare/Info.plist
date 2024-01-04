@@ -26,14 +26,13 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -48,5 +47,18 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Laila-Light.ttf</string>
+		<string>Laila-Medium.ttf</string>
+		<string>Laila-Regular.ttf</string>
+		<string>Laila-SemiBold.ttf</string>
+		<string>ZenKakuGothicNew-Black.ttf</string>
+		<string>ZenKakuGothicNew-Bold.ttf</string>
+		<string>ZenKakuGothicNew-Light.ttf</string>
+		<string>ZenKakuGothicNew-Medium.ttf</string>
+		<string>ZenKakuGothicNew-Regular.ttf</string>
+		<string>Laila-Bold.ttf</string>
+	</array>
 </dict>
 </plist>
