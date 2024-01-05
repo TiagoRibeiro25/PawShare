@@ -11,7 +11,7 @@ const NavigateBackButton: React.FC = (): React.JSX.Element => {
 			className="rounded-full w-14 h-14 bg-accent-200"
 			onPress={(): void => navigation.navigate('OnBoarding' as never)}
 		>
-			<Text className="text-4xl text-center rotate-90 font-base text-secondary-500">
+			<Text className="text-4xl text-center rotate-90 font-base text-secondary-500 font-zen-kaku-gothic-new-medium">
 				{'<'}
 			</Text>
 		</Button>
