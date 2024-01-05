@@ -1,4 +1,4 @@
-import { APIResponse } from '../../../types';
+import { APIResponse } from '../../../../api/types';
 
 type User = {
 	id: number;
@@ -17,24 +17,11 @@ type User = {
 	created_at: string;
 	updated_at: string;
 	picture: string;
-
-	//TODO(tiago): Check if it's returning an array in the API (backend)
 	animals?: {
 		id: number;
 		name: string;
 		picture: string;
 	}[];
-};
-
-export type Response = APIResponse & {
-	data: {
-		id: number;
-		email: string;
-		display_name: string;
-		user_verified: boolean;
-		currency: string;
-		created_at: string;
-	};
 };
 
 export type GetLoggedUserData = APIResponse & {
