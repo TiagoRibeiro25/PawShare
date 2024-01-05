@@ -34,8 +34,11 @@ const SignIn: React.FC = (): React.JSX.Element => {
 			{},
 			{
 				onSuccess: async (resData: LoginData): Promise<void> => {
-					if (resData.success) {
+					if (resData.success && resData.data) {
+						// Update the global state
 						setLoggedUser(resData.data.user);
+
+						// Save the tokens on the device storage
 						utils.storage.set('authToken', resData.data.authToken);
 						utils.storage.set('refreshToken', resData.data.refreshToken);
 					}
@@ -51,6 +54,7 @@ const SignIn: React.FC = (): React.JSX.Element => {
 		>
 			<View className="items-center">
 				<NavigateBackButton />
+
 				<Text className="mt-6 text-2xl uppercase text-secondary-500 font-laila-bold">
 					Sign In
 				</Text>
