@@ -8,6 +8,7 @@ import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import { useUserContext } from '../../../context/user';
 import useLogin from '../../../hooks/reactQuery/auth/login';
+import { LoginData } from '../../../hooks/reactQuery/auth/login/types';
 import utils from '../../../utils';
 import NavigateBackButton from '../components/NavigateBackButton';
 
@@ -32,7 +33,7 @@ const SignIn: React.FC = (): React.JSX.Element => {
 		await mutateAsync(
 			{},
 			{
-				onSuccess: async (resData): Promise<void> => {
+				onSuccess: async (resData: LoginData): Promise<void> => {
 					if (resData.success) {
 						setLoggedUser(resData.data.user);
 						utils.storage.set('authToken', resData.data.authToken);

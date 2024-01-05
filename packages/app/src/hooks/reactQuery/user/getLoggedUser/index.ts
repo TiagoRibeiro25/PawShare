@@ -12,7 +12,7 @@ const useGetLoggedUser = (): UseQueryResult<GetLoggedUserData, Error> => {
 	return useQuery({
 		queryKey: ['loggedUser'],
 		queryFn: getLoggedUser,
-		retry(failureCount) {
+		retry(failureCount: number) {
 			return failureCount < 2; // Retry 3 times
 		},
 	});
