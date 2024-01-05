@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, ImageSourcePropType, Text, View } from 'react-native';
+import GestorRecognizer from 'react-native-swipe-gestures';
 import Swiper from 'react-native-swiper';
 import ArrowDownIcon from '../../assets/svg/arrow_down.svg';
 import Button from '../../components/Button';
@@ -29,7 +30,10 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 
 	return (
 		<View className="flex-1 py-8 bg-primary-50">
-			<View className="h-[90%]">
+			<GestorRecognizer
+				className="h-[90%]"
+				onSwipeUp={(): void => navigation.navigate('SignIn' as never)}
+			>
 				<Swiper
 					showsPagination={false}
 					showsButtons={true}
@@ -57,7 +61,7 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 						</View>
 					))}
 				</Swiper>
-			</View>
+			</GestorRecognizer>
 
 			{/* Sign In Button */}
 			<Button
