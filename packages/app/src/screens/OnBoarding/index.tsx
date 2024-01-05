@@ -69,7 +69,7 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 				onPress={() => navigation.navigate('SignIn' as never)}
 			>
 				<Icon className="mt-0.5" Icon={ArrowDownIcon} />
-				<Text className="text-lg font-medium text-black font-zen-kaku-gothic-new-bold">
+				<Text className="text-lg font-medium text-secondary-500 font-zen-kaku-gothic-new-bold">
 					Sign In
 				</Text>
 			</Button>

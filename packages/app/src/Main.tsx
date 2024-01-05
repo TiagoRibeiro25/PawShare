@@ -1,47 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import requests from './api/requests';
-import { GetLoggedUserData } from './api/requests/user/getLoggedUser/types';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import Error from './components/Error';
+import Loading from './components/Loading';
 import { useUserContext } from './context/user';
+import useGetLoggedUser from './hooks/reactQuery/user/getLoggedUser';
 import Navigation from './navigation';
 
 const MainApplication: React.FC = (): React.JSX.Element => {
 	const { setLoggedUser } = useUserContext();
+	const { data, isLoading, isError, error } = useGetLoggedUser();
 
-	const [loading, setLoading] = useState<boolean>(true);
-	const [error, setError] = useState<string | null>(null);
-
-	// If the user is logged in, get the user data
 	useEffect(() => {
-		setLoading(true);
-		setError(null);
-
-		(async (): Promise<void> => {
-			try {
-				const res: GetLoggedUserData = await requests.user.getLoggedUser();
-
-				if (res.success && res.data) {
-					setLoggedUser({
-						id: res.data.id,
-						coins: res.data.coins,
-					});
-				}
-			} catch (err: any) {
-				if (err.response?.status !== 401) {
-					setError('Looks like something went wrong. Please try again later.');
-				}
-			} finally {
-				setLoading(false);
-			}
-		})();
-	}, [setLoggedUser]);
+		if (data?.success && data?.data) {
+			return setLoggedUser({
+				id: data.data.id,
+				coins: data.data.coins,
+			});
+		}
+	}, [data, error, isError, setLoggedUser]);
 
 	return (
-		<View className="w-full h-full">
-			{loading && <Text>Loading...</Text>}
-			{error && <Text>{error}</Text>}
-
-			{!loading && !error && <Navigation />}
+		<View className="w-full h-full bg-primary-50">
+			{isLoading && <Loading />}
+			{isError && error.message.split(' ').at(-1) !== '401' && <Error />}
+			{!isLoading && !(isError && error.message.split(' ').at(-1) !== '401') && <Navigation />}
 		</View>
 	);
 };
