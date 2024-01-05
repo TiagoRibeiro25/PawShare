@@ -6,7 +6,7 @@ export type BodyData = {
 	remember_me: boolean;
 };
 
-export type LoginData = APIResponse & {
+export interface LoginData extends APIResponse {
 	data: {
 		authToken: string;
 		refreshToken: string;
@@ -15,4 +15,4 @@ export type LoginData = APIResponse & {
 			coins: number;
 		};
 	};
-};
+}

@@ -24,6 +24,6 @@ type User = {
 	}[];
 };
 
-export type GetLoggedUserData = APIResponse & {
+export interface GetLoggedUserData extends APIResponse {
 	data: User;
-};
+}
