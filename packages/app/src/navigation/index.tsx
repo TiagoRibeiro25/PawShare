@@ -15,14 +15,8 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	const { loggedUser } = useUserContext();
 
 	useEffect(() => {
-		// If the user is not logged in, navigate to SignIn
-		if (!loggedUser) {
-			navigation.navigate('OnBoarding' as never);
-		}
-		// If the user is logged in, navigate to AdoptionFeed
-		else {
-			navigation.navigate('AdoptionFeed' as never);
-		}
+		// If the user is logged in, redirect him to the AdoptionFeed screen and vice versa
+		navigation.navigate(!loggedUser ? ('OnBoarding' as never) : ('AdoptionFeed' as never));
 	}, [loggedUser, navigation]);
 
 	return (
