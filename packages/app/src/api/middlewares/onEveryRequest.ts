@@ -5,6 +5,8 @@ export default (api: AxiosInstance): void => {
 	// Add the authentification tokens to the headers
 	api.interceptors.request.use(
 		(res: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+			console.log('Request ->', res.method?.toUpperCase(), res.url);
+
 			const authToken: string | undefined = utils.storage.getString('authToken');
 			const refreshToken: string | undefined = utils.storage.getString('refreshToken');
 

@@ -1,14 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View } from 'react-native';
-import Navigation from './navigation';
+import MainApplication from './Main';
+import { UserProvider } from './context/user';
 
 const App: React.FC = (): React.JSX.Element => {
 	return (
 		<NavigationContainer>
-			<View className="w-full h-full">
-				<Navigation />
-			</View>
+			<UserProvider>
+				<MainApplication />
+			</UserProvider>
 		</NavigationContainer>
 	);
 };

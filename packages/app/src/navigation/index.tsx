@@ -1,22 +1,46 @@
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import config from '../config';
+import { useUserContext } from '../context/user';
+import AdoptionFeed from '../screens/Adoption/Feed';
+import SignIn from '../screens/Auth/SignIn';
 import OnBoarding from '../screens/OnBoarding';
-import SignIn from '../screens/SignIn';
 import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation: React.FC = (): React.JSX.Element => {
+	const navigation = useNavigation();
+	const { loggedUser } = useUserContext();
+
+	useEffect(() => {
+		// If the user is not logged in, navigate to SignIn
+		if (!loggedUser) {
+			navigation.navigate('OnBoarding' as never);
+		}
+		// If the user is logged in, navigate to AdoptionFeed
+		else {
+			navigation.navigate('AdoptionFeed' as never);
+		}
+	}, [loggedUser, navigation]);
+
 	return (
 		<Stack.Navigator initialRouteName="OnBoarding" screenOptions={config.navigator}>
-			<Stack.Screen name="OnBoarding" component={OnBoarding} />
+			<Stack.Screen name="OnBoarding" component={!loggedUser ? OnBoarding : AdoptionFeed} />
 
 			{/* Auth */}
 			<Stack.Screen
 				name="SignIn"
-				component={SignIn}
+				component={!loggedUser ? SignIn : AdoptionFeed}
 				options={{ animation: 'slide_from_bottom' }}
+			/>
+
+			{/* Adoption */}
+			<Stack.Screen
+				name="AdoptionFeed"
+				component={loggedUser ? AdoptionFeed : OnBoarding}
+				options={{ animation: 'slide_from_right' }}
 			/>
 		</Stack.Navigator>
 	);
