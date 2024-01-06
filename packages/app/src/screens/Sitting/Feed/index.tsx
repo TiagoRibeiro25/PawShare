@@ -3,8 +3,8 @@ import { Text, View } from 'react-native';
 
 const Feed: React.FC = (): React.JSX.Element => {
 	return (
-		<View className="flex-1 pt-5 bg-primary-50">
-			<Text>Adoption Feed</Text>
+		<View className="flex-1 py-5 bg-primary-50">
+			<Text>Sitting Feed</Text>
 		</View>
 	);
 };
