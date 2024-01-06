@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper';
 import ArrowDownIcon from '../../assets/svg/arrow_down.svg';
 import Button from '../../components/Button';
 import Icon from '../../components/Icon';
+import config from '../../config';
 import slides from '../../data/onboarding.json';
 import SwipeButton from './components/SwipeButton';
 import { Slide } from './types';
@@ -32,10 +33,13 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 		<View className="flex-1 py-8 bg-primary-50">
 			<GestorRecognizer
 				className="h-[90%]"
-				onSwipeUp={(): void => navigation.navigate('SignIn' as never)}
+				onSwipeUp={(): void => navigation.navigate('Auth' as never)}
 			>
 				<Swiper
-					showsPagination={false}
+					showsPagination={true}
+					dotColor={config.swiper.dotColor}
+					activeDotColor={config.swiper.activeDotColor}
+					loop={false}
 					showsButtons={true}
 					prevButton={<SwipeButton direction="prev" />}
 					nextButton={<SwipeButton direction="next" />}
@@ -66,7 +70,7 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 			{/* Sign In Button */}
 			<Button
 				className="p-3 mt-4 bg-accent-500 min-w-[100px] w-1/2 self-center space-x-3"
-				onPress={() => navigation.navigate('SignIn' as never)}
+				onPress={() => navigation.navigate('Auth' as never)}
 			>
 				<Icon className="mt-0.5" Icon={ArrowDownIcon} />
 				<Text className="text-lg font-medium text-secondary-500 font-zen-kaku-gothic-new-bold">
