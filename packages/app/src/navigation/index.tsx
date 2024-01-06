@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import config from '../config';
 import { useUserContext } from '../context/user';
 import AdoptionFeed from '../screens/Adoption/Feed';
-import SignIn from '../screens/Auth/SignIn';
+import Auth from '../screens/Auth';
 import OnBoarding from '../screens/OnBoarding';
 import { RootStackParamList } from './types';
 
@@ -25,8 +25,8 @@ const Navigation: React.FC = (): React.JSX.Element => {
 
 			{/* Auth */}
 			<Stack.Screen
-				name="SignIn"
-				component={!loggedUser ? SignIn : AdoptionFeed}
+				name="Auth"
+				component={!loggedUser ? Auth : AdoptionFeed}
 				options={{ animation: 'slide_from_bottom' }}
 			/>
 
