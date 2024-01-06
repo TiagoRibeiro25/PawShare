@@ -9,9 +9,7 @@ import { Screen } from './types';
 const NavBar: React.FC = (): React.JSX.Element => {
 	const navigation = useNavigation();
 
-	const [currentScreen, setCurrentScreen] = useState<string>(
-		utils.navigation.getCurrentScreen(navigation),
-	);
+	const [currentScreen, setCurrentScreen] = useState<string>(screens[0].name);
 
 	const navigateToScreen = (screenName: string) => {
 		navigation.navigate(screenName as never);
@@ -20,8 +18,18 @@ const NavBar: React.FC = (): React.JSX.Element => {
 
 	useEffect(() => {
 		// Everytime current navigation screen changes, update the current screen
-		setCurrentScreen(utils.navigation.getCurrentScreen(navigation));
-	}, [navigation]);
+		const newScreen = utils.navigation.getCurrentScreen(navigation);
+
+		if (
+			newScreen && // If newScreen is not undefined
+			newScreen !== currentScreen && // If newScreen is different from currentScreen
+			screens.map((screen: Screen) => screen.name).includes(newScreen) // If newScreen is a valid screen
+		) {
+			setCurrentScreen(newScreen);
+		}
+
+		console.log('Current Screen: ', newScreen);
+	}, [currentScreen, navigation]);
 
 	return (
 		<View className="flex flex-row items-center justify-between w-full h-20 bg-secondary-500">
