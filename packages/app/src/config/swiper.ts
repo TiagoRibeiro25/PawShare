@@ -1,5 +1,5 @@
 const options = {
-	dotColor: '#F8B436',
+	dotColor: '#FBD49D',
 	activeDotColor: '#2B2A63',
 };
 

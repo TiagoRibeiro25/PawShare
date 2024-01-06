@@ -30,7 +30,7 @@ const Input: React.FC<Props> = ({
 			<TextInput
 				ref={inputRef}
 				placeholder={placeholder}
-				className={`text-lg font-zen-kaku-gothic-new-medium  ${textInputClassName}`}
+				className={`text-lg font-zen-kaku-gothic-new-medium ${textInputClassName}`}
 				value={value}
 				onChangeText={onChange}
 				secureTextEntry={hideText || false}
