@@ -39,29 +39,24 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 		}
 
 		// Send the request
-		try {
-			await mutateAsync(
-				{},
-				{
-					onSuccess: (resData: LoginData): void => {
-						if (resData.success && resData.data) {
-							// Update the global state
-							setLoggedUser(resData.data.user);
+		await mutateAsync(
+			{},
+			{
+				onSuccess: (resData: LoginData): void => {
+					if (resData.success && resData.data) {
+						// Update the global state
+						setLoggedUser(resData.data.user);
 
-							// Save the tokens on the device storage
-							utils.storage.set('authToken', resData.data.authToken);
-							utils.storage.set('refreshToken', resData.data.refreshToken);
-						}
-					},
-
-					onError: (_err: Error): void => {
+						// Save the tokens on the device storage
+						utils.storage.set('authToken', resData.data.authToken);
+						utils.storage.set('refreshToken', resData.data.refreshToken);
+					} else {
+						setValidationError(resData.message);
 						setPassword('');
-					},
+					}
 				},
-			);
-		} catch (_err) {
-			// Do nothing
-		}
+			},
+		);
 	};
 
 	return (
