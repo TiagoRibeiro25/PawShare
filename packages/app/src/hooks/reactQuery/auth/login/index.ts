@@ -4,8 +4,12 @@ import api from '../../../../api';
 import { BodyData, LoginData } from './types';
 
 const login = async (bodyData: BodyData): Promise<LoginData> => {
-	const { data }: AxiosResponse<LoginData> = await api.post('/auth/login', bodyData);
-	return data;
+	try {
+		const { data }: AxiosResponse<LoginData> = await api.post('/auth/login', bodyData);
+		return data;
+	} catch (error: any) {
+		return error?.response?.data || { success: false, message: 'An error has occurred' };
+	}
 };
 
 const useLogin = (bodyData: BodyData): UseMutationResult<LoginData, Error> => {

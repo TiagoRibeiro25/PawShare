@@ -1,5 +1,17 @@
 const getMessage = (error: any): string => {
-	return error?.response?.data?.data[0]?.msg || 'An error occurred';
-};
+	console.log(error);
 
+	if (
+		error &&
+		error.response &&
+		error.response.data &&
+		error.response.data.data &&
+		error.response.data.data[0] &&
+		error.response.data.data[0].msg
+	) {
+		return error.response.data.data[0].msg;
+	} else {
+		return 'An error occurred';
+	}
+};
 export default { getMessage };

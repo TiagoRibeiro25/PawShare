@@ -32,7 +32,7 @@ const NavBar: React.FC = (): React.JSX.Element => {
 	}, [currentScreen, navigation]);
 
 	return (
-		<View className="flex flex-row items-center justify-between w-full h-20 bg-secondary-500">
+		<View className="flex flex-row items-center justify-between w-full h-[72px] bg-secondary-500">
 			{screens.map((screen: Screen) => (
 				<TouchableOpacity
 					key={screen.name}
