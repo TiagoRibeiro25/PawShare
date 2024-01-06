@@ -12,6 +12,8 @@ import EmptyState from './components/EmptyState';
 import Loading from './components/Loading';
 
 // TODO(tiago): Filters functionality
+// TODO(tiago): Move all the logic related to infinite scroll to a custom hook
+
 const Feed: React.FC = (): React.JSX.Element => {
 	const [page, setPage] = useState<number>(1);
 	const [adoptions, setAdoptions] = useState<Adoption[]>([]);
