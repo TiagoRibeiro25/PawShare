@@ -4,6 +4,7 @@ import EmailIcon from '../../../../assets/svg/email.svg';
 import PasswordIcon from '../../../../assets/svg/password.svg';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
+import SelectBoxInput from '../../../../components/SelectBoxInput';
 import { useUserContext } from '../../../../context/user';
 import useLogin from '../../../../hooks/reactQuery/auth/login';
 import { LoginData } from '../../../../hooks/reactQuery/auth/login/types';
@@ -14,12 +15,13 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+	const [rememberMe, setRememberMe] = useState<boolean>(false);
 	const [validationError, setValidationError] = useState<string>('');
 
 	const { status, mutateAsync, error } = useLogin({
 		email: email.trim(),
 		password,
-		remember_me: false,
+		remember_me: rememberMe,
 	});
 
 	const handleSignIn = async (): Promise<void> => {
@@ -89,6 +91,14 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 					iconClassName="mt-1 scale-110"
 					textInputClassName="w-44"
 					hideText
+				/>
+
+				{/* Select Box */}
+				<SelectBoxInput
+					value={rememberMe}
+					onPress={(newValue: boolean): void => setRememberMe(newValue)}
+					text="Remember me"
+					className="mt-6"
 				/>
 			</View>
 
