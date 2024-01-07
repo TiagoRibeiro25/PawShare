@@ -1,8 +1,14 @@
 import { APIResponse } from '../../../../api/types';
+import { Gender, Size } from '../../../../context/adoption/feed/types';
 
 export type Params = {
 	page: number;
 	limit: number;
+	city: string;
+	type: string;
+	size: Size;
+	gender: Gender;
+	color: string;
 };
 
 export type Adoption = {

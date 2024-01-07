@@ -17,6 +17,7 @@ const MainApplication: React.FC = (): React.JSX.Element => {
 			setLoggedUser({
 				id: data.data.id,
 				coins: data.data.coins,
+				country: data.data.country,
 			});
 		}
 	}, [data, error, isError, setLoggedUser]);
@@ -24,7 +25,7 @@ const MainApplication: React.FC = (): React.JSX.Element => {
 	return (
 		<View className="w-full h-full bg-primary-50">
 			{isLoading && <Loading />}
-			{isError && error.message.split(' ').at(-1) !== '401' && <Error />}
+			{!isLoading && isError && error.message.split(' ').at(-1) !== '401' && <Error />}
 			{!isLoading && !(isError && error.message.split(' ').at(-1) !== '401') && (
 				<>
 					{loggedUser && <TopBar />}

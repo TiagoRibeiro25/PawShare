@@ -1,4 +1,5 @@
 import { APIResponse } from '../../../../api/types';
+import { LoggedUser } from '../../../../context/user/types';
 
 export type BodyData = {
 	email: string;
@@ -10,9 +11,6 @@ export interface LoginData extends APIResponse {
 	data: {
 		authToken: string;
 		refreshToken: string;
-		user: {
-			id: number;
-			coins: number;
-		};
+		user: LoggedUser;
 	};
 }

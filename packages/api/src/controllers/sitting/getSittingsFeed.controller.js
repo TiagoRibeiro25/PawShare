@@ -80,10 +80,9 @@ async function getSittingsFeed(req, res) {
 		} = req.query;
 
 		const loggedUser = await db.mysql.User.findByPk(req.userId);
-		const citiesFromUserCountry = utils.cities.getCitiesFromCountry(loggedUser.country);
 
 		// Check if the city exists in the user's country
-		if (city && !citiesFromUserCountry.includes(city)) {
+		if (city && !utils.cities.getCitiesFromCountry(loggedUser.country).includes(city)) {
 			utils.handleResponse(
 				res,
 				utils.http.StatusForbidden,

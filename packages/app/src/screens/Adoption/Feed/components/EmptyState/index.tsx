@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 
 const EmptyState: React.FC = (): React.JSX.Element => {
 	return (
-		<View className="justify-center flex-1 px-5">
+		<View className="items-center justify-center flex-1 px-5 ">
 			<FastImage
 				source={require('../../../../../assets/images/adoption_feed/empty_state.png')}
 				className="w-full h-56"

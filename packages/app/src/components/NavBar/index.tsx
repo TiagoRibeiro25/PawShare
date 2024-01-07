@@ -27,8 +27,6 @@ const NavBar: React.FC = (): React.JSX.Element => {
 		) {
 			setCurrentScreen(newScreen);
 		}
-
-		console.log('Current Screen: ', newScreen);
 	}, [currentScreen, navigation]);
 
 	return (

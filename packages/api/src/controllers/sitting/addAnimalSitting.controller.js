@@ -94,12 +94,8 @@ async function addAnimalSitting(req, res) {
 			);
 		}
 
-		const citiesFromUserCountry = utils.cities.getCitiesFromCountry(
-			checkAnimal.user.country,
-		);
-
 		//  Checking if the city is from the logged user country
-		if (!citiesFromUserCountry.includes(city)) {
+		if (!utils.cities.getCitiesFromCountry(checkAnimal.user.country).includes(city)) {
 			return utils.handleResponse(
 				res,
 				utils.http.StatusBadRequest,

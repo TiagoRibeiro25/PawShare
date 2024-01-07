@@ -4,7 +4,7 @@ const rateLimitConfig = {
 	windowMs: 1 * 60 * 1000, // 1 minute
 
 	// This value represents the maximum number of requests allowed per IP address within the specified windowMs.
-	max: process.env.NODE_ENV === "production" ? 30 : 1000,
+	max: process.env.NODE_ENV === "production" ? 40 : 1000,
 
 	// Enabling this option allows the API to return rate limit information in the RateLimit-* headers. These headers can be useful for clients to understand their rate limit status and adjust their behavior accordingly.
 	standardHeaders: true,
