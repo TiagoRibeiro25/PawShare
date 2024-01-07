@@ -4,9 +4,33 @@ import api from '../../../../api';
 import { GetAdoptionFeedData, Params } from './types';
 
 const getAdoptionFeedData = async (params: Params): Promise<GetAdoptionFeedData> => {
-	const { data }: AxiosResponse<GetAdoptionFeedData> = await api.get(
-		`/adoption?page=${params.page}&limit=${params.limit}`,
-	);
+	// let url = `/adoption?page=${params.page}&limit=${params.limit}`;
+	const url = new URL('/adoption');
+
+	url.searchParams.append('page', params.page.toString());
+	url.searchParams.append('limit', params.limit.toString());
+
+	if (params.type.toLowerCase() !== 'any') {
+		url.searchParams.append('type', params.type);
+	}
+
+	if (params.city.toLowerCase() !== 'any') {
+		url.searchParams.append('city', params.city);
+	}
+
+	if (params.size.toLowerCase() !== 'any') {
+		url.searchParams.append('size', params.size);
+	}
+
+	if (params.gender.toLowerCase() !== 'any') {
+		url.searchParams.append('gender', params.gender);
+	}
+
+	if (params.color.toLowerCase() !== 'any') {
+		url.searchParams.append('color', params.color);
+	}
+
+	const { data }: AxiosResponse<GetAdoptionFeedData> = await api.get(url.toString());
 	return data;
 };
 
