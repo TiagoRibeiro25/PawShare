@@ -40,6 +40,7 @@ const useGetAdoptionFeedData = (
 	return useQuery({
 		queryKey: ['adoptionFeedData', params.page, params.limit],
 		queryFn: async () => getAdoptionFeedData(params),
+		retry: false,
 	});
 };
 
