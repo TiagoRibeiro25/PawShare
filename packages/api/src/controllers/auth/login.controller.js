@@ -63,7 +63,6 @@ async function login(req, res) {
 		utils.handleResponse(res, utils.http.StatusOK, "Login successful", {
 			authToken,
 			refreshToken,
-			// TODO(tiago): Update swagger docs
 			user: {
 				id: user.id,
 				coins: user.coins,

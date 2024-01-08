@@ -86,17 +86,19 @@ responses:
                   type: string
                   example: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
                 animals:
-                  type: object
-                  properties:
-                    id:
-                      type: number
-                      example: 1
-                    name:
-                      type: string
-                      example: Ziggy
-                    picture:
-                      type: string
-                      example: "https://s3.amazonaws.com/media.wikiaves.com.br/images/6211/1126446_00e925b68e1db8f3679fa346e263c3c6.jpg"
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: Ziggy
+                      picture:
+                        type: string
+                        example: "https://s3.amazonaws.com/media.wikiaves.com.br/images/6211/1126446_00e925b68e1db8f3679fa346e263c3c6.jpg"
   "400":
     description: Bad Request
     content:

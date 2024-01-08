@@ -50,6 +50,12 @@ responses:
                 properties:
                   authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE2OTg0MDU4ODIsImV4cCI6MTY5ODQwOTQ4Mn0.o_k5yMX1w-y6Vnicscdcyd2BacFitBiExx5OreezMnM
                   refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJlbWVtYmVyTWUiOmZhbHNlLCJpYXQiOjE2OTg0MDU4ODIsImV4cCI6MTY5ODQ5MjI4Mn0.VMkxKbQBopfJBnOITugBHbM_D0JxhmH_AL7O0tDaV4E
+                  user:
+                    id: 1
+                    coins: 30
+                    country:
+                      name: United States
+                      code: US
   "400":
     description: Bad Request
     content:
