@@ -4,4 +4,9 @@ export default {
 			defaultLimit: 6,
 		},
 	},
+	cities: {
+		filter: {
+			defaultLimit: 100,
+		},
+	},
 };

@@ -4,7 +4,6 @@ import api from '../../../../api';
 import { GetAdoptionFeedData, Params } from './types';
 
 const getAdoptionFeedData = async (params: Params): Promise<GetAdoptionFeedData> => {
-	// let url = `/adoption?page=${params.page}&limit=${params.limit}`;
 	const url = new URL('/adoption');
 
 	url.searchParams.append('page', params.page.toString());

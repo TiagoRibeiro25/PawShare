@@ -7,6 +7,7 @@ const storeRoutes = require("./store.routes");
 const reviewRoutes = require("./review.routes");
 const animalRoutes = require("./animal.routes");
 const sittingRoutes = require("./sitting.routes");
+const citiesRoutes = require("./cities.routes");
 const utils = require("../utils");
 const swaggerUi = require("swagger-ui-express");
 const config = require("../config");
@@ -40,6 +41,9 @@ router.use("/reviews", reviewRoutes);
 
 // Animal Routes
 router.use("/animals", animalRoutes);
+
+// Cities Routes
+router.use("/cities", citiesRoutes);
 
 // Default Route
 router.route("/").get((_req, res) => {

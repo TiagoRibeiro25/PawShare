@@ -10,6 +10,7 @@ import colors from '../../../../../data/colors.json';
 import genders from '../../../../../data/genders.json';
 import sizes from '../../../../../data/sizes.json';
 import utils from '../../../../../utils';
+import CitiesInput from './components/CitiesInput';
 import NavigateBackButton from './components/NavigateBackButton';
 import { Props } from './types';
 
@@ -18,7 +19,7 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 	const { loggedUser } = useUserContext();
 
 	const [filterType, setFilterType] = useState<string>('any');
-	const [filterRegion, setFilterRegion] = useState<string>('any');
+	const [filterRegion, setFilterRegion] = useState<string>('');
 	const [filterSize, setFilterSize] = useState<string>('any');
 	const [filterGender, setFilterGender] = useState<string>('any');
 	const [filterColor, setFilterColor] = useState<string>('any');
@@ -56,13 +57,9 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 				/>
 
 				{/* Region */}
-				<DropDownSelectList
+				<CitiesInput
 					className="self-center mt-6 w-52"
-					label="Region"
-					searchPlaceholder="Region"
-					data={[{ key: 'any', value: 'any' }]}
 					setSelected={(val: string) => setFilterRegion(val)}
-					defaultOption={{ key: 'any', value: 'any' }}
 				/>
 
 				{/* Animal Size */}
