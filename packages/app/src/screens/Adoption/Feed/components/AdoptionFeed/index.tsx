@@ -129,7 +129,7 @@ const AdoptionFeed: React.FC<Props> = ({
 					))}
 
 				{(isLoading || isRefetching) && <Loading />}
-				{!isLoading && !isRefetching && adoptions.length === 0 && <EmptyState />}
+				{!isLoading && !isRefetching && isError && <EmptyState />}
 
 				{/* If it reached the end and there's no more data to fetch */}
 				{!isLoading && adoptions.length > 0 && adoptions.length >= total && (

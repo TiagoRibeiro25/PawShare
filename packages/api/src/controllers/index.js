@@ -6,5 +6,16 @@ const store = require("./store");
 const review = require("./review");
 const animals = require("./animals");
 const sitting = require("./sitting");
+const cities = require("./cities");
 
-module.exports = { users, adoption, auth, cronjob, store, review, animals, sitting };
+module.exports = {
+	users,
+	adoption,
+	auth,
+	cronjob,
+	store,
+	review,
+	animals,
+	sitting,
+	cities,
+};

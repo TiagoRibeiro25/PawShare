@@ -5,6 +5,7 @@ const store = require("./store");
 const review = require("./review");
 const sitting = require("./sitting");
 const animals = require("./animals");
+const cities = require("./cities");
 const { validationResult } = require("express-validator");
 const utils = require("../utils");
 
@@ -40,4 +41,5 @@ module.exports = {
 	review,
 	sitting,
 	animals,
+	cities,
 };

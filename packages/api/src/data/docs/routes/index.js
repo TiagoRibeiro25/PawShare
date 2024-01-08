@@ -8,6 +8,7 @@ const store = require("./store");
 const review = require("./review");
 const adoption = require("./adoption");
 const sitting = require("./sitting");
+const cities = require("./cities");
 
 const getHelloWorld = YAML.parse(
 	fs.readFileSync("./src/data/docs/routes/default/get_hello_world.yml", "utf8"),
@@ -26,4 +27,5 @@ module.exports = {
 	review,
 	adoption,
 	sitting,
+	cities,
 };

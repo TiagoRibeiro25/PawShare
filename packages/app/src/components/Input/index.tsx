@@ -3,7 +3,6 @@ import { TextInput, View } from 'react-native';
 import Icon from '../Icon';
 import { Props } from './types';
 
-// TODO(tiago): If the input is on focus and the user clicks outside of it, the input should stop being on focus
 const Input: React.FC<Props> = ({
 	placeholder,
 	hideText,
@@ -30,7 +29,7 @@ const Input: React.FC<Props> = ({
 			<TextInput
 				ref={inputRef}
 				placeholder={placeholder}
-				className={`text-lg font-zen-kaku-gothic-new-medium ${textInputClassName}`}
+				className={`text-lg font-zen-kaku-gothic-new-medium w-full ${textInputClassName}`}
 				value={value}
 				onChangeText={onChange}
 				secureTextEntry={hideText || false}

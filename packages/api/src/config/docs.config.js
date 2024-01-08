@@ -18,6 +18,11 @@ const swaggerDefinition = {
 			get: routeDocs.default.notFound,
 		},
 
+		// CITIES
+		"/cities": {
+			get: routeDocs.cities.getCities,
+		},
+
 		// CRONJOB
 		"/cronjob/unverified-users": {
 			delete: routeDocs.cronjob.deleteUnverifiedUsers,
