@@ -76,7 +76,6 @@ async function getAdoptionsFeed(req, res) {
 			return;
 		}
 
-		// TODO(tiago): Fix getQuery throwing an error
 		const adoptions = await db.mysql.Adoption.findAndCountAll({
 			where: { ...getQuery({ city, type, size, gender, color }, loggedUser.country) },
 			limit: limit,
