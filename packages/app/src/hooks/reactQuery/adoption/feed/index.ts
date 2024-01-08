@@ -13,7 +13,7 @@ const getAdoptionFeedData = async (params: Params): Promise<GetAdoptionFeedData>
 		url.searchParams.append('type', params.type);
 	}
 
-	if (params.city.trim().length > 0) {
+	if (params.city.trim().length > 0 && params.city.trim().toLowerCase() !== 'any') {
 		url.searchParams.append('city', params.city);
 	}
 
