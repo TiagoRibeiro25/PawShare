@@ -1,6 +1,4 @@
 const getMessage = (error: any): string => {
-	console.log(error);
-
 	if (
 		error &&
 		error.response &&

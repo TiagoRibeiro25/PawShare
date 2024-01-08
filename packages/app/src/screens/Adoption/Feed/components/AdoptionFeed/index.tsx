@@ -67,18 +67,23 @@ const AdoptionFeed: React.FC<Props> = ({
 	};
 
 	useEffect(() => {
+		if (isLoading || isRefetching) {
+			return;
+		}
+
 		if (data && data?.data.adoptions.length > 0) {
 			// Check if there are duplicates (if so, remove them)
-			const filteredAdoptions = data.data.adoptions.filter(
-				(adoption: Adoption) => !adoptions.includes(adoption),
-			);
+			const filteredAdoptions = data.data.adoptions.filter((adoption: Adoption) => {
+				return adoptions.findIndex((a: Adoption) => a.id === adoption.id) === -1;
+			});
 
-			setAdoptions((prev) => [...prev, ...filteredAdoptions]);
+			setAdoptions((prev: Adoption[]) => [...prev, ...filteredAdoptions]);
 			setTotal(data.data.total);
 		}
 
 		if (isError) {
 			setAdoptions([]);
+			setTotal(0);
 		}
 
 		//! Do not add categories to the dependencies array (it will cause an infinite loop)

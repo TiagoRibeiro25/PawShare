@@ -4,8 +4,6 @@ import utils from '../../utils';
 export default (api: AxiosInstance): void => {
 	api.interceptors.response.use(
 		(res: AxiosResponse): AxiosResponse => {
-			console.log('Response ->', res.config.url, res.status);
-
 			// Check if the tokens have been updated (if so, update them in the storage)
 			const authToken: string | undefined = res.headers['x-auth-token'];
 			const refreshToken: string | undefined = res.headers['x-refresh-token'];
@@ -22,8 +20,6 @@ export default (api: AxiosInstance): void => {
 		},
 
 		(err: any) => {
-			console.log('Response ->', err.config.url, err.response?.status);
-
 			if (err.response?.status === 401) {
 				utils.storage.delete('authToken');
 				utils.storage.delete('refreshToken');
