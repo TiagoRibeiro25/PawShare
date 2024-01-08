@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Keyboard, Text, TouchableOpacity, View } from 'react-native';
-import Input from '../../../../../../../components/Input';
-import useGetCitiesData from '../../../../../../../hooks/reactQuery/cities';
+import useGetCitiesData from '../../hooks/reactQuery/cities';
+import Input from '../Input';
 import { Props } from './types';
 
 const PREFIX_LENGTH = 5;

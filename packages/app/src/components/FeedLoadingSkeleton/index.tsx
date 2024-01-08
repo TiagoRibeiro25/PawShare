@@ -22,7 +22,7 @@ const Block: React.FC = (): React.JSX.Element => {
 	);
 };
 
-const Loading: React.FC = (): React.JSX.Element => {
+const FeedLoadingSkeleton: React.FC = (): React.JSX.Element => {
 	return (
 		<>
 			{Array.from({ length: 2 }).map((_, index) => (
@@ -32,4 +32,4 @@ const Loading: React.FC = (): React.JSX.Element => {
 	);
 };
 
-export default Loading;
+export default FeedLoadingSkeleton;

@@ -9,11 +9,15 @@ export type Params = {
 	size: Size;
 	gender: Gender;
 	color: string;
+	coins: number;
 };
 
-export type Adoption = {
+export type Sitting = {
 	id: number;
 	city: string;
+	coins: number;
+	start_date: string;
+	end_date: string;
 	animal: {
 		id: number;
 		name: string;
@@ -25,9 +29,9 @@ export type Adoption = {
 	created_at: string;
 };
 
-export interface GetAdoptionFeedData extends APIResponse {
+export interface GetSittingFeedData extends APIResponse {
 	data: {
-		adoptions: Adoption[];
+		sittings: Sitting[];
 		total: number;
 	};
 }

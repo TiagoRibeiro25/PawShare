@@ -4,7 +4,7 @@ import Button from '../../../../../components/Button';
 import CitiesInput from '../../../../../components/CitiesInput';
 import DropDownSelectList from '../../../../../components/DropDownSelectList';
 import NavigateBackButton from '../../../../../components/FilterNavigateBackButton';
-import { useAdoptionFeedContext } from '../../../../../context/adoption/feed';
+import { useSittingFeedContext } from '../../../../../context/sitting/feed';
 import { useUserContext } from '../../../../../context/user';
 import animals from '../../../../../data/animals.json';
 import colors from '../../../../../data/colors.json';
@@ -15,7 +15,7 @@ import utils from '../../../../../utils';
 import { Props } from './types';
 
 const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
-	const { setColor, setGender, setRegion, setSize, setType } = useAdoptionFeedContext();
+	const { setColor, setGender, setRegion, setSize, setType } = useSittingFeedContext();
 	const { loggedUser } = useUserContext();
 
 	const [filterType, setFilterType] = useState<string>('any');

@@ -44,7 +44,7 @@ function getQuery(options, userCountry) {
 			// Check if the key is related to the animal table and use the correct prefix.
 			const isAnimalKey = ["type", "size", "gender", "color"].includes(key);
 			const prefix = isAnimalKey ? "animal." : "";
-			query[`${prefix}${key}`] = value;
+			query[`$${prefix}${key}$`] = value;
 		}
 	}
 

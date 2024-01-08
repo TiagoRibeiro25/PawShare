@@ -1,6 +1,6 @@
 import { Gender, Size } from '../../../types';
 
-export type AdoptionFeedContextProps = {
+export type SittingFeedContextProps = {
 	type: string;
 	setType: React.Dispatch<React.SetStateAction<string>>;
 
@@ -15,4 +15,7 @@ export type AdoptionFeedContextProps = {
 
 	color: string;
 	setColor: React.Dispatch<React.SetStateAction<string>>;
+
+	coins: number;
+	setCoins: React.Dispatch<React.SetStateAction<number>>;
 };

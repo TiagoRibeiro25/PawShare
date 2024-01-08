@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, createContext, useMemo, useState } from 'react';
-import { AdoptionFeedContextProps, Gender, Size } from './types';
+import { Gender, Size } from '../../../types';
+import { AdoptionFeedContextProps } from './types';
 
 const AdoptionFeedContext = createContext<AdoptionFeedContextProps | undefined>(undefined);
 

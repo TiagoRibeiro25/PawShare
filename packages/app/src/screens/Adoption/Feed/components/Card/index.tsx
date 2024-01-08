@@ -41,7 +41,7 @@ const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
 						</Text>
 					</View>
 					<Text className="ml-6 text-base text-secondary-500 font-zen-kaku-gothic-new-regular">
-						{adoption.animal.description}
+						{adoption.animal.description || 'No description provided'}
 					</Text>
 				</View>
 			</>
