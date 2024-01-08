@@ -1,6 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect } from 'react';
+import React from 'react';
 import config from '../config';
 import { useUserContext } from '../context/user';
 import AdoptionFeed from '../screens/Adoption/Feed';
@@ -14,13 +13,7 @@ import { RootStackParamList } from './types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation: React.FC = (): React.JSX.Element => {
-	const navigation = useNavigation();
 	const { loggedUser } = useUserContext();
-
-	useEffect(() => {
-		// If the user is logged in, redirect him to the AdoptionFeed screen and vice versa
-		navigation.navigate(!loggedUser ? ('OnBoarding' as never) : ('AdoptionFeed' as never));
-	}, [loggedUser, navigation]);
 
 	return (
 		<Stack.Navigator initialRouteName="OnBoarding" screenOptions={config.navigator}>
