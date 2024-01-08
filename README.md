@@ -31,12 +31,13 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 - [React](https://reactjs.org/)
 - [React Native](https://reactnative.dev/)
 - [JavaScript](https://www.javascript.com/)
-- [Expo](https://expo.io/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [NativeWind](https://www.nativewind.dev/)
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [Sequelize](https://sequelize.org/)
 - [MySQL](https://www.mysql.com/)
+- [Cloudinary](https://cloudinary.com/)
 
 <a id="getting-started"></a>
 
