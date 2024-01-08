@@ -13,19 +13,6 @@ import utils from '../../../../../utils';
 import NavigateBackButton from './components/NavigateBackButton';
 import { Props } from './types';
 
-// ! Performance issues
-// const regions = useMemo(() => {
-// 	if (!loggedUser) {
-// 		return [];
-// 	}
-
-// 	return [...utils.cities.getCitiesFromCountr40y(loggedUser.country.code), 'any'].map(
-// 		(city: string) => {
-// 			return { key: city, value: city };
-// 		},
-// 	);
-// }, [loggedUser]);
-
 const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 	const { setColor, setGender, setRegion, setSize, setType } = useAdoptionFeedContext();
 	const { loggedUser } = useUserContext();

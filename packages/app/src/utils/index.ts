@@ -11,5 +11,4 @@ export default {
 	validateData,
 	navigation,
 	formatData,
-	// cities
 };
