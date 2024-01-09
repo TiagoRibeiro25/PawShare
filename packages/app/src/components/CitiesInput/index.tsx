@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Keyboard, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import useGetCitiesData from '../../hooks/reactQuery/cities';
 import Input from '../Input';
 import { Props } from './types';
@@ -11,7 +11,7 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 	const [cities, setCities] = useState<string[]>([]);
 	const [allCities, setAllCities] = useState<string[]>([]);
 	const [searchPrefix, setSearchPrefix] = useState<string>('');
-	const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
+	const [showRecomendations, setShowRecomendations] = useState<boolean>(true);
 
 	const { data, refetch, isLoading, isRefetching } = useGetCitiesData({
 		search: searchPrefix,
@@ -69,22 +69,14 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 		}
 	}, [data]);
 
-	// Watch for keyboard visibility (only show recommendations when keyboard is visible)
+	// Show recomendations when search is not a valid city name
 	useEffect(() => {
-		const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () =>
-			setKeyboardVisible(true),
-		);
-		const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () =>
-			setTimeout(() => {
-				setKeyboardVisible(false);
-			}, 1000),
-		);
-
-		return (): void => {
-			keyboardDidHideListener.remove();
-			keyboardDidShowListener.remove();
-		};
-	}, []);
+		if (cities.includes(search) || search.trim().length < PREFIX_LENGTH) {
+			setShowRecomendations(false);
+		} else {
+			setShowRecomendations(true);
+		}
+	}, [cities, search]);
 
 	return (
 		<View className={className}>
@@ -105,11 +97,13 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 				</Text>
 			)}
 
-			{cities.length > 0 && keyboardVisible && (
-				<View className="max-h-[172px] mt-2 border-2 rounded-xl border-secondary-500 py-3 px-4">
+			{cities.length > 0 && showRecomendations && (
+				<View className="px-4 py-3 mt-2 space-y-3 border-2 rounded-xl border-secondary-500">
 					{cities.map((city: string) => (
 						<TouchableOpacity key={city} onPress={() => setSearch(city)}>
-							<Text className="text-base text-secondary-500">{city}</Text>
+							<Text className="text-base text-secondary-500 font-zen-kaku-gothic-new-medium">
+								{city}
+							</Text>
 						</TouchableOpacity>
 					))}
 				</View>

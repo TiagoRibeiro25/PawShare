@@ -12,45 +12,60 @@ import { RootStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const FALLBACK_IF_LOGGED = AdoptionFeed;
+const FALLBACK_IF_NOT_LOGGED = OnBoarding;
+
 const Navigation: React.FC = (): React.JSX.Element => {
 	const { loggedUser } = useUserContext();
 
+	const guardClause = (mustBeLogged: boolean, destiny: React.FC): React.FC => {
+		if (mustBeLogged && !loggedUser) {
+			return FALLBACK_IF_NOT_LOGGED;
+		}
+
+		if (!mustBeLogged && loggedUser) {
+			return FALLBACK_IF_LOGGED;
+		}
+
+		return destiny;
+	};
+
 	return (
 		<Stack.Navigator initialRouteName="OnBoarding" screenOptions={config.navigator}>
-			<Stack.Screen name="OnBoarding" component={!loggedUser ? OnBoarding : AdoptionFeed} />
+			<Stack.Screen name="OnBoarding" component={guardClause(false, OnBoarding)} />
 
 			{/* Auth */}
 			<Stack.Screen
 				name="Auth"
-				component={!loggedUser ? Auth : AdoptionFeed}
+				component={guardClause(false, Auth)}
 				options={{ animation: 'slide_from_bottom' }}
 			/>
 
 			{/* Adoption */}
 			<Stack.Screen
 				name="AdoptionFeed"
-				component={loggedUser ? AdoptionFeed : OnBoarding}
+				component={guardClause(true, AdoptionFeed)}
 				options={{ animation: 'fade' }}
 			/>
 
 			{/* Sitting */}
 			<Stack.Screen
 				name="SittingFeed"
-				component={loggedUser ? SittingFeed : OnBoarding}
+				component={guardClause(true, SittingFeed)}
 				options={{ animation: 'fade' }}
 			/>
 
 			{/* Store */}
 			<Stack.Screen
 				name="Store"
-				component={loggedUser ? Store : OnBoarding}
+				component={guardClause(true, Store)}
 				options={{ animation: 'fade' }}
 			/>
 
 			{/* Profile */}
 			<Stack.Screen
 				name="Profile"
-				component={loggedUser ? Profile : OnBoarding}
+				component={guardClause(true, Profile)}
 				options={{ animation: 'fade' }}
 			/>
 		</Stack.Navigator>

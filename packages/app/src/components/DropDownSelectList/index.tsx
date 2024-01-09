@@ -38,6 +38,7 @@ const DropDownSelectList: React.FC<Props> = ({
 				closeicon={<Icon Icon={ArrowDown} className="self-center mt-1 rotate-180" />}
 				maxHeight={SCREEN_HEIGHT * 0.4}
 				searchicon={<Icon Icon={ArrowDown} className="hidden" />}
+				fontFamily="ZenKakuGothicNew-Medium"
 			/>
 		</View>
 	);
