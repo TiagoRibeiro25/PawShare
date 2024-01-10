@@ -49,7 +49,7 @@ async function refundUnpaidSittings(_req, res) {
 			},
 		});
 
-		return utils.handleResponse(res, utils.http.StatusSuccess, "Sittings refunded");
+		utils.handleResponse(res, utils.http.StatusOK, "Sittings refunded");
 	} catch (error) {
 		utils.handleError(res, error, __filename);
 	}
