@@ -36,8 +36,8 @@ const AdoptionFeed: React.FC<Props> = ({
 		type,
 	});
 
+	// If one of the filters changes, reset the page to 1
 	useEffect(() => {
-		// If one of the filters changes, reset the page to 1
 		setAdoptions([]);
 		setTotal(0);
 		setPage(1);
@@ -87,7 +87,7 @@ const AdoptionFeed: React.FC<Props> = ({
 			setTotal(0);
 		}
 
-		//! Do not add categories to the dependencies array (it will cause an infinite loop)
+		//! Do not add adoptions to the dependencies array (it will cause an infinite loop)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, isRefetching]);
 
