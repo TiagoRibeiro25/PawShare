@@ -1,0 +1,13 @@
+/node_modules
+.env
+
+# MacOS generated files
+**/.DS_Store
+
+# VS Code generated files
+**/.vscode/*
+
+package-lock.json
+pnpm-lock.yaml
+
+/database
