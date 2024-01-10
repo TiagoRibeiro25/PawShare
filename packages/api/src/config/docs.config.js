@@ -4,11 +4,16 @@ const routeDocs = require("../data/docs/routes/");
 
 const info = YAML.parse(fs.readFileSync("./src/data/docs/info.yml", "utf8"));
 
+const serverURL =
+	process.env.NODE_ENV === "development"
+		? "http://localhost:5000/api/v1"
+		: process.env.API_PROD_URL;
+
 /** @type {import("swagger-jsdoc").SwaggerDefinition} */
 const swaggerDefinition = {
 	openapi: "3.0.1",
 	info,
-	servers: [{ url: "http://localhost:5000/api/v1" }], //TODO (any): Check the enviroment and use the correct url (only after deploying)
+	servers: [{ url: serverURL }],
 	paths: {
 		// DEFAULT
 		"/": {
