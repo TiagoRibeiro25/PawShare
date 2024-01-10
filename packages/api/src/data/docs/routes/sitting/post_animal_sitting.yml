@@ -1,0 +1,376 @@
+summary: Add Sitting
+description: Add an animal to the sitting list
+tags:
+  - Sitting
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - name: animal_id
+    in: query
+    required: true
+    schema:
+      type: string
+      example: "1"
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          city:
+            type: string
+            required: true
+            example: Toronto
+          email_contact:
+            type: string
+            required: true
+            example: alice@hotmail.com
+          phone_contact:
+            type: string
+            required: true
+            example: "91114768"
+          start_date:
+            type: string
+            required: true
+            example: 2024-04-25
+          end_date:
+            type: string
+            required: true
+            example: 2024-05-05
+          notes:
+            type: array
+            required: true
+            items:
+              type: string
+              examples:
+                - Smart
+                - Adventurous
+          coins:
+            type: number
+            required: true
+            example: 750
+responses:
+  201:
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+            data:
+              type: object
+              properties:
+                sitting:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    animal_id:
+                      type: number
+                    owner_id:
+                      type: number
+                    email_contact:
+                      type: string
+                    phone_contact:
+                      type: string
+                    notes:
+                      type: array
+                    city:
+                      type: string
+                    start_date:
+                      type: string
+                      format: date-time
+                    end_date:
+                      type: string
+                      format: date-time
+                    coins:
+                      type: number
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+        examples:
+          Success:
+            value:
+              success: true
+              message: Sitting added successfully
+              data:
+                sitting:
+                  id: 15
+                  animal_id: 6
+                  owner_id: 6
+                  email_contact: alice@hotmail.com
+                  phone_contact: "912354768"
+                  start_date: 2024-04-25T00:00:00.000Z
+                  end_date: 2024-05-05T00:00:00.000Z
+                  notes:
+                    - Smart
+                    - Adventurous
+                  city: Toronto
+                  coins: 1200
+                  created_at: "2023-12-15T18:42:57.227Z"
+                  updated_at: "2023-12-15T18:42:57.227Z"
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+            data:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  msg:
+                    type: string
+                  path:
+                    type: string
+                  location:
+                    type: string
+        examples:
+          Required animal_id:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  msg: animal_id is required
+                  path: animal_id
+                  location: query
+          Invalid Value animal_id:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: aa
+                  msg: animal_id must be an integer
+                  path: animal_id
+                  location: query
+          Invalid Integer animal_id:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: "-1"
+                  msg: Invalid integer for animal_id
+                  path: animal_id
+                  location: query
+          Missing Field:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  msg: email_contact is required
+                  path: email_contact
+                  location: body
+          Invalid Email:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: aasd
+                  msg: Invalid email
+                  path: email_contact
+                  location: body
+          Invalid Phone Number:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: "9123aaa4123"
+                  msg: Invalid phone number
+                  path: phone_contact
+                  location: body
+          Invalid Notes:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: asdas
+                  msg: notes must be an array and containing at least one item
+                  path: notes
+                  location: body
+          Invalid Notes Array:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value:
+                    - 123
+                    - aes
+                  msg: notes must be an array of strings
+                  path: notes
+                  location: body
+          Invalid Data Type Field:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: 123
+                  msg: city must be a string
+                  path: city
+                  location: body
+          Invalid City:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: Hello world
+                  msg: Invalid city
+                  path: city
+                  location: body
+          City Country Mismatch:
+            value:
+              success: false
+              message: This city is not from your country
+          Invalid date:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: 202sad4-04-25
+                  msg: Invalid start_date
+                  path: start_date
+                  location: body
+          Invalid date range:
+            value:
+              success: false
+              message: Validation Error
+              data:
+                - type: field
+                  value: 2025-04-25
+                  msg: The interval between start_date and end_date must be at least 24 hours
+                  path: start_date
+                  location: body
+  401:
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Missing Token:
+            value:
+              success: false
+              message: Missing auth token or refresh token
+          Invalid Token:
+            value:
+              success: false
+              message: Invalid auth token or refresh token
+          Refresh token expired:
+            value:
+              success: false
+              message: Refresh token has expired
+  403:
+    description: Forbidden
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Not The Owner:
+            value:
+              success: false
+              message: You are not the owner of the animal
+          Not enought coins:
+            value:
+              success: false
+              message: You don't have enough coins to create a sitting service
+  404:
+    description: Not Found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Animal Not Found:
+            value:
+              success: false
+              message: Animal not found
+  409:
+    description: Conflict
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Already in adoption:
+            value:
+              success: false
+              message: Animal already in adoption
+          Already in sitting:
+            value:
+              success: false
+              message: Animal already in sitting
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Servor Error:
+            value:
+              success: false
+              message: Something went wrong!

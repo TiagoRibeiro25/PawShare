@@ -1,0 +1,169 @@
+summary: Add Candidate
+description: Add an candidate to users list for adoption
+tags:
+  - Adoption
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - name: "id"
+    in: "path"
+    description: "The id of the adoption"
+    required: true
+    schema:
+      type: "number"
+      example: 5
+responses:
+  201:
+    description: Success
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+            data:
+              type: object
+              properties:
+                candidate:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    adoption_id:
+                      type: integer
+                    is_confirmed:
+                      type: boolean
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+        examples:
+          Success:
+            value:
+              success: true
+              message: Candidate added successfully
+              data:
+                candidate:
+                  id: 3
+                  user_id: 1
+                  adoption_id: 5
+                  is_confirmed: false
+                  created_at: "2023-12-15T18:42:57.227Z"
+                  updated_at: "2023-12-15T18:42:57.227Z"
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Invalid Id":
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "sad"
+                  msg: "Invalid adoption id"
+                  path: "id"
+                  location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  404:
+    description: "Not Found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Adoption not found":
+            value:
+              success: false
+              message: "Adoption not found"
+  409:
+    description: "Conflict"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Already a candidate":
+            value:
+              success: false
+              message: "You're already a candidate to adopt this animal"
+          "The owner adoption":
+            value:
+              success: false
+              message: "You can't candidate to adopt your own animal"
+  500:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+            message:
+              type: string
+        examples:
+          Internal Servor Error:
+            value:
+              success: false
+              message: Something went wrong!

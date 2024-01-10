@@ -1,0 +1,152 @@
+summary: "Get the sitting detail"
+description: "Get the sitting detail of an animal by its id"
+tags:
+  - "Sitting"
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - name: "id"
+    in: "path"
+    description: "The id of the sitting"
+    required: true
+    schema:
+      type: "number"
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          "Success":
+            value:
+              success: true
+              message: "Sitting retrieved successfully"
+              data:
+                sitting:
+                  id: 1
+                  email_contact: "john.doe@pawshare.com"
+                  phone_contact: "932456789"
+                  city: "Vila do Conde"
+                  notes:
+                    - "Loayl"
+                    - "playful"
+                    - "Affectionate"
+                  coins: 320
+                  rating: 3.6
+                  start_date: "2023-12-12T00:00:00.000Z"
+                  end_date: "2023-12-20T00:00:00.000Z"
+                  animal:
+                    id: 1
+                    owner:
+                      id: 1
+                      name: "John Doe"
+                      picture: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
+                    name: "Buddy"
+                    type: "dog"
+                    gender: "Male"
+                    color: "brown"
+                    size: "Medium"
+                    description: "Meet Buddy, a loyal, playful male dog, always ready to bring joy to your day with his wagging tail and affectionate spirit."
+                    picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702750801/paw-share/dev/animals/Animal_Detail_Picture_vfqjks.jpg"
+                  created_at: "2023-12-09T00:00:00.000Z"
+                  updated_at: "2023-12-09T00:00:00.000Z"
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Invalid Id":
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "sad"
+                  msg: "Invalid sitting id"
+                  path: "id"
+                  location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  404:
+    description: "Not Found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Sitting not found":
+            value:
+              success: false
+              message: "Sitting not found"
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Something went wrong!"

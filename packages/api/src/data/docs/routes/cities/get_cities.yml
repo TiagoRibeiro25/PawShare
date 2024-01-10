@@ -1,0 +1,126 @@
+summary: Get all the cities
+description: Get all the cities from a search string and from the logged user country
+tags:
+  - "Cities"
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - name: search
+    in: query
+    description: Search string
+    required: false
+    schema:
+      type: string
+      example: "Lisbon"
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          Success:
+            value:
+              success: true
+              message: Cities retrieved successfully
+              data:
+                cities:
+                  - "Lisbon"
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Invalid Search Query:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "-1"
+                  msg: "Invalid search query"
+                  path: "search"
+                  location: "query"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  404:
+    description: "Not found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          No cities found:
+            value:
+              success: false
+              message: No cities found
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Internal server error"

@@ -1,0 +1,45 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Laila-Bold.ttf",
+      "sha1": "a7964791f62250f90cff8e805bdccafd9ed325cc"
+    },
+    {
+      "path": "src/assets/fonts/Laila-Light.ttf",
+      "sha1": "157903c58679e1b8e71ca515e7e001fba722d05f"
+    },
+    {
+      "path": "src/assets/fonts/Laila-Medium.ttf",
+      "sha1": "78748dfe35a05eb316dacb93d41541339b9502f1"
+    },
+    {
+      "path": "src/assets/fonts/Laila-Regular.ttf",
+      "sha1": "fab8dcdeacb178dd7a1eccc76768bd810b7d5f1d"
+    },
+    {
+      "path": "src/assets/fonts/Laila-SemiBold.ttf",
+      "sha1": "960988f7ded06a8580ed5b87543356c76eb5eeaa"
+    },
+    {
+      "path": "src/assets/fonts/ZenKakuGothicNew-Black.ttf",
+      "sha1": "30a5a678d8d47f4800446664642e9be177a999c0"
+    },
+    {
+      "path": "src/assets/fonts/ZenKakuGothicNew-Bold.ttf",
+      "sha1": "11776be09bf6c4024dffd378263822b177caee0c"
+    },
+    {
+      "path": "src/assets/fonts/ZenKakuGothicNew-Light.ttf",
+      "sha1": "8c08f7a3aed1c763ea4a24f5fa9be214811a0a70"
+    },
+    {
+      "path": "src/assets/fonts/ZenKakuGothicNew-Medium.ttf",
+      "sha1": "06b731fd512973e6416a6ef9d843bf7355eb70d3"
+    },
+    {
+      "path": "src/assets/fonts/ZenKakuGothicNew-Regular.ttf",
+      "sha1": "4693fbb848c23320b6585c689aeba8c85a59c796"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+summary: Get the candidates of a sitting request
+description: Get the candidates of a sitting request
+tags:
+  - "Sitting"
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - name: page
+    in: query
+    description: Number of the page to retrieve
+    required: false
+    schema:
+      type: number
+      example: 1
+  - name: limit
+    in: query
+    description: Number of results per page
+    required: false
+    schema:
+      type: number
+      example: 10
+  - name: id
+    in: params
+    description: ID of the sitting request
+    required: true
+    schema:
+      type: number
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          Success:
+            value:
+              success: true
+              message: Candidates found
+              data:
+                requests:
+                  - id: 1
+                    display_name: John Doe
+                    picture: https://res.cloudinary.com/dnfd6se6l/image/upload/v1703600390/paw-share/dev/users/xmenbf0zuczhsgneliu4.jpg
+                total: 1
+  400:
+    description: "Bad Request"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Invalid Page:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "-1"
+                  msg: "Page must be a positive integer"
+                  path: "page"
+                  location: "query"
+          Invalid Limit:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "-1"
+                  msg: "Limit must be a positive integer"
+                  path: "limit"
+                  location: "query"
+          Invalid Sitting ID:
+            value:
+              success: false
+              message: "Validation Error"
+              data:
+                - type: "field"
+                  value: "0"
+                  msg: "Invalid sitting id"
+                  path: "id"
+                  location: "params"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  403:
+    description: "Forbidden"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Not the owner:
+            value:
+              success: false
+              message: You are not the owner of this sitting request
+  404:
+    description: "Not found"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Sitting request not found:
+            value:
+              success: false
+              message: Sitting request not found
+          Candidate not found:
+            value:
+              success: false
+              message: No candidates found
+  409:
+    description: "Conflict"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          Sitting already confirmed:
+            value:
+              success: false
+              message: "Sitting already confirmed"
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Internal server error"
