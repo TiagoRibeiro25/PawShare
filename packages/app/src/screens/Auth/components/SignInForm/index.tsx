@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import EmailIcon from '../../../../assets/svg/email.svg';
 import PasswordIcon from '../../../../assets/svg/password.svg';
 import Button from '../../../../components/Button';
@@ -60,60 +60,62 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 	};
 
 	return (
-		<View className="items-center flex-1">
-			<Text className="mt-6 text-2xl uppercase text-secondary-500 font-laila-bold">
-				Sign In
-			</Text>
-
-			<View className="my-20">
-				{/* Email Input */}
-				<Input
-					placeholder="Email"
-					value={email}
-					onChange={(text: string): void => setEmail(text)}
-					icon={EmailIcon}
-					iconClassName="mt-1 scale-110"
-					textInputClassName="w-44"
-				/>
-
-				{/* Password Input */}
-				<Input
-					placeholder="Password"
-					value={password}
-					onChange={(text: string): void => setPassword(text)}
-					icon={PasswordIcon}
-					className="mt-12"
-					iconClassName="mt-1 scale-110"
-					textInputClassName="w-44"
-					hideText
-				/>
-
-				{/* Select Box */}
-				<SelectBoxInput
-					value={rememberMe}
-					onPress={(newValue: boolean): void => setRememberMe(newValue)}
-					text="Remember me"
-					className="mt-6"
-				/>
-			</View>
-
-			{/* Sign In Button */}
-			<Button
-				className="self-center p-3 mt-6 space-x-3 bg-accent-500 w-60"
-				disabled={email.trim() === '' || password.trim() === '' || status === 'pending'}
-				onPress={handleSignIn}
-			>
-				<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
-					{status === 'pending' ? 'Loading...' : 'Sign In'}
+		<ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+			<View className="items-center">
+				<Text className="mt-6 text-2xl uppercase text-secondary-500 font-laila-bold">
+					Sign In
 				</Text>
-			</Button>
 
-			<Text className="mt-12 text-base font-zen-kaku-gothic-new-medium text-error-500">
-				{validationError !== ''
-					? validationError
-					: status === 'error' && utils.error.getMessage(error)}
-			</Text>
-		</View>
+				<View className="my-20">
+					{/* Email Input */}
+					<Input
+						placeholder="Email"
+						value={email}
+						onChange={(text: string): void => setEmail(text)}
+						icon={EmailIcon}
+						iconClassName="mt-1 scale-110"
+						textInputClassName="w-44"
+					/>
+
+					{/* Password Input */}
+					<Input
+						placeholder="Password"
+						value={password}
+						onChange={(text: string): void => setPassword(text)}
+						icon={PasswordIcon}
+						className="mt-12"
+						iconClassName="mt-1 scale-110"
+						textInputClassName="w-44"
+						hideText
+					/>
+
+					{/* Select Box */}
+					<SelectBoxInput
+						value={rememberMe}
+						onPress={(newValue: boolean): void => setRememberMe(newValue)}
+						text="Remember me"
+						className="mt-6"
+					/>
+				</View>
+
+				{/* Sign In Button */}
+				<Button
+					className="self-center p-3 mt-6 space-x-3 bg-accent-500 w-60"
+					disabled={email.trim() === '' || password.trim() === '' || status === 'pending'}
+					onPress={handleSignIn}
+				>
+					<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
+						{status === 'pending' ? 'Loading...' : 'Sign In'}
+					</Text>
+				</Button>
+
+				<Text className="mt-12 text-base font-zen-kaku-gothic-new-medium text-error-500">
+					{validationError !== ''
+						? validationError
+						: status === 'error' && utils.error.getMessage(error)}
+				</Text>
+			</View>
+		</ScrollView>
 	);
 };
 
