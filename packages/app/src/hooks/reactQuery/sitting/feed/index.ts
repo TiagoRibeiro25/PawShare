@@ -39,7 +39,7 @@ const getSittingFeedData = async (params: Params): Promise<GetSittingFeedData> =
 
 const useGetSittingFeedData = (params: Params): UseQueryResult<GetSittingFeedData, Error> => {
 	return useQuery({
-		queryKey: ['adoptionFeedData', params.page, params.limit],
+		queryKey: ['sittingFeedData', params.page, params.limit],
 		queryFn: async () => getSittingFeedData(params),
 		retry: false,
 	});

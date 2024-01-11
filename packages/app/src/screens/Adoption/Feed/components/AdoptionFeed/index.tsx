@@ -14,7 +14,6 @@ import Card from '../Card';
 import EmptyState from '../EmptyState';
 import { Props } from './types';
 
-// TODO (IMPORTANT): Fix refetching when moving from one screen to this one (only happens to this screen)
 const AdoptionFeed: React.FC<Props> = ({
 	onFilterButtonPress,
 	onManageButtonPress,
