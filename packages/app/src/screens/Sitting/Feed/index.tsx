@@ -22,7 +22,7 @@ const Feed: React.FC = (): React.JSX.Element => {
 				>
 					<SittingFeed
 						onFilterButtonPress={() => setSwiperIndex(1)}
-						onManageButtonPress={() => console.log('Navigate to manage screen')} // TODO(tiago): Add the screen
+						onManageButtonPress={() => console.log('Navigate to manage screen')}
 					/>
 
 					<FilterScreen onGoBack={() => setSwiperIndex(0)} />

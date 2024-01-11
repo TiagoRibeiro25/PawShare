@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import Swiper from 'react-native-swiper';
@@ -8,6 +9,7 @@ import FilterScreen from './components/FilterScreen';
 const queryClient = new QueryClient();
 
 const Feed: React.FC = (): React.JSX.Element => {
+	const navigation = useNavigation();
 	const [swiperIndex, setSwiperIndex] = useState<number>(0);
 
 	return (
@@ -18,11 +20,10 @@ const Feed: React.FC = (): React.JSX.Element => {
 					onIndexChanged={(index: number) => setSwiperIndex(index)}
 					loop={false}
 					index={swiperIndex}
-					scrollEnabled={true}
 				>
 					<AdoptionFeed
 						onFilterButtonPress={() => setSwiperIndex(1)}
-						onManageButtonPress={() => console.log('Navigate to manage screen')} // TODO(tiago): Add the screen
+						onManageButtonPress={() => navigation.navigate('ManageAdoptions' as never)}
 					/>
 
 					<FilterScreen onGoBack={() => setSwiperIndex(0)} />

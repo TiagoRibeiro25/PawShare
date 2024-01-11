@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import Error from './components/Error';
 import Loading from './components/Loading';
-import NavBar from './components/NavBar';
 import TopBar from './components/TopBar';
 import { useUserContext } from './context/user';
 import useGetLoggedUser from './hooks/reactQuery/user/getLoggedUser';
@@ -30,7 +29,6 @@ const MainApplication: React.FC = (): React.JSX.Element => {
 				<>
 					{loggedUser && <TopBar />}
 					<Navigation />
-					{loggedUser && <NavBar />}
 				</>
 			)}
 		</View>
