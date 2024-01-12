@@ -22,7 +22,7 @@ const MainApplication: React.FC = (): React.JSX.Element => {
 	}, [data, error, isError, setLoggedUser]);
 
 	return (
-		<View className="w-full h-full bg-primary-50">
+		<View className="w-full h-full">
 			{isLoading && <Loading />}
 			{!isLoading && isError && error.message.split(' ').at(-1) !== '401' && <Error />}
 			{!isLoading && !(isError && error.message.split(' ').at(-1) !== '401') && (

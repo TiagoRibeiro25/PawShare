@@ -32,7 +32,7 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 
 	return (
 		<AnimatedScreen animation="SlideInFromTop" dontAnimateOnMount>
-			<View className="flex-1 py-8 bg-primary-50">
+			<View className="flex-1 py-8">
 				<GestorRecognizer
 					className="h-[90%]"
 					onSwipeUp={(): void => navigation.navigate('Auth' as never)}

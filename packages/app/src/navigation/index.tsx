@@ -8,6 +8,7 @@ import StoreI from '../assets/svg/store.svg';
 import Icon from '../components/Icon';
 import config from '../config';
 import { useUserContext } from '../context/user';
+import AdoptionDetails from '../screens/Adoption/Details';
 import AdoptionFeed from '../screens/Adoption/Feed';
 import ManageAdoptions from '../screens/Adoption/Manage';
 import Auth from '../screens/Auth';
@@ -31,7 +32,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	const StoreIcon = useCallback(() => <Icon Icon={StoreI} />, []);
 	const ProfileIcon = useCallback(() => <Icon Icon={ProfileI} />, []);
 
-	const guardClause = (mustBeLogged: boolean, destiny: React.FC): React.FC => {
+	const guardClause = (mustBeLogged: boolean, destiny: React.FC<any>): React.FC => {
 		if (mustBeLogged && !loggedUser) {
 			return OnBoarding; // FallBack if not logged
 		}
@@ -79,6 +80,12 @@ const Navigation: React.FC = (): React.JSX.Element => {
 						...config.navigator.tabItemStyle(currentScreen, 'AdoptionFeed'),
 					},
 				}}
+			/>
+
+			<Tab.Screen
+				name="AdoptionDetails"
+				component={guardClause(true, AdoptionDetails)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
 			<Tab.Screen

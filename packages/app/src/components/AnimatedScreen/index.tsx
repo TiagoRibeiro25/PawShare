@@ -13,15 +13,16 @@ const AnimatedScreen: React.FC<Props> = ({
 	const [mounted, setMounted] = useState<boolean>(false);
 
 	const screenHeight = Dimensions.get('window').height;
+	const screenWidth = Dimensions.get('window').width;
 
 	useFocusEffect(
 		useCallback(() => {
 			let anim: Animated.CompositeAnimation;
 
-			if (animation === 'SlideInFromBottom') {
-				anim = utils.animation.getSlideInFromBottom(fadeAnim);
-			} else if (animation === 'SlideInFromTop') {
-				anim = utils.animation.getSlideInFromTop(fadeAnim);
+			if (animation === 'SlideInFromBottom' || animation === 'SlideInFromTop') {
+				anim = utils.animation.getVerticalSlide(fadeAnim);
+			} else if (animation === 'SlideInFromLeft' || animation === 'SlideInFromRight') {
+				anim = utils.animation.getHorizontalSlide(fadeAnim);
 			} else {
 				anim = utils.animation.getFadeIn(fadeAnim);
 			}
@@ -40,7 +41,9 @@ const AnimatedScreen: React.FC<Props> = ({
 			{!dontAnimateOnMount || (dontAnimateOnMount && mounted) ? (
 				<Animated.View
 					className="flex-1"
-					style={[utils.animation.getStyleOptions(fadeAnim, animation, screenHeight)]}
+					style={[
+						utils.animation.getStyleOptions(fadeAnim, animation, screenHeight, screenWidth),
+					]}
 				>
 					{children}
 				</Animated.View>

@@ -7,37 +7,38 @@ import Button from '../../../../../components/Button';
 import FeedLoadingSkeleton from '../../../../../components/FeedLoadingSkeleton';
 import Icon from '../../../../../components/Icon';
 import config from '../../../../../config';
-import { useAdoptionFeedContext } from '../../../../../context/adoption/feed';
-import useGetAdoptionFeedData from '../../../../../hooks/reactQuery/adoption/feed';
-import { Adoption } from '../../../../../hooks/reactQuery/adoption/feed/types';
+import { useSittingFeedContext } from '../../../../../context/sitting/feed';
+import useGetSittingFeedData from '../../../../../hooks/reactQuery/sitting/feed';
+import { Sitting } from '../../../../../hooks/reactQuery/sitting/feed/types';
 import Card from '../Card';
 import EmptyState from '../EmptyState';
 import { Props } from './types';
 
-const AdoptionFeed: React.FC<Props> = ({
+const Feed: React.FC<Props> = ({
 	onFilterButtonPress,
 	onManageButtonPress,
 }): React.JSX.Element => {
 	const [page, setPage] = useState<number>(1);
-	const [adoptions, setAdoptions] = useState<Adoption[]>([]);
+	const [sittings, setSittings] = useState<Sitting[]>([]);
 	const [total, setTotal] = useState<number>(0);
 
 	// Filter param values
-	const { color, gender, region, size, type } = useAdoptionFeedContext();
+	const { color, gender, region, size, type, coins } = useSittingFeedContext();
 
-	const { data, isLoading, isError, refetch, isRefetching } = useGetAdoptionFeedData({
+	const { data, isLoading, isError, refetch, isRefetching } = useGetSittingFeedData({
 		page,
-		limit: config.pagination.adoption.feed.defaultLimit,
+		limit: config.pagination.sitting.feed.defaultLimit,
 		color,
 		gender,
 		city: region,
 		size,
 		type,
+		coins,
 	});
 
-	// If one of the filters changes, reset the page to 1
 	useEffect(() => {
-		setAdoptions([]);
+		// If one of the filters changes, reset the page to 1
+		setSittings([]);
 		setTotal(0);
 		setPage(1);
 		refetch();
@@ -45,9 +46,9 @@ const AdoptionFeed: React.FC<Props> = ({
 
 	const handleOnChange = (inView: boolean, id: number): void => {
 		// Check if it's the last item in the list
-		if (!isLoading && !isError && inView && id === adoptions[adoptions.length - 1].id) {
-			// Check if there are more adoptions to fetch
-			if (adoptions.length >= total) {
+		if (!isLoading && !isError && inView && id === sittings[sittings.length - 1].id) {
+			// Check if there are more sittings to fetch
+			if (sittings.length >= total) {
 				return;
 			}
 
@@ -60,7 +61,7 @@ const AdoptionFeed: React.FC<Props> = ({
 			return;
 		}
 
-		setAdoptions([]);
+		setSittings([]);
 		setPage(1);
 		setTotal(0);
 		refetch();
@@ -71,29 +72,29 @@ const AdoptionFeed: React.FC<Props> = ({
 			return;
 		}
 
-		if (data && data?.data.adoptions?.length > 0) {
+		if (data && data?.data.sittings?.length > 0) {
 			// Check if there are duplicates (if so, remove them)
-			const filteredAdoptions = data.data.adoptions.filter((adoption: Adoption) => {
-				return adoptions.findIndex((a: Adoption) => a.id === adoption.id) === -1;
+			const filteredSittings = data.data.sittings.filter((sitting: Sitting) => {
+				return sittings.findIndex((a: Sitting) => a.id === sitting.id) === -1;
 			});
 
-			setAdoptions((prev: Adoption[]) => [...prev, ...filteredAdoptions]);
+			setSittings((prev: Sitting[]) => [...prev, ...filteredSittings]);
 			setTotal(data.data.total);
 		}
 
 		if (isError) {
-			setAdoptions([]);
+			setSittings([]);
 			setTotal(0);
 		}
 
-		//! Do not add adoptions to the dependencies array (it will cause an infinite loop)
+		//! Do not add sittings to the dependencies array (it will cause an infinite loop)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, isRefetching]);
 
 	return (
-		<View className="flex-1 pt-6 bg-primary-50">
+		<View className="flex-1 pt-6">
 			<View className="flex flex-row items-center justify-between w-full px-5 mb-8">
-				<Text className="mt-1 text-2xl text-secondary-500 font-laila-semi-bold">Adoption</Text>
+				<Text className="mt-1 text-2xl text-secondary-500 font-laila-semi-bold">Sitting</Text>
 
 				<View className="flex-row space-x-6">
 					<Button className="p-3 rounded-lg bg-accent-500" onPress={onManageButtonPress}>
@@ -118,12 +119,12 @@ const AdoptionFeed: React.FC<Props> = ({
 					/>
 				}
 			>
-				{adoptions.map((adoption: Adoption) => (
+				{sittings.map((sitting: Sitting) => (
 					<InView
-						key={adoption.id}
-						onChange={(inView: boolean) => handleOnChange(inView, adoption.id)}
+						key={sitting.id}
+						onChange={(inView: boolean) => handleOnChange(inView, sitting.id)}
 					>
-						<Card adoption={adoption} />
+						<Card sitting={sitting} />
 					</InView>
 				))}
 
@@ -131,7 +132,7 @@ const AdoptionFeed: React.FC<Props> = ({
 				{!isLoading && !isRefetching && isError && <EmptyState />}
 
 				{/* If it reached the end and there's no more data to fetch */}
-				{!isLoading && adoptions.length > 0 && adoptions.length >= total && (
+				{!isLoading && sittings.length > 0 && sittings.length >= total && (
 					<Text className="mb-6 text-xl text-center text-secondary-500 font-laila-semi-bold">
 						Yay! You have seen it all 👏
 					</Text>
@@ -141,4 +142,4 @@ const AdoptionFeed: React.FC<Props> = ({
 	);
 };
 
-export default AdoptionFeed;
+export default Feed;
