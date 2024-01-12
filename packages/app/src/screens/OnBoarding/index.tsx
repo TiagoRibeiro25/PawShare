@@ -4,6 +4,7 @@ import { Image, ImageSourcePropType, Text, View } from 'react-native';
 import GestorRecognizer from 'react-native-swipe-gestures';
 import Swiper from 'react-native-swiper';
 import ArrowDownIcon from '../../assets/svg/arrow_down.svg';
+import AnimatedScreen from '../../components/AnimatedScreen';
 import Button from '../../components/Button';
 import Icon from '../../components/Icon';
 import config from '../../config';
@@ -30,54 +31,59 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 	};
 
 	return (
-		<View className="flex-1 py-8 bg-primary-50">
-			<GestorRecognizer
-				className="h-[90%]"
-				onSwipeUp={(): void => navigation.navigate('Auth' as never)}
-			>
-				<Swiper
-					showsPagination={true}
-					dotColor={config.swiper.dotColor}
-					activeDotColor={config.swiper.activeDotColor}
-					loop={false}
-					showsButtons={true}
-					prevButton={<SwipeButton direction="prev" />}
-					nextButton={<SwipeButton direction="next" />}
+		<AnimatedScreen animation="SlideInFromTop" dontAnimateOnMount>
+			<View className="flex-1 py-8 bg-primary-50">
+				<GestorRecognizer
+					className="h-[90%]"
+					onSwipeUp={(): void => navigation.navigate('Auth' as never)}
 				>
-					{slides.map((slide: Slide, slideIndex: number) => (
-						<View key={slideIndex} className="items-center flex-1 mx-6">
-							{/* Title */}
-							{slide.title.map((line: string, lineIndex: number) => (
-								<Text key={lineIndex} className="text-2xl text-secondary-500 font-laila-bold">
-									{line}
+					<Swiper
+						showsPagination={true}
+						dotColor={config.swiper.dotColor}
+						activeDotColor={config.swiper.activeDotColor}
+						loop={false}
+						showsButtons={true}
+						prevButton={<SwipeButton direction="prev" />}
+						nextButton={<SwipeButton direction="next" />}
+					>
+						{slides.map((slide: Slide, slideIndex: number) => (
+							<View key={slideIndex} className="items-center flex-1 mx-6">
+								{/* Title */}
+								{slide.title.map((line: string, lineIndex: number) => (
+									<Text
+										key={lineIndex}
+										className="text-2xl text-secondary-500 font-laila-bold"
+									>
+										{line}
+									</Text>
+								))}
+
+								{/* Description */}
+								<Text className="mt-6 text-base text-justify text-secondary-500 font-zen-kaku-gothic-new-medium">
+									{slide.description}
 								</Text>
-							))}
 
-							{/* Description */}
-							<Text className="mt-6 text-base text-justify text-secondary-500 font-zen-kaku-gothic-new-medium">
-								{slide.description}
-							</Text>
-
-							{/* Ilustration */}
-							<View className="justify-center flex-1">
-								<Image source={getIllustrationSource(slideIndex)} />
+								{/* Ilustration */}
+								<View className="justify-center flex-1">
+									<Image source={getIllustrationSource(slideIndex)} />
+								</View>
 							</View>
-						</View>
-					))}
-				</Swiper>
-			</GestorRecognizer>
+						))}
+					</Swiper>
+				</GestorRecognizer>
 
-			{/* Sign In Button */}
-			<Button
-				className="p-3 mt-4 bg-accent-500 min-w-[100px] w-1/2 self-center space-x-3"
-				onPress={() => navigation.navigate('Auth' as never)}
-			>
-				<Icon className="mt-0.5" Icon={ArrowDownIcon} />
-				<Text className="text-lg font-medium text-secondary-500 font-zen-kaku-gothic-new-bold">
-					Sign In
-				</Text>
-			</Button>
-		</View>
+				{/* Sign In Button */}
+				<Button
+					className="p-3 mt-4 bg-accent-500 min-w-[100px] w-1/2 self-center space-x-3"
+					onPress={() => navigation.navigate('Auth' as never)}
+				>
+					<Icon className="mt-0.5" Icon={ArrowDownIcon} />
+					<Text className="text-lg font-medium text-secondary-500 font-zen-kaku-gothic-new-bold">
+						Sign In
+					</Text>
+				</Button>
+			</View>
+		</AnimatedScreen>
 	);
 };
 

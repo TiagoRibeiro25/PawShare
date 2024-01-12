@@ -87,7 +87,7 @@ const SittingFeed: React.FC<Props> = ({
 			setTotal(0);
 		}
 
-		//! Do not add categories to the dependencies array (it will cause an infinite loop)
+		//! Do not add sittings to the dependencies array (it will cause an infinite loop)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data, isRefetching]);
 
@@ -119,15 +119,14 @@ const SittingFeed: React.FC<Props> = ({
 					/>
 				}
 			>
-				{!isRefetching &&
-					sittings.map((sitting: Sitting) => (
-						<InView
-							key={sitting.id}
-							onChange={(inView: boolean) => handleOnChange(inView, sitting.id)}
-						>
-							<Card sitting={sitting} />
-						</InView>
-					))}
+				{sittings.map((sitting: Sitting) => (
+					<InView
+						key={sitting.id}
+						onChange={(inView: boolean) => handleOnChange(inView, sitting.id)}
+					>
+						<Card sitting={sitting} />
+					</InView>
+				))}
 
 				{(isLoading || isRefetching) && <FeedLoadingSkeleton />}
 				{!isLoading && !isRefetching && isError && <EmptyState />}

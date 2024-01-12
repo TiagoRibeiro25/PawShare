@@ -1,4 +1,4 @@
-// import cities from './cities';
+import animation from './animation';
 import error from './error';
 import formatData from './formatData';
 import navigation from './navigation';
@@ -11,4 +11,5 @@ export default {
 	validateData,
 	navigation,
 	formatData,
+	animation,
 };

@@ -13,7 +13,7 @@ middlewares.onEveryResponse(api);
 // 	return new Promise((resolve) => {
 // 		setTimeout(() => {
 // 			resolve(res);
-// 		}, 5000);
+// 		}, 2000);
 // 	});
 // });
 

@@ -15,9 +15,9 @@ async function getCities(req, res) {
 			attributes: ["country"],
 		});
 
-		const cities = utils.cities
-			.getCitiesFromCountry(user.country)
-			.filter((city) => city.toLowerCase().includes(search.toLowerCase().trim()));
+		const cities = utils.cities.getCitiesFromCountry(user.country).filter((city) => {
+			return city.toLowerCase().includes(search.toLowerCase());
+		});
 
 		if (!cities.length) {
 			utils.handleResponse(res, utils.http.StatusNotFound, "No cities found");
