@@ -4,7 +4,7 @@ import useGetCitiesData from '../../hooks/reactQuery/cities';
 import Input from '../Input';
 import { Props } from './types';
 
-const PREFIX_LENGTH = 5;
+const PREFIX_LENGTH = 3;
 
 const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Element => {
 	const [search, setSearch] = useState<string>('');
@@ -32,7 +32,11 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 
 		// Filter cities with the search
 		if (prefix === searchPrefix) {
-			setCities(allCities.filter((city: string) => city.includes(val)).slice(0, 5));
+			setCities(
+				allCities
+					.filter((city: string) => city.toLowerCase().includes(val.toLowerCase()))
+					.slice(0, 5),
+			);
 			return;
 		}
 
@@ -71,12 +75,14 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 
 	// Show recomendations when search is not a valid city name
 	useEffect(() => {
-		if (cities.includes(search) || search.trim().length < PREFIX_LENGTH) {
-			setShowRecomendations(false);
-		} else {
-			setShowRecomendations(true);
-		}
-	}, [cities, search]);
+		const lowerCaseCities: string[] = allCities.map((city: string) => city.toLowerCase());
+
+		console.log(lowerCaseCities);
+
+		setShowRecomendations(
+			!lowerCaseCities.includes(search.toLowerCase()) && search.trim().length >= PREFIX_LENGTH,
+		);
+	}, [allCities, search]);
 
 	return (
 		<View className={className}>
@@ -85,7 +91,7 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 			</Text>
 			<Input
 				className="justify-start h-12 border-2 rounded-xl border-secondary-500"
-				textInputClassName="capitalize text-secondary-500"
+				textInputClassName="text-secondary-500"
 				value={search}
 				onChange={handleChange}
 				placeholder="Search for a city"

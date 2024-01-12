@@ -118,15 +118,14 @@ const AdoptionFeed: React.FC<Props> = ({
 					/>
 				}
 			>
-				{!isRefetching &&
-					adoptions.map((adoption: Adoption) => (
-						<InView
-							key={adoption.id}
-							onChange={(inView: boolean) => handleOnChange(inView, adoption.id)}
-						>
-							<Card adoption={adoption} />
-						</InView>
-					))}
+				{adoptions.map((adoption: Adoption) => (
+					<InView
+						key={adoption.id}
+						onChange={(inView: boolean) => handleOnChange(inView, adoption.id)}
+					>
+						<Card adoption={adoption} />
+					</InView>
+				))}
 
 				{(isLoading || isRefetching) && <FeedLoadingSkeleton />}
 				{!isLoading && !isRefetching && isError && <EmptyState />}

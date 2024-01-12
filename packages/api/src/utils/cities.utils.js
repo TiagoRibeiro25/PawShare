@@ -15,7 +15,7 @@ const cities = require("cities.json").map((city) => {
 /**
  * Retrieves cities from a specific country.
  * @param {string} country - The country name.
- * @returns {City[]} - An array of cities from the specified country.
+ * @returns {string[]} - An array of cities from the specified country.
  */
 function getCitiesFromCountry(country) {
 	return cities.filter((city) => city.country === country).map((city) => city.name);

@@ -15,8 +15,9 @@ import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
 import SittingFeed from '../screens/Sitting/Feed';
 import Store from '../screens/Store';
+import { RootStackParamList } from './types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootStackParamList>();
 
 const Navigation: React.FC = (): React.JSX.Element => {
 	const navigation = useNavigation();
@@ -43,7 +44,6 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	};
 
 	useEffect(() => {
-		// every time current screen changes, update the state
 		return navigation.addListener('state', (e) => {
 			// Get the current route name
 			setCurrentScreen(e.data.state.routes[e.data.state.index].name);
@@ -54,13 +54,9 @@ const Navigation: React.FC = (): React.JSX.Element => {
 		return (
 			<Tab.Navigator
 				initialRouteName="OnBoarding"
-				screenOptions={{
-					headerShown: false,
-					tabBarStyle: { display: 'none' },
-				}}
+				screenOptions={{ headerShown: false, tabBarStyle: { display: 'none' } }}
 			>
 				<Tab.Screen name="OnBoarding" component={guardClause(false, OnBoarding)} />
-
 				<Tab.Screen name="Auth" component={guardClause(false, Auth)} />
 			</Tab.Navigator>
 		);
@@ -70,10 +66,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 		<Tab.Navigator
 			initialRouteName="AdoptionFeed"
 			screenOptions={{
-				headerShown: false,
-				tabBarStyle: { backgroundColor: '#2B2A63', height: 70 },
-				tabBarActiveBackgroundColor: '#414587',
-				tabBarActiveTintColor: '#fff',
+				...config.navigator.screenOptions,
 			}}
 		>
 			{/* Adoption */}

@@ -6,7 +6,7 @@ import { GetCitiesData, Params } from './types';
 const getCitiesData = async (params: Params): Promise<GetCitiesData> => {
 	const url = new URL('/cities');
 
-	if (params.search.trim().toLowerCase() !== '') {
+	if (params.search.trim() !== '') {
 		url.searchParams.append('search', params.search.trim());
 	}
 

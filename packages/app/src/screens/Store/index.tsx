@@ -1,11 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import AnimatedScreen from '../../components/AnimatedScreen';
 
 const Store: React.FC = (): React.JSX.Element => {
 	return (
-		<View className="flex-1 py-5 bg-primary-50">
-			<Text>Store</Text>
-		</View>
+		<AnimatedScreen animation="FadeIn">
+			<View className="flex-1 py-5 bg-primary-50">
+				<Text>Store</Text>
+			</View>
+		</AnimatedScreen>
 	);
 };
 
