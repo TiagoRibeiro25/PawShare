@@ -77,8 +77,6 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 	useEffect(() => {
 		const lowerCaseCities: string[] = allCities.map((city: string) => city.toLowerCase());
 
-		console.log(lowerCaseCities);
-
 		setShowRecomendations(
 			!lowerCaseCities.includes(search.toLowerCase()) && search.trim().length >= PREFIX_LENGTH,
 		);

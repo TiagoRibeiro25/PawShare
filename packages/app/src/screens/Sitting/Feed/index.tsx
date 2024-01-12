@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Swiper from 'react-native-swiper';
 import AnimatedScreen from '../../../components/AnimatedScreen';
 import { SittingFeedProvider } from '../../../context/sitting/feed';
+import Feed from './components/Feed';
 import FilterScreen from './components/FilterScreen';
-import SittingFeed from './components/SittingFeed';
 
 const queryClient = new QueryClient();
 
-const Feed: React.FC = (): React.JSX.Element => {
+const SittingFeed: React.FC = (): React.JSX.Element => {
 	const [swiperIndex, setSwiperIndex] = useState<number>(0);
 
 	return (
@@ -22,7 +22,7 @@ const Feed: React.FC = (): React.JSX.Element => {
 						index={swiperIndex}
 						scrollEnabled={true}
 					>
-						<SittingFeed
+						<Feed
 							onFilterButtonPress={() => setSwiperIndex(1)}
 							onManageButtonPress={() => console.log('Navigate to manage screen')}
 						/>
@@ -35,4 +35,4 @@ const Feed: React.FC = (): React.JSX.Element => {
 	);
 };
 
-export default Feed;
+export default SittingFeed;

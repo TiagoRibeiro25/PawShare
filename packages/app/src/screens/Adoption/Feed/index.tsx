@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import Swiper from 'react-native-swiper';
 import AnimatedScreen from '../../../components/AnimatedScreen';
 import { AdoptionFeedProvider } from '../../../context/adoption/feed';
-import AdoptionFeed from './components/AdoptionFeed';
+import Feed from './components/Feed';
 import FilterScreen from './components/FilterScreen';
 
 const queryClient = new QueryClient();
 
-const Feed: React.FC = (): React.JSX.Element => {
+const AdoptionFeed: React.FC = (): React.JSX.Element => {
 	const navigation = useNavigation();
 	const [swiperIndex, setSwiperIndex] = useState<number>(0);
 
@@ -23,7 +23,7 @@ const Feed: React.FC = (): React.JSX.Element => {
 						loop={false}
 						index={swiperIndex}
 					>
-						<AdoptionFeed
+						<Feed
 							onFilterButtonPress={() => setSwiperIndex(1)}
 							onManageButtonPress={() => navigation.navigate('ManageAdoptions' as never)}
 						/>
@@ -36,4 +36,4 @@ const Feed: React.FC = (): React.JSX.Element => {
 	);
 };
 
-export default Feed;
+export default AdoptionFeed;

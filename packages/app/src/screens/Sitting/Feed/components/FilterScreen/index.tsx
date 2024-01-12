@@ -39,7 +39,7 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 	};
 
 	return (
-		<View className="items-center flex-1 pt-6 bg-primary-50">
+		<View className="items-center flex-1 pt-6">
 			<Text className="mt-3 text-2xl text-secondary-500 font-laila-semi-bold">Filter By</Text>
 			<NavigateBackButton onPress={onGoBack} />
 

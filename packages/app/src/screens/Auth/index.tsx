@@ -16,7 +16,7 @@ const Auth: React.FC = (): React.JSX.Element => {
 	return (
 		<AnimatedScreen animation="SlideInFromBottom">
 			<GestorRecognizer
-				className="flex-1 px-6 py-8 bg-primary-50"
+				className="flex-1 px-6 py-8"
 				onSwipeDown={(): void => navigation.navigate('OnBoarding' as never)}
 			>
 				<View className="items-center flex-1">

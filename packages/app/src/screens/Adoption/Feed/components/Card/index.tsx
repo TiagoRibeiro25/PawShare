@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -8,10 +9,16 @@ import Icon from '../../../../../components/Icon';
 import { Props } from './types';
 
 const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
+	const navigation = useNavigation();
+
 	return (
-		// TODO (tiago): When pressing, change the background color to secondary-300 (purple)
-		// TODO (tiago): Add navigation to the adoption detail screen
-		<TouchableOpacity className="mb-8" activeOpacity={0.8}>
+		<TouchableOpacity
+			className="mb-8"
+			activeOpacity={0.8}
+			// TODO (tiago): Remove this ts-ignore
+			//@ts-ignore
+			onPress={() => navigation.navigate('AdoptionDetails', { id: adoption.id })}
+		>
 			<>
 				<View className="flex-row items-center justify-between p-5">
 					<Text className="mt-1 text-xl text-secondary-500 font-laila-semi-bold">
@@ -23,9 +30,9 @@ const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
 					</View>
 				</View>
 
+				{/* TODO (tiago): Change the fallback image */}
 				<FastImage
 					source={{
-						// TODO (tiago): Change the fallback image
 						uri: adoption.animal.picture || 'https://placekitten.com/408/287',
 					}}
 					className="w-full h-72"

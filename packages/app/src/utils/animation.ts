@@ -8,7 +8,7 @@ const getFadeIn = (ref: Animated.Value): Animated.CompositeAnimation => {
 	});
 };
 
-const getSlideInFromBottom = (ref: Animated.Value): Animated.CompositeAnimation => {
+const getVerticalSlide = (ref: Animated.Value): Animated.CompositeAnimation => {
 	return Animated.timing(ref, {
 		toValue: 1,
 		duration: 400,
@@ -16,10 +16,10 @@ const getSlideInFromBottom = (ref: Animated.Value): Animated.CompositeAnimation 
 	});
 };
 
-const getSlideInFromTop = (ref: Animated.Value): Animated.CompositeAnimation => {
+const getHorizontalSlide = (ref: Animated.Value): Animated.CompositeAnimation => {
 	return Animated.timing(ref, {
 		toValue: 1,
-		duration: 400,
+		duration: 300,
 		useNativeDriver: true,
 	});
 };
@@ -28,6 +28,7 @@ const getStyleOptions = (
 	ref: Animated.Value,
 	animation: string | undefined,
 	height: number,
+	width: number,
 ) => {
 	switch (animation) {
 		case 'FadeIn':
@@ -48,9 +49,17 @@ const getStyleOptions = (
 					},
 				],
 			};
+		case 'SlideInFromRight':
+			return {
+				transform: [
+					{
+						translateX: ref.interpolate({ inputRange: [0, 1], outputRange: [width, 0] }),
+					},
+				],
+			};
 		default:
 			return { opacity: ref };
 	}
 };
 
-export default { getFadeIn, getSlideInFromBottom, getSlideInFromTop, getStyleOptions };
+export default { getFadeIn, getVerticalSlide, getHorizontalSlide, getStyleOptions };

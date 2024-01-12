@@ -18,7 +18,7 @@ const Profile: React.FC = (): React.JSX.Element => {
 
 	return (
 		<AnimatedScreen animation="FadeIn">
-			<View className="flex-1 py-5 bg-primary-50">
+			<View className="flex-1 py-5">
 				<Text>Profile</Text>
 
 				<Button className="self-center p-3 mt-6 bg-accent-500 w-60" onPress={handleSignOut}>

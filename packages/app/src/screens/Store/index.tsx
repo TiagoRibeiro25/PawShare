@@ -5,7 +5,7 @@ import AnimatedScreen from '../../components/AnimatedScreen';
 const Store: React.FC = (): React.JSX.Element => {
 	return (
 		<AnimatedScreen animation="FadeIn">
-			<View className="flex-1 py-5 bg-primary-50">
+			<View className="flex-1 py-5">
 				<Text>Store</Text>
 			</View>
 		</AnimatedScreen>
