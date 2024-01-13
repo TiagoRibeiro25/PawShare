@@ -1,8 +1,10 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
-import { Animated, Dimensions } from 'react-native';
+import { Animated } from 'react-native';
 import utils from '../../utils';
 import { Props } from './types';
+
+const [SCREEN_WIDTH, SCREEN_HEIGHT] = utils.screen.getSize();
 
 const AnimatedScreen: React.FC<Props> = ({
 	children,
@@ -11,9 +13,6 @@ const AnimatedScreen: React.FC<Props> = ({
 }): React.JSX.Element => {
 	const fadeAnim = useRef(new Animated.Value(0)).current;
 	const [mounted, setMounted] = useState<boolean>(false);
-
-	const screenHeight = Dimensions.get('window').height;
-	const screenWidth = Dimensions.get('window').width;
 
 	useFocusEffect(
 		useCallback(() => {
@@ -42,7 +41,7 @@ const AnimatedScreen: React.FC<Props> = ({
 				<Animated.View
 					className="flex-1"
 					style={[
-						utils.animation.getStyleOptions(fadeAnim, animation, screenHeight, screenWidth),
+						utils.animation.getStyleOptions(fadeAnim, animation, SCREEN_HEIGHT, SCREEN_WIDTH),
 					]}
 				>
 					{children}

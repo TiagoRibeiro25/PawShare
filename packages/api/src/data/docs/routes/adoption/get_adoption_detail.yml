@@ -49,6 +49,7 @@ responses:
                   email_contact: "john.doe@pawshare.com"
                   phone_contact: "932456789"
                   city: "Porto"
+                  is_candidate: false
                   notes:
                     - "independent"
                     - "playful"

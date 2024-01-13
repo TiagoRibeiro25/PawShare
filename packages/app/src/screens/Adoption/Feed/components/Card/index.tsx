@@ -6,6 +6,7 @@ import FemaleIcon from '../../../../../assets/svg/female.svg';
 import LocationIcon from '../../../../../assets/svg/location.svg';
 import MaleIcon from '../../../../../assets/svg/male.svg';
 import Icon from '../../../../../components/Icon';
+import config from '../../../../../config';
 import { Props } from './types';
 
 const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
@@ -33,7 +34,7 @@ const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
 				{/* TODO (tiago): Change the fallback image */}
 				<FastImage
 					source={{
-						uri: adoption.animal.picture || 'https://placekitten.com/408/287',
+						uri: adoption.animal.picture || config.fallbacks.adoption.feed.animal.picture,
 					}}
 					className="w-full h-72"
 					resizeMode="cover"

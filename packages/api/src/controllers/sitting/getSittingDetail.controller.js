@@ -131,7 +131,7 @@ async function getSittingDetail(req, res) {
 					color: data.animal.color,
 					size: data.animal.size,
 					description: data.animal.description,
-					picture: data.animal.picture.provider_url,
+					picture: data.animal.picture?.provider_url || null,
 				},
 				created_at: data.createdAt,
 				updated_at: data.updatedAt,
