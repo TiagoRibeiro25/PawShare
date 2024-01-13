@@ -60,6 +60,14 @@ async function getAdoptionDetail(req, res) {
 			return utils.handleResponse(res, utils.http.StatusNotFound, "Adoption not found");
 		}
 
+		// Check if the logged user is in the adopters list
+		const isCandidate = await db.mysql.UsersList.findOne({
+			where: {
+				user_id: req.userId,
+				adoption_id: id,
+			},
+		});
+
 		const responseData = {
 			adoption: {
 				id: data.id,
@@ -67,6 +75,7 @@ async function getAdoptionDetail(req, res) {
 				phone_contact: data.phone_contact,
 				city: data.city,
 				notes: JSON.parse(data.notes.replace(/'/g, '"')),
+				is_candidate: !!isCandidate,
 				animal: {
 					id: data.animal.id,
 					owner: {
@@ -82,7 +91,7 @@ async function getAdoptionDetail(req, res) {
 					color: data.animal.color,
 					size: data.animal.size,
 					description: data.animal.description,
-					picture: data.animal.picture.provider_url,
+					picture: data.animal.picture?.provider_url || null,
 				},
 				created_at: data.createdAt,
 				updated_at: data.updatedAt,
