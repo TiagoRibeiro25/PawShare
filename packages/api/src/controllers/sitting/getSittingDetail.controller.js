@@ -136,7 +136,7 @@ async function getSittingDetail(req, res) {
 					id: data.animal.id,
 					owner: {
 						id: data.user.id,
-						name: data.user.display_name,
+						display_name: data.user.display_name,
 						picture:
 							data.user.picture?.provider_url ||
 							utils.pictures.getUserPictureUrl(data.user.display_name),
