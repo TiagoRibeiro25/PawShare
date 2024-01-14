@@ -3,9 +3,9 @@ import { View } from 'react-native';
 import Error from './components/Error';
 import Loading from './components/Loading';
 import TopBar from './components/TopBar';
-import Navigation from './navigation';
 import { useUserContext } from './context/user';
 import useGetLoggedUser from './hooks/reactQuery/user/getLoggedUser';
+import Navigation from './navigation';
 
 const MainApplication: React.FC = (): React.JSX.Element => {
 	const { loggedUser, setLoggedUser } = useUserContext();
@@ -13,8 +13,6 @@ const MainApplication: React.FC = (): React.JSX.Element => {
 	const [animationComplete, setAnimationComplete] = useState(false);
 
 	useEffect(() => {
-		console.log(animationComplete);
-
 		if (data?.success && data?.data && animationComplete) {
 			setLoggedUser({
 				id: data.data.id,
@@ -24,19 +22,16 @@ const MainApplication: React.FC = (): React.JSX.Element => {
 		}
 	}, [data, isError, setLoggedUser, animationComplete]);
 
-	const handleAnimationFinish = () => {
-		setAnimationComplete(true);
-	};
-
 	return (
 		<View className="w-full h-full">
 			{(isLoading || !animationComplete) && (
-				<Loading onAnimationFinish={handleAnimationFinish} />
+				<Loading onAnimationFinish={(): void => setAnimationComplete(true)} />
 			)}
 			{!isLoading &&
 				animationComplete &&
 				isError &&
 				error.message.split(' ').at(-1) !== '401' && <Error />}
+
 			{!isLoading &&
 				animationComplete &&
 				!(isError && error.message.split(' ').at(-1) !== '401') && (

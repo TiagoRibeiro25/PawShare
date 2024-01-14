@@ -1,9 +1,10 @@
+import LottieView from 'lottie-react-native';
 import React from 'react';
 import { View } from 'react-native';
-import LottieView from 'lottie-react-native';
 import styles from './styles';
+import { Props } from './types';
 
-const Loading: React.FC<{ onAnimationFinish: () => void }> = ({ onAnimationFinish }) => {
+const Loading: React.FC<Props> = ({ onAnimationFinish }) => {
 	return (
 		<View className="items-center justify-center flex-1">
 			<LottieView
