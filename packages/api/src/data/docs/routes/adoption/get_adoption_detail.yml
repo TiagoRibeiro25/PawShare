@@ -57,7 +57,7 @@ responses:
                     id: 7
                     owner:
                       id: 1
-                      name: "John Doe"
+                      display_name: "John Doe"
                       picture: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
                     name: "Cleo"
                     type: "cat"

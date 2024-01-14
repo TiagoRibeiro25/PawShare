@@ -49,6 +49,7 @@ responses:
                   email_contact: "john.doe@pawshare.com"
                   phone_contact: "932456789"
                   city: "Vila do Conde"
+                  is_candidate: false
                   notes:
                     - "Loayl"
                     - "playful"
@@ -61,7 +62,7 @@ responses:
                     id: 1
                     owner:
                       id: 1
-                      name: "John Doe"
+                      display_name: "John Doe"
                       picture: "https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=John%20Doe"
                     name: "Buddy"
                     type: "dog"

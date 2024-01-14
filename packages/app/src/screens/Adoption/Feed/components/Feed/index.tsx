@@ -97,11 +97,11 @@ const Feed: React.FC<Props> = ({
 
 				<View className="flex-row space-x-6">
 					<Button className="p-3 rounded-lg bg-accent-500" onPress={onManageButtonPress}>
-						<Icon Icon={ManageIcon} />
+						<Icon icon={ManageIcon} />
 					</Button>
 
 					<Button className="p-3 rounded-lg bg-accent-500" onPress={onFilterButtonPress}>
-						<Icon Icon={FilterIcon} />
+						<Icon icon={FilterIcon} />
 					</Button>
 				</View>
 			</View>

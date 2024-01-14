@@ -82,6 +82,8 @@ async function getSittingDetail(req, res) {
 			return utils.handleResponse(res, utils.http.StatusNotFound, "Sitting not found");
 		}
 
+		const transaction = await db.mysql.sequelize.transaction();
+
 		// Finding the average rating of the reviews
 		const averageRating = await db.mysql.Review.findOne({
 			attributes: [
@@ -103,7 +105,20 @@ async function getSittingDetail(req, res) {
 					},
 				],
 			},
+			transaction,
 		});
+
+		// Check if the logged user has already applied to this sitting
+		const isCandidate = await db.mysql.UsersList.findOne({
+			attributes: ["id"],
+			where: {
+				user_id: req.userId,
+				sitting_id: id,
+			},
+			transaction,
+		});
+
+		await transaction.commit();
 
 		const responseData = {
 			sitting: {
@@ -114,6 +129,7 @@ async function getSittingDetail(req, res) {
 				notes: JSON.parse(data.notes.replace(/'/g, '"')),
 				coins: data.coins,
 				rating: +averageRating.toJSON().average,
+				is_candidate: !!isCandidate,
 				start_date: data.start_date,
 				end_date: data.end_date,
 				animal: {

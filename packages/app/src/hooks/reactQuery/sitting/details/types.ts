@@ -5,13 +5,17 @@ export type Params = {
 	id: number;
 };
 
-export type Adoption = {
+export type Sitting = {
 	id: number;
 	email_contact: string;
 	phone_contact: string;
 	city: string;
 	is_candidate: boolean;
 	notes: string[];
+	coins: number;
+	rating: number;
+	start_date: string;
+	end_date: string;
 	animal: {
 		id: number;
 		owner: {
@@ -31,8 +35,8 @@ export type Adoption = {
 	updated_at: string;
 };
 
-export interface GetAdoptionDetailsData extends APIResponse {
+export interface GetSittingDetailsData extends APIResponse {
 	data: {
-		adoption: Adoption;
+		sitting: Sitting;
 	};
 }

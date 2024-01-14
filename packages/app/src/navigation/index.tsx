@@ -14,6 +14,7 @@ import ManageAdoptions from '../screens/Adoption/Manage';
 import Auth from '../screens/Auth';
 import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
+import SittingDetails from '../screens/Sitting/Details';
 import SittingFeed from '../screens/Sitting/Feed';
 import Store from '../screens/Store';
 import { RootStackParamList } from './types';
@@ -27,10 +28,10 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	const [currentScreen, setCurrentScreen] = useState<string>('');
 
 	// Navbar icons
-	const AdoptionFeedIcon = useCallback(() => <Icon Icon={AdoptionFeedI} />, []);
-	const SittingFeedIcon = useCallback(() => <Icon Icon={SittingFeedI} />, []);
-	const StoreIcon = useCallback(() => <Icon Icon={StoreI} />, []);
-	const ProfileIcon = useCallback(() => <Icon Icon={ProfileI} />, []);
+	const AdoptionFeedIcon = useCallback(() => <Icon icon={AdoptionFeedI} />, []);
+	const SittingFeedIcon = useCallback(() => <Icon icon={SittingFeedI} />, []);
+	const StoreIcon = useCallback(() => <Icon icon={StoreI} />, []);
+	const ProfileIcon = useCallback(() => <Icon icon={ProfileI} />, []);
 
 	const guardClause = (mustBeLogged: boolean, destiny: React.FC<any>): React.FC => {
 		if (mustBeLogged && !loggedUser) {
@@ -104,6 +105,12 @@ const Navigation: React.FC = (): React.JSX.Element => {
 						...config.navigator.tabItemStyle(currentScreen, 'SittingFeed'),
 					},
 				}}
+			/>
+
+			<Tab.Screen
+				name="SittingDetails"
+				component={guardClause(true, SittingDetails)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
 			{/* Store */}
