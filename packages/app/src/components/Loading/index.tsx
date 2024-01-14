@@ -1,11 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import LottieView from 'lottie-react-native';
+import styles from './styles';
 
-const Loading: React.FC = (): React.JSX.Element => {
+const Loading: React.FC<{ onAnimationFinish: () => void }> = ({ onAnimationFinish }) => {
 	return (
 		<View className="items-center justify-center flex-1">
-			<FastImage source={require('../../assets/gif/loading.gif')} className="w-56 h-56" />
+			<LottieView
+				source={require('../../assets/gif/SplashScreen.json')}
+				autoPlay={true}
+				loop={false}
+				speed={1}
+				style={styles.splashScreen}
+				onAnimationFinish={onAnimationFinish}
+			/>
 		</View>
 	);
 };
