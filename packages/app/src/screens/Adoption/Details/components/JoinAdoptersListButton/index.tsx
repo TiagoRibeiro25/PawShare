@@ -19,17 +19,21 @@ const JoinAdoptersListButton: React.FC<Props> = ({
 	});
 
 	const handlePress = async (): Promise<void> => {
-		await mutateAsync(
-			{},
-			{
-				onSuccess: (resData: JoinAdoptersListData): void => {
-					if (resData.success) {
-						setHideButton(true);
-						setJustJoined(true);
-					}
+		try {
+			await mutateAsync(
+				{},
+				{
+					onSuccess: (resData: JoinAdoptersListData): void => {
+						if (resData.success) {
+							setHideButton(true);
+							setJustJoined(true);
+						}
+					},
 				},
-			},
-		);
+			);
+		} catch (err: unknown) {
+			// ...
+		}
 	};
 
 	useEffect(() => {

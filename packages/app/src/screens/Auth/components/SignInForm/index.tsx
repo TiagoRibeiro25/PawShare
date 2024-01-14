@@ -25,38 +25,42 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 	});
 
 	const handleSignIn = async (): Promise<void> => {
-		setValidationError('');
+		try {
+			setValidationError('');
 
-		// Validate the Form Data
-		if (!utils.validateData.isValid(email, 'email')) {
-			setValidationError('Invalid email');
-			return;
-		}
+			// Validate the Form Data
+			if (!utils.validateData.isValid(email, 'email')) {
+				setValidationError('Invalid email');
+				return;
+			}
 
-		if (!utils.validateData.isValid(password, 'password')) {
-			setValidationError('Invalid password');
-			return;
-		}
+			if (!utils.validateData.isValid(password, 'password')) {
+				setValidationError('Invalid password');
+				return;
+			}
 
-		// Send the request
-		await mutateAsync(
-			{},
-			{
-				onSuccess: (resData: LoginData): void => {
-					if (resData.success && resData.data) {
-						// Update the global state
-						setLoggedUser(resData.data.user);
+			// Send the request
+			await mutateAsync(
+				{},
+				{
+					onSuccess: (resData: LoginData): void => {
+						if (resData.success && resData.data) {
+							// Update the global state
+							setLoggedUser(resData.data.user);
 
-						// Save the tokens on the device storage
-						utils.storage.set('authToken', resData.data.authToken);
-						utils.storage.set('refreshToken', resData.data.refreshToken);
-					} else {
-						setValidationError(resData.message);
-						setPassword('');
-					}
+							// Save the tokens on the device storage
+							utils.storage.set('authToken', resData.data.authToken);
+							utils.storage.set('refreshToken', resData.data.refreshToken);
+						} else {
+							setValidationError(resData.message);
+							setPassword('');
+						}
+					},
 				},
-			},
-		);
+			);
+		} catch (_err: unknown) {
+			// ...
+		}
 	};
 
 	return (
