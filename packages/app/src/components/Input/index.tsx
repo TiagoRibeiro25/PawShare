@@ -21,7 +21,7 @@ const Input: React.FC<Props> = ({
 		>
 			{icon && (
 				<Icon
-					Icon={icon}
+					icon={icon}
 					className={iconClassName || ''}
 					onPress={() => inputRef.current?.focus()}
 				/>

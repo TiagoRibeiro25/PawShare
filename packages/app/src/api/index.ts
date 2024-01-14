@@ -8,7 +8,7 @@ const api: AxiosInstance = axios.create(config.api);
 middlewares.onEveryRequest(api);
 middlewares.onEveryResponse(api);
 
-// DEBUG: add a 5seconds delay to every request
+// DEBUG: add a 2 seconds delay to every request
 // api.interceptors.request.use((res) => {
 // 	return new Promise((resolve) => {
 // 		setTimeout(() => {

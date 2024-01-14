@@ -11,7 +11,7 @@ const TopBar: React.FC = (): React.JSX.Element => {
 		<View className="fixed flex flex-row items-center justify-between w-full h-20 px-5 pt-3 bg-neutral-50">
 			{/* Left Side */}
 			<View className="py-1.5 rounded-lg bg-secondary-300 ml-2 w-20">
-				<Icon className="absolute transform scale-105 -left-1/4 -top-1/3" Icon={PawIcon} />
+				<Icon className="absolute transform scale-105 -left-1/4 -top-1/3" icon={PawIcon} />
 
 				<Text className="self-center mb-1 text-neutral-50 font-zen-kaku-gothic-new-black">
 					{loggedUser?.coins || 0}
@@ -21,7 +21,7 @@ const TopBar: React.FC = (): React.JSX.Element => {
 			{/* Right Side */}
 			<View className="flex-row mb-1.5">
 				<Text className="self-end text-xl text-secondary-500 font-laila-medium">Paw</Text>
-				<Icon className="scale-75" Icon={PawIcon} />
+				<Icon className="scale-75" icon={PawIcon} />
 				<Text className="self-end text-xl text-secondary-500 font-laila-medium">Share</Text>
 			</View>
 		</View>

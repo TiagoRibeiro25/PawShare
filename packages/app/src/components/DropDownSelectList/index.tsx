@@ -35,10 +35,10 @@ const DropDownSelectList: React.FC<Props> = ({
 				inputStyles={styles.inputStyles}
 				dropdownStyles={styles.dropdownStyles}
 				dropdownTextStyles={styles.dropdownTextStyles}
-				arrowicon={<Icon Icon={ArrowDown} className="self-center mt-1" />}
-				closeicon={<Icon Icon={ArrowDown} className="self-center mt-1 rotate-180" />}
+				arrowicon={<Icon icon={ArrowDown} className="self-center mt-1" />}
+				closeicon={<Icon icon={ArrowDown} className="self-center mt-1 rotate-180" />}
 				maxHeight={SCREEN_HEIGHT * 0.4}
-				searchicon={<Icon Icon={ArrowDown} className="hidden" />}
+				searchicon={<Icon icon={ArrowDown} className="hidden" />}
 				fontFamily="ZenKakuGothicNew-Medium"
 			/>
 		</View>
