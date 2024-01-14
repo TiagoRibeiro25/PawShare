@@ -4,15 +4,11 @@ import api from '../../../../api';
 import { JoinSittersListData, Params } from './types';
 
 const joinSittersList = async (params: Params): Promise<JoinSittersListData> => {
-	try {
-		const { data }: AxiosResponse<JoinSittersListData> = await api.post(
-			`/sitting/${params.sittingId}/requested`,
-		);
+	const { data }: AxiosResponse<JoinSittersListData> = await api.post(
+		`/sitting/${params.sittingId}/requested`,
+	);
 
-		return data;
-	} catch (error: any) {
-		return error?.response?.data || { success: false, message: 'An error has occurred' };
-	}
+	return data;
 };
 
 const useJoinSittersList = (params: Params): UseMutationResult<JoinSittersListData, Error> => {

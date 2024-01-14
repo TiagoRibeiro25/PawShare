@@ -4,12 +4,8 @@ import api from '../../../../api';
 import { GetLoggedUserData } from './types';
 
 const getLoggedUser = async (): Promise<GetLoggedUserData> => {
-	try {
-		const { data }: AxiosResponse<GetLoggedUserData> = await api.get('/users/me');
-		return data;
-	} catch (error: any) {
-		return error?.response?.data || { success: false, message: 'An error has occurred' };
-	}
+	const { data }: AxiosResponse<GetLoggedUserData> = await api.get('/users/me');
+	return data;
 };
 
 const useGetLoggedUser = (): UseQueryResult<GetLoggedUserData, Error> => {
