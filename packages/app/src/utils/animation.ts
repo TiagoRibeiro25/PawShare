@@ -57,6 +57,14 @@ const getStyleOptions = (
 					},
 				],
 			};
+		case 'SlideInFromLeft':
+			return {
+				transform: [
+					{
+						translateX: ref.interpolate({ inputRange: [0, 1], outputRange: [-width, 0] }),
+					},
+				],
+			};
 		default:
 			return { opacity: ref };
 	}
