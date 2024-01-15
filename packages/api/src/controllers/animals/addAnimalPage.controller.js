@@ -1,5 +1,7 @@
 const db = require("../../db");
 const utils = require("../../utils");
+const services = require("../../services");
+const config = require("../../config");
 
 /**
  * @typedef AddAnimalPageBody
@@ -24,18 +26,7 @@ async function addAnimalPage(req, res) {
 		const loggedUserId = req.userId;
 
 		/** @type {AddAnimalPageBody} */
-		const { name, type, gender, color, size, description } = req.body;
-
-		if (!loggedUserId) {
-			console.log(loggedUserId);
-			return utils.handleResponse(
-				res,
-				utils.http.StatusForbidden,
-				"You are not logged in",
-			);
-		}
-
-		//create the animal page in the database
+		const { name, type, gender, color, size, description, picture } = req.body;
 
 		const animalPage = await db.mysql.Animal.create({
 			owner_id: loggedUserId,
@@ -47,10 +38,21 @@ async function addAnimalPage(req, res) {
 			description: description,
 		});
 
+		const pictureResult = await services.cloudinary.uploader.upload(picture, {
+			folder: config.cloudinary.folderName + "/animals",
+			crop: "limit",
+			transformation: { width: 500, height: 500, crop: "limit" },
+		});
+
+		const animalPicture = await db.mysql.Picture.create({
+			animal_id: animalPage.id,
+			provider_id: pictureResult.public_id,
+			provider_url: pictureResult.secure_url,
+		});
+
 		return utils.handleResponse(res, utils.http.StatusCreated, "Animal page created", {
 			animal: {
 				id: animalPage.id,
-				animal_id: animalPage.animal_id,
 				owner_id: loggedUserId,
 				name: animalPage.name,
 				type: animalPage.type,
@@ -58,6 +60,7 @@ async function addAnimalPage(req, res) {
 				color: animalPage.color,
 				size: animalPage.size,
 				description: animalPage.description,
+				picture: animalPicture.provider_url || null,
 			},
 		});
 	} catch (error) {

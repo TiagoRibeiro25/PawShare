@@ -9,4 +9,6 @@ export type Props = {
 	className?: string;
 	iconClassName?: string;
 	textInputClassName?: string;
+	multiLine?: boolean;
+	numberOfLines?: number;
 };

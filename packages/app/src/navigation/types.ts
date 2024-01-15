@@ -8,4 +8,5 @@ export type RootStackParamList = {
 	SittingFeed: undefined;
 	Store: undefined;
 	Profile: undefined;
+	AddAnimal: undefined;
 };

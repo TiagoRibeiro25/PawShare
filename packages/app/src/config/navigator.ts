@@ -12,9 +12,9 @@ const options = {
 	},
 	screenOptions: {
 		headerShown: false,
-		tabBarStyle: { backgroundColor: '#2B2A63', height: 70 },
 		tabBarActiveBackgroundColor: '#414587',
 		tabBarActiveTintColor: '#fff',
+		tabBarHideOnKeyboard: true,
 	},
 	tabItemStyle: (currentScreen: string, screenName: string) => {
 		return {

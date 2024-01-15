@@ -12,12 +12,14 @@ const Input: React.FC<Props> = ({
 	className,
 	iconClassName,
 	textInputClassName,
+	multiLine,
+	numberOfLines,
 }): React.JSX.Element => {
 	const inputRef = createRef<TextInput>();
 
 	return (
 		<View
-			className={`flex flex-row items-center justify-center px-4 space-x-2 border rounded-xl border-secondary-500 ${className}`}
+			className={`flex flex-row items-center justify-center px-4 space-x-2 border-2 rounded-xl border-secondary-500 ${className}`}
 		>
 			{icon && (
 				<Icon
@@ -33,6 +35,8 @@ const Input: React.FC<Props> = ({
 				value={value}
 				onChangeText={onChange}
 				secureTextEntry={hideText || false}
+				multiline={multiLine || false}
+				numberOfLines={numberOfLines || 1}
 			/>
 		</View>
 	);

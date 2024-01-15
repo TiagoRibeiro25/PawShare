@@ -11,4 +11,5 @@ export type Props = {
 	defaultOption?: Option;
 	label?: string;
 	className?: string;
+	maxHeight?: number;
 };
