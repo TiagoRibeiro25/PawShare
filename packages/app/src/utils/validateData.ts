@@ -1,4 +1,4 @@
-type Type = 'email' | 'password';
+type Type = 'email' | 'password' | 'name' | 'description';
 
 const regexRules = {
 	// Must be a valid email address
@@ -6,6 +6,12 @@ const regexRules = {
 
 	// Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
 	password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{8,}$/,
+
+	// Minimum two characters, only letters
+	name: /^[a-zA-Z\s]{2,}$/,
+
+	// Minimum ten characters, maximum 100 characters
+	description: /^.{10,100}$/,
 };
 
 const isValid = (data: string | number, type: Type) => {

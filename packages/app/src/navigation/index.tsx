@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
+import { Dimensions } from 'react-native';
 import AdoptionFeedI from '../assets/svg/adoption_feed.svg';
 import ProfileI from '../assets/svg/profile.svg';
 import SittingFeedI from '../assets/svg/sitting_feed.svg';
@@ -11,6 +12,7 @@ import { useUserContext } from '../context/user';
 import AdoptionDetails from '../screens/Adoption/Details';
 import AdoptionFeed from '../screens/Adoption/Feed';
 import ManageAdoptions from '../screens/Adoption/Manage';
+import AddAnimal from '../screens/Animal/AddAnimal';
 import Auth from '../screens/Auth';
 import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
@@ -26,6 +28,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	const { loggedUser } = useUserContext();
 
 	const [currentScreen, setCurrentScreen] = useState<string>('');
+	const [orientation, setOrientation] = useState('PORTRAIT');
 
 	// Navbar icons
 	const AdoptionFeedIcon = useCallback(() => <Icon icon={AdoptionFeedI} />, []);
@@ -47,10 +50,16 @@ const Navigation: React.FC = (): React.JSX.Element => {
 
 	useEffect(() => {
 		return navigation.addListener('state', (e) => {
-			// Get the current route name
+			// Set the current route name
 			setCurrentScreen(e.data.state.routes[e.data.state.index].name);
 		});
 	});
+
+	useEffect(() => {
+		Dimensions.addEventListener('change', ({ window: { width, height } }) => {
+			setOrientation(width < height ? 'PORTRAIT' : 'LANDSCAPE');
+		});
+	}, []);
 
 	if (!loggedUser) {
 		return (
@@ -69,17 +78,22 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			initialRouteName="AdoptionFeed"
 			screenOptions={{
 				...config.navigator.screenOptions,
+				tabBarLabelPosition: orientation === 'PORTRAIT' ? 'below-icon' : 'beside-icon',
+				tabBarStyle: {
+					backgroundColor: '#2B2A63',
+					height: orientation === 'PORTRAIT' ? 70 : 50,
+				},
 			}}
 		>
+			{/* _________________________________________________________________________________ */}
+
 			{/* Adoption */}
 			<Tab.Screen
 				name="AdoptionFeed"
 				component={guardClause(true, AdoptionFeed)}
 				options={{
 					tabBarIcon: AdoptionFeedIcon,
-					tabBarItemStyle: {
-						...config.navigator.tabItemStyle(currentScreen, 'AdoptionFeed'),
-					},
+					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'AdoptionFeed'),
 				}}
 			/>
 
@@ -95,15 +109,15 @@ const Navigation: React.FC = (): React.JSX.Element => {
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
+			{/* _________________________________________________________________________________ */}
+
 			{/* Sitting */}
 			<Tab.Screen
 				name="SittingFeed"
 				component={guardClause(true, SittingFeed)}
 				options={{
 					tabBarIcon: SittingFeedIcon,
-					tabBarItemStyle: {
-						...config.navigator.tabItemStyle(currentScreen, 'SittingFeed'),
-					},
+					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'SittingFeed'),
 				}}
 			/>
 
@@ -113,17 +127,19 @@ const Navigation: React.FC = (): React.JSX.Element => {
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
+			{/* _________________________________________________________________________________ */}
+
 			{/* Store */}
 			<Tab.Screen
 				name="Store"
 				component={guardClause(true, Store)}
 				options={{
 					tabBarIcon: StoreIcon,
-					tabBarItemStyle: {
-						...config.navigator.tabItemStyle(currentScreen, 'Store'),
-					},
+					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'Store'),
 				}}
 			/>
+
+			{/* _________________________________________________________________________________ */}
 
 			{/* Profile */}
 			<Tab.Screen
@@ -131,10 +147,17 @@ const Navigation: React.FC = (): React.JSX.Element => {
 				component={guardClause(true, Profile)}
 				options={{
 					tabBarIcon: ProfileIcon,
-					tabBarItemStyle: {
-						...config.navigator.tabItemStyle(currentScreen, 'Profile'),
-					},
+					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'Profile'),
 				}}
+			/>
+
+			{/* _________________________________________________________________________________ */}
+
+			{/* Animal */}
+			<Tab.Screen
+				name="AddAnimal"
+				component={guardClause(true, AddAnimal)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 		</Tab.Navigator>
 	);

@@ -15,6 +15,7 @@ const DropDownSelectList: React.FC<Props> = ({
 	label,
 	defaultOption,
 	searchPlaceholder,
+	maxHeight,
 	className,
 }): React.JSX.Element => {
 	return (
@@ -37,7 +38,7 @@ const DropDownSelectList: React.FC<Props> = ({
 				dropdownTextStyles={styles.dropdownTextStyles}
 				arrowicon={<Icon icon={ArrowDown} className="self-center mt-1" />}
 				closeicon={<Icon icon={ArrowDown} className="self-center mt-1 rotate-180" />}
-				maxHeight={SCREEN_HEIGHT * 0.4}
+				maxHeight={maxHeight ?? SCREEN_HEIGHT * 0.4}
 				searchicon={<Icon icon={ArrowDown} className="hidden" />}
 				fontFamily="ZenKakuGothicNew-Medium"
 			/>
