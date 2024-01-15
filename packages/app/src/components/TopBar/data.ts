@@ -3,6 +3,7 @@ const hideOnTheseScreens = [
 	'AdoptionDetails',
 	'SittingDetails',
 	'AddAnimal',
+	'AnimalProfile',
 ];
 
 export default hideOnTheseScreens;

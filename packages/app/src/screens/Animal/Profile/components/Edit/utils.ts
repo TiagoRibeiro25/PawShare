@@ -1,5 +1,5 @@
-import utils from '../../../utils';
-import data from '../data';
+import utils from '../../../../../utils';
+import data from '../../../data';
 import { FormData, ValidateDataResult } from './types';
 
 /**
@@ -8,10 +8,6 @@ import { FormData, ValidateDataResult } from './types';
  * @returns The result of the validation.
  */
 const validateData = (formData: FormData): ValidateDataResult => {
-	if (!formData.picture) {
-		return { valid: false, message: 'Please select a picture' };
-	}
-
 	if (!utils.validateData.isValid(formData.name, 'name')) {
 		return { valid: false, message: 'Please enter a valid name' };
 	}

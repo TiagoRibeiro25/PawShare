@@ -30,7 +30,6 @@ const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
 				</View>
 			</View>
 
-			{/* TODO (tiago): Change the fallback image */}
 			<FastImage
 				source={{
 					uri: adoption.animal.picture || config.fallbacks.adoption.feed.animal.picture,

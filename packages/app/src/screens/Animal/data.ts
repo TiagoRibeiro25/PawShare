@@ -1,7 +1,7 @@
-import types from '../../../data/animals.json';
-import colors from '../../../data/colors.json';
-import genders from '../../../data/genders.json';
-import sizes from '../../../data/sizes.json';
+import types from '../../data/animals.json';
+import colors from '../../data/colors.json';
+import genders from '../../data/genders.json';
+import sizes from '../../data/sizes.json';
 
 const typesData = types.map((type: string) => {
 	return { key: type, value: type };

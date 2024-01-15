@@ -1,10 +1,11 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
-import { Animated } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 import utils from '../../utils';
 import { Props } from './types';
 
-const [SCREEN_WIDTH, SCREEN_HEIGHT] = utils.screen.getSize();
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const AnimatedScreen: React.FC<Props> = ({
 	children,

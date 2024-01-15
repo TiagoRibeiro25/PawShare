@@ -8,7 +8,11 @@ import Icon from '../Icon';
 import options from './options';
 import { Props } from './types';
 
-const ImagePicker: React.FC<Props> = ({ value, onChange }): React.JSX.Element => {
+const ImagePicker: React.FC<Props> = ({
+	value,
+	onChange,
+	defaultImage,
+}): React.JSX.Element => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const openImagePicker = async (): Promise<void> => {
@@ -34,8 +38,12 @@ const ImagePicker: React.FC<Props> = ({ value, onChange }): React.JSX.Element =>
 		>
 			{isLoading ? (
 				<ActivityIndicator size="large" color="#F8B436" />
-			) : value ? (
-				<FastImage className="w-full h-full" source={{ uri: value.uri }} resizeMode="cover" />
+			) : value || defaultImage ? (
+				<FastImage
+					className="w-full h-full"
+					source={{ uri: value?.uri || defaultImage }}
+					resizeMode="cover"
+				/>
 			) : (
 				<Icon icon={AddIcon} />
 			)}
