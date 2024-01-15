@@ -1,0 +1,95 @@
+summary: Add a new animal
+description: Add a new animal to the database
+tags:
+  - "Animals"
+security:
+  - bearerAuth: []
+parameters:
+  - in: header
+    name: x-auth-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - in: header
+    name: x-refresh-token
+    schema:
+      type: string
+    required: true
+    description: Authorization token
+  - name: "id"
+    in: "path"
+    description: "The id of the animal"
+    required: true
+    schema:
+      type: "number"
+      example: 1
+responses:
+  200:
+    description: "Success"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+            data:
+              type: "object"
+        examples:
+          Animal Created:
+            value:
+              success: true
+              message: "Animal page created"
+              data:
+                animal:
+                  id: 1
+                  owner_id: 1
+                  name: "Joaquim"
+                  gender: "Male"
+                  type: "dog"
+                  size: "Medium"
+                  color: "brown"
+                  description: "Bonito"
+  401:
+    description: "Unauthorized"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Missing token":
+            value:
+              success: false
+              message: "Missing auth token or refresh token"
+          "Invalid token":
+            value:
+              success: false
+              message: "Invalid auth token or refresh token"
+          "Refresh token expired":
+            value:
+              success: false
+              message: "Refresh token has expired"
+  500:
+    description: "Internal server error"
+    content:
+      application/json:
+        schema:
+          type: "object"
+          properties:
+            success:
+              type: "boolean"
+            message:
+              type: "string"
+        examples:
+          "Internal server error":
+            value:
+              success: false
+              message: "Internal server error"

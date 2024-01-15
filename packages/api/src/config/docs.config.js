@@ -68,6 +68,9 @@ const swaggerDefinition = {
 		"/animals/{id}": {
 			get: routeDocs.animals.getAnimalDetail,
 		},
+		"/animals": {
+			post: routeDocs.animals.postAnimal,
+		},
 
 		// STORE
 		"/store/coins": {
