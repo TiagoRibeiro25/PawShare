@@ -9,4 +9,5 @@ export type RootStackParamList = {
 	Store: undefined;
 	Profile: undefined;
 	AddAnimal: undefined;
+	AnimalProfile: { id: number }; // Animal ID
 };

@@ -8,12 +8,12 @@ import DetailsHeader from '../../../components/DetailsHeader';
 import DropDownSelectList from '../../../components/DropDownSelectList';
 import ImagePicker from '../../../components/ImagePicker';
 import Input from '../../../components/Input';
-import { Gender, Size } from '../../../types';
-import formData from './data';
-import utils from './utils';
-import { ValidateDataResult } from './types';
 import useAddAnimal from '../../../hooks/reactQuery/animals/add';
 import { AddAnimalData } from '../../../hooks/reactQuery/animals/add/types';
+import { Gender, Size } from '../../../types';
+import formData from '../data';
+import { ValidateDataResult } from './types';
+import utils from './utils';
 
 const AddAnimal: React.FC = (): React.JSX.Element => {
 	const navigation = useNavigation();

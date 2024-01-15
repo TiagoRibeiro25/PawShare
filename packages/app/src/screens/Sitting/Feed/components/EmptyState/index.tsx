@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-// TODO(tiago): Update this (with the sitting one)
 const EmptyState: React.FC = (): React.JSX.Element => {
 	return (
 		<View className="items-center justify-center flex-1 px-5 ">

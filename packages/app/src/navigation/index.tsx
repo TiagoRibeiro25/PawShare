@@ -13,6 +13,7 @@ import AdoptionDetails from '../screens/Adoption/Details';
 import AdoptionFeed from '../screens/Adoption/Feed';
 import ManageAdoptions from '../screens/Adoption/Manage';
 import AddAnimal from '../screens/Animal/AddAnimal';
+import AnimalProfile from '../screens/Animal/Profile';
 import Auth from '../screens/Auth';
 import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
@@ -20,6 +21,7 @@ import SittingDetails from '../screens/Sitting/Details';
 import SittingFeed from '../screens/Sitting/Feed';
 import Store from '../screens/Store';
 import { RootStackParamList } from './types';
+import utils from './utils';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -35,18 +37,6 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	const SittingFeedIcon = useCallback(() => <Icon icon={SittingFeedI} />, []);
 	const StoreIcon = useCallback(() => <Icon icon={StoreI} />, []);
 	const ProfileIcon = useCallback(() => <Icon icon={ProfileI} />, []);
-
-	const guardClause = (mustBeLogged: boolean, destiny: React.FC<any>): React.FC => {
-		if (mustBeLogged && !loggedUser) {
-			return OnBoarding; // FallBack if not logged
-		}
-
-		if (!mustBeLogged && loggedUser) {
-			return AdoptionFeed; // FallBack if logged
-		}
-
-		return destiny;
-	};
 
 	useEffect(() => {
 		return navigation.addListener('state', (e) => {
@@ -67,8 +57,11 @@ const Navigation: React.FC = (): React.JSX.Element => {
 				initialRouteName="OnBoarding"
 				screenOptions={{ headerShown: false, tabBarStyle: { display: 'none' } }}
 			>
-				<Tab.Screen name="OnBoarding" component={guardClause(false, OnBoarding)} />
-				<Tab.Screen name="Auth" component={guardClause(false, Auth)} />
+				<Tab.Screen
+					name="OnBoarding"
+					component={utils.guardClause(false, OnBoarding, loggedUser)}
+				/>
+				<Tab.Screen name="Auth" component={utils.guardClause(false, Auth, loggedUser)} />
 			</Tab.Navigator>
 		);
 	}
@@ -90,7 +83,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			{/* Adoption */}
 			<Tab.Screen
 				name="AdoptionFeed"
-				component={guardClause(true, AdoptionFeed)}
+				component={utils.guardClause(true, AdoptionFeed, loggedUser)}
 				options={{
 					tabBarIcon: AdoptionFeedIcon,
 					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'AdoptionFeed'),
@@ -99,13 +92,13 @@ const Navigation: React.FC = (): React.JSX.Element => {
 
 			<Tab.Screen
 				name="AdoptionDetails"
-				component={guardClause(true, AdoptionDetails)}
+				component={utils.guardClause(true, AdoptionDetails, loggedUser)}
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
 			<Tab.Screen
 				name="ManageAdoptions"
-				component={guardClause(true, ManageAdoptions)}
+				component={utils.guardClause(true, ManageAdoptions, loggedUser)}
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
@@ -114,7 +107,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			{/* Sitting */}
 			<Tab.Screen
 				name="SittingFeed"
-				component={guardClause(true, SittingFeed)}
+				component={utils.guardClause(true, SittingFeed, loggedUser)}
 				options={{
 					tabBarIcon: SittingFeedIcon,
 					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'SittingFeed'),
@@ -123,7 +116,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 
 			<Tab.Screen
 				name="SittingDetails"
-				component={guardClause(true, SittingDetails)}
+				component={utils.guardClause(true, SittingDetails, loggedUser)}
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
@@ -132,7 +125,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			{/* Store */}
 			<Tab.Screen
 				name="Store"
-				component={guardClause(true, Store)}
+				component={utils.guardClause(true, Store, loggedUser)}
 				options={{
 					tabBarIcon: StoreIcon,
 					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'Store'),
@@ -144,7 +137,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			{/* Profile */}
 			<Tab.Screen
 				name="Profile"
-				component={guardClause(true, Profile)}
+				component={utils.guardClause(true, Profile, loggedUser)}
 				options={{
 					tabBarIcon: ProfileIcon,
 					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'Profile'),
@@ -156,7 +149,13 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			{/* Animal */}
 			<Tab.Screen
 				name="AddAnimal"
-				component={guardClause(true, AddAnimal)}
+				component={utils.guardClause(true, AddAnimal, loggedUser)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
+			/>
+
+			<Tab.Screen
+				name="AnimalProfile"
+				component={utils.guardClause(true, AnimalProfile, loggedUser)}
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 		</Tab.Navigator>

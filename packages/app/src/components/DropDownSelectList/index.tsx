@@ -1,13 +1,12 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
 import ArrowDown from '../../assets/svg/dropdown_arrow.svg';
-import utils from '../../utils';
 import Icon from '../Icon';
 import styles from './styles';
 import { Props } from './types';
 
-const [_, SCREEN_HEIGHT] = utils.screen.getSize();
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const DropDownSelectList: React.FC<Props> = ({
 	data,

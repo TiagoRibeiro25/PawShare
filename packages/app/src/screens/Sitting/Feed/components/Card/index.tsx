@@ -23,7 +23,7 @@ const Card: React.FC<Props> = ({ sitting }): React.JSX.Element => {
 			activeOpacity={0.8}
 			// TODO (tiago): Remove this ts-ignore
 			//@ts-ignore
-			onPress={() => navigation.navigate('SittingDetails', { id: sitting.id })}
+			onPress={(): void => navigation.navigate('SittingDetails', { id: sitting.id })}
 		>
 			<View className="flex-row items-center justify-between p-5">
 				<Text className="mt-1 text-xl text-secondary-500 font-laila-semi-bold">
