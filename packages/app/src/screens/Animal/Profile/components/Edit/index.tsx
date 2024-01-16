@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { Asset } from 'react-native-image-picker';
 import AnimatedScreen from '../../../../../components/AnimatedScreen';
@@ -6,6 +6,8 @@ import Button from '../../../../../components/Button';
 import DropDownSelectList from '../../../../../components/DropDownSelectList';
 import ImagePicker from '../../../../../components/ImagePicker';
 import Input from '../../../../../components/Input';
+import useUpdateAnimal from '../../../../../hooks/reactQuery/animals/edit';
+import { UpdateAnimalData } from '../../../../../hooks/reactQuery/animals/edit/types';
 import { Gender, Size } from '../../../../../types';
 import formData from '../../../data';
 import { Props, ValidateDataResult } from './types';
@@ -20,6 +22,19 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 	const [size, setSize] = useState<Size>(animal.size);
 	const [description, setDescription] = useState<string>(animal.description || '');
 	const [statusMessage, setStatusMessage] = useState<string>('');
+	const [dataToUpdate, setDataToUpdate] = useState<string[]>([]);
+
+	const { mutateAsync } = useUpdateAnimal({
+		animalId: animal.id,
+		name,
+		type,
+		color,
+		description,
+		gender,
+		size,
+		picture: 'data:image/png;base64,' + picture?.base64,
+		dataToUpdate,
+	});
 
 	const handleSubmit = async (): Promise<void> => {
 		setStatusMessage('');
@@ -38,8 +53,50 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 			return;
 		}
 
-		// TODO(tiago): Send data to backend
+		const newDataToUpdate: string[] = [];
+
+		// If true, it means the user has changed the value of the field
+		const newData: Record<string, boolean> = {
+			name: name !== animal.name,
+			type: type !== animal.type,
+			gender: gender !== animal.gender,
+			color: color !== animal.color,
+			size: size !== animal.size,
+			description: description !== animal.description,
+			picture: !!picture?.base64,
+		};
+
+		// Check what data has changed and append it to dataToUpdate
+		Object.keys(newData).forEach((key: string) => {
+			if (newData[key]) {
+				newDataToUpdate.push(key);
+			}
+		});
+
+		setDataToUpdate(newDataToUpdate);
 	};
+
+	useEffect(() => {
+		if (dataToUpdate.length === 0) {
+			return;
+		}
+
+		try {
+			mutateAsync(
+				{},
+				{
+					onSuccess: (resData: UpdateAnimalData): void => {
+						console.log('resData:', resData);
+					},
+					onError: (err: unknown): void => {
+						console.log('onError:', err);
+					},
+				},
+			);
+		} catch (err: unknown) {
+			console.log('err:', err);
+		}
+	}, [dataToUpdate, mutateAsync]);
 
 	return (
 		<AnimatedScreen animation="FadeIn">
