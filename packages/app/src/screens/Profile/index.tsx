@@ -34,6 +34,15 @@ const Profile: React.FC = (): React.JSX.Element => {
 
 				<Button
 					className="self-center p-3 mt-6 bg-accent-500 w-60"
+					onPress={(): void => navigation.navigate('AddDocument' as never)}
+				>
+					<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
+						Add Document
+					</Text>
+				</Button>
+
+				<Button
+					className="self-center p-3 mt-6 bg-accent-500 w-60"
 					// @ts-ignore
 					onPress={(): void => navigation.navigate('AnimalProfile', { id: 1 })}
 				>
