@@ -10,4 +10,5 @@ export type RootStackParamList = {
 	Profile: undefined;
 	AddAnimal: undefined;
 	AnimalProfile: { id: number }; // Animal ID
+	AddDocument: undefined;
 };

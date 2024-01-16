@@ -15,6 +15,7 @@ import ManageAdoptions from '../screens/Adoption/Manage';
 import AddAnimal from '../screens/Animal/AddAnimal';
 import AnimalProfile from '../screens/Animal/Profile';
 import Auth from '../screens/Auth';
+import AddDocument from '../screens/Documents/Add';
 import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
 import SittingDetails from '../screens/Sitting/Details';
@@ -156,6 +157,15 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			<Tab.Screen
 				name="AnimalProfile"
 				component={utils.guardClause(true, AnimalProfile, loggedUser)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
+			/>
+
+			{/* _________________________________________________________________________________ */}
+
+			{/* Documents */}
+			<Tab.Screen
+				name="AddDocument"
+				component={utils.guardClause(true, AddDocument, loggedUser)}
 				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 		</Tab.Navigator>

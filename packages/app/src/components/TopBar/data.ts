@@ -4,6 +4,7 @@ const hideOnTheseScreens = [
 	'SittingDetails',
 	'AddAnimal',
 	'AnimalProfile',
+	'AddDocument',
 ];
 
 export default hideOnTheseScreens;
