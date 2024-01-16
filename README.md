@@ -1,5 +1,5 @@
 <div align="center" id="top">
-  <img src="./images/Logo.png" width="600" alt="code-racer-logo">
+  <img src="./images/Logo.png" width="600" alt="paw-share-logo">
   <br/>
   <h1>Paw Share</h1>
   <p>"Empowering Care for Animals and Their Guardians in Challenging Times"</p>
@@ -11,6 +11,7 @@
 
 - [:bulb: About](#about)
 - [:computer: Tech Stack](#tech-stack)
+- [:pencil: Actors & User Stories](#actors-user-stories)
 - [:rocket: Getting Started](#getting-started)
 - [:memo: Contributors](#contributors)
 
@@ -40,6 +41,12 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 - [Cloudinary](https://cloudinary.com/)
 
 <a id="getting-started"></a>
+
+## Actors & User Stories :pencil:
+
+[ACTORS_USERS_STORIES.md](https://gitlab.com/esmad/esmapp/esmapp-2324/group-6/-/blob/main/docs/ACTORS_USER_STORIES.md?ref_type=heads)
+
+<a id="actors-user-stories"></a>
 
 ## Getting Started :rocket:
 
