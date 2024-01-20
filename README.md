@@ -44,7 +44,7 @@ Moreover, Paw Share facilitates temporary pet care, enabling pet owners to entru
 
 ## Actors & User Stories :pencil:
 
-[ACTORS_USERS_STORIES.md](https://gitlab.com/esmad/esmapp/esmapp-2324/group-6/-/blob/main/docs/ACTORS_USER_STORIES.md?ref_type=heads)
+[ACTORS_USERS_STORIES.md](https://github.com/TiagoRibeiro25/PawShare/blob/main/docs/ACTORS_USER_STORIES.md)
 
 <a id="actors-user-stories"></a>
 

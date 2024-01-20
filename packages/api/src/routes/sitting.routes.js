@@ -70,6 +70,7 @@ router.delete(
 
 router.post(
 	"/requested/:id",
+	validators.sitting.addCandidate(),
 	validators.validateResult,
 	middlewares.validateTokens,
 	controllers.sitting.addCandidate,
@@ -77,6 +78,7 @@ router.post(
 
 router.delete(
 	"/requested/:id",
+	validators.sitting.deleteCandidate(),
 	validators.validateResult,
 	middlewares.validateTokens,
 	controllers.sitting.deleteCandidate,
@@ -84,12 +86,16 @@ router.delete(
 
 router.patch(
 	"/:sittingId/users/:candidateId",
+	validators.sitting.acceptSittingCandidate(),
+	validators.validateResult,
 	middlewares.validateTokens,
 	controllers.sitting.acceptSittingCandidate,
 );
 
 router.patch(
 	"/:sittingId/pay",
+	validators.sitting.completePayment(),
+	validators.validateResult,
 	middlewares.validateTokens,
 	controllers.sitting.sittingPayment,
 );
