@@ -7,7 +7,11 @@ import LocationIcon from '../../../../../assets/svg/location.svg';
 import MaleIcon from '../../../../../assets/svg/male.svg';
 import Icon from '../../../../../components/Icon';
 import config from '../../../../../config';
-import { Props } from './types';
+import { Adoption } from '../../../../../hooks/reactQuery/adoption/details/types';
+
+type Props = {
+	adoption: Adoption;
+};
 
 const Card: React.FC<Props> = ({ adoption }): React.JSX.Element => {
 	const navigation = useNavigation();

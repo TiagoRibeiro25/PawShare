@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
+import { Asset, ImagePickerResponse, launchImageLibrary } from 'react-native-image-picker';
 import AddIcon from '../../assets/svg/add.svg';
 import Button from '../Button';
 import Icon from '../Icon';
 import options from './options';
-import { Props } from './types';
+
+type Props = {
+	value?: Asset;
+	onChange: (image: Asset) => void;
+	defaultImage?: string;
+};
 
 const ImagePicker: React.FC<Props> = ({
 	value,

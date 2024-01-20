@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import useGetCitiesData from '../../hooks/reactQuery/cities';
 import Input from '../Input';
-import { Props } from './types';
+
+type Props = {
+	className?: string;
+	setSelected: (city: string) => void;
+};
 
 const PREFIX_LENGTH = 3;
 

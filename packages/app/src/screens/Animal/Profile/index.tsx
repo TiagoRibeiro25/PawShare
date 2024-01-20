@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useState } from 'react';
 import AnimatedScreen from '../../../components/AnimatedScreen';
 import DetailsHeader from '../../../components/DetailsHeader';
@@ -6,10 +7,12 @@ import DetailsLoadingSkeleton from '../../../components/DetailsLoadingSkeleton';
 import { useUserContext } from '../../../context/user';
 import useGetAnimalProfileData from '../../../hooks/reactQuery/animals/details';
 import { Animal } from '../../../hooks/reactQuery/animals/details/types';
+import { RootStackParamList } from '../../../navigation/types';
 import AnimalDetails from './components/Details';
 import EditAnimal from './components/Edit';
 import EditButton from './components/EditButton';
-import { Props } from './types';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'AnimalProfile'>;
 
 const AnimalProfile: React.FC<Props> = ({ route }): React.JSX.Element => {
 	const navigation = useNavigation();

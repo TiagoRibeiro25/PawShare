@@ -7,7 +7,20 @@ import PhoneIcon from '../../assets/svg/phone.svg';
 import { useUserContext } from '../../context/user';
 import Button from '../Button';
 import Icon from '../Icon';
-import { Props } from './types';
+
+type Props = {
+	owner: {
+		id: number;
+		display_name: string;
+		picture: string;
+	};
+	description?: string;
+	notes: string[];
+	contact: {
+		email: string;
+		phone: string;
+	};
+};
 
 const DetailsBodyData: React.FC<Props> = ({
 	owner,

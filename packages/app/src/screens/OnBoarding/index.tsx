@@ -10,7 +10,11 @@ import Icon from '../../components/Icon';
 import config from '../../config';
 import slides from '../../data/onboarding.json';
 import SwipeButton from './components/SwipeButton';
-import { Slide } from './types';
+
+type Slide = {
+	title: string[];
+	description?: string;
+};
 
 const OnBoarding: React.FC = (): React.JSX.Element => {
 	const navigation = useNavigation();

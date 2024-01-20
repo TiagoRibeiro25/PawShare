@@ -1,7 +1,20 @@
 import React, { createRef } from 'react';
 import { TextInput, View } from 'react-native';
+import { SvgProps } from 'react-native-svg';
 import Icon from '../Icon';
-import { Props } from './types';
+
+type Props = {
+	placeholder: string;
+	hideText?: boolean;
+	value: string;
+	onChange: (text: string) => void;
+	icon?: React.FC<SvgProps>;
+	className?: string;
+	iconClassName?: string;
+	textInputClassName?: string;
+	multiLine?: boolean;
+	numberOfLines?: number;
+};
 
 const Input: React.FC<Props> = ({
 	placeholder,

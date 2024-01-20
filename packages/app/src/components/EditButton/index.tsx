@@ -3,7 +3,10 @@ import EditIcon from '../../assets/svg/edit.svg';
 import AnimatedScreen from '../AnimatedScreen';
 import Button from '../Button';
 import Icon from '../Icon';
-import { Props } from './types';
+
+type Props = {
+	onPress: () => void;
+};
 
 const EditButton: React.FC<Props> = ({ onPress }): React.JSX.Element => {
 	return (

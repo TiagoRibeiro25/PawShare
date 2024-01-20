@@ -6,12 +6,17 @@ import Button from '../../../../../components/Button';
 import DropDownSelectList from '../../../../../components/DropDownSelectList';
 import ImagePicker from '../../../../../components/ImagePicker';
 import Input from '../../../../../components/Input';
+import { Animal } from '../../../../../hooks/reactQuery/animals/details/types';
 import useUpdateAnimal from '../../../../../hooks/reactQuery/animals/edit';
 import { UpdateAnimalData } from '../../../../../hooks/reactQuery/animals/edit/types';
 import { Gender, Size } from '../../../../../types';
 import formData from '../../../data';
-import { Props, ValidateDataResult } from './types';
+import { ValidateDataResult } from './types';
 import utils from './utils';
+
+type Props = {
+	animal: Animal;
+};
 
 const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 	const [picture, setPicture] = useState<Asset>();

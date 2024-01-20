@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -16,10 +17,12 @@ import Icon from '../../../components/Icon';
 import config from '../../../config';
 import { useUserContext } from '../../../context/user';
 import useGetSittingDetailsData from '../../../hooks/reactQuery/sitting/details';
+import { RootStackParamList } from '../../../navigation/types';
 import utils from '../../../utils';
 import JoinSittersListButton from './components/JoinSittersListButton';
 import ReviewsRating from './components/ReviewsRating';
-import { Props } from './types';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'SittingDetails'>;
 
 const SittingDetails: React.FC<Props> = ({ route }): React.JSX.Element => {
 	const navigation = useNavigation();
