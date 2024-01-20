@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -12,8 +13,10 @@ import Icon from '../../../components/Icon';
 import config from '../../../config';
 import { useUserContext } from '../../../context/user';
 import useGetAdoptionDetailsData from '../../../hooks/reactQuery/adoption/details';
+import { RootStackParamList } from '../../../navigation/types';
 import JoinAdoptersListButton from './components/JoinAdoptersListButton';
-import { Props } from './types';
+
+export type Props = NativeStackScreenProps<RootStackParamList, 'AdoptionDetails'>;
 
 const AdoptionDetails: React.FC<Props> = ({ route }): React.JSX.Element => {
 	const navigation = useNavigation();

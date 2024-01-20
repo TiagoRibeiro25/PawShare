@@ -1,7 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import NavigateBackButton from './components/NavigateBackButton';
-import { Props } from './types';
+
+type Props = {
+	isLoading: boolean;
+	name?: string;
+	onNavigateBack?: () => void;
+};
 
 const DetailsHeader: React.FC<Props> = ({
 	isLoading,

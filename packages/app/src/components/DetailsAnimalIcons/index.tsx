@@ -6,8 +6,15 @@ import LargeIcon from '../../assets/svg/size_large.svg';
 import MediumIcon from '../../assets/svg/size_medium.svg';
 import SmallIcon from '../../assets/svg/size_small.svg';
 import animalEmojis from '../../data/animal_emojis.json';
+import { Gender, Size } from '../../types';
 import Icon from '../Icon';
-import { Props } from './types';
+
+type Props = {
+	gender: Gender;
+	color: string;
+	size: Size;
+	type: string;
+};
 
 const DetailsAnimalIcons: React.FC<Props> = ({
 	color,

@@ -12,7 +12,11 @@ import useGetAdoptionFeedData from '../../../../../hooks/reactQuery/adoption/fee
 import { Adoption } from '../../../../../hooks/reactQuery/adoption/feed/types';
 import Card from '../Card';
 import EmptyState from '../EmptyState';
-import { Props } from './types';
+
+type Props = {
+	onFilterButtonPress: () => void;
+	onManageButtonPress: () => void;
+};
 
 const Feed: React.FC<Props> = ({
 	onFilterButtonPress,

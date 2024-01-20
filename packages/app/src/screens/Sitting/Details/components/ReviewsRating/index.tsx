@@ -1,7 +1,10 @@
 import React from 'react';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import styles from './styles';
-import { Props } from './types';
+
+type Props = {
+	rating: number;
+};
 
 const ReviewsRating: React.FC<Props> = ({ rating }): React.JSX.Element => {
 	return (

@@ -4,7 +4,12 @@ import Button from '../../../../../components/Button';
 import useJoinSittersList from '../../../../../hooks/reactQuery/sitting/joinSittersList';
 import { JoinSittersListData } from '../../../../../hooks/reactQuery/sitting/joinSittersList/types';
 import utils from '../../../../../utils';
-import { Props } from './types';
+
+type Props = {
+	sittingId: number;
+	isCandidate: boolean;
+	isOwner: boolean;
+};
 
 const JoinSittersListButton: React.FC<Props> = ({
 	sittingId,

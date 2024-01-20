@@ -2,7 +2,10 @@ import React from 'react';
 import CloseIcon from '../../assets/svg/close.svg';
 import Button from '../Button';
 import Icon from '../Icon';
-import { Props } from './types';
+
+type Props = {
+	onPress: () => void;
+};
 
 const NavigateBackButton: React.FC<Props> = ({ onPress }): React.JSX.Element => {
 	return (

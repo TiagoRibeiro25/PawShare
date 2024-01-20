@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { Props } from './types';
+
+type Props = {
+	direction: 'prev' | 'next';
+};
 
 const SwipeButton: React.FC<Props> = ({ direction }): React.JSX.Element => {
 	return (

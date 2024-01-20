@@ -11,8 +11,12 @@ import LocationIcon from '../../../../../assets/svg/location.svg';
 import MaleIcon from '../../../../../assets/svg/male.svg';
 import Icon from '../../../../../components/Icon';
 import config from '../../../../../config';
+import { Sitting } from '../../../../../hooks/reactQuery/sitting/details/types';
 import utils from '../../../../../utils';
-import { Props } from './types';
+
+type Props = {
+	sitting: Sitting;
+};
 
 const Card: React.FC<Props> = ({ sitting }): React.JSX.Element => {
 	const navigation = useNavigation();

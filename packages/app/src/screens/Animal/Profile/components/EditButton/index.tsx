@@ -2,7 +2,10 @@ import React from 'react';
 import EditIcon from '../../../../../assets/svg/edit.svg';
 import Button from '../../../../../components/Button';
 import Icon from '../../../../../components/Icon';
-import { Props } from './types';
+
+type Props = {
+	onPress: () => void;
+};
 
 const EditButton: React.FC<Props> = ({ onPress }): React.JSX.Element => {
 	return (

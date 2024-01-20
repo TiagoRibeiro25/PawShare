@@ -2,7 +2,10 @@ import LottieView from 'lottie-react-native';
 import React from 'react';
 import { View } from 'react-native';
 import styles from './styles';
-import { Props } from './types';
+
+type Props = {
+	onAnimationFinish: () => void;
+};
 
 const Loading: React.FC<Props> = ({ onAnimationFinish }) => {
 	return (

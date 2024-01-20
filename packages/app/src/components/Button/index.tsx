@@ -1,6 +1,13 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Props } from './types';
+
+type Props = {
+	disabled?: boolean;
+	className?: string;
+	children: React.ReactNode;
+	activeOpacity?: number;
+	onPress?: () => void | Promise<void>;
+} & React.ComponentProps<typeof TouchableOpacity>;
 
 const Button: React.FC<Props> = ({
 	disabled,

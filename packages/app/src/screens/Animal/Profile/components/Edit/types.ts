@@ -1,9 +1,4 @@
-import { Animal } from '../../../../../hooks/reactQuery/animals/details/types';
 import { Gender, Size } from '../../../../../types';
-
-export type Props = {
-	animal: Animal;
-};
 
 export type FormData = {
 	name: string;

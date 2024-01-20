@@ -1,8 +1,17 @@
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { PropsWithChildren, useCallback, useRef, useState } from 'react';
 import { Animated, Dimensions } from 'react-native';
 import utils from '../../utils';
-import { Props } from './types';
+
+interface Props extends PropsWithChildren {
+	animation?:
+		| 'FadeIn'
+		| 'SlideInFromLeft'
+		| 'SlideInFromRight'
+		| 'SlideInFromTop'
+		| 'SlideInFromBottom';
+	dontAnimateOnMount?: boolean;
+}
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;

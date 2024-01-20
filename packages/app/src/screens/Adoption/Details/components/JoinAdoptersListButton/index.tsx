@@ -4,7 +4,12 @@ import Button from '../../../../../components/Button';
 import useJoinAdoptersList from '../../../../../hooks/reactQuery/adoption/joinAdoptersList';
 import { JoinAdoptersListData } from '../../../../../hooks/reactQuery/adoption/joinAdoptersList/types';
 import utils from '../../../../../utils';
-import { Props } from './types';
+
+type Props = {
+	adoptionId: number;
+	isCandidate: boolean;
+	isOwner: boolean;
+};
 
 const JoinAdoptersListButton: React.FC<Props> = ({
 	adoptionId,

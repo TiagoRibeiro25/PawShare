@@ -1,6 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { Props } from './types';
+import { SvgProps } from 'react-native-svg';
+
+type Props = {
+	icon: React.FC<SvgProps>;
+	className?: string;
+	onPress?: () => void;
+};
 
 const Icon: React.FC<Props> = ({ className, icon, onPress }): React.JSX.Element => {
 	const IconComponent = icon;

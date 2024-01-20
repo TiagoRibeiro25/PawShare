@@ -12,7 +12,10 @@ import genders from '../../../../../data/genders.json';
 import sizes from '../../../../../data/sizes.json';
 import { Gender, Size } from '../../../../../types';
 import utils from '../../../../../utils';
-import { Props } from './types';
+
+type Props = {
+	onGoBack: () => void;
+};
 
 const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 	const { setColor, setGender, setRegion, setSize, setType } = useAdoptionFeedContext();

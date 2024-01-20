@@ -12,7 +12,11 @@ import useGetSittingFeedData from '../../../../../hooks/reactQuery/sitting/feed'
 import { Sitting } from '../../../../../hooks/reactQuery/sitting/feed/types';
 import Card from '../Card';
 import EmptyState from '../EmptyState';
-import { Props } from './types';
+
+type Props = {
+	onFilterButtonPress: () => void;
+	onManageButtonPress: () => void;
+};
 
 const Feed: React.FC<Props> = ({
 	onFilterButtonPress,

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Text } from 'react-native';
 import Button from '../../../Button';
-import { Props } from './types';
+
+type Props = {
+	onPress?: () => void;
+};
 
 const NavigateBackButton: React.FC<Props> = ({ onPress }): React.JSX.Element => {
 	return (
