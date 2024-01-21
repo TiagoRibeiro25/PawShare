@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Text, View } from 'react-native';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
+import styles from './styles';
 
 type Props = {
 	isVisible: boolean;
@@ -16,12 +17,12 @@ const ForgotPasswordModal: React.FC<Props> = ({
 
 	return (
 		<Modal
-			animationType="slide"
+			animationType="fade"
 			transparent={true}
 			visible={isVisible}
 			onRequestClose={(): void => setIsVisible(false)}
 		>
-			<View className="items-center justify-center flex-1 mx-4">
+			<View className="items-center justify-center flex-1 px-4" style={styles.container}>
 				<View className="items-center max-w-md p-5 rounded-lg bg-accent-100">
 					<Text className="text-xl font font-laila-semi-bold text-secondary-500">
 						Forgot Password

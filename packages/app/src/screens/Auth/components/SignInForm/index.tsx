@@ -69,10 +69,7 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 
 	return (
 		<>
-			<ScrollView
-				className={`flex-1 ${isModalVisible && 'opacity-70'}`}
-				showsVerticalScrollIndicator={false}
-			>
+			<ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
 				<View className="items-center">
 					<Text className="mt-6 text-2xl uppercase text-secondary-500 font-laila-bold">
 						Sign In
