@@ -9,6 +9,7 @@ import { useUserContext } from '../../../../context/user';
 import useLogin from '../../../../hooks/reactQuery/auth/login';
 import { LoginData } from '../../../../hooks/reactQuery/auth/login/types';
 import utils from '../../../../utils';
+import { Type } from '../../../../utils/validateData';
 
 const SignInForm: React.FC = (): React.JSX.Element => {
 	const { setLoggedUser } = useUserContext();
@@ -29,15 +30,16 @@ const SignInForm: React.FC = (): React.JSX.Element => {
 			setValidationError('');
 
 			// Validate the Form Data
-			if (!utils.validateData.isValid(email, 'email')) {
-				setValidationError('Invalid email');
-				return;
-			}
+			const info: { type: Type; value: string }[] = [
+				{ type: 'email', value: email },
+				{ type: 'password', value: password },
+			];
 
-			if (!utils.validateData.isValid(password, 'password')) {
-				setValidationError('Invalid password');
-				return;
-			}
+			info.forEach((data) => {
+				if (!utils.validateData.isValid(data.value, data.type)) {
+					setValidationError(`Invalid ${data.type}`);
+				}
+			});
 
 			// Send the request
 			await mutateAsync(
