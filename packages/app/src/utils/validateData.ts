@@ -1,4 +1,4 @@
-type Type = 'email' | 'password' | 'name' | 'description';
+export type Type = 'email' | 'password' | 'name' | 'description';
 
 const regexRules = {
 	// Must be a valid email address
