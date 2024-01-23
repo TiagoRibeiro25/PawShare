@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { SelectList } from 'react-native-dropdown-select-list';
 import { APIResponse } from '../../../../api/types';
 import EmailIcon from '../../../../assets/svg/email.svg';
 import PasswordIcon from '../../../../assets/svg/password.svg';
@@ -11,7 +10,6 @@ import Input from '../../../../components/Input';
 import countries from '../../../../data/countries.json';
 import useRegister from '../../../../hooks/reactQuery/auth/register';
 import utils from '../../../../utils';
-import styles from './styles';
 
 type UserType = 'user' | 'organization';
 
@@ -111,15 +109,14 @@ const SignUpForm: React.FC = (): React.JSX.Element => {
 					/>
 
 					{/* User Type Input */}
-					<View className="mt-12 space-x-2 border rounded-xl border-secondary-500">
-						<SelectList
-							setSelected={(val: string) => setUserType(val as UserType)}
-							data={['user', 'organization']}
-							save="value"
-							boxStyles={styles.selectListStyle}
-							dropdownStyles={styles.selectListStyle}
-						/>
-					</View>
+					<DropDownSelectList
+						className="mt-12"
+						data={['user', 'organization'].map((val: string) => ({ key: val, value: val }))}
+						setSelected={(val: string) => setUserType(val as UserType)}
+						searchPlaceholder="User Account Type"
+						defaultOption={{ key: 'user', value: 'user' }}
+						maxHeight={100}
+					/>
 
 					{/* Sign Up Button */}
 					<Button
@@ -131,6 +128,7 @@ const SignUpForm: React.FC = (): React.JSX.Element => {
 							Sign Up
 						</Text>
 					</Button>
+
 					<Text className="mt-12 text-base font-zen-kaku-gothic-new-medium text-error-500">
 						{statusMessage !== ''
 							? statusMessage
