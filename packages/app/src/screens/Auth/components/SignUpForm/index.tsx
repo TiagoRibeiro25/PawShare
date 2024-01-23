@@ -3,6 +3,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { APIResponse } from '../../../../api/types';
 import EmailIcon from '../../../../assets/svg/email.svg';
 import PasswordIcon from '../../../../assets/svg/password.svg';
+// TODO(tiago): Fix wrong username icon
 import UsernameIcon from '../../../../assets/svg/profile.svg';
 import Button from '../../../../components/Button';
 import DropDownSelectList from '../../../../components/DropDownSelectList';
