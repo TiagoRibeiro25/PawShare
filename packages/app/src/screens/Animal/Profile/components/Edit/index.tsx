@@ -8,7 +8,6 @@ import ImagePicker from '../../../../../components/ImagePicker';
 import Input from '../../../../../components/Input';
 import { Animal } from '../../../../../hooks/reactQuery/animals/details/types';
 import useUpdateAnimal from '../../../../../hooks/reactQuery/animals/edit';
-import { UpdateAnimalData } from '../../../../../hooks/reactQuery/animals/edit/types';
 import { Gender, Size } from '../../../../../types';
 import formData from '../../../data';
 import { ValidateDataResult } from './types';
@@ -29,7 +28,7 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 	const [statusMessage, setStatusMessage] = useState<string>('');
 	const [dataToUpdate, setDataToUpdate] = useState<string[]>([]);
 
-	const { mutateAsync } = useUpdateAnimal({
+	const { status, mutateAsync } = useUpdateAnimal({
 		animalId: animal.id,
 		name,
 		type,
@@ -87,19 +86,9 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 		}
 
 		try {
-			mutateAsync(
-				{},
-				{
-					onSuccess: (resData: UpdateAnimalData): void => {
-						console.log('resData:', resData);
-					},
-					onError: (err: unknown): void => {
-						console.log('onError:', err);
-					},
-				},
-			);
-		} catch (err: unknown) {
-			console.log('err:', err);
+			mutateAsync({});
+		} catch (_err: unknown) {
+			// ...
 		}
 	}, [dataToUpdate, mutateAsync]);
 
@@ -165,11 +154,10 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 					<Button
 						className="h-12 mt-6 bg-accent-500"
 						onPress={handleSubmit}
-						// disabled={status === 'pending'}
+						disabled={status === 'pending'}
 					>
 						<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
-							{/* {status === 'pending' ? 'Loading...' : 'Add Animal'} */}
-							Apply Changes
+							{status === 'pending' ? 'Loading...' : 'Apply Changes'}
 						</Text>
 					</Button>
 				</View>
