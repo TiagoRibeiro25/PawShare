@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Text, View } from 'react-native';
+import { APIResponse } from '../../../../api/types';
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import useForgotPassword from '../../../../hooks/reactQuery/auth/forgotPassword';
@@ -32,7 +33,7 @@ const ForgotPasswordModal: React.FC<Props> = ({
 			await mutateAsync(
 				{},
 				{
-					onSuccess: (resData): void => {
+					onSuccess: (resData: APIResponse): void => {
 						setStatusMessage(resData.message);
 
 						if (resData.success) {

@@ -7,7 +7,7 @@ import LocationIcon from '../../../../../assets/svg/location.svg';
 import MaleIcon from '../../../../../assets/svg/male.svg';
 import Icon from '../../../../../components/Icon';
 import config from '../../../../../config';
-import { Adoption } from '../../../../../hooks/reactQuery/adoption/details/types';
+import { Adoption } from '../../../../../hooks/reactQuery/adoption/feed/types';
 
 type Props = {
 	adoption: Adoption;
