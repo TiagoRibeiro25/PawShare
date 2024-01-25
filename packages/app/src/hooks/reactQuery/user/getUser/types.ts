@@ -4,7 +4,7 @@ import { UserType } from '../../../../types';
 type User = {
 	id: number;
 	display_name: string;
-	email: string;
+	email?: string;
 	type: UserType;
 	country: {
 		name: string;

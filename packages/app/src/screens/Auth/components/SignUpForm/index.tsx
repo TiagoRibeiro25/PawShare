@@ -10,9 +10,8 @@ import DropDownSelectList from '../../../../components/DropDownSelectList';
 import Input from '../../../../components/Input';
 import countries from '../../../../data/countries.json';
 import useRegister from '../../../../hooks/reactQuery/auth/register';
+import { UserType } from '../../../../types';
 import utils from '../../../../utils';
-
-type UserType = 'user' | 'organization';
 
 const SignUpForm: React.FC = (): React.JSX.Element => {
 	const [email, setEmail] = useState<string>('');
