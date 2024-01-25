@@ -14,7 +14,7 @@ type User = {
 		name: string;
 		code: string;
 	};
-	description: string;
+	description?: string;
 	coins?: number;
 	badges: number[];
 	selected_frame: number | null;

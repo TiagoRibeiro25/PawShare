@@ -77,6 +77,15 @@ const ProfileData: React.FC<Props> = ({
 						</Text>
 					</View>
 
+					<View className="p-5 mt-6">
+						<Text className="mb-2 text-xl font-laila-medium text-secondary-500">
+							Description
+						</Text>
+						<Text className="text-base leading-5 font-zen-kaku-gothic-new-medium text-secondary-500">
+							{data.data.description || 'This user has no description yet.'}
+						</Text>
+					</View>
+
 					{isLoggedUser && (
 						<Button
 							className="self-center p-3 mt-16 bg-accent-500 w-60"
