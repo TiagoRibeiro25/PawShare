@@ -1,6 +1,10 @@
 import { APIResponse } from '../../../../api/types';
 import { UserType } from '../../../../types';
 
+export type Params = {
+	id: number | 'me';
+};
+
 type User = {
 	id: number;
 	display_name: string;
@@ -25,6 +29,6 @@ type User = {
 	}[];
 };
 
-export interface GetLoggedUserData extends APIResponse {
+export interface GetUserData extends APIResponse {
 	data: User;
 }

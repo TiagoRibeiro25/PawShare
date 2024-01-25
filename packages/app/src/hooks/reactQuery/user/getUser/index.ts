@@ -1,21 +1,21 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import api from '../../../../api';
-import { GetLoggedUserData } from './types';
+import { GetUserData, Params } from './types';
 
-const getLoggedUser = async (): Promise<GetLoggedUserData> => {
-	const { data }: AxiosResponse<GetLoggedUserData> = await api.get('/users/me');
+const getUser = async (params: Params): Promise<GetUserData> => {
+	const { data }: AxiosResponse<GetUserData> = await api.get(`/users/${params.id}`);
 	return data;
 };
 
-const useGetLoggedUser = (): UseQueryResult<GetLoggedUserData, Error> => {
+const useGetUser = (params: Params): UseQueryResult<GetUserData, Error> => {
 	return useQuery({
-		queryKey: ['loggedUser'],
-		queryFn: getLoggedUser,
+		queryKey: ['user', params.id],
+		queryFn: async () => getUser(params),
 		retry(failureCount: number) {
 			return failureCount < 2; // Retry 3 times
 		},
 	});
 };
 
-export default useGetLoggedUser;
+export default useGetUser;
