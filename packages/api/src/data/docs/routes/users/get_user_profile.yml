@@ -62,9 +62,6 @@ responses:
                 description:
                   type: string
                   example: I am a placeholder person
-                coins:
-                  type: number
-                  example: 100
                 badges:
                   type: array
                   items:
