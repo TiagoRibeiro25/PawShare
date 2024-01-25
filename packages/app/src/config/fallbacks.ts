@@ -23,4 +23,9 @@ export default {
 			},
 		},
 	},
+	profile: {
+		animal: {
+			picture: 'https://placekitten.com/408/287',
+		},
+	},
 };
