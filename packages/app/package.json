@@ -10,7 +10,8 @@
 		"prettier": "prettier --write ./src",
 		"prettier-check": "prettier --check ./src",
 		"eslint-check": "eslint ./src",
-		"lint": "npm run prettier-check && npm run eslint-check"
+		"check-types": "tsc --noEmit",
+		"lint": "npm run prettier-check && npm run eslint-check && npm run check-types"
 	},
 	"dependencies": {
 		"@react-navigation/bottom-tabs": "^6.5.11",
