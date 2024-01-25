@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import AddIcon from '../../../../assets/svg/add.svg';
 import Button from '../../../../components/Button';
@@ -24,7 +24,7 @@ const ProfileData: React.FC<Props> = ({
 }): React.JSX.Element => {
 	const navigation = useNavigation();
 	const { setLoggedUser } = useUserContext();
-	const { isLoading, data, isError } = useGetUser({ id });
+	const { isLoading, data, isError, isRefetching, refetch } = useGetUser({ id });
 
 	const handleSignOut = (): void => {
 		// Delete the tokens from the device storage
@@ -32,6 +32,14 @@ const ProfileData: React.FC<Props> = ({
 		utils.storage.delete('refreshToken');
 
 		setLoggedUser(null);
+	};
+
+	const handleOnRefresh = (): void => {
+		if (isRefetching || isLoading) {
+			return;
+		}
+
+		refetch();
 	};
 
 	useEffect(() => {
@@ -47,7 +55,16 @@ const ProfileData: React.FC<Props> = ({
 
 			{!isLoading && data?.data && (
 				<>
-					<ScrollView showsVerticalScrollIndicator={false}>
+					<ScrollView
+						showsVerticalScrollIndicator={false}
+						refreshControl={
+							<RefreshControl
+								refreshing={isRefetching}
+								onRefresh={handleOnRefresh}
+								colors={['#2B2A63']}
+							/>
+						}
+					>
 						<View className="items-center">
 							{/* Selected Banner */}
 							{data.data.selected_banner ? (
