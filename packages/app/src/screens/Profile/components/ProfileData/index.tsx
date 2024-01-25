@@ -129,8 +129,6 @@ const ProfileData: React.FC<Props> = ({
 										>
 											<Icon icon={AddIcon} />
 										</Button>
-
-										{/* <EditButton onPress={(): void => console.log('Navigate to Edit Profile')} /> */}
 									</>
 								)}
 
