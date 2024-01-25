@@ -5,7 +5,7 @@ import ProfileData from './components/ProfileData';
 const OwnProfile: React.FC = (): React.JSX.Element => {
 	return (
 		<AnimatedScreen animation="FadeIn">
-			<ProfileData id="me" />
+			<ProfileData isLoggedUser />
 		</AnimatedScreen>
 	);
 };

@@ -1,15 +1,19 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import Button from '../../../../components/Button';
 import { useUserContext } from '../../../../context/user';
 import utils from '../../../../utils';
 
 type Props = {
-	id: number | 'me';
+	id?: number;
+	isLoggedUser?: boolean;
 };
 
-const ProfileData: React.FC<Props> = ({ id }): React.JSX.Element => {
+const ProfileData: React.FC<Props> = ({
+	id = 'me',
+	isLoggedUser = false,
+}): React.JSX.Element => {
 	const navigation = useNavigation();
 	const { setLoggedUser } = useUserContext();
 
@@ -20,10 +24,6 @@ const ProfileData: React.FC<Props> = ({ id }): React.JSX.Element => {
 
 		setLoggedUser(null);
 	};
-
-	useEffect(() => {
-		console.log(id);
-	}, [id]);
 
 	return (
 		<View className="flex-1">

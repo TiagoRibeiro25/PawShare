@@ -15,12 +15,13 @@ const Profile: React.FC<Props> = ({ route }): React.JSX.Element => {
 	useEffect(() => {
 		if (!route.params?.id || route.params.id === loggedUser?.id || route.params.id === 'me') {
 			navigation.navigate('OwnProfile' as never);
+			return;
 		}
 	}, [loggedUser?.id, navigation, route.params.id]);
 
 	return (
 		<AnimatedScreen animation="FadeIn">
-			<ProfileData id={route.params.id} />
+			<ProfileData id={route.params.id === 'me' ? loggedUser?.id : route.params.id} />
 		</AnimatedScreen>
 	);
 };
