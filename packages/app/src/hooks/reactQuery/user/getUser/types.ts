@@ -11,7 +11,7 @@ type User = {
 		code: string;
 	};
 	description: string;
-	coins: number;
+	coins?: number;
 	badges: number[];
 	selected_frame: number | null;
 	selected_banner: number | null;
@@ -21,7 +21,7 @@ type User = {
 	animals?: {
 		id: number;
 		name: string;
-		picture: string;
+		picture: string | null;
 	}[];
 };
 

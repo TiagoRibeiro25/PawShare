@@ -21,7 +21,7 @@ type User = {
 	animals?: {
 		id: number;
 		name: string;
-		picture: string;
+		picture: string | null;
 	}[];
 };
 
