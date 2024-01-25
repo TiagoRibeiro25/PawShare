@@ -26,9 +26,14 @@ const AnimalProfile: React.FC<Props> = ({ route }): React.JSX.Element => {
 		if (isEditModeEnabled) {
 			setIsEditModeEnabled(false);
 		} else {
-			navigation.navigate('Profile' as never);
+			if (animal?.user.id === loggedUser?.id) {
+				navigation.navigate('OwnProfile' as never);
+			} else {
+				// @ts-ignore
+				navigation.navigate('Profile', { id: animal.user.id });
+			}
 		}
-	}, [isEditModeEnabled, navigation]);
+	}, [animal?.user.id, isEditModeEnabled, loggedUser?.id, navigation]);
 
 	// If the user leaves the screen while in edit mode, disable it automatically
 	useEffect(() => {

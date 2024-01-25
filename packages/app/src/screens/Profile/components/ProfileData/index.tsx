@@ -2,8 +2,11 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import AddIcon from '../../../../assets/svg/add.svg';
 import Button from '../../../../components/Button';
 import DetailsLoadingSkeleton from '../../../../components/DetailsLoadingSkeleton';
+import Icon from '../../../../components/Icon';
+import config from '../../../../config';
 import { useUserContext } from '../../../../context/user';
 import countries from '../../../../data/countries.json';
 import useGetUser from '../../../../hooks/reactQuery/user/getUser';
@@ -91,6 +94,33 @@ const ProfileData: React.FC<Props> = ({
 						<Text className="text-base leading-5 font-zen-kaku-gothic-new-medium text-secondary-500">
 							{data.data.description || 'This user has no description yet.'}
 						</Text>
+
+						<Text className="mb-2 text-xl mt-11 font-laila-medium text-secondary-500">
+							Animals
+						</Text>
+						{data.data.animals?.length ? (
+							<View className="flex-row flex-wrap">
+								{data.data.animals.map((animal) => (
+									<FastImage
+										key={animal.id}
+										className="w-20 h-20 mb-2 mr-2 rounded-full"
+										source={{ uri: animal.picture || config.fallbacks.profile.animal.picture }}
+										resizeMode="cover"
+									/>
+								))}
+
+								<Button
+									className="items-center justify-center w-20 h-20 mb-2 mr-2 rounded-full bg-secondary-200"
+									onPress={(): void => navigation.navigate('AddAnimal' as never)}
+								>
+									<Icon icon={AddIcon} />
+								</Button>
+							</View>
+						) : (
+							<Text className="text-base leading-5 font-zen-kaku-gothic-new-medium text-secondary-500">
+								This user has no animals yet.
+							</Text>
+						)}
 					</View>
 
 					{isLoggedUser && (
