@@ -18,6 +18,7 @@ import Auth from '../screens/Auth';
 import AddDocument from '../screens/Documents/Add';
 import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
+import EditProfile from '../screens/Profile/EditProfile';
 import OwnProfile from '../screens/Profile/OwnProfile';
 import SittingDetails from '../screens/Sitting/Details';
 import SittingFeed from '../screens/Sitting/Feed';
@@ -152,6 +153,13 @@ const Navigation: React.FC = (): React.JSX.Element => {
 					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'OwnProfile'),
 					tabBarLabel: 'Profile',
 				}}
+			/>
+
+			{/* Edit Profile */}
+			<Tab.Screen
+				name="EditProfile"
+				component={utils.guardClause(true, EditProfile, loggedUser)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
 			/>
 
 			{/* _________________________________________________________________________________ */}

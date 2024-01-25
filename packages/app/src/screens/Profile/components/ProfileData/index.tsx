@@ -51,9 +51,9 @@ const ProfileData: React.FC<Props> = ({
 	return (
 		<View className="flex-1">
 			{/* TODO(tiago): Make a loading skeleton component just for the profile  */}
-			{isLoading && <DetailsLoadingSkeleton />}
+			{(isLoading || isRefetching) && <DetailsLoadingSkeleton />}
 
-			{!isLoading && data?.data && (
+			{!isLoading && !isRefetching && data?.data && (
 				<>
 					<ScrollView
 						showsVerticalScrollIndicator={false}
@@ -117,7 +117,7 @@ const ProfileData: React.FC<Props> = ({
 							<Text className="mb-2 text-xl mt-11 font-laila-medium text-secondary-500">
 								Animals
 							</Text>
-							<View className="flex-row flex-wrap">
+							<View className="flex-row flex-wrap justify-center">
 								{data.data.animals &&
 									data.data.animals.map((animal) => (
 										<Button
@@ -170,7 +170,7 @@ const ProfileData: React.FC<Props> = ({
 					</ScrollView>
 
 					{isLoggedUser && (
-						<EditButton onPress={(): void => console.log('Navigate to Edit Profile')} />
+						<EditButton onPress={(): void => navigation.navigate('EditProfile' as never)} />
 					)}
 				</>
 			)}
