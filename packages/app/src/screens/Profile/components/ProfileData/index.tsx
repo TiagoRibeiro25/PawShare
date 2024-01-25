@@ -77,6 +77,13 @@ const ProfileData: React.FC<Props> = ({
 						</Text>
 					</View>
 
+					{/* Badges */}
+					{/* TODO(tiago): Display the badges */}
+					<ScrollView
+						className="flex-row mt-12 h-28 bg-secondary-300"
+						showsHorizontalScrollIndicator={false}
+					/>
+
 					<View className="p-5 mt-6">
 						<Text className="mb-2 text-xl font-laila-medium text-secondary-500">
 							Description
