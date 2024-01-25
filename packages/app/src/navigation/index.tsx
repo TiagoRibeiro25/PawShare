@@ -18,6 +18,7 @@ import Auth from '../screens/Auth';
 import AddDocument from '../screens/Documents/Add';
 import OnBoarding from '../screens/OnBoarding';
 import Profile from '../screens/Profile';
+import OwnProfile from '../screens/Profile/OwnProfile';
 import SittingDetails from '../screens/Sitting/Details';
 import SittingFeed from '../screens/Sitting/Feed';
 import Store from '../screens/Store';
@@ -139,9 +140,17 @@ const Navigation: React.FC = (): React.JSX.Element => {
 			<Tab.Screen
 				name="Profile"
 				component={utils.guardClause(true, Profile, loggedUser)}
+				options={{ tabBarItemStyle: { display: 'none' } }}
+			/>
+
+			{/* Own Profile */}
+			<Tab.Screen
+				name="OwnProfile"
+				component={utils.guardClause(true, OwnProfile, loggedUser)}
 				options={{
 					tabBarIcon: ProfileIcon,
-					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'Profile'),
+					tabBarItemStyle: config.navigator.tabItemStyle(currentScreen, 'OwnProfile'),
+					tabBarLabel: 'Profile',
 				}}
 			/>
 

@@ -7,7 +7,8 @@ export type RootStackParamList = {
 	ManageAdoptions: undefined;
 	SittingFeed: undefined;
 	Store: undefined;
-	Profile: undefined;
+	Profile: { id: number | 'me' }; // User ID'
+	OwnProfile: undefined;
 	AddAnimal: undefined;
 	AnimalProfile: { id: number }; // Animal ID
 	AddDocument: undefined;
