@@ -25,7 +25,6 @@ const Card: React.FC<Props> = ({ sitting }): React.JSX.Element => {
 		<TouchableOpacity
 			className="mb-8"
 			activeOpacity={0.8}
-			// TODO (tiago): Remove this ts-ignore
 			//@ts-ignore
 			onPress={(): void => navigation.navigate('SittingDetails', { id: sitting.id })}
 		>

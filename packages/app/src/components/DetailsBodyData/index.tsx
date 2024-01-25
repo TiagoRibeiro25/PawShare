@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -28,12 +29,16 @@ const DetailsBodyData: React.FC<Props> = ({
 	description,
 	contact,
 }): React.JSX.Element => {
+	const navigation = useNavigation();
 	const { loggedUser } = useUserContext();
 
 	return (
 		<>
-			{/* TODO(tiago): Navigate to the user profile */}
-			<Button className="flex-row items-center self-start p-0 mt-6 space-x-3">
+			<Button
+				className="flex-row items-center self-start p-0 mt-6 space-x-3"
+				// @ts-ignore
+				onPress={(): void => navigation.navigate('Profile', { id: owner.id })}
+			>
 				<FastImage
 					source={{
 						uri: owner.picture,

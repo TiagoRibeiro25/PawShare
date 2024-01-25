@@ -4,13 +4,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import AnimatedScreen from '../../../components/AnimatedScreen';
 import DetailsHeader from '../../../components/DetailsHeader';
 import DetailsLoadingSkeleton from '../../../components/DetailsLoadingSkeleton';
+import EditButton from '../../../components/EditButton';
 import { useUserContext } from '../../../context/user';
 import useGetAnimalProfileData from '../../../hooks/reactQuery/animals/details';
 import { Animal } from '../../../hooks/reactQuery/animals/details/types';
 import { RootStackParamList } from '../../../navigation/types';
 import AnimalDetails from './components/Details';
 import EditAnimal from './components/Edit';
-import EditButton from './components/EditButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'AnimalProfile'>;
 
@@ -26,9 +26,14 @@ const AnimalProfile: React.FC<Props> = ({ route }): React.JSX.Element => {
 		if (isEditModeEnabled) {
 			setIsEditModeEnabled(false);
 		} else {
-			navigation.navigate('Profile' as never);
+			if (animal?.user.id === loggedUser?.id) {
+				navigation.navigate('OwnProfile' as never);
+			} else {
+				// @ts-ignore
+				navigation.navigate('Profile', { id: animal.user.id });
+			}
 		}
-	}, [isEditModeEnabled, navigation]);
+	}, [animal?.user.id, isEditModeEnabled, loggedUser?.id, navigation]);
 
 	// If the user leaves the screen while in edit mode, disable it automatically
 	useEffect(() => {

@@ -83,7 +83,7 @@ const AddAnimal: React.FC = (): React.JSX.Element => {
 			<DetailsHeader
 				isLoading={false}
 				name="Add Animal"
-				onNavigateBack={(): void => navigation.navigate('Profile' as never)}
+				onNavigateBack={(): void => navigation.navigate('OwnProfile' as never)}
 			/>
 
 			<ScrollView showsVerticalScrollIndicator={false}>

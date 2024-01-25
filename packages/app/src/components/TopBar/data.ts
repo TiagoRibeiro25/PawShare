@@ -5,6 +5,7 @@ const hideOnTheseScreens = [
 	'AddAnimal',
 	'AnimalProfile',
 	'AddDocument',
+	'EditProfile',
 ];
 
 export default hideOnTheseScreens;
