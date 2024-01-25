@@ -1,6 +1,7 @@
 import animation from './animation';
 import error from './error';
 import formatData from './formatData';
+import getImageFromLocalFile from './getImageFromLocalFile';
 import navigation from './navigation';
 import screen from './screen';
 import storage from './storage';
@@ -14,4 +15,5 @@ export default {
 	formatData,
 	animation,
 	screen,
+	getImageFromLocalFile,
 };
