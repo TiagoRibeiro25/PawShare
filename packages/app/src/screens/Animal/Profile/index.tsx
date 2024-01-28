@@ -70,13 +70,13 @@ const AnimalProfile: React.FC<Props> = ({ route }): React.JSX.Element => {
 				(isEditModeEnabled ? (
 					<EditAnimal animal={animal} />
 				) : (
-					<>
+					<AnimatedScreen animation="FadeIn">
 						<AnimalDetails animal={animal} />
 
 						{loggedUser?.id === animal.user.id && (
 							<EditButton onPress={() => setIsEditModeEnabled(!isEditModeEnabled)} />
 						)}
-					</>
+					</AnimatedScreen>
 				))
 			)}
 		</AnimatedScreen>

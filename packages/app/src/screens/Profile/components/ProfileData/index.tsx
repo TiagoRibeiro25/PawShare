@@ -50,7 +50,6 @@ const ProfileData: React.FC<Props> = ({
 
 	return (
 		<View className="flex-1">
-			{/* TODO(tiago): Make a loading skeleton component just for the profile  */}
 			{(isLoading || isRefetching) && <DetailsLoadingSkeleton />}
 
 			{!isLoading && !isRefetching && data?.data && (
@@ -117,7 +116,7 @@ const ProfileData: React.FC<Props> = ({
 							<Text className="mb-2 text-xl mt-11 font-laila-medium text-secondary-500">
 								Animals
 							</Text>
-							<View className="flex-row flex-wrap justify-center">
+							<View className="flex-row flex-wrap">
 								{data.data.animals &&
 									data.data.animals.map((animal) => (
 										<Button

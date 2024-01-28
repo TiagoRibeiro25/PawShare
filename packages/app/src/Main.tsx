@@ -10,7 +10,7 @@ import Navigation from './navigation';
 const MainApplication: React.FC = (): React.JSX.Element => {
 	const { loggedUser, setLoggedUser } = useUserContext();
 	const { data, isLoading, isError, error } = useGetLoggedUser();
-	const [animationComplete, setAnimationComplete] = useState(false);
+	const [animationComplete, setAnimationComplete] = useState<boolean>(false);
 	const [anErrorOccurred, setAnErrorOccurred] = useState<boolean>(false);
 
 	useEffect(() => {
