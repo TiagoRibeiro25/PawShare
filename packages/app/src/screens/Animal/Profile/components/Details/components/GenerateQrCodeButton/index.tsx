@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Modal, Text, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Modal, Platform, Text, View } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import Share from 'react-native-share';
+import ViewShot, { captureRef } from 'react-native-view-shot';
 import PawIcon from '../../../../../../../assets/svg/paw.svg';
 import Button from '../../../../../../../components/Button';
 import Icon from '../../../../../../../components/Icon';
@@ -12,6 +14,27 @@ const GenerateQrCodeButton: React.FC = (): React.JSX.Element => {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [contactNumber, setContactNumber] = useState<string>('');
 	const [vCardContent, setVCardContent] = useState<string | null>(null);
+	const qrCodeRef = useRef<any>(null);
+
+	const captureQRCode = async (): Promise<void> => {
+		try {
+			if (qrCodeRef.current) {
+				const uri = await captureRef(qrCodeRef, { format: 'jpg', quality: 0.8 });
+
+				// Use react-native-share to share the image
+				const shareOptions = {
+					title: 'Share QR Code',
+					message: 'Save the QR Code to your gallery:',
+					url: Platform.OS === 'android' ? 'file://' + uri : uri,
+					type: 'image/jpeg',
+				};
+
+				await Share.open(shareOptions);
+			}
+		} catch (_err: unknown) {
+			// ...
+		}
+	};
 
 	return (
 		<>
@@ -35,40 +58,65 @@ const GenerateQrCodeButton: React.FC = (): React.JSX.Element => {
 							Insert the phone number to associate with the QR code
 						</Text>
 
-						{vCardContent && (
-							<View className="mt-2 mb-10 scale-125">
-								<QRCode value={vCardContent} />
+						{vCardContent ? (
+							<View className="items-center">
+								<ViewShot ref={qrCodeRef} options={{ format: 'jpg', quality: 0.8 }}>
+									<QRCode value={vCardContent} />
+								</ViewShot>
+
+								<View className="flex-row justify-between w-full mt-6">
+									<Button
+										className="self-center p-3 bg-success-100 w-36"
+										onPress={captureQRCode}
+									>
+										<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
+											Download
+										</Text>
+									</Button>
+									<Button
+										className="self-center p-3 space-x-3 bg-error-100 w-36"
+										onPress={(): void => setVCardContent(null)}
+									>
+										<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
+											Cancel
+										</Text>
+									</Button>
+								</View>
 							</View>
+						) : (
+							<>
+								<Input
+									value={contactNumber}
+									placeholder="Contact (ex: +639123456789)"
+									onChange={(val: string): void => setContactNumber(val)}
+									keyboardType="phone-pad"
+								/>
+
+								<View className="flex-row justify-between w-full mt-6">
+									<Button
+										className="self-center p-3 space-x-3 bg-success-100 w-36"
+										disabled={!utils.validateData.isValid(contactNumber, 'phone')}
+										onPress={(): void => {
+											setVCardContent(
+												`BEGIN:VCARD\nVERSION:3.0\nTEL:${contactNumber}\nEND:VCARD`,
+											);
+										}}
+									>
+										<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
+											Generate
+										</Text>
+									</Button>
+									<Button
+										className="self-center p-3 space-x-3 bg-error-100 w-36"
+										onPress={(): void => setShowModal(false)}
+									>
+										<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
+											Cancel
+										</Text>
+									</Button>
+								</View>
+							</>
 						)}
-
-						<Input
-							value={contactNumber}
-							placeholder="Contact (ex: +639123456789)"
-							onChange={(val: string): void => setContactNumber(val)}
-							keyboardType="phone-pad"
-						/>
-
-						<View className="flex-row justify-between w-full">
-							<Button
-								className="self-center p-3 mt-6 space-x-3 bg-success-100 w-36"
-								disabled={!utils.validateData.isValid(contactNumber, 'phone')}
-								onPress={(): void => {
-									setVCardContent(`BEGIN:VCARD\nVERSION:3.0\nTEL:${contactNumber}\nEND:VCARD`);
-								}}
-							>
-								<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
-									Generate
-								</Text>
-							</Button>
-							<Button
-								className="self-center p-3 mt-6 space-x-3 bg-error-100 w-36"
-								onPress={(): void => setShowModal(false)}
-							>
-								<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
-									Cancel
-								</Text>
-							</Button>
-						</View>
 					</View>
 				</View>
 			</Modal>
