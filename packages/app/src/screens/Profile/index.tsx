@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
-import AnimatedScreen from '../../components/AnimatedScreen';
+import AnimatedComponent from '../../components/AnimatedComponent';
 import { useUserContext } from '../../context/user';
 import { RootStackParamList } from '../../navigation/types';
 import ProfileData from './components/ProfileData';
@@ -20,9 +20,9 @@ const Profile: React.FC<Props> = ({ route }): React.JSX.Element => {
 	}, [loggedUser?.id, navigation, route.params.id]);
 
 	return (
-		<AnimatedScreen animation="FadeIn">
+		<AnimatedComponent animation="FadeIn">
 			<ProfileData id={route.params.id === 'me' ? loggedUser?.id : route.params.id} />
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

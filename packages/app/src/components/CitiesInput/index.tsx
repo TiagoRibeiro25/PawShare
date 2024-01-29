@@ -4,13 +4,20 @@ import useGetCitiesData from '../../hooks/reactQuery/cities';
 import Input from '../Input';
 
 type Props = {
+	placeholder?: string;
+	showLabel?: boolean;
 	className?: string;
 	setSelected: (city: string) => void;
 };
 
 const PREFIX_LENGTH = 3;
 
-const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Element => {
+const CitiesInput: React.FC<Props> = ({
+	placeholder,
+	showLabel,
+	className,
+	setSelected,
+}): React.JSX.Element => {
 	const [search, setSearch] = useState<string>('');
 	const [cities, setCities] = useState<string[]>([]);
 	const [allCities, setAllCities] = useState<string[]>([]);
@@ -88,15 +95,17 @@ const CitiesInput: React.FC<Props> = ({ className, setSelected }): React.JSX.Ele
 
 	return (
 		<View className={className}>
-			<Text className="mb-1 text-base text-secondary-500 font-zen-kaku-gothic-new-bold">
-				Region
-			</Text>
+			{showLabel && (
+				<Text className="mb-1 text-base text-secondary-500 font-zen-kaku-gothic-new-bold">
+					Region
+				</Text>
+			)}
 			<Input
 				className="justify-start h-12 border-2 rounded-xl border-secondary-500"
 				textInputClassName="text-secondary-500"
 				value={search}
 				onChange={handleChange}
-				placeholder="Search for a city"
+				placeholder={placeholder || 'Search for a city'}
 			/>
 
 			{(isLoading || isRefetching) && (

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useCallback, useEffect, useState } from 'react';
-import AnimatedScreen from '../../../components/AnimatedScreen';
+import AnimatedComponent from '../../../components/AnimatedComponent';
 import DetailsHeader from '../../../components/DetailsHeader';
 import DetailsLoadingSkeleton from '../../../components/DetailsLoadingSkeleton';
 import EditButton from '../../../components/EditButton';
@@ -56,7 +56,7 @@ const AnimalProfile: React.FC<Props> = ({ route }): React.JSX.Element => {
 	}, [isError, navigateBack, data]);
 
 	return (
-		<AnimatedScreen animation="SlideInFromRight">
+		<AnimatedComponent animation="SlideInFromRight">
 			<DetailsHeader
 				isLoading={isLoading}
 				name={isEditModeEnabled ? 'Edit Animal Profile' : animal?.name}
@@ -70,16 +70,16 @@ const AnimalProfile: React.FC<Props> = ({ route }): React.JSX.Element => {
 				(isEditModeEnabled ? (
 					<EditAnimal animal={animal} />
 				) : (
-					<AnimatedScreen animation="FadeIn">
+					<AnimatedComponent animation="FadeIn">
 						<AnimalDetails animal={animal} />
 
 						{loggedUser?.id === animal.user.id && (
 							<EditButton onPress={() => setIsEditModeEnabled(!isEditModeEnabled)} />
 						)}
-					</AnimatedScreen>
+					</AnimatedComponent>
 				))
 			)}
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

@@ -28,7 +28,7 @@ function validator() {
 			.exists()
 			.withMessage("phone_contact is required")
 			.bail()
-			.matches(/^[0-9]{9}$/)
+			.matches(/^(\+?)(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})$/)
 			.withMessage("Invalid phone number")
 			.bail(),
 		body("notes")

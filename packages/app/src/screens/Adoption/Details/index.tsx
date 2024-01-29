@@ -4,7 +4,7 @@ import React, { useCallback, useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import LocationIcon from '../../../assets/svg/location.svg';
-import AnimatedScreen from '../../../components/AnimatedScreen';
+import AnimatedComponent from '../../../components/AnimatedComponent';
 import DetailsAnimalIcons from '../../../components/DetailsAnimalIcons';
 import DetailsBodyData from '../../../components/DetailsBodyData';
 import DetailsHeader from '../../../components/DetailsHeader';
@@ -37,7 +37,7 @@ const AdoptionDetails: React.FC<Props> = ({ route }): React.JSX.Element => {
 	}, [isError, navigateBack]);
 
 	return (
-		<AnimatedScreen animation="SlideInFromRight">
+		<AnimatedComponent animation="SlideInFromRight">
 			<DetailsHeader
 				isLoading={isLoading}
 				name={data?.data.adoption.animal.name}
@@ -92,7 +92,7 @@ const AdoptionDetails: React.FC<Props> = ({ route }): React.JSX.Element => {
 					</View>
 				</ScrollView>
 			)}
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

@@ -3,20 +3,22 @@ import React, { PropsWithChildren, useCallback, useRef, useState } from 'react';
 import { Animated, Dimensions } from 'react-native';
 import utils from '../../utils';
 
+export type Animation =
+	| 'FadeIn'
+	| 'SlideInFromLeft'
+	| 'SlideInFromRight'
+	| 'SlideInFromTop'
+	| 'SlideInFromBottom';
+
 interface Props extends PropsWithChildren {
-	animation?:
-		| 'FadeIn'
-		| 'SlideInFromLeft'
-		| 'SlideInFromRight'
-		| 'SlideInFromTop'
-		| 'SlideInFromBottom';
+	animation?: Animation;
 	dontAnimateOnMount?: boolean;
 }
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const AnimatedScreen: React.FC<Props> = ({
+const AnimatedComponent: React.FC<Props> = ({
 	children,
 	animation,
 	dontAnimateOnMount,
@@ -63,4 +65,4 @@ const AnimatedScreen: React.FC<Props> = ({
 	);
 };
 
-export default AnimatedScreen;
+export default AnimatedComponent;
