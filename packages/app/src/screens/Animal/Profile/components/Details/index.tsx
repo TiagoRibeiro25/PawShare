@@ -7,6 +7,7 @@ import config from '../../../../../config';
 import { useUserContext } from '../../../../../context/user';
 import { Animal } from '../../../../../hooks/reactQuery/animals/details/types';
 import GenerateQrCodeButton from './components/GenerateQrCodeButton';
+import PlaceForAdoptionButton from './components/PlaceForAdoptionButton';
 
 type Props = {
 	animal: Animal;
@@ -31,7 +32,7 @@ const AnimalDetails: React.FC<Props> = ({ animal }): React.JSX.Element => {
 					type={animal.type}
 				/>
 
-				{/* Owner picture and username Button */}
+				{/* Owner picture and username button */}
 				<Button
 					className="justify-start p-0 mt-6 space-x-3"
 					// @ts-ignore
@@ -49,10 +50,8 @@ const AnimalDetails: React.FC<Props> = ({ animal }): React.JSX.Element => {
 					</Text>
 				</Button>
 
-				<View>
-					<Text className="mt-12 mb-3 text-xl text-secondary-500 font-laila-semi-bold">
-						About
-					</Text>
+				<View className="mt-12">
+					<Text className="mb-3 text-xl text-secondary-500 font-laila-semi-bold">About</Text>
 					<Text className="text-base text-secondary-500 font-zen-kaku-gothic-new-medium">
 						{animal.description || "The owner didn't add any description"}
 					</Text>
@@ -61,9 +60,10 @@ const AnimalDetails: React.FC<Props> = ({ animal }): React.JSX.Element => {
 				<View>{/* TODO(tiago): Reviews */}</View>
 
 				{loggedUser?.id === animal.user.id && (
-					<View className="mt-12">
-						<GenerateQrCodeButton />
-					</View>
+					<>
+						<GenerateQrCodeButton className="mt-12" />
+						<PlaceForAdoptionButton className="mt-8" animalId={animal.id} />
+					</>
 				)}
 			</View>
 		</ScrollView>
