@@ -10,7 +10,11 @@ import Input from '../../../../../../../components/Input';
 import utils from '../../../../../../../utils';
 import styles from './styles';
 
-const GenerateQrCodeButton: React.FC = (): React.JSX.Element => {
+type Props = {
+	className?: string;
+};
+
+const GenerateQrCodeButton: React.FC<Props> = ({ className }): React.JSX.Element => {
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [contactNumber, setContactNumber] = useState<string>('');
 	const [vCardContent, setVCardContent] = useState<string | null>(null);
@@ -19,7 +23,7 @@ const GenerateQrCodeButton: React.FC = (): React.JSX.Element => {
 	const captureQRCode = async (): Promise<void> => {
 		try {
 			if (qrCodeRef.current) {
-				const uri = await captureRef(qrCodeRef, { format: 'jpg', quality: 0.8 });
+				const uri: string = await captureRef(qrCodeRef, { format: 'jpg', quality: 0.8 });
 
 				// Use react-native-share to share the image
 				const shareOptions = {
@@ -38,7 +42,10 @@ const GenerateQrCodeButton: React.FC = (): React.JSX.Element => {
 
 	return (
 		<>
-			<Button className="bg-accent-500" onPress={(): void => setShowModal(true)}>
+			<Button
+				className={`bg-accent-500 ${className}`}
+				onPress={(): void => setShowModal(true)}
+			>
 				<Text className="py-1 text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
 					Generate QR Code
 				</Text>
@@ -88,7 +95,7 @@ const GenerateQrCodeButton: React.FC = (): React.JSX.Element => {
 								<Input
 									value={contactNumber}
 									placeholder="Contact (ex: +639123456789)"
-									onChange={(val: string): void => setContactNumber(val)}
+									onChange={setContactNumber}
 									keyboardType="phone-pad"
 								/>
 
