@@ -16,7 +16,7 @@ interface Props extends PropsWithChildren {
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const AnimatedScreen: React.FC<Props> = ({
+const AnimatedComponent: React.FC<Props> = ({
 	children,
 	animation,
 	dontAnimateOnMount,
@@ -63,4 +63,4 @@ const AnimatedScreen: React.FC<Props> = ({
 	);
 };
 
-export default AnimatedScreen;
+export default AnimatedComponent;

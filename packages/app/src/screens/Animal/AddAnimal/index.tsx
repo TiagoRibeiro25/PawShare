@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { Asset } from 'react-native-image-picker';
-import AnimatedScreen from '../../../components/AnimatedScreen';
+import AnimatedComponent from '../../../components/AnimatedComponent';
 import Button from '../../../components/Button';
 import DetailsHeader from '../../../components/DetailsHeader';
 import DropDownSelectList from '../../../components/DropDownSelectList';
@@ -79,7 +79,7 @@ const AddAnimal: React.FC = (): React.JSX.Element => {
 	};
 
 	return (
-		<AnimatedScreen animation="SlideInFromRight">
+		<AnimatedComponent animation="SlideInFromRight">
 			<DetailsHeader
 				isLoading={false}
 				name="Add Animal"
@@ -154,7 +154,7 @@ const AddAnimal: React.FC = (): React.JSX.Element => {
 					</Button>
 				</View>
 			</ScrollView>
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

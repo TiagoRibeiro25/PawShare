@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import GestorRecognizer from 'react-native-swipe-gestures';
 import Swiper from 'react-native-swiper';
-import AnimatedScreen from '../../components/AnimatedScreen';
+import AnimatedComponent from '../../components/AnimatedComponent';
 import config from '../../config';
 import NavigateBackButton from './components/NavigateBackButton';
 import SignInForm from './components/SignInForm';
@@ -14,7 +14,7 @@ const Auth: React.FC = (): React.JSX.Element => {
 	const navigation = useNavigation();
 
 	return (
-		<AnimatedScreen animation="SlideInFromBottom">
+		<AnimatedComponent animation="SlideInFromBottom">
 			<GestorRecognizer
 				className="flex-1 px-6 py-8"
 				onSwipeDown={(): void => navigation.navigate('OnBoarding' as never)}
@@ -37,7 +37,7 @@ const Auth: React.FC = (): React.JSX.Element => {
 					</Swiper>
 				</View>
 			</GestorRecognizer>
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

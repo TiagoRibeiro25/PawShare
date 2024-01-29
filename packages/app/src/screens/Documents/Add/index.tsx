@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import AnimatedScreen from '../../../components/AnimatedScreen';
+import AnimatedComponent from '../../../components/AnimatedComponent';
 import Button from '../../../components/Button';
 import NavigateBackButton from '../../../components/FilterNavigateBackButton';
 import Input from '../../../components/Input';
@@ -15,7 +15,7 @@ const AddDocument: React.FC = (): React.JSX.Element => {
 	// TODO(tiago): Get the document from the user device and send it to the api
 
 	return (
-		<AnimatedScreen animation="FadeIn">
+		<AnimatedComponent animation="FadeIn">
 			<View className="items-center pt-6">
 				<Text className="mt-3 text-2xl text-secondary-500 font-laila-semi-bold">
 					Add Document
@@ -61,7 +61,7 @@ const AddDocument: React.FC = (): React.JSX.Element => {
 					</Text>
 				</Button>
 			</ScrollView>
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

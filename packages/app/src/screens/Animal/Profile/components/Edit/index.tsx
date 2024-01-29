@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { Asset } from 'react-native-image-picker';
-import AnimatedScreen from '../../../../../components/AnimatedScreen';
+import AnimatedComponent from '../../../../../components/AnimatedComponent';
 import Button from '../../../../../components/Button';
 import DropDownSelectList from '../../../../../components/DropDownSelectList';
 import ImagePicker from '../../../../../components/ImagePicker';
@@ -93,7 +93,7 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 	}, [dataToUpdate, mutateAsync]);
 
 	return (
-		<AnimatedScreen animation="FadeIn">
+		<AnimatedComponent animation="FadeIn">
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<ImagePicker value={picture} onChange={setPicture} defaultImage={animal.picture} />
 
@@ -162,7 +162,7 @@ const EditAnimal: React.FC<Props> = ({ animal }): React.JSX.Element => {
 					</Button>
 				</View>
 			</ScrollView>
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

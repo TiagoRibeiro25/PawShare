@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import utils from '../../utils';
-import AnimatedScreen from '../AnimatedScreen';
+import AnimatedComponent from '../AnimatedComponent';
 import Input from '../Input';
 
 export type Item = {
@@ -47,14 +47,14 @@ const DynamicInputList: React.FC<Props> = ({
 	return (
 		<View className={`space-y-3 text-secondary-500 ${className}`}>
 			{list.map((item: Item, idx: number) => (
-				<AnimatedScreen key={`${type}-${item.id}`} animation="SlideInFromBottom">
+				<AnimatedComponent key={`${type}-${item.id}`} animation="SlideInFromBottom">
 					<Input
 						className={inputClassName}
 						value={item.value}
 						onChange={(newValue: string) => handleItemChange(item.id, newValue)}
 						placeholder={`${utils.formatData.capitalize(type)} ${idx + 1}`}
 					/>
-				</AnimatedScreen>
+				</AnimatedComponent>
 			))}
 		</View>
 	);

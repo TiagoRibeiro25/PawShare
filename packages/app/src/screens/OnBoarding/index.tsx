@@ -4,7 +4,7 @@ import { Image, ImageSourcePropType, Text, View } from 'react-native';
 import GestorRecognizer from 'react-native-swipe-gestures';
 import Swiper from 'react-native-swiper';
 import ArrowDownIcon from '../../assets/svg/arrow_down.svg';
-import AnimatedScreen from '../../components/AnimatedScreen';
+import AnimatedComponent from '../../components/AnimatedComponent';
 import Button from '../../components/Button';
 import Icon from '../../components/Icon';
 import config from '../../config';
@@ -35,7 +35,7 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 	};
 
 	return (
-		<AnimatedScreen animation="SlideInFromTop" dontAnimateOnMount>
+		<AnimatedComponent animation="SlideInFromTop" dontAnimateOnMount>
 			<View className="flex-1 py-8">
 				<GestorRecognizer
 					className="h-[90%]"
@@ -87,7 +87,7 @@ const OnBoarding: React.FC = (): React.JSX.Element => {
 					</Text>
 				</Button>
 			</View>
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 
