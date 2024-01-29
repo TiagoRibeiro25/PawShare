@@ -1,10 +1,13 @@
 import { APIResponse } from '../../../../api/types';
 
-export type BodyData = {
-	city: string;
-	email_contact: string;
-	phone_contact: string;
-	notes: string[];
+export type RequestData = {
+	animalId: number;
+	bodyData: {
+		city: string;
+		email_contact: string;
+		phone_contact: string;
+		notes: string[];
+	};
 };
 
 export interface AddAdoptionData extends APIResponse {

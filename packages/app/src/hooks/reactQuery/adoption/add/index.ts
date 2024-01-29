@@ -1,17 +1,22 @@
 import { useMutation, type UseMutationResult } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import api from '../../../../api';
-import { AddAdoptionData, BodyData } from './types';
+import { AddAdoptionData, RequestData } from './types';
 
-const addAdoption = async (bodyData: BodyData): Promise<AddAdoptionData> => {
-	const { data }: AxiosResponse<AddAdoptionData> = await api.post('/adoption', bodyData);
+const addAdoption = async (requestData: RequestData): Promise<AddAdoptionData> => {
+	const { data }: AxiosResponse<AddAdoptionData> = await api.post(
+		`/adoption?animal_id=${requestData.animalId}`,
+		requestData.bodyData,
+	);
 
 	return data;
 };
 
-const useAddAdoption = (bodyData: BodyData): UseMutationResult<AddAdoptionData, Error> => {
+const useAddAdoption = (
+	requestData: RequestData,
+): UseMutationResult<AddAdoptionData, Error> => {
 	return useMutation({
-		mutationFn: async () => await addAdoption(bodyData),
+		mutationFn: async () => await addAdoption(requestData),
 	});
 };
 
