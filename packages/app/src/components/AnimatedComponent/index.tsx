@@ -3,13 +3,15 @@ import React, { PropsWithChildren, useCallback, useRef, useState } from 'react';
 import { Animated, Dimensions } from 'react-native';
 import utils from '../../utils';
 
+export type Animation =
+	| 'FadeIn'
+	| 'SlideInFromLeft'
+	| 'SlideInFromRight'
+	| 'SlideInFromTop'
+	| 'SlideInFromBottom';
+
 interface Props extends PropsWithChildren {
-	animation?:
-		| 'FadeIn'
-		| 'SlideInFromLeft'
-		| 'SlideInFromRight'
-		| 'SlideInFromTop'
-		| 'SlideInFromBottom';
+	animation?: Animation;
 	dontAnimateOnMount?: boolean;
 }
 
