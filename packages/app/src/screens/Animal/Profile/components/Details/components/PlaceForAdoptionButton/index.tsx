@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import ArrowDownIcon from '../../../../../../../assets/svg/arrow_down.svg';
 import AnimatedComponent from '../../../../../../../components/AnimatedComponent';
@@ -20,6 +21,8 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 	className,
 	animalId,
 }): React.JSX.Element => {
+	const navigation = useNavigation();
+
 	const [showForm, setShowForm] = useState<boolean>(false);
 	const [city, setCity] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
@@ -74,6 +77,13 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 			// ...
 		}
 	};
+
+	// If the navigation state has changed, close the form
+	useEffect(() => {
+		return navigation.addListener('state', (_e) => {
+			setShowForm(false);
+		});
+	});
 
 	return (
 		<>
