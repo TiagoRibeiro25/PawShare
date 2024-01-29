@@ -40,10 +40,13 @@ const ForgotPasswordModal: React.FC<Props> = ({
 							setEmail('');
 						}
 					},
+					onError: (): void => {
+						setStatusMessage('Something went wrong');
+					},
 				},
 			);
 		} catch (_err: unknown) {
-			// ...
+			setStatusMessage('Something went wrong');
 		}
 	};
 
