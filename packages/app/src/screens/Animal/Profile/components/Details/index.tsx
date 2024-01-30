@@ -63,8 +63,14 @@ const AnimalDetails: React.FC<Props> = ({ animal }): React.JSX.Element => {
 				{loggedUser?.id === animal.user.id && (
 					<>
 						<GenerateQrCodeButton className="mt-12" />
-						<PlaceForAdoptionButton className="mt-8" animalId={animal.id} />
-						<RequestSittingButton className="mt-7" animalId={animal.id} />
+
+						{!animal.is_placed_for_adoption && (
+							<PlaceForAdoptionButton className="mt-8" animalId={animal.id} />
+						)}
+
+						{!animal.is_requested_for_sitting && (
+							<RequestSittingButton className="mt-8" animalId={animal.id} />
+						)}
 					</>
 				)}
 			</View>

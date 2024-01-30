@@ -14,6 +14,8 @@ export type Animal = {
 	size: Size;
 	description?: string;
 	picture?: string;
+	is_placed_for_adoption: boolean;
+	is_requested_for_sitting: boolean;
 	user: {
 		id: number;
 		display_name: string;
