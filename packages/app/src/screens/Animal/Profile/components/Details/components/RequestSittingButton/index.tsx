@@ -8,8 +8,8 @@ import CitiesInput from '../../../../../../../components/CitiesInput';
 import DynamicInputList, { Item } from '../../../../../../../components/DynamicInputList';
 import Icon from '../../../../../../../components/Icon';
 import Input from '../../../../../../../components/Input';
-import useAddAdoption from '../../../../../../../hooks/reactQuery/adoption/add';
-import { AddAdoptionData } from '../../../../../../../hooks/reactQuery/adoption/add/types';
+import useAddSitting from '../../../../../../../hooks/reactQuery/sitting/add';
+import { AddSittingData } from '../../../../../../../hooks/reactQuery/sitting/add/types';
 import utils from '../../../../../../../utils';
 
 type Props = {
@@ -17,30 +17,33 @@ type Props = {
 	animalId: number;
 };
 
-const PlaceForAdoptionButton: React.FC<Props> = ({
-	className,
-	animalId,
-}): React.JSX.Element => {
+const RequestSittingButton: React.FC<Props> = ({ className, animalId }): React.JSX.Element => {
 	const navigation = useNavigation();
 
 	const [showForm, setShowForm] = useState<boolean>(false);
 	const [city, setCity] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [contact, setContact] = useState<string>('');
+	const [startDate, setStartDate] = useState<string>('');
+	const [endDate, setEndDate] = useState<string>('');
 	const [notes, setNotes] = useState<Item[]>([{ id: '1', value: '' }]);
+	const [coins, setCoins] = useState<number>(0);
 	const [statusMessage, setStatusMessage] = useState<string>('');
 
-	const { status, mutateAsync, error } = useAddAdoption({
+	const { status, mutateAsync, error } = useAddSitting({
 		animalId,
 		bodyData: {
 			city,
 			email_contact: email,
 			phone_contact: contact,
+			start_date: startDate,
+			end_date: endDate,
 			notes: notes.map((note: Item) => note.value).filter((note: string) => note !== ''),
+			coins,
 		},
 	});
 
-	const handlePlaceForAdoption = async (): Promise<void> => {
+	const handleRequestSitting = async (): Promise<void> => {
 		setStatusMessage('');
 
 		// Validate the Form Data
@@ -64,11 +67,36 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 			return;
 		}
 
+		if (coins < 0) {
+			setStatusMessage('Invalid Coins');
+			return;
+		}
+
+		if (!utils.validateData.isValid(startDate, 'date')) {
+			setStatusMessage('Invalid Start Date');
+			return;
+		}
+
+		if (!utils.validateData.isValid(endDate, 'date')) {
+			setStatusMessage('Invalid End Date');
+			return;
+		}
+
+		if (new Date(startDate) < new Date()) {
+			setStatusMessage('Start Date must be after today');
+			return;
+		}
+
+		if (new Date(startDate) > new Date(endDate)) {
+			setStatusMessage('Start Date must be before End Date');
+			return;
+		}
+
 		try {
 			await mutateAsync(
 				{},
 				{
-					onSuccess(resData: AddAdoptionData): void {
+					onSuccess(resData: AddSittingData): void {
 						setStatusMessage(resData.message);
 					},
 				},
@@ -97,7 +125,7 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 				/>
 
 				<Text className="py-1 text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
-					{showForm ? 'Cancel Adoption' : 'Place for Adoption'}
+					{showForm ? 'Cancel Request' : 'Request Pet Sitting'}
 				</Text>
 			</Button>
 
@@ -125,6 +153,31 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 							keyboardType="phone-pad"
 						/>
 
+						{/* TODO(tiago): Use react-native-date-picker */}
+						<Input
+							className="h-12 mt-6"
+							value={startDate}
+							onChange={setStartDate}
+							placeholder="Start Date (ex: 30-01-2024)"
+							keyboardType="phone-pad"
+						/>
+
+						<Input
+							className="h-12 mt-6"
+							value={endDate}
+							onChange={setEndDate}
+							placeholder="End Date (ex: 10-02-2024)"
+							keyboardType="phone-pad"
+						/>
+
+						<Input
+							className="h-12 mt-6"
+							value={coins.toString()}
+							onChange={(value: string): void => setCoins(parseInt(value, 10))}
+							placeholder="Coins"
+							keyboardType="phone-pad"
+						/>
+
 						<DynamicInputList
 							type="note"
 							list={notes}
@@ -148,11 +201,11 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 
 						<Button
 							className="mt-6 bg-accent-500"
-							onPress={handlePlaceForAdoption}
+							onPress={handleRequestSitting}
 							disabled={status === 'pending'}
 						>
 							<Text className="text-lg text-secondary-500 font-zen-kaku-gothic-new-bold">
-								{status === 'pending' ? 'Loading...' : 'Place for Adoption'}
+								{status === 'pending' ? 'Loading...' : 'Request Sitting'}
 							</Text>
 						</Button>
 					</View>
@@ -162,4 +215,4 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 	);
 };
 
-export default PlaceForAdoptionButton;
+export default RequestSittingButton;

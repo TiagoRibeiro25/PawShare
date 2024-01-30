@@ -8,6 +8,7 @@ import { useUserContext } from '../../../../../context/user';
 import { Animal } from '../../../../../hooks/reactQuery/animals/details/types';
 import GenerateQrCodeButton from './components/GenerateQrCodeButton';
 import PlaceForAdoptionButton from './components/PlaceForAdoptionButton';
+import RequestSittingButton from './components/RequestSittingButton';
 
 type Props = {
 	animal: Animal;
@@ -63,6 +64,7 @@ const AnimalDetails: React.FC<Props> = ({ animal }): React.JSX.Element => {
 					<>
 						<GenerateQrCodeButton className="mt-12" />
 						<PlaceForAdoptionButton className="mt-8" animalId={animal.id} />
+						<RequestSittingButton className="mt-7" animalId={animal.id} />
 					</>
 				)}
 			</View>
