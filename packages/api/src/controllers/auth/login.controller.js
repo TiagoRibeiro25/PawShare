@@ -2,7 +2,6 @@ const utils = require("../../utils");
 const db = require("../../db");
 const services = require("../../services");
 const templates = require("../../templates");
-const countries = require("../../data/countries.json");
 
 /**
  * @typedef LoginRequest
@@ -66,7 +65,6 @@ async function login(req, res) {
 			user: {
 				id: user.id,
 				coins: user.coins,
-				country: countries.find((country) => country.code === user.country),
 			},
 		});
 	} catch (error) {
