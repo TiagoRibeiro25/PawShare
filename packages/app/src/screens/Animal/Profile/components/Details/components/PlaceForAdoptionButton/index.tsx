@@ -28,7 +28,7 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 	const [email, setEmail] = useState<string>('');
 	const [contact, setContact] = useState<string>('');
 	const [notes, setNotes] = useState<Item[]>([{ id: '1', value: '' }]);
-	const [errorMessage, setErrorMessage] = useState<string>('');
+	const [statusMessage, setStatusMessage] = useState<string>('');
 
 	const { status, mutateAsync, error } = useAddAdoption({
 		animalId,
@@ -41,26 +41,26 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 	});
 
 	const handlePlaceForAdoption = async (): Promise<void> => {
-		setErrorMessage('');
+		setStatusMessage('');
 
 		// Validate the Form Data
 		if (city === '') {
-			setErrorMessage('Invalid City');
+			setStatusMessage('Invalid City');
 			return;
 		}
 
 		if (!utils.validateData.isValid(email, 'email')) {
-			setErrorMessage('Invalid Email');
+			setStatusMessage('Invalid Email');
 			return;
 		}
 
 		if (!utils.validateData.isValid(contact, 'phone')) {
-			setErrorMessage('Invalid Contact');
+			setStatusMessage('Invalid Contact');
 			return;
 		}
 
 		if (notes.length <= 1) {
-			setErrorMessage('Missing at least 1 note');
+			setStatusMessage('Missing at least 1 note');
 			return;
 		}
 
@@ -69,7 +69,7 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 				{},
 				{
 					onSuccess(resData: AddAdoptionData): void {
-						setErrorMessage(resData.message);
+						setStatusMessage(resData.message);
 					},
 				},
 			);
@@ -138,10 +138,10 @@ const PlaceForAdoptionButton: React.FC<Props> = ({
 							</Text>
 						)}
 
-						{(errorMessage !== '' || status === 'error') && (
-							<Text className="mt-6 text-base text-center font-zen-kaku-gothic-new-medium text-error-500">
-								{errorMessage !== ''
-									? errorMessage
+						{(statusMessage !== '' || status === 'error') && (
+							<Text className="mt-6 text-base text-center font-zen-kaku-gothic-new-medium text-secondary-500">
+								{statusMessage !== ''
+									? statusMessage
 									: status === 'error' && utils.error.getMessage(error)}
 							</Text>
 						)}
