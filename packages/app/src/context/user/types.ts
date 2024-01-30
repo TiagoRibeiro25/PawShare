@@ -1,10 +1,6 @@
 export type LoggedUser = {
 	id: number;
 	coins: number;
-	country: {
-		name: string;
-		code: string;
-	};
 };
 
 export type UserContextProps = {
