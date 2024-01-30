@@ -1,4 +1,4 @@
-export type Type = 'email' | 'password' | 'name' | 'description';
+export type Type = 'email' | 'password' | 'name' | 'description' | 'phone' | 'date';
 
 const regexRules = {
 	// Must be a valid email address
@@ -12,6 +12,12 @@ const regexRules = {
 
 	// Minimum ten characters, maximum 100 characters
 	description: /^.{10,100}$/,
+
+	// Must be a valid phone number
+	phone: /^(\+?)(\d{2})(\d{3})(\d{3})(\d{2})(\d{2})$/,
+
+	// Must be with this format: DD-MM-YYYY
+	date: /^(\d{2})-(\d{2})-(\d{4})$/,
 };
 
 const isValid = (data: string | number, type: Type) => {

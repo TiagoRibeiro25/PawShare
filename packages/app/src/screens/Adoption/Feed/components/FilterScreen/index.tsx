@@ -62,7 +62,8 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 				{/* Region */}
 				<CitiesInput
 					className="self-center mt-6 w-52"
-					setSelected={(val: string) => setFilterRegion(val)}
+					setSelected={setFilterRegion}
+					showLabel
 				/>
 
 				{/* Animal Size */}
@@ -73,7 +74,7 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 					data={sizes.map((size: string) => {
 						return { key: size, value: size };
 					})}
-					setSelected={(val: string) => setFilterSize(val)}
+					setSelected={setFilterSize}
 					defaultOption={{ key: 'any', value: 'any' }}
 				/>
 
@@ -85,7 +86,7 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 					data={genders.map((gender: string) => {
 						return { key: gender, value: gender };
 					})}
-					setSelected={(val: string) => setFilterGender(val)}
+					setSelected={setFilterGender}
 					defaultOption={{ key: 'any', value: 'any' }}
 				/>
 
@@ -97,7 +98,7 @@ const FilterScreen: React.FC<Props> = ({ onGoBack }): React.JSX.Element => {
 					data={colors.map((color: string) => {
 						return { key: color, value: color };
 					})}
-					setSelected={(val: string) => setFilterColor(val)}
+					setSelected={setFilterColor}
 					defaultOption={{ key: 'any', value: 'any' }}
 				/>
 

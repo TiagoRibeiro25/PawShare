@@ -1,12 +1,12 @@
 import React from 'react';
-import AnimatedScreen from '../../components/AnimatedScreen';
+import AnimatedComponent from '../../components/AnimatedComponent';
 import ProfileData from './components/ProfileData';
 
 const OwnProfile: React.FC = (): React.JSX.Element => {
 	return (
-		<AnimatedScreen animation="FadeIn">
+		<AnimatedComponent animation="FadeIn">
 			<ProfileData isLoggedUser />
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 

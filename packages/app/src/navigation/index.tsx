@@ -33,7 +33,7 @@ const Navigation: React.FC = (): React.JSX.Element => {
 	const { loggedUser } = useUserContext();
 
 	const [currentScreen, setCurrentScreen] = useState<string>('');
-	const [orientation, setOrientation] = useState('PORTRAIT');
+	const [orientation, setOrientation] = useState<'PORTRAIT' | 'LANDSCAPE'>('PORTRAIT');
 
 	// Navbar icons
 	const AdoptionFeedIcon = useCallback(() => <Icon icon={AdoptionFeedI} />, []);

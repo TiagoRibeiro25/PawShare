@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { TextInput, View } from 'react-native';
+import { KeyboardTypeOptions, TextInput, View } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import Icon from '../Icon';
 
@@ -14,6 +14,7 @@ type Props = {
 	textInputClassName?: string;
 	multiLine?: boolean;
 	numberOfLines?: number;
+	keyboardType?: KeyboardTypeOptions;
 };
 
 const Input: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const Input: React.FC<Props> = ({
 	textInputClassName,
 	multiLine,
 	numberOfLines,
+	keyboardType,
 }): React.JSX.Element => {
 	const inputRef = createRef<TextInput>();
 
@@ -50,6 +52,7 @@ const Input: React.FC<Props> = ({
 				secureTextEntry={hideText || false}
 				multiline={multiLine || false}
 				numberOfLines={numberOfLines || 1}
+				keyboardType={keyboardType || 'default'}
 			/>
 		</View>
 	);

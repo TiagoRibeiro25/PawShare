@@ -40,9 +40,7 @@ const DetailsBodyData: React.FC<Props> = ({
 				onPress={(): void => navigation.navigate('Profile', { id: owner.id })}
 			>
 				<FastImage
-					source={{
-						uri: owner.picture,
-					}}
+					source={{ uri: owner.picture }}
 					className="w-8 h-8 border rounded-full border-secondary-500"
 					resizeMode="cover"
 				/>

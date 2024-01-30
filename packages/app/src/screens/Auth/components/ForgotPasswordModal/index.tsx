@@ -40,10 +40,13 @@ const ForgotPasswordModal: React.FC<Props> = ({
 							setEmail('');
 						}
 					},
+					onError: (): void => {
+						setStatusMessage('Something went wrong');
+					},
 				},
 			);
 		} catch (_err: unknown) {
-			// ...
+			setStatusMessage('Something went wrong');
 		}
 	};
 
@@ -55,7 +58,7 @@ const ForgotPasswordModal: React.FC<Props> = ({
 			onRequestClose={(): void => setIsVisible(false)}
 		>
 			<View className="items-center justify-center flex-1 px-4" style={styles.container}>
-				<View className="items-center max-w-md p-5 rounded-lg bg-accent-100">
+				<View className="items-center max-w-md p-5 rounded-lg bg-accent-50">
 					<Text className="text-xl font font-laila-semi-bold text-secondary-500">
 						Forgot Password
 					</Text>

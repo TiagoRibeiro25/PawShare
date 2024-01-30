@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import Swiper from 'react-native-swiper';
-import AnimatedScreen from '../../../components/AnimatedScreen';
+import AnimatedComponent from '../../../components/AnimatedComponent';
 import { AdoptionFeedProvider } from '../../../context/adoption/feed';
 import Feed from './components/Feed';
 import FilterScreen from './components/FilterScreen';
@@ -11,7 +11,7 @@ const AdoptionFeed: React.FC = (): React.JSX.Element => {
 	const [swiperIndex, setSwiperIndex] = useState<number>(0);
 
 	return (
-		<AnimatedScreen animation="FadeIn">
+		<AnimatedComponent animation="FadeIn">
 			<AdoptionFeedProvider>
 				<Swiper
 					showsPagination={false}
@@ -27,7 +27,7 @@ const AdoptionFeed: React.FC = (): React.JSX.Element => {
 					<FilterScreen onGoBack={() => setSwiperIndex(0)} />
 				</Swiper>
 			</AdoptionFeedProvider>
-		</AnimatedScreen>
+		</AnimatedComponent>
 	);
 };
 
