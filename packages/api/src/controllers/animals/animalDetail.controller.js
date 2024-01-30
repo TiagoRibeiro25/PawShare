@@ -53,6 +53,30 @@ async function getAnimalDetail(req, res) {
 			return;
 		}
 
+		const transaction = await db.mysql.sequelize.transaction();
+
+		// Check if the animal is placed for adoption
+		const isPlacedForAdoption = await db.mysql.Adoption.findOne({
+			attributes: ["id"],
+			where: {
+				animal_id: data.id,
+				is_closed: false,
+			},
+			transaction,
+		});
+
+		// Check if the animal has a open sitting request
+		const isRequestedForSitting = await db.mysql.Sitting.findOne({
+			attributes: ["id"],
+			where: {
+				animal_id: data.id,
+				is_closed: false,
+			},
+			transaction,
+		});
+
+		await transaction.commit();
+
 		utils.handleResponse(res, utils.http.StatusOK, "Animal found", {
 			animal: {
 				id: data.id,
@@ -63,6 +87,8 @@ async function getAnimalDetail(req, res) {
 				size: data.size,
 				description: data.description,
 				picture: data.picture?.provider_url || null,
+				is_placed_for_adoption: !!isPlacedForAdoption,
+				is_requested_for_sitting: !!isRequestedForSitting,
 				user: {
 					id: data.user.id,
 					display_name: data.user.display_name,

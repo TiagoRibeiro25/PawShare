@@ -53,6 +53,8 @@ responses:
                   size: Medium
                   description: null
                   picture: "https://res.cloudinary.com/dvthg2763/image/upload/v1702555109/paw-share/dev/animals/Animal_Detail_Picture_1_tkl6jh_g40o30.png"
+                  is_placed_for_adoption: false
+                  is_requested_for_sitting: false
                   user:
                     id: 1
                     display_name: John Doe
