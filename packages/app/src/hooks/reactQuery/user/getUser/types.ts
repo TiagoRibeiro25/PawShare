@@ -25,7 +25,9 @@ type User = {
 	animals?: {
 		id: number;
 		name: string;
-		picture: string | null;
+		picture: {
+			provider_url: string;
+		} | null;
 	}[];
 };
 

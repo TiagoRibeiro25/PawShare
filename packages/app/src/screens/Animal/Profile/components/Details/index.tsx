@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -15,6 +16,7 @@ type Props = {
 };
 
 const AnimalDetails: React.FC<Props> = ({ animal }): React.JSX.Element => {
+	const navigation = useNavigation();
 	const { loggedUser } = useUserContext();
 
 	return (

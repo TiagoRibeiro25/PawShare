@@ -76,7 +76,7 @@ function validator() {
 			])
 			.withMessage("Invalid animal color"),
 		body("description").isString().withMessage("Invalid animal description"),
-		body("image").isString().withMessage("Invalid animal image"),
+		body("picture").isString().withMessage("Invalid animal image"),
 	];
 }
 

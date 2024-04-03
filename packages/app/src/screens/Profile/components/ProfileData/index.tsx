@@ -130,7 +130,9 @@ const ProfileData: React.FC<Props> = ({
 											<FastImage
 												className="w-full h-full rounded-full"
 												source={{
-													uri: animal.picture || config.fallbacks.profile.animal.picture,
+													uri:
+														animal.picture?.provider_url ||
+														config.fallbacks.profile.animal.picture,
 												}}
 												resizeMode="cover"
 											/>
